@@ -1,41 +1,133 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Terra.MainPage">
+             x:Class="Terra.MainPage"
+             >
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
+    <VerticalStackLayout>
+        <!--Image at top-->
+        <Image
+            Source="plant.png"
+            Aspect="AspectFill"/>
+        
+        <!--Quick Action-->
+        <Label
+            Margin="10, -140"
+            Text="Quick Action"
+            FontSize="20"
+            HorizontalTextAlignment="Start"/>
+        <!--Quick Action buttons-->
+        <HorizontalStackLayout
+            Margin="0, 160"
+            HorizontalOptions="CenterAndExpand">
+            <!--Add Button-->
+            <Button                
+                WidthRequest="120"
+                HeightRequest="80"
+                x:Name="addBtn"
+                Text="Add"
+                TextColor="Black"
+                FontAttributes="Bold"
+                Background="#D9D9D9"
+                Clicked="OnAddClicked"/>
+            <!--View Button-->
+            <Button         
+                Margin="10, 0"
+                WidthRequest="120"
+                HeightRequest="80"
+                x:Name="viewBtn"
+                Text="View"
+                TextColor="Black"
+                FontAttributes="Bold"
+                Background="#D9D9D9"
+                Clicked="OnViewClicked"/>
+            <!--Remove Button-->
             <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+                WidthRequest="120"
+                HeightRequest="80"
+                x:Name="removeBtn"
+                Text="Remove"
+                TextColor="Black"
+                FontAttributes="Bold"
+                Background="#D9D9D9"
+                Clicked="OnRemoveClicked"/>
+        </HorizontalStackLayout>
+        
+        <!--Others-->
+        <VerticalStackLayout
+            Margin="10, -130">
+            <!--Title-->
+            <Label
+            Text="Others"
+            FontSize="20"
+            HorizontalTextAlignment="Start"/>
+            <!--GraphicalView Button-->
+            <Button
+                HeightRequest="55"
+                Text="Graphical View"
+                TextColor="Black"
+                BackgroundColor="White"
+                HorizontalOptions="FillAndExpand"
+                x:Name="graphicalViewBtn"/>
+            <!-- Line Break -->
+            <Line
+                X1="10"
+                Y1="0"
+                X2="380"
+                Y2="0"
+                Stroke="#E2E2E2"/>
+            <!-- EmailSubscription Button -->
+            <Button
+                HeightRequest="55"
+                Text="Email Subscription"
+                TextColor="Black"
+                BackgroundColor="White"
+                HorizontalOptions="FillAndExpand"
+                x:Name="emailSubBtn"/>
+            <!-- Line Break -->
+            <Line
+                X1="10"
+                Y1="0"
+                X2="380"
+                Y2="0"
+                Stroke="#E2E2E2"/>
+            <!-- CurrentMode Button -->
+            <Button
+                HeightRequest="55"
+                Text="Current Mode: Auto/Scheduled"
+                TextColor="Black"
+                BackgroundColor="White"
+                HorizontalOptions="FillAndExpand"
+                x:Name="moddeBtn"/>
+            <!-- Line Break -->
+            <Line
+                X1="10"
+                Y1="0"
+                X2="380"
+                Y2="0"
+                Stroke="#E2E2E2"/>
+            <!-- PlantWiki Button -->
+            <Button
+                HeightRequest="55"
+                Text="Plant Wiki"
+                TextColor="Black"
+                BackgroundColor="White"
+                HorizontalOptions="FillAndExpand"
+                x:Name="wikiBtn"/>
+            <!-- Line Break -->
+            <Line
+                X1="10"
+                Y1="0"
+                X2="380"
+                Y2="0"
+                Stroke="#E2E2E2"/>
+
 
         </VerticalStackLayout>
-    </ScrollView>
+        
+        
+
+
+    </VerticalStackLayout>
 
 </ContentPage>
