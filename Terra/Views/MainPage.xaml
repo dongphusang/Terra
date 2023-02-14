@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Terra.MainPage"
+             xmlns:viewmodel="clr-namespace:Terra.ViewModels"
+             x:DataType="viewmodel:MainPageViewModel"
              >
 
     <VerticalStackLayout>
@@ -29,7 +31,7 @@
                 TextColor="Black"
                 FontAttributes="Bold"
                 Background="#D9D9D9"
-                Clicked="OnAddClicked"/>
+                Command="{Binding AddCommand}"/>
             <!--View Button-->
             <Button         
                 Margin="10, 0"
@@ -40,7 +42,7 @@
                 TextColor="Black"
                 FontAttributes="Bold"
                 Background="#D9D9D9"
-                Clicked="OnViewClicked"/>
+                />
             <!--Remove Button-->
             <Button
                 WidthRequest="120"
@@ -50,7 +52,7 @@
                 TextColor="Black"
                 FontAttributes="Bold"
                 Background="#D9D9D9"
-                Clicked="OnRemoveClicked"/>
+                />
         </HorizontalStackLayout>
         
         <!--Others-->
