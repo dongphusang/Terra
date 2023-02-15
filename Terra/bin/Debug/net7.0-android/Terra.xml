@@ -4,11 +4,11 @@
         <name>Terra</name>
     </assembly>
     <members>
-        <member name="F:Terra.ViewModels.MainPageViewModel.addCommand">
-            <summary>The backing field for <see cref="P:Terra.ViewModels.MainPageViewModel.AddCommand"/>.</summary>
+        <member name="F:Terra.ViewModels.MainPageViewModel.navigateCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.MainPageViewModel.NavigateCommand"/>.</summary>
         </member>
-        <member name="P:Terra.ViewModels.MainPageViewModel.AddCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.MainPageViewModel.Add"/>.</summary>
+        <member name="P:Terra.ViewModels.MainPageViewModel.NavigateCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.MainPageViewModel.Navigate"/>.</summary>
         </member>
     </members>
 </doc>

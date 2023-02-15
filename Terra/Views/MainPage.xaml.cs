@@ -2,15 +2,16 @@
 
 namespace Terra;
 
-partial class MainPage : ContentPage
+public partial class MainPage : ContentPage
 {
 
-	public MainPage(MainPageViewModel mainPageViewModel)
+	public MainPage()
 	{
 		InitializeComponent();
-		BindingContext = mainPageViewModel;
+		BindingContext = new MainPageViewModel();
 	}
 
-	
+    
+
 }
 
