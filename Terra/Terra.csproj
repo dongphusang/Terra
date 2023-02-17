@@ -51,6 +51,8 @@
 	  <None Remove="ViewModels\" />
 	  <None Remove="Models\" />
 	  <None Remove="Views\" />
+	  <None Remove="Resources\Fonts\LDFComicSans.ttf" />
+	  <None Remove="Resources\Fonts\LDFComicSansBold.ttf" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -70,5 +72,9 @@
 	  <MauiXaml Update="Views\AddWorkspacePage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Fonts\LDFComicSans.ttf" />
+	  <BundleResource Include="Resources\Fonts\LDFComicSansBold.ttf" />
 	</ItemGroup>
 </Project>

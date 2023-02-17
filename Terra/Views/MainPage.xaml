@@ -32,8 +32,7 @@
                 FontAttributes="Bold"
                 Background="#D9D9D9"
                 Command="{Binding NavigateCommand}"
-                />
-                
+                />             
             <!--View Button-->
             <Button         
                 Margin="10, 0"

@@ -4,11 +4,82 @@
              x:Class="Terra.AddWorkspacePage"
              Title="AddWorkspacePage"
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
-             x:DataType="viewmodel:AddWorkspaceViewModel">
+             x:DataType="viewmodel:AddWorkspaceViewModel"
+             >
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <!--Image at top-->
+        <Image
+            Source="plant.png"
+            Aspect="AspectFill"/>
+
+        <!-- Prompt Entries -->
+        <Entry
+            Margin="25, -140, 25, 0"
+            FontSize="15"
+            HeightRequest="53"
+            BackgroundColor="#D9D9D9"
+            Placeholder="Workspace name..."
+            PlaceholderColor="#838383"
+            x:Name="workspaceEntry"
+            />
+        <Entry
+            Margin="25, 36, 25, 0"
+            FontSize="15"
+            HeightRequest="53"
+            BackgroundColor="#D9D9D9"
+            Placeholder="Plant name..."
+            PlaceholderColor="#838383"
+            x:Name="plantEntry"
+            />
+
+        <!-- Initial Module Selection -->
+        <!-- Title -->
+        <Label
+            Margin="0, 36, 0, 0"
+            Text="Which module do you want to include?"
+            FontSize="15"
+            FontAttributes="Bold"
+            FontFamily="LDFComicSans"
+            HorizontalTextAlignment="Center"
+            />
+        <!-- Checkboxes -->
+        <HorizontalStackLayout>
+            <!-- Lighting Checkbox -->
+            <CheckBox               
+                Margin="85, 0"
+                Color="#919191"
+                x:Name="lightingCheckbox"
+                />
+            <Label
+                Margin="-90, 20"
+                Text="Lighting"
+                TextColor="#838383"
+                FontSize="15"              
+                />
+            <!-- Watering Checkbox -->
+            <CheckBox
+                Margin="105, 0"
+                Color="#919191"
+                x:Name="wateringCheckbox"
+                />
+            <Label
+                Margin="-110, 20"
+                Text="Watering"
+                TextColor="#838383"
+                FontSize="15"            
+                />
+        </HorizontalStackLayout>
+
+        <!-- Confirm Button -->
+        <Button
+            Margin="0, 90"
+            HeightRequest="40"
+            WidthRequest="222"
+            Text="Confirm"
+            TextColor="Black"
+            BackgroundColor="#CAD7C4"
+            />
+
     </VerticalStackLayout>
+
 </ContentPage>

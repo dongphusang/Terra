@@ -1,22 +1,42 @@
 ﻿<Properties StartupConfiguration="{5314F4D7-FCBF-46FE-A733-79D87304EC8B}|Default">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="Android.pixel_5_-_api_31" />
   <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.pixel_5_-_api_31" />
-  <MonoDevelop.MonoDroid LastDeploySdkVersion="13.1.0.1" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="13.1.0.1" />
+  <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="Android.pixel_5_-_api_31" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Terra/Views/AddWorkspacePage.xaml">
+    <Files>
+      <File FileName="Terra/Views/MainPage.xaml" Line="35" Column="19" />
+      <File FileName="Terra/Views/MainPage.xaml.cs" />
+      <File FileName="Terra/ViewModels/MainPageViewModel.cs" Line="16" Column="69" />
+      <File FileName="Terra/ViewModels/AddWorkspaceViewModel.cs" Line="6" Column="53" />
+      <File FileName="Terra/MauiProgram.cs" Line="12" Column="22" />
+      <File FileName="Terra/AppShell.xaml" Line="9" Column="5" />
+      <File FileName="Terra/AppShell.xaml.cs" Line="9" Column="80" />
+      <File FileName="Terra/Views/AddWorkspacePage.xaml" Line="11" Column="26" />
+      <File FileName="Terra/Resources/Styles/Styles.xaml" Line="375" Column="1" />
+      <File FileName="Terra/App.xaml" Line="1" Column="1" />
+      <File FileName="../Library/Caches/VisualStudio/17.0/Symbols/raw.githubusercontent.com/xamarin/xamarin-android/af18b843d16f5ecad3171016fb66efecdb78c4bf/src/Mono.Android/Android.Runtime/JNIEnv.cs" Line="134" Column="5" />
+      <File FileName="Terra/Resources/Styles/Colors.xaml" Line="22" Column="76" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Terra" expanded="True">
             <Node name="Terra" expanded="True">
-              <Node name="Views" expanded="True">
-                <Node name="MainPage.xaml" expanded="True" />
+              <Node name="Resources" expanded="True">
+                <Node name="Fonts" expanded="True" />
+                <Node name="Styles" expanded="True" />
               </Node>
+              <Node name="ViewModels" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="AddWorkspacePage.xaml" selected="True" />
+              </Node>
+              <Node name="AppShell.xaml" expanded="True" />
             </Node>
           </Node>
         </State>

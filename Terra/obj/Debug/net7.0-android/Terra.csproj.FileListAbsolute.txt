@@ -1931,6 +1931,8 @@ C:/Users/sangs/Desktop/Terra/Terra/obj/Debug/net7.0-android/app_shared_libraries
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/stamp/_GenerateJavaStubs.stamp
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/stamp/_GeneratePackageManagerJava.stamp
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/stamp/_ResolveLibraryProjectImports.stamp
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/resizetizer/f/LDFComicSans.ttf
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/resizetizer/f/LDFComicSansBold.ttf
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/mscorlib.dll
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/System.Collections.Concurrent.dll
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/System.Data.Common.dll
