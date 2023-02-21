@@ -4,6 +4,15 @@
         <name>Terra</name>
     </assembly>
     <members>
+        <member name="P:Terra.ViewModels.AddWorkspaceViewModel.Workspace">
+            <inheritdoc cref="F:Terra.ViewModels.AddWorkspaceViewModel.workspace"/>
+        </member>
+        <member name="F:Terra.ViewModels.AddWorkspaceViewModel.postWorkspaceCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.AddWorkspaceViewModel.PostWorkspaceCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.AddWorkspaceViewModel.PostWorkspaceCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.AddWorkspaceViewModel.PostWorkspace"/>.</summary>
+        </member>
         <member name="F:Terra.ViewModels.MainPageViewModel.navigateCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.MainPageViewModel.NavigateCommand"/>.</summary>
         </member>

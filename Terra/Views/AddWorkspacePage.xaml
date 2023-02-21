@@ -12,7 +12,8 @@
             Source="plant.png"
             Aspect="AspectFill"/>
 
-        <!-- Prompt Entries -->
+        <!-- Prompt Input Fields -->
+        <!-- Workspace name *required -->
         <Entry
             Margin="25, -140, 25, 0"
             FontSize="15"
@@ -20,16 +21,17 @@
             BackgroundColor="#D9D9D9"
             Placeholder="Workspace name..."
             PlaceholderColor="#838383"
-            x:Name="workspaceEntry"
+            Text="{Binding Workspace.WorkspaceName}"
             />
-        <Entry
-            Margin="25, 36, 25, 0"
+        <!-- Workspace note *optional -->
+        <Editor
+            Margin="25, 34, 25, 0"
             FontSize="15"
-            HeightRequest="53"
+            HeightRequest="90"
             BackgroundColor="#D9D9D9"
-            Placeholder="Plant name..."
-            PlaceholderColor="#838383"
-            x:Name="plantEntry"
+            Placeholder="Note..."
+            PlaceholderColor="#838383"      
+            Text="{Binding Workspace.Note}"
             />
 
         <!-- Initial Module Selection -->
@@ -48,7 +50,7 @@
             <CheckBox               
                 Margin="85, 0"
                 Color="#919191"
-                x:Name="lightingCheckbox"
+                IsChecked="{Binding Workspace.IsLightingExist}"
                 />
             <Label
                 Margin="-90, 20"
@@ -60,7 +62,7 @@
             <CheckBox
                 Margin="105, 0"
                 Color="#919191"
-                x:Name="wateringCheckbox"
+                IsChecked="{Binding Workspace.IsWateringExist}"
                 />
             <Label
                 Margin="-110, 20"
@@ -72,12 +74,13 @@
 
         <!-- Confirm Button -->
         <Button
-            Margin="0, 90"
+            Margin="0, 80"
             HeightRequest="40"
             WidthRequest="222"
             Text="Confirm"
             TextColor="Black"
             BackgroundColor="#CAD7C4"
+            Command="{Binding PostWorkspaceCommand}"
             />
 
     </VerticalStackLayout>

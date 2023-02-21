@@ -1946,3 +1946,13 @@ C:/Users/sangs/Desktop/Terra/Terra/obj/Debug/net7.0-android/app_shared_libraries
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/System.Runtime.Extensions.dll
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/System.Runtime.Serialization.Formatters.dll
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/System.Xml.dll
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/EntityFramework.dll
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/EntityFramework.SqlServer.dll
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/System.CodeDom.dll
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/System.Configuration.ConfigurationManager.dll
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/System.Data.SqlClient.dll
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/System.Data.SQLite.dll
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/System.Data.SQLite.EF6.dll
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/System.Drawing.Common.dll
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/System.Security.Permissions.dll
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/android/assets/System.Windows.Extensions.dll
