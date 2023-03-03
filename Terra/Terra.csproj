@@ -28,6 +28,8 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+
+		
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -48,27 +50,23 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\plant.png" />
 	  <None Remove="CommunityToolkit.Mvvm" />
+	  <None Remove="Terra.db" />
 	  <None Remove="ViewModels\" />
 	  <None Remove="Models\" />
 	  <None Remove="Views\" />
-	  <None Remove="Resources\Fonts\LDFComicSans.ttf" />
-	  <None Remove="Resources\Fonts\LDFComicSansBold.ttf" />
 	  <None Remove="Services\" />
-	  <None Remove="System.Data.SQLite" />
-	  <None Remove="System.Data.SQLite.Core" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.3" />
+		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="7.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
-		<PackageReference Include="System.Data.SQLite" Version="1.0.117" />
-		<PackageReference Include="System.Data.SQLite.Core" Version="1.0.117" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="ViewModels\" />
 	  <Folder Include="Models\" />
-	  <Folder Include="Views\" />
 	  <Folder Include="Services\" />
 	</ItemGroup>
 	<ItemGroup>
@@ -78,9 +76,5 @@
 	  <MauiXaml Update="Views\AddWorkspacePage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
-	</ItemGroup>
-	<ItemGroup>
-	  <BundleResource Include="Resources\Fonts\LDFComicSans.ttf" />
-	  <BundleResource Include="Resources\Fonts\LDFComicSansBold.ttf" />
 	</ItemGroup>
 </Project>

@@ -34,44 +34,6 @@
             Text="{Binding Workspace.Note}"
             />
 
-        <!-- Initial Module Selection -->
-        <!-- Title -->
-        <Label
-            Margin="0, 36, 0, 0"
-            Text="Which module do you want to include?"
-            FontSize="15"
-            FontAttributes="Bold"
-            FontFamily="LDFComicSans"
-            HorizontalTextAlignment="Center"
-            />
-        <!-- Checkboxes -->
-        <HorizontalStackLayout>
-            <!-- Lighting Checkbox -->
-            <CheckBox               
-                Margin="85, 0"
-                Color="#919191"
-                IsChecked="{Binding Workspace.IsLightingExist}"
-                />
-            <Label
-                Margin="-90, 20"
-                Text="Lighting"
-                TextColor="#838383"
-                FontSize="15"              
-                />
-            <!-- Watering Checkbox -->
-            <CheckBox
-                Margin="105, 0"
-                Color="#919191"
-                IsChecked="{Binding Workspace.IsWateringExist}"
-                />
-            <Label
-                Margin="-110, 20"
-                Text="Watering"
-                TextColor="#838383"
-                FontSize="15"            
-                />
-        </HorizontalStackLayout>
-
         <!-- Confirm Button -->
         <Button
             Margin="0, 80"

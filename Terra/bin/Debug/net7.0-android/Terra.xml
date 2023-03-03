@@ -4,6 +4,27 @@
         <name>Terra</name>
     </assembly>
     <members>
+        <member name="M:Terra.Services.WorkspaceService.IsExist(System.String,System.String,Microsoft.Data.Sqlite.SqliteConnection)">
+            <summary>
+            Used to verify if a table or a column is existed
+            </summary>
+            <param name="tableName"></param>
+            <param name="column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Terra.Services.WorkspaceService.CreateWorkspaceTable">
+            <summary>
+            Create workspace table in Terra db
+            </summary>
+        </member>
+        <member name="M:Terra.Services.WorkspaceService.InsertToTable(System.String,System.String,System.String)">
+            <summary>
+            Test this bitch. It might mess up
+            </summary>
+            <param name="tableName"></param>
+            <param name="workspaceName"></param>
+            <param name="note"></param>
+        </member>
         <member name="P:Terra.ViewModels.AddWorkspaceViewModel.Workspace">
             <inheritdoc cref="F:Terra.ViewModels.AddWorkspaceViewModel.workspace"/>
         </member>

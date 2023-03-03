@@ -10,18 +10,19 @@ namespace Terra.ViewModels
     public partial class AddWorkspaceViewModel : ObservableObject
     {
         [ObservableProperty]
-        public Workspace workspace;    
+        public Workspace workspace;  
+        private WorkspaceService workspaceService;
 
         public AddWorkspaceViewModel()
         {
             Workspace = new();
+            workspaceService= new WorkspaceService();
         }
 
         [RelayCommand]
-        async void PostWorkspace()
+        void PostWorkspace()
         {
-            await WorkspaceService.LoadMauiAsset();
-            WorkspaceService.InsertToTable("workspace", Workspace.WorkspaceName, Workspace.Note);
+             workspaceService.InsertToTable("Workspace", Workspace.WorkspaceName, Workspace.Note);
         }
 
 

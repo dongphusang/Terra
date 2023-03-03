@@ -6,6 +6,6 @@ public class Workspace
 {
     public String WorkspaceName { get; set; }
     public String Note { get; set; }
-    public bool IsLightingExist { get; set; }
-    public bool IsWateringExist { get; set; }
+    public bool IsLightModule { get; set; }
+    public bool IsWaterModule { get; set; }
 }
