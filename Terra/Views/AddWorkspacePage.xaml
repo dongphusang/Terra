@@ -4,7 +4,7 @@
              x:Class="Terra.AddWorkspacePage"
              Title="AddWorkspacePage"
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
-             x:DataType="viewmodel:AddWorkspaceViewModel"
+             x:DataType="viewmodel:WorkspaceViewModel"
              >
     <VerticalStackLayout>
         <!--Image at top-->
@@ -15,7 +15,7 @@
         <!-- Prompt Input Fields -->
         <!-- Workspace name *required -->
         <Entry
-            Margin="25, -140, 25, 0"
+            Margin="25, -120, 25, 0"
             FontSize="15"
             HeightRequest="53"
             BackgroundColor="#D9D9D9"
@@ -36,7 +36,7 @@
 
         <!-- Confirm Button -->
         <Button
-            Margin="0, 80"
+            Margin="0, 100"
             HeightRequest="40"
             WidthRequest="222"
             Text="Confirm"

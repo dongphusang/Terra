@@ -34,8 +34,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
-
+		<MauiIcon Include="Resources\AppIcon\appicon.jpg" BaseSize="128,128"/>
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
@@ -50,7 +49,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\plant.png" />
 	  <None Remove="CommunityToolkit.Mvvm" />
-	  <None Remove="Terra.db" />
+	  <None Remove="Resources\Images\plant_placeholder.png" />
 	  <None Remove="ViewModels\" />
 	  <None Remove="Models\" />
 	  <None Remove="Views\" />
@@ -58,6 +57,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.3" />
 		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="7.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
@@ -65,7 +65,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="ViewModels\" />
 	  <Folder Include="Models\" />
 	  <Folder Include="Services\" />
 	</ItemGroup>
@@ -75,6 +74,9 @@
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AddWorkspacePage.xaml">
 	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\WorkspaceList.xaml">
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 </Project>

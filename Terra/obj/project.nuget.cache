@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Xr0VYc+fWBt1FgH3bfuBl+rB3xdT2TW/k6/y6PGdYltsKaxcTpN48dnSDVg4o0cG+q/jbO893SGYDTIrKTjJWA==",
+  "dgSpecHash": "Kzde2K/eJ2iCOcMVqcx55EnZJiOXMENNgdmP/gcskR6wAEhEBCK4NzhLliEn0/FS2HK8O7Jp6G41fG7/t+InfQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\sangs\\Desktop\\Terra\\Terra\\Terra.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\sangs\\.nuget\\packages\\communitytoolkit.maui\\5.0.0\\communitytoolkit.maui.5.0.0.nupkg.sha512",
+    "C:\\Users\\sangs\\.nuget\\packages\\communitytoolkit.maui.core\\5.0.0\\communitytoolkit.maui.core.5.0.0.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\communitytoolkit.mvvm\\8.1.0\\communitytoolkit.mvvm.8.1.0.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\googlegson\\2.9.1.1\\googlegson.2.9.1.1.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\microsoft.data.sqlite\\7.0.3\\microsoft.data.sqlite.7.0.3.nupkg.sha512",

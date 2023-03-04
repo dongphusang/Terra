@@ -10813,10 +10813,11 @@ public final class R {
     public static final int notification_tile_bg=0x7f0700ce;
     public static final int notify_panel_notification_icon_bg=0x7f0700cf;
     public static final int plant=0x7f0700d0;
-    public static final int splash=0x7f0700d1;
-    public static final int test_level_drawable=0x7f0700d2;
-    public static final int tooltip_frame_dark=0x7f0700d3;
-    public static final int tooltip_frame_light=0x7f0700d4;
+    public static final int plant_placeholder=0x7f0700d1;
+    public static final int splash=0x7f0700d2;
+    public static final int test_level_drawable=0x7f0700d3;
+    public static final int tooltip_frame_dark=0x7f0700d4;
+    public static final int tooltip_frame_light=0x7f0700d5;
   }
   public static final class id {
     public static final int ALT=0x7f080000;
@@ -11548,10 +11549,14 @@ public final class R {
     public static final int toolbar=0x7f0b0077;
   }
   public static final class mipmap {
-    public static final int appicon=0x7f0d0000;
-    public static final int appicon_background=0x7f0d0001;
-    public static final int appicon_foreground=0x7f0d0002;
-    public static final int appicon_round=0x7f0d0003;
+    public static final int alt_appicon=0x7f0d0000;
+    public static final int alt_appicon_background=0x7f0d0001;
+    public static final int alt_appicon_foreground=0x7f0d0002;
+    public static final int alt_appicon_round=0x7f0d0003;
+    public static final int appicon=0x7f0d0004;
+    public static final int appicon_background=0x7f0d0005;
+    public static final int appicon_foreground=0x7f0d0006;
+    public static final int appicon_round=0x7f0d0007;
   }
   public static final class plurals {
     public static final int mtrl_badge_content_description=0x7f0e0000;

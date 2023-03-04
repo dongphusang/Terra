@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using CommunityToolkit.Maui;
 using Terra.ViewModels;
 
 namespace Terra;
@@ -9,7 +10,8 @@ public static class MauiProgram
 	{
 		var builder = MauiApp.CreateBuilder();
 		builder
-			.UseMauiApp<App>()			
+			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -21,7 +23,8 @@ public static class MauiProgram
 		builder.Services.AddSingleton<MainPageViewModel>();
 
 		builder.Services.AddTransient<AddWorkspacePage>();
-		builder.Services.AddTransient<AddWorkspaceViewModel>();
+		builder.Services.AddTransient<WorkspaceList>();
+		builder.Services.AddTransient<WorkspaceViewModel>();
 
 #if DEBUG
 		builder.Logging.AddDebug();
