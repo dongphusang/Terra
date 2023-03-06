@@ -98,9 +98,7 @@ namespace Terra.Services
                                 "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," +
                                 "name TEXT NOT NULL UNIQUE," +
                                 "date_added TEXT NOT NULL," +
-                                "note TEXT," +
-                                "water_module INTEGER NOT NULL," +
-                                "";
+                                "note TEXT)";
                 // add workspace table to Terra database
                 if (!IsExist("Workspace","*",connection))
                 {

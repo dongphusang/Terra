@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Terra.WorkspaceList"
@@ -7,7 +7,32 @@
              x:DataType="viewmodel:WorkspaceViewModel"
              >
     <VerticalStackLayout>
-        <Image 
-            Source="plant_placeholder.png"/>
+        <!--To be added dyamically. Static for now-->
+        <BoxView
+            Margin="10, 50, 10, 10"
+            HeightRequest="120"
+            HorizontalOptions="CenterAndExpand"
+            CornerRadius="10"
+            Color="#E2D6D6"/>
+        <BoxView
+            Margin="10"
+            HeightRequest="120"
+            HorizontalOptions="CenterAndExpand"
+            CornerRadius="10"
+            Color="#E2D6D6"/>
+        <BoxView
+            Margin="10"
+            HeightRequest="120"
+            HorizontalOptions="CenterAndExpand"
+            CornerRadius="10"
+            Color="#E2D6D6"/>
+        <BoxView
+            Margin="10"
+            HeightRequest="120"
+            HorizontalOptions="CenterAndExpand"
+            CornerRadius="10"
+            Color="#E2D6D6"/>
+
+
     </VerticalStackLayout>
 </ContentPage>
