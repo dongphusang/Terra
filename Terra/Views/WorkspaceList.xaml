@@ -6,32 +6,70 @@
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
              x:DataType="viewmodel:WorkspaceViewModel"
              >
-    <VerticalStackLayout>
+    <VerticalStackLayout
+        Padding="10, 50, 10, 0">
         <!--To be added dyamically. Static for now-->
-        <BoxView
-            Margin="10, 50, 10, 10"
-            HeightRequest="120"
-            HorizontalOptions="CenterAndExpand"
-            CornerRadius="10"
-            Color="#E2D6D6"/>
-        <BoxView
-            Margin="10"
-            HeightRequest="120"
-            HorizontalOptions="CenterAndExpand"
-            CornerRadius="10"
-            Color="#E2D6D6"/>
-        <BoxView
-            Margin="10"
-            HeightRequest="120"
-            HorizontalOptions="CenterAndExpand"
-            CornerRadius="10"
-            Color="#E2D6D6"/>
-        <BoxView
-            Margin="10"
-            HeightRequest="120"
-            HorizontalOptions="CenterAndExpand"
-            CornerRadius="10"
-            Color="#E2D6D6"/>
+        <Grid
+            HorizontalOptions="StartAndExpand"
+            VerticalOptions="StartAndExpand"
+            RowSpacing="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <!-- First workspace -->
+            <BoxView
+                Grid.Row="0"           
+                HeightRequest="120"
+                HorizontalOptions="CenterAndExpand"
+                CornerRadius="10"
+                Color="#E2D6D6"/>
+            <Image
+                Grid.Row="0"
+                Margin="10, 0"
+                HeightRequest="100"
+                HorizontalOptions="Start"
+                Source="plant_placeholder.png"/>
+            <Label
+                Grid.Row="0"
+                Margin="125, 20, 0, 0"
+                Text="Workspace Name"
+                FontAttributes="Bold"
+                FontSize="25"/>
+            <Label
+                Grid.Row="0"
+                Margin="125, 60, 0, 0"
+                Text="Note"
+                FontSize="20"/>
+
+            <!-- Second workspace -->
+            <BoxView
+                Grid.Row="1"           
+                HeightRequest="120"
+                HorizontalOptions="CenterAndExpand"
+                CornerRadius="10"
+                Color="#E2D6D6"/>
+
+            <BoxView
+                Grid.Row="2"           
+                HeightRequest="120"
+                HorizontalOptions="CenterAndExpand"
+                CornerRadius="10"
+                Color="#E2D6D6"/>
+
+            <BoxView
+                Grid.Row="3"           
+                HeightRequest="120"
+                HorizontalOptions="CenterAndExpand"
+                CornerRadius="10"
+                Color="#E2D6D6"/>
+
+
+        </Grid>
+        
 
 
     </VerticalStackLayout>
