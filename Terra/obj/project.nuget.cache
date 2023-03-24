@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Kzde2K/eJ2iCOcMVqcx55EnZJiOXMENNgdmP/gcskR6wAEhEBCK4NzhLliEn0/FS2HK8O7Jp6G41fG7/t+InfQ==",
+  "dgSpecHash": "3G6NN1YnIV2XOZyZHdVDQSEa/DTXYqWp/fg6+laIDwnb/no+03tSOEw7pm9HxJTKPxr417uEX5f68tQ3qwF3vQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\sangs\\Desktop\\Terra\\Terra\\Terra.csproj",
   "expectedPackageFiles": [
@@ -117,9 +117,9 @@
     "C:\\Users\\sangs\\.nuget\\packages\\xamarin.kotlinx.coroutines.android\\1.6.4.1\\xamarin.kotlinx.coroutines.android.1.6.4.1.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\xamarin.kotlinx.coroutines.core.jvm\\1.6.4.1\\xamarin.kotlinx.coroutines.core.jvm.1.6.4.1.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.28\\microsoft.windows.sdk.net.ref.10.0.19041.28.nupkg.sha512",
-    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.3\\microsoft.aspnetcore.app.runtime.win-x64.7.0.3.nupkg.sha512",
-    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\7.0.3\\microsoft.windowsdesktop.app.runtime.win-x64.7.0.3.nupkg.sha512",
-    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\7.0.3\\microsoft.netcore.app.runtime.win-x64.7.0.3.nupkg.sha512"
+    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.4\\microsoft.aspnetcore.app.runtime.win-x64.7.0.4.nupkg.sha512",
+    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\7.0.4\\microsoft.windowsdesktop.app.runtime.win-x64.7.0.4.nupkg.sha512",
+    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\7.0.4\\microsoft.netcore.app.runtime.win-x64.7.0.4.nupkg.sha512"
   ],
   "logs": []
 }

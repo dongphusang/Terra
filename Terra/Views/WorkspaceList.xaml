@@ -44,6 +44,15 @@
                 Margin="125, 60, 0, 0"
                 Text="Note"
                 FontSize="20"/>
+            <Button
+                Grid.Row="0"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                CornerRadius="10"
+                Opacity="0"
+                Command="PullDataCommand"
+                />
+
 
             <!-- Second workspace -->
             <BoxView
@@ -52,21 +61,73 @@
                 HorizontalOptions="CenterAndExpand"
                 CornerRadius="10"
                 Color="#E2D6D6"/>
+            <Image
+                Grid.Row="1"
+                Margin="10, 0"
+                HeightRequest="100"
+                HorizontalOptions="Start"
+                Source="plant_placeholder.png"/>
+            <Label
+                Grid.Row="1"
+                Margin="125, 20, 0, 0"
+                Text="Workspace Name"
+                FontAttributes="Bold"
+                FontSize="25"/>
+            <Label
+                Grid.Row="1"
+                Margin="125, 60, 0, 0"
+                Text="Note"
+                FontSize="20"/>
 
+            <!-- Third workspace-->
             <BoxView
                 Grid.Row="2"           
                 HeightRequest="120"
                 HorizontalOptions="CenterAndExpand"
                 CornerRadius="10"
                 Color="#E2D6D6"/>
+            <Image
+                Grid.Row="2"
+                Margin="10, 0"
+                HeightRequest="100"
+                HorizontalOptions="Start"
+                Source="plant_placeholder.png"/>
+            <Label
+                Grid.Row="2"
+                Margin="125, 20, 0, 0"
+                Text="Workspace Name"
+                FontAttributes="Bold"
+                FontSize="25"/>
+            <Label
+                Grid.Row="2"
+                Margin="125, 60, 0, 0"
+                Text="Note"
+                FontSize="20"/>
 
+            <!-- Fourth workspace-->
             <BoxView
                 Grid.Row="3"           
                 HeightRequest="120"
                 HorizontalOptions="CenterAndExpand"
                 CornerRadius="10"
                 Color="#E2D6D6"/>
-
+            <Image
+                Grid.Row="3"
+                Margin="10, 0"
+                HeightRequest="100"
+                HorizontalOptions="Start"
+                Source="plant_placeholder.png"/>
+            <Label
+                Grid.Row="3"
+                Margin="125, 20, 0, 0"
+                Text="Workspace Name"
+                FontAttributes="Bold"
+                FontSize="25"/>
+            <Label
+                Grid.Row="3"
+                Margin="125, 60, 0, 0"
+                Text="Note"
+                FontSize="20"/>
 
         </Grid>
         
