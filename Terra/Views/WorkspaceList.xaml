@@ -19,7 +19,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            
+
             <!-- First workspace -->
             <BoxView
                 Grid.Row="0"           
@@ -36,13 +36,13 @@
             <Label
                 Grid.Row="0"
                 Margin="125, 20, 0, 0"
-                Text="Workspace Name"
+                Text="{Binding WorkspaceNames[0]}"
                 FontAttributes="Bold"
                 FontSize="25"/>
             <Label
                 Grid.Row="0"
                 Margin="125, 60, 0, 0"
-                Text="Note"
+                Text="wp1"
                 FontSize="20"/>
             <Button
                 Grid.Row="0"
@@ -50,7 +50,6 @@
                 HorizontalOptions="FillAndExpand"
                 CornerRadius="10"
                 Opacity="0"
-                Command="PullDataCommand"
                 />
 
 
@@ -70,13 +69,13 @@
             <Label
                 Grid.Row="1"
                 Margin="125, 20, 0, 0"
-                Text="Workspace Name"
+                Text="{Binding WorkspaceNames[1]}"
                 FontAttributes="Bold"
                 FontSize="25"/>
             <Label
                 Grid.Row="1"
                 Margin="125, 60, 0, 0"
-                Text="Note"
+                Text="wp1"
                 FontSize="20"/>
 
             <!-- Third workspace-->
@@ -95,13 +94,13 @@
             <Label
                 Grid.Row="2"
                 Margin="125, 20, 0, 0"
-                Text="Workspace Name"
+                Text="{Binding WorkspaceNames[2]}"
                 FontAttributes="Bold"
                 FontSize="25"/>
             <Label
                 Grid.Row="2"
                 Margin="125, 60, 0, 0"
-                Text="Note"
+                Text="wp1"
                 FontSize="20"/>
 
             <!-- Fourth workspace-->
@@ -120,18 +119,15 @@
             <Label
                 Grid.Row="3"
                 Margin="125, 20, 0, 0"
-                Text="Workspace Name"
+                Text="{Binding WorkspaceNames[3]}"
                 FontAttributes="Bold"
                 FontSize="25"/>
             <Label
                 Grid.Row="3"
                 Margin="125, 60, 0, 0"
-                Text="Note"
+                Text="wp1"
                 FontSize="20"/>
 
         </Grid>
-        
-
-
     </VerticalStackLayout>
 </ContentPage>

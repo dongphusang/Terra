@@ -17,13 +17,25 @@
             Create workspace table in Terra db
             </summary>
         </member>
+        <member name="M:Terra.Services.WorkspaceService.CreatePlantTable">
+            <summary>
+            Create plant table in Terra db
+            </summary>
+        </member>
         <member name="M:Terra.Services.WorkspaceService.InsertToTable(System.String,System.String,System.String)">
             <summary>
-            Test this bitch. It might mess up
+            insert to table 
             </summary>
-            <param name="tableName"></param>
-            <param name="workspaceName"></param>
-            <param name="note"></param>
+            <param name="tableName"> name of table (workspace)</param>
+            <param name="workspaceName"> name column </param>
+            <param name="note"> note column</param>
+        </member>
+        <member name="M:Terra.Services.WorkspaceService.GetWorkspaces(System.String)">
+            <summary>
+            Return a list of workspaces' name
+            </summary>
+            <param name="tableName"> name of table (Workspace) </param>
+            <returns></returns>
         </member>
         <member name="F:Terra.ViewModels.MainPageViewModel.toAddWorkspacePageCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.MainPageViewModel.ToAddWorkspacePageCommand"/>.</summary>
@@ -40,11 +52,19 @@
         <member name="P:Terra.ViewModels.WorkspaceViewModel.Workspace">
             <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.workspace"/>
         </member>
+        <member name="P:Terra.ViewModels.WorkspaceViewModel.WorkspaceNames">
+            <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.workspaceNames"/>
+        </member>
         <member name="F:Terra.ViewModels.WorkspaceViewModel.postWorkspaceCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.WorkspaceViewModel.PostWorkspaceCommand"/>.</summary>
         </member>
         <member name="P:Terra.ViewModels.WorkspaceViewModel.PostWorkspaceCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.WorkspaceViewModel.PostWorkspace"/>.</summary>
+        </member>
+        <member name="M:Terra.WorkspaceList.#ctor">
+            <summary>
+            Code behind constructor. Has to invoke the UpdateWorkspace() method since it's not updating texts upon navigation
+            </summary>
         </member>
         <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Button.TextColorTo(Microsoft.Maui.Controls.Button,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing)">
             <summary>

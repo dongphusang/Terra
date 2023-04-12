@@ -13,39 +13,25 @@ namespace Terra.ViewModels
     {
         // workspace model object
         [ObservableProperty]
-        public Workspace workspace;  
-        private WorkspaceService workspaceService;
+        public Workspace workspace;
+        // list of workspace names
+        [ObservableProperty]
+        public List<string> workspaceNames;
+        // workspace service object
+        private WorkspaceService _workspaceService;       
 
-        // workspace names and notes
-        [ObservableProperty]
-        private string firstWpName;
-        [ObservableProperty]
-        private string secondWpName;
-        [ObservableProperty]
-        private string thirdWpName;
-        [ObservableProperty]
-        private string fourthWpName;
-        [ObservableProperty]
-        private string firstWpNote;
-        [ObservableProperty]
-        private string secondWpNote;
-        [ObservableProperty]
-        private string thirdWpNote;
-        [ObservableProperty]
-        private string fourthWpNote;
-
-
+        // constructor
         public WorkspaceViewModel()
         {
             Workspace = new();
-            workspaceService= new WorkspaceService();
+            _workspaceService= new WorkspaceService();
         }
 
         // posting new workspace entry onto Terra database
         [RelayCommand]
         Task PostWorkspace()
         {
-             workspaceService.InsertToTable("Workspace", Workspace.WorkspaceName, Workspace.Note);
+             _workspaceService.InsertToTable("Workspace", Workspace.WorkspaceName, Workspace.Note);
             // make a toast
             {
                 var message = "Workspace added!";
@@ -57,19 +43,12 @@ namespace Terra.ViewModels
             return Shell.Current.GoToAsync("///MainPage");
         }
 
-
-        public void PullWorkspaces()
+        // manually update labels upon navigation to a new page
+        public void UpdateWorkspace()
         {
-            // call a method in workspaceService to retrieve available workspaces, including names and notes
-            // in xml file, bind note and name variables in this class to approrpiate candidate
+            WorkspaceNames = _workspaceService.GetWorkspaces("Workspace") 
+                ?? new List<string>() { "Nothing", "Nothing", "Nothing", "Nothing" };
         }
-
-
-
-
-
-        
-
 
     }
 }

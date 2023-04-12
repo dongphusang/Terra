@@ -2,6 +2,7 @@
 using Microsoft.Data.Sqlite;
 using System.IO;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace Terra.Services
 {
@@ -15,7 +16,7 @@ namespace Terra.Services
             CreatePlantTable();
         }
 
-        // test
+        // test. Put it in the constructor
         private void DropEm(string tableName)
         {
             using SqliteConnection connection = new(_connectionString);
@@ -62,8 +63,6 @@ namespace Terra.Services
         /// <returns></returns>
         private bool IsExist(string tableName, string column, SqliteConnection connection)
         {
-            /*using SqliteConnection connection = new(_connectionString);
-            connection.Open();*/ //enable for debugging
             var sql = $"SELECT {column} FROM {tableName}";
             using SqliteCommand command = new(sql, connection);
             try
@@ -113,10 +112,9 @@ namespace Terra.Services
             }
         }
 
-        // create plant table. Invoke once, never used again
-        /* para: tableName
-         *  + Used for verifying table existence
-         */
+        /// <summary>
+        /// Create plant table in Terra db
+        /// </summary>
         private void CreatePlantTable()
         {
             // open connection
@@ -146,13 +144,12 @@ namespace Terra.Services
             }
         }
 
-
         /// <summary>
-        /// Test this bitch. It might mess up
+        /// insert to table 
         /// </summary>
-        /// <param name="tableName"></param>
-        /// <param name="workspaceName"></param>
-        /// <param name="note"></param>
+        /// <param name="tableName"> name of table (workspace)</param>
+        /// <param name="workspaceName"> name column </param>
+        /// <param name="note"> note column</param>
         public void InsertToTable(string tableName, string workspaceName, string note)
         {
             using (SqliteConnection connection = new(_connectionString)) 
@@ -175,70 +172,36 @@ namespace Terra.Services
             }
         }
 
-        /*// validate table based on its name, using existing connection. Assuming connection != null and is open
-        private bool ValidateTable(string tableName, SqliteConnection connection)
+        /// <summary>
+        /// Return a list of workspaces' name
+        /// </summary>
+        /// <param name="tableName"> name of table (Workspace) </param>
+        /// <returns></returns>
+        public List<string> GetWorkspaces(string tableName)
         {
-            string request = $"SELECT * FROM {tableName}";
-            try
+            List<string> workspaces = new();
+
+            using SqliteConnection connection = new(_connectionString);
+            connection.OpenAsync().Wait();
+            if (IsExist(tableName, "*", connection))
             {
-                using (SqliteCommand command = new(request, connection))
+                var sql = $"SELECT * from {tableName}";
+                using SqliteCommand command = new(sql, connection);
+                using SqliteDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    using (SqliteDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            Console.WriteLine("Requesting TABLE");
-
-                            return true;
-                        }
-                    }
+                    workspaces.Add(reader.GetValue(1).ToString());
                 }
+                return new List<string>(workspaces);
             }
-            catch (SqliteException e)
+            else
             {
-                return false;
+                // this is for error handling purposes, since in WokrspaceList.xml, it uses the index of List to get value, possible OutOfBounce if dont do this
+                return (new List<string>() { "Nothing", "Nothing", "Nothing", "Nothing" });
             }
-            return false;
-        }*/
-
-        /*// validate integer column and check for duplication. Assuming tableName is correct
-        private static bool validateUniqueColumn(string tableName, string column, int value, SQLiteConnection connection)
-        {
-            string request = $"SELECT {column} FROM {tableName} WHERE {column} = {value}";
-
-            try
-            {
-                using (SQLiteCommand command = new SQLiteCommand(request, connection))
-                {
-                    using (SQLiteDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                            return true;
-                    }
-                }
-            }
-            catch (SQLiteException e)
-            {
-                Console.WriteLine("95: Nothing like dat");
-            }
-            return false;
-        }*/
-
-
-        //// test queryope. Assuming table name exists
-        //private bool testQuery(string tableName, SQLiteConnection connection)
-        //{
-        //    string request = $"SELECT id FROM JavaFern WHERE id = 3";
-        //    using (SQLiteCommand command = new SQLiteCommand(request, connection))
-        //    {
-        //        using (SQLiteDataReader reader = command.ExecuteReader())
-        //        {
-        //            if (reader.Read())
-        //                return true;
-        //        }
-        //    }
-        //    return false;
-        //}
+                
+        }
     }
 }
 
