@@ -37,6 +37,14 @@
             <param name="tableName"> name of table (Workspace) </param>
             <returns></returns>
         </member>
+        <member name="M:Terra.Services.WorkspaceService.RemoveWorkspace(System.String,System.String)">
+            <summary>
+            attempt to remove a specified element
+            </summary>
+            <param name="tableName"></param>
+            <param name="workspaceName"></param>
+            <returns> number of lines affected in sqlite </returns>
+        </member>
         <member name="F:Terra.ViewModels.MainPageViewModel.toAddWorkspacePageCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.MainPageViewModel.ToAddWorkspacePageCommand"/>.</summary>
         </member>

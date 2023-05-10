@@ -46,6 +46,7 @@ namespace Terra.ViewModels
         // manually update labels upon navigation to a new page
         public void UpdateWorkspace()
         {
+            _workspaceService.RemoveWorkspace("Workspace", "example");
             WorkspaceNames = _workspaceService.GetWorkspaces("Workspace") 
                 ?? new List<string>() { "Nothing", "Nothing", "Nothing", "Nothing" };
         }

@@ -3,6 +3,7 @@ using Microsoft.Data.Sqlite;
 using System.IO;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
+using Microsoft.Maui.Controls;
 
 namespace Terra.Services
 {
@@ -189,18 +190,51 @@ namespace Terra.Services
                 using SqliteCommand command = new(sql, connection);
                 using SqliteDataReader reader = command.ExecuteReader();
 
+                // get available workspaces and add to list
                 while (reader.Read())
                 {
                     workspaces.Add(reader.GetValue(1).ToString());
+                }
+                // since number of workspaces is limited to 4. Check if the list is
+                // populated under 4 workspaces. Fill out the remaining slots with N/A
+                for (int i = 0; i <= (4 - workspaces.Count); i++)
+                {
+                    workspaces.Add("N/A");
                 }
                 return new List<string>(workspaces);
             }
             else
             {
-                // this is for error handling purposes, since in WokrspaceList.xml, it uses the index of List to get value, possible OutOfBounce if dont do this
+                // this is for error handling purposes, since in WokrspaceList.xml, it uses the index of List to get value, possible OutOfBounce
                 return (new List<string>() { "Nothing", "Nothing", "Nothing", "Nothing" });
             }
                 
+        }
+
+        /// <summary>
+        /// attempt to remove a specified element
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="workspaceName"></param>
+        /// <returns> number of lines affected in sqlite </returns>
+        public void RemoveWorkspace(string tableName, string workspaceName)
+        {
+            object[] items = new object[5];
+            using SqliteConnection connection = new(_connectionString);
+            connection.OpenAsync().Wait();
+            var sql = "SELECT rowid FROM Workspace";
+            using SqliteCommand command = new(sql, connection);
+
+            using SqliteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                string name = reader["name"].ToString();
+                int id = Convert.ToInt32(reader["id"]);
+                Console.WriteLine($"Line 229:{_connectionString}");
+            }
+            
+            
+            
         }
     }
 }

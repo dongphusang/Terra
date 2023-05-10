@@ -2994,3 +2994,5 @@ C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\android\assets\Syste
 C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\android\assets\System.Runtime.Extensions.dll
 C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\android\assets\System.Runtime.Serialization.Formatters.dll
 C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\android\assets\System.Xml.dll
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\libraryprojectimports.cache
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\android\src\crc64338477404e88479c\GenericGlobalLayoutListenerImproved.java

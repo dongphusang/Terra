@@ -14,7 +14,7 @@ namespace Terra
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "13.1.99.25")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "13.1.99.45")]
 	public partial class Resource
 	{
 		

@@ -10,6 +10,8 @@ public class ModalNavigationManager_ModalContainer
 	public static final String __md_methods;
 	static {
 		__md_methods = 
+			"n_onAttachedToWindow:()V:GetOnAttachedToWindowHandler\n" +
+			"n_onDetachedFromWindow:()V:GetOnDetachedFromWindowHandler\n" +
 			"n_onTouchEvent:(Landroid/view/MotionEvent;)Z:GetOnTouchEvent_Landroid_view_MotionEvent_Handler\n" +
 			"n_onMeasure:(II)V:GetOnMeasure_IIHandler\n" +
 			"n_onLayout:(ZIIII)V:GetOnLayout_ZIIIIHandler\n" +
@@ -52,6 +54,22 @@ public class ModalNavigationManager_ModalContainer
 			mono.android.TypeManager.Activate ("Microsoft.Maui.Controls.Platform.ModalNavigationManager+ModalContainer, Microsoft.Maui.Controls", "Android.Content.Context, Mono.Android:Android.Util.IAttributeSet, Mono.Android:System.Int32, System.Private.CoreLib:System.Int32, System.Private.CoreLib", this, new java.lang.Object[] { p0, p1, p2, p3 });
 		}
 	}
+
+
+	public void onAttachedToWindow ()
+	{
+		n_onAttachedToWindow ();
+	}
+
+	private native void n_onAttachedToWindow ();
+
+
+	public void onDetachedFromWindow ()
+	{
+		n_onDetachedFromWindow ();
+	}
+
+	private native void n_onDetachedFromWindow ();
 
 
 	public boolean onTouchEvent (android.view.MotionEvent p0)
