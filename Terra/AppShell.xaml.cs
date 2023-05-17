@@ -8,5 +8,6 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute(nameof(AddWorkspacePage), typeof(AddWorkspacePage));
 		Routing.RegisterRoute(nameof(WorkspaceList), typeof(WorkspaceList));
+		Routing.RegisterRoute(nameof(WorkspaceDisplay), typeof(WorkspaceDisplay));
     }
 }

@@ -181,7 +181,6 @@ namespace Terra.Services
         public List<string> GetWorkspaces(string tableName)
         {
             List<string> workspaces = new();
-
             using SqliteConnection connection = new(_connectionString);
             connection.OpenAsync().Wait();
             if (IsExist(tableName, "*", connection))
@@ -193,48 +192,30 @@ namespace Terra.Services
                 // get available workspaces and add to list
                 while (reader.Read())
                 {
-                    workspaces.Add(reader.GetValue(1).ToString());
-                }
-                // since number of workspaces is limited to 4. Check if the list is
-                // populated under 4 workspaces. Fill out the remaining slots with N/A
-                for (int i = 0; i <= (4 - workspaces.Count); i++)
-                {
-                    workspaces.Add("N/A");
-                }
+                    workspaces.Add(reader.GetValue(1).ToString()); // name
+                    workspaces.Add(reader.GetValue(3).ToString()); // note
+                }              
                 return new List<string>(workspaces);
             }
             else
             {
                 // this is for error handling purposes, since in WokrspaceList.xml, it uses the index of List to get value, possible OutOfBounce
-                return (new List<string>() { "Nothing", "Nothing", "Nothing", "Nothing" });
-            }
-                
+                return (new List<string>() { "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA" });
+            }                
         }
 
-        /// <summary>
-        /// attempt to remove a specified element
-        /// </summary>
-        /// <param name="tableName"></param>
-        /// <param name="workspaceName"></param>
-        /// <returns> number of lines affected in sqlite </returns>
-        public void RemoveWorkspace(string tableName, string workspaceName)
+        public void DeleteWorkspace(string name)
         {
-            object[] items = new object[5];
             using SqliteConnection connection = new(_connectionString);
             connection.OpenAsync().Wait();
-            var sql = "SELECT rowid FROM Workspace";
-            using SqliteCommand command = new(sql, connection);
 
-            using SqliteDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                string name = reader["name"].ToString();
-                int id = Convert.ToInt32(reader["id"]);
-                Console.WriteLine($"Line 229:{_connectionString}");
-            }
-            
-            
-            
+            // construct sql
+            var sql = "DELETE FROM Workspace WHERE  name = @nameValue";
+            using SqliteCommand cmd = new(sql, connection);
+            cmd.Parameters.AddWithValue("@nameValue", name);
+
+            // if name isn't an empty string, remove that instance from available list 
+            if (name != null) cmd.ExecuteNonQuery();
         }
     }
 }

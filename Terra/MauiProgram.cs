@@ -24,6 +24,7 @@ public static class MauiProgram
 
 		builder.Services.AddTransient<AddWorkspacePage>();
 		builder.Services.AddTransient<WorkspaceList>();
+		builder.Services.AddTransient<WorkspaceDisplay>();
 		builder.Services.AddTransient<WorkspaceViewModel>();
 
 #if DEBUG

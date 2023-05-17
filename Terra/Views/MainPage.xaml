@@ -11,33 +11,33 @@
         <Image
             Source="plant.png"
             Aspect="AspectFill"/>
-        
+
         <!--Quick Action-->
         <Label
             Margin="10, -140"
-            Text="Quick Action"
+            Text="Quick Actions"
             FontSize="20"
             HorizontalTextAlignment="Start"/>
         <!--Quick Action buttons-->
         <HorizontalStackLayout
             Margin="0, 160"
-            HorizontalOptions="CenterAndExpand">
+            HorizontalOptions="Center">
             <!--Add Button-->
             <Button                
-                WidthRequest="120"
-                HeightRequest="80"
+                WidthRequest="170"
+                HeightRequest="100"
                 x:Name="addBtn"
                 Text="Add"
                 TextColor="Black"
                 FontAttributes="Bold"
                 Background="#D9D9D9"
                 Command="{Binding ToAddWorkspacePageCommand}"
-                />             
+                />
             <!--View Button-->
             <Button         
                 Margin="10, 0"
-                WidthRequest="120"
-                HeightRequest="80"
+                WidthRequest="170"
+                HeightRequest="100"
                 x:Name="viewBtn"
                 Text="View"
                 TextColor="Black"
@@ -45,21 +45,11 @@
                 Background="#D9D9D9"
                 Command="{Binding ToWorkspaceListCommand}"
                 />
-            <!--Remove Button-->
-            <Button
-                WidthRequest="120"
-                HeightRequest="80"
-                x:Name="removeBtn"
-                Text="Remove"
-                TextColor="Black"
-                FontAttributes="Bold"
-                Background="#D9D9D9"
-                />
         </HorizontalStackLayout>
-        
+
         <!--Others-->
         <VerticalStackLayout
-            Margin="10, -130">
+            Margin="10, -140">
             <!--Title-->
             <Label
             Text="Others"
@@ -128,8 +118,8 @@
 
 
         </VerticalStackLayout>
-        
-        
+
+
 
 
     </VerticalStackLayout>

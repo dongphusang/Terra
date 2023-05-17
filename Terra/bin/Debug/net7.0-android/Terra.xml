@@ -37,14 +37,6 @@
             <param name="tableName"> name of table (Workspace) </param>
             <returns></returns>
         </member>
-        <member name="M:Terra.Services.WorkspaceService.RemoveWorkspace(System.String,System.String)">
-            <summary>
-            attempt to remove a specified element
-            </summary>
-            <param name="tableName"></param>
-            <param name="workspaceName"></param>
-            <returns> number of lines affected in sqlite </returns>
-        </member>
         <member name="F:Terra.ViewModels.MainPageViewModel.toAddWorkspacePageCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.MainPageViewModel.ToAddWorkspacePageCommand"/>.</summary>
         </member>
@@ -60,14 +52,32 @@
         <member name="P:Terra.ViewModels.WorkspaceViewModel.Workspace">
             <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.workspace"/>
         </member>
-        <member name="P:Terra.ViewModels.WorkspaceViewModel.WorkspaceNames">
-            <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.workspaceNames"/>
+        <member name="P:Terra.ViewModels.WorkspaceViewModel.WorkspaceNameAndNote">
+            <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.workspaceNameAndNote"/>
         </member>
         <member name="F:Terra.ViewModels.WorkspaceViewModel.postWorkspaceCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.WorkspaceViewModel.PostWorkspaceCommand"/>.</summary>
         </member>
         <member name="P:Terra.ViewModels.WorkspaceViewModel.PostWorkspaceCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.WorkspaceViewModel.PostWorkspace"/>.</summary>
+        </member>
+        <member name="F:Terra.ViewModels.WorkspaceViewModel.updateWorkspaceCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.WorkspaceViewModel.UpdateWorkspaceCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.WorkspaceViewModel.UpdateWorkspaceCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.WorkspaceViewModel.UpdateWorkspace"/>.</summary>
+        </member>
+        <member name="F:Terra.ViewModels.WorkspaceViewModel.deleteWorkspaceCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.WorkspaceViewModel.DeleteWorkspaceCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.WorkspaceViewModel.DeleteWorkspaceCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:Terra.ViewModels.WorkspaceViewModel.DeleteWorkspace(System.String)"/>.</summary>
+        </member>
+        <member name="F:Terra.ViewModels.WorkspaceViewModel.toWorkspaceCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.WorkspaceViewModel.ToWorkspaceCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.WorkspaceViewModel.ToWorkspaceCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.WorkspaceViewModel.ToWorkspace"/>.</summary>
         </member>
         <member name="M:Terra.WorkspaceList.#ctor">
             <summary>

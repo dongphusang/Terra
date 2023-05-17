@@ -14,9 +14,10 @@ namespace Terra.ViewModels
         // workspace model object
         [ObservableProperty]
         public Workspace workspace;
-        // list of workspace names
+        // list of workspace names and notes
         [ObservableProperty]
-        public List<string> workspaceNames;
+        public List<string> workspaceNameAndNote;
+
         // workspace service object
         private WorkspaceService _workspaceService;       
 
@@ -44,12 +45,29 @@ namespace Terra.ViewModels
         }
 
         // manually update labels upon navigation to a new page
+        [RelayCommand]
         public void UpdateWorkspace()
         {
-            _workspaceService.RemoveWorkspace("Workspace", "example");
-            WorkspaceNames = _workspaceService.GetWorkspaces("Workspace") 
-                ?? new List<string>() { "Nothing", "Nothing", "Nothing", "Nothing" };
+            WorkspaceNameAndNote = _workspaceService.GetWorkspaces("Workspace")
+                ?? new List<string>() { "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA" };
         }
+
+        // delete workspace of choice
+        [RelayCommand]
+        public void DeleteWorkspace(string name)
+        {
+            _workspaceService.DeleteWorkspace(name); // delete on db
+            UpdateWorkspace(); // delete on UI (removing an element of workspaces List)
+        }
+
+        // navigate to workspace
+        [RelayCommand]
+        Task ToWorkspace()
+        {
+            return Shell.Current.GoToAsync(nameof(WorkspaceDisplay));
+        }
+
+
 
     }
 }

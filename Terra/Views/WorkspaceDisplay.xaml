@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Terra.WorkspaceDisplay"
+             Title="WorkspaceDisplay"
+             xmlns:viewmodel="clr-namespace:Terra.ViewModels"
+             x:DataType="viewmodel:WorkspaceViewModel"
+             >
+    <VerticalStackLayout>
+        <VerticalStackLayout
+            Padding="10, 40, 10, 0">
+            <Grid
+                RowSpacing="10"
+                HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Lighting -->
+                <BoxView
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HeightRequest="150"
+                    WidthRequest="150"
+                    HorizontalOptions="Start"
+                    CornerRadius="10"
+                    Color="#EFEDED"
+                    />
+                <Label
+                    Margin="10, 10"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Text="Lighting:"
+                    TextColor="Black"
+                    FontSize="30"/>
+                <Label
+                    Margin="10, 50"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="N/A"
+                    TextColor="Black"
+                    FontSize="30"/>
+
+
+                <!-- Soil Moisture -->
+                <BoxView
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HeightRequest="150"
+                    WidthRequest="230"
+                    HorizontalOptions="End"
+                    CornerRadius="10"
+                    Color="#EFEDED"
+                    />
+                <Label
+                    Margin="10, 10"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="Soil Moisture:"
+                    TextColor="Black"
+                    FontSize="30"/>
+                <Label
+                    Margin="10, 50"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="N/A"
+                    TextColor="Black"
+                    FontSize="30"/>
+
+                <!-- Humidity & Temperature -->
+                <!-- Humidity -->
+                <BoxView
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    HeightRequest="150"
+                    WidthRequest="150"
+                    HorizontalOptions="Start"
+                    CornerRadius="10"
+                    Color="#EFEDED"/>
+                <Label
+                    Margin="10, 10"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Humidity:"
+                    TextColor="Black"
+                    FontSize="30"/>
+                <Label
+                    Margin="10, 50"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="N/A"
+                    TextColor="Black"
+                    FontSize="30"/>
+                <!-- Temperature -->
+                <BoxView
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HeightRequest="150"
+                    WidthRequest="230"
+                    HorizontalOptions="End"
+                    CornerRadius="10"
+                    Color="#EFEDED"
+                    />
+                <Label
+                    Margin="10, 10"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="Temperature:"
+                    TextColor="Black"
+                    FontSize="30"/>
+                <Label
+                    Margin="10, 50"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="N/A"
+                    TextColor="Black"
+                    FontSize="30"/>
+
+                <!-- Warning -->
+                <BoxView
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    HeightRequest="150"
+                    WidthRequest="150"
+                    HorizontalOptions="Start"
+                    CornerRadius="10"
+                    Color="#EFEDED"/>
+                <Label
+                    Margin="10, 10"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="Water lvl:"
+                    TextColor="Black"
+                    FontSize="30"/>
+                <Label
+                    Margin="10, 50"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="N/A"
+                    TextColor="Black"
+                    FontSize="30"/>
+
+                <!-- Warning -->
+                <BoxView
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    HeightRequest="150"
+                    WidthRequest="230"
+                    HorizontalOptions="End"
+                    CornerRadius="10"
+                    Color="#EFEDED"/>
+                <Label
+                    Margin="10, 10"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="Warning:"
+                    TextColor="Black"
+                    FontSize="30"/>
+                <Label
+                    Margin="10, 50"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="N/A"
+                    TextColor="Black"
+                    FontSize="30"/>
+
+
+
+            </Grid>
+        </VerticalStackLayout>
+
+        <Grid
+            Margin="0,55"
+            HorizontalOptions="StartAndExpand"
+            VerticalOptions="StartAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <BoxView
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                HeightRequest="155"
+                HorizontalOptions="Fill"
+                Color="#EFEDED"/>
+            <Button
+                Grid.Column="0"
+                HeightRequest="70"
+                WidthRequest="70"
+                Text="1"
+                TextColor="Black"
+                FontSize="30"
+                BackgroundColor="Azure"/>
+            <Button
+                Grid.Column="1"
+                HeightRequest="70"
+                WidthRequest="70"
+                Text="2"
+                TextColor="Black"
+                FontSize="30"
+                BackgroundColor="Azure"/>
+            <Button
+                Grid.Column="2"
+                HeightRequest="70"
+                WidthRequest="70"
+                Text="3"
+                TextColor="Black"
+                FontSize="30"
+                BackgroundColor="Azure"/>
+            <Button
+                Grid.Column="4"
+                HeightRequest="70"
+                WidthRequest="70"
+                Text="4"
+                TextColor="Black"
+                FontSize="30"
+                BackgroundColor="Azure"/>
+
+
+
+
+
+        </Grid>
+
+    </VerticalStackLayout>
+
+</ContentPage>

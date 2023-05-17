@@ -13,10 +13,10 @@ namespace Terra.ViewModels
 		}
 
         [RelayCommand]
-        Task ToAddWorkspacePage() => Shell.Current.GoToAsync("AddWorkspacePage");
+        Task ToAddWorkspacePage() => Shell.Current.GoToAsync(nameof(AddWorkspacePage));
 
         [RelayCommand]
-        Task ToWorkspaceList() => Shell.Current.GoToAsync("WorkspaceList");
+        Task ToWorkspaceList() => Shell.Current.GoToAsync(nameof(WorkspaceList));
 
         
 

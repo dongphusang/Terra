@@ -34,7 +34,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.jpg" BaseSize="128,128"/>
+		<MauiIcon Include="Resources\AppIcon\appicon.jpg" BaseSize="128,128" />
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
@@ -74,6 +74,9 @@
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AddWorkspacePage.xaml">
 	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\WorkspaceDisplay.xaml">
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\WorkspaceList.xaml">
 	    <Generator>MSBuild:Compile</Generator>
