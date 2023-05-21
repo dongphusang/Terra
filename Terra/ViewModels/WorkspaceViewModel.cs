@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Maui.Alerts;
 using Terra.Models;
 using Terra.Services;
 using CommunityToolkit.Maui.Core;
+using Newtonsoft.Json;
 
 namespace Terra.ViewModels
 {
@@ -14,18 +14,25 @@ namespace Terra.ViewModels
         // workspace model object
         [ObservableProperty]
         public Workspace workspace;
+        // plant
+        [ObservableProperty]
+        public Plant plant;
         // list of workspace names and notes
         [ObservableProperty]
         public List<string> workspaceNameAndNote;
 
         // workspace service object
-        private WorkspaceService _workspaceService;       
+        private WorkspaceService _workspaceService;
+        // InfluxDB service object
+        private InfluxService _influxService;
 
         // constructor
         public WorkspaceViewModel()
         {
             Workspace = new();
-            _workspaceService= new WorkspaceService();
+            Plant = new();
+            _influxService = new();
+            _workspaceService = new ();
         }
 
         // posting new workspace entry onto Terra database
@@ -67,8 +74,27 @@ namespace Terra.ViewModels
             return Shell.Current.GoToAsync(nameof(WorkspaceDisplay));
         }
 
-
-
+        /// <summary>
+        /// Invoke influx service object to query data from InfluxDB. Discard broken frames.
+        /// </summary>
+        public void GetDataFromInflux()
+        {
+            // get data frame from Influx
+            var data = Task.Run(() => _influxService.GetData()).Result;
+            // check if data frame is corrupted (five plant attributes. If received a 10 attribute frame, that is a duplicated or broken frame
+            if (data.Split(",").Length == 5)
+            {
+                Plant = JsonConvert.DeserializeObject<Plant>(data);
+            }
+            else
+            {
+                Plant.SoilMoisture = 0;
+                Plant.Light = 0;
+                Plant.Temperature = 0;
+                Plant.Humidity = 0;
+                Plant.WaterLevel = 0;
+            }  
+        }
     }
 }
 

@@ -1,7 +1,5 @@
 @string/appbar_scrolling_view_behavior;C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\lp\160\jl\res\layout\fragment_backstack.xml
 @string/appbar_scrolling_view_behavior;C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\lp\160\jl\res\layout\navigationlayout.xml
-adaptive-icon;obj\Debug\net7.0-android\resizetizer\r\mipmap-anydpi-v26\alt_appicon.xml
-adaptive-icon;obj\Debug\net7.0-android\resizetizer\r\mipmap-anydpi-v26\alt_appicon_round.xml
 adaptive-icon;obj\Debug\net7.0-android\resizetizer\r\mipmap-anydpi-v26\appicon.xml
 adaptive-icon;obj\Debug\net7.0-android\resizetizer\r\mipmap-anydpi-v26\appicon_round.xml
 alpha;C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\lp\157\jl\res\anim\enterfromleft.xml
@@ -17,8 +15,6 @@ androidx.fragment.app.FragmentContainerView;C:\Users\sangs\Desktop\Terra\Terra\o
 androidx.fragment.app.FragmentContainerView;C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\lp\160\jl\res\layout\navigationlayout.xml
 attr;C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\lp\158\jl\res\values\attrs.xml
 attr;C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\lp\160\jl\res\values\attr.xml
-background;obj\Debug\net7.0-android\resizetizer\r\mipmap-anydpi-v26\alt_appicon.xml
-background;obj\Debug\net7.0-android\resizetizer\r\mipmap-anydpi-v26\alt_appicon_round.xml
 background;obj\Debug\net7.0-android\resizetizer\r\mipmap-anydpi-v26\appicon.xml
 background;obj\Debug\net7.0-android\resizetizer\r\mipmap-anydpi-v26\appicon_round.xml
 bitmap;obj\Debug\net7.0-android\resizetizer\sp\drawable\maui_splash_image.xml
@@ -36,8 +32,6 @@ declare-styleable;C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\lp
 declare-styleable;C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\lp\160\jl\res\values\attr.xml
 external-cache-path;C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\lp\161\jl\res\xml\microsoft_maui_essentials_fileprovider_file_paths.xml
 external-path;C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\lp\161\jl\res\xml\microsoft_maui_essentials_fileprovider_file_paths.xml
-foreground;obj\Debug\net7.0-android\resizetizer\r\mipmap-anydpi-v26\alt_appicon.xml
-foreground;obj\Debug\net7.0-android\resizetizer\r\mipmap-anydpi-v26\alt_appicon_round.xml
 foreground;obj\Debug\net7.0-android\resizetizer\r\mipmap-anydpi-v26\appicon.xml
 foreground;obj\Debug\net7.0-android\resizetizer\r\mipmap-anydpi-v26\appicon_round.xml
 item;C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\lp\158\jl\res\values\styles.xml

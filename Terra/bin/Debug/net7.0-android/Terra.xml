@@ -4,6 +4,36 @@
         <name>Terra</name>
     </assembly>
     <members>
+        <member name="T:Terra.Models.Plant">
+            <inheritdoc/>
+        </member>
+        <member name="P:Terra.Models.Plant.SoilMoisture">
+            <inheritdoc cref="F:Terra.Models.Plant.soilMoisture"/>
+        </member>
+        <member name="P:Terra.Models.Plant.Temperature">
+            <inheritdoc cref="F:Terra.Models.Plant.temperature"/>
+        </member>
+        <member name="P:Terra.Models.Plant.Humidity">
+            <inheritdoc cref="F:Terra.Models.Plant.humidity"/>
+        </member>
+        <member name="P:Terra.Models.Plant.WaterLevel">
+            <inheritdoc cref="F:Terra.Models.Plant.waterLevel"/>
+        </member>
+        <member name="P:Terra.Models.Plant.Light">
+            <inheritdoc cref="F:Terra.Models.Plant.light"/>
+        </member>
+        <member name="M:Terra.Services.InfluxService.GetConfiguration">
+            <summary>
+            Establish configuration file.
+            </summary>
+            <returns> configuration builder </returns>
+        </member>
+        <member name="M:Terra.Services.InfluxService.GetData">
+            <summary>
+            Query data frame from InfluxDB from the last minute.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Terra.Services.WorkspaceService.IsExist(System.String,System.String,Microsoft.Data.Sqlite.SqliteConnection)">
             <summary>
             Used to verify if a table or a column is existed
@@ -37,6 +67,10 @@
             <param name="tableName"> name of table (Workspace) </param>
             <returns></returns>
         </member>
+        <member name="T:Terra.ViewModels.MainPageViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
         <member name="F:Terra.ViewModels.MainPageViewModel.toAddWorkspacePageCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.MainPageViewModel.ToAddWorkspacePageCommand"/>.</summary>
         </member>
@@ -49,8 +83,23 @@
         <member name="P:Terra.ViewModels.MainPageViewModel.ToWorkspaceListCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.MainPageViewModel.ToWorkspaceList"/>.</summary>
         </member>
+        <member name="T:Terra.ViewModels.WorkspaceViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="M:Terra.ViewModels.WorkspaceViewModel.GetDataFromInflux">
+            <summary>
+            Invoke influx service object to query data from InfluxDB. Discard broken frames.
+            </summary>
+        </member>
         <member name="P:Terra.ViewModels.WorkspaceViewModel.Workspace">
             <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.workspace"/>
+        </member>
+        <member name="P:Terra.ViewModels.WorkspaceViewModel.Plant">
+            <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.plant"/>
         </member>
         <member name="P:Terra.ViewModels.WorkspaceViewModel.WorkspaceNameAndNote">
             <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.workspaceNameAndNote"/>
@@ -78,6 +127,19 @@
         </member>
         <member name="P:Terra.ViewModels.WorkspaceViewModel.ToWorkspaceCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.WorkspaceViewModel.ToWorkspace"/>.</summary>
+        </member>
+        <member name="M:Terra.WorkspaceDisplay.FetchDataInflux(System.Threading.CancellationToken)">
+            <summary>
+            Continuously fetch data in background
+            </summary>
+            <param name="cancellationToken"> if set to cancelled, terminate the loop (data fetching in background) </param>
+        </member>
+        <member name="M:Terra.WorkspaceDisplay.OnNavigatedFrom(Microsoft.Maui.Controls.NavigatedFromEventArgs)">
+            <summary>
+            Upon leaving the page, cancel the cancellationToken, terminate background data 
+            fetching, and wait for the background process to finish before navigating.
+            </summary>
+            <param name="args"></param>
         </member>
         <member name="M:Terra.WorkspaceList.#ctor">
             <summary>
@@ -182,6 +244,66 @@
             <param name = "length">The duration, in milliseconds, of the animation</param>
             <param name = "easing">The easing function to be used in the animation</param>
             <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SoilMoisture">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SoilMoisture" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Temperature">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Temperature" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Humidity">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Humidity" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.WaterLevel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "WaterLevel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Light">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Light" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Workspace">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Workspace" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Plant">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Plant" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.WorkspaceNameAndNote">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "WorkspaceNameAndNote" generated properties.</summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SoilMoisture">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SoilMoisture" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Temperature">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Temperature" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Humidity">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Humidity" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.WaterLevel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "WaterLevel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Light">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Light" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Workspace">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Workspace" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Plant">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Plant" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.WorkspaceNameAndNote">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "WorkspaceNameAndNote" generated properties.</summary>
         </member>
     </members>
 </doc>
