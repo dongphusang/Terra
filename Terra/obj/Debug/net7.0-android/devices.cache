@@ -1,1 +1,1 @@
-<Devices><Device id="R39M30EJA2J"><ResultingAbi>arm64-v8a</ResultingAbi><ToolsAbi /><SdkVersion>31</SdkVersion><LongOutput>product:beyond0lteks;model:SM_G970N;device:beyond0;transport_id:2</LongOutput></Device></Devices>
+<Devices><Device id="R39M30EJA2J"><ResultingAbi>arm64-v8a</ResultingAbi><ToolsAbi /><SdkVersion>31</SdkVersion><LongOutput>usb:1048576X;product:beyond0lteks;model:SM_G970N;device:beyond0;transport_id:11</LongOutput></Device></Devices>

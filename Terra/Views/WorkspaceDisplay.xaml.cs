@@ -16,6 +16,8 @@ public partial class WorkspaceDisplay : ContentPage
 		_viewModel = new WorkspaceViewModel();
         _backgroundTokenSource = new CancellationTokenSource();
         BindingContext = _viewModel;
+		// Current Workspace
+		_viewModel.GetCurrentWorkspace();
 		// start background task
 		_backgroundThread = Task.Run(() => FetchDataInflux(_backgroundTokenSource.Token));
 	}
@@ -35,13 +37,13 @@ public partial class WorkspaceDisplay : ContentPage
 
 	/// <summary>
 	/// Upon leaving the page, cancel the cancellationToken, terminate background data 
-	/// fetching, and wait for the background process to finish before navigating.
+	/// fetching.
 	/// </summary>
 	/// <param name="args"></param>
-    protected override async void OnNavigatedFrom(NavigatedFromEventArgs args)
+    protected override void OnNavigatedFrom(NavigatedFromEventArgs args)
     {
         base.OnNavigatedFrom(args);
 		_backgroundTokenSource.Cancel();
-		await _backgroundThread;
+		//await _backgroundThread; causing bug and no need to wait for it to finish
     }
 }

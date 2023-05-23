@@ -11,20 +11,20 @@ namespace Terra.ViewModels
 {
     public partial class WorkspaceViewModel : ObservableObject
     {
-        // workspace model object
         [ObservableProperty]
-        public Workspace workspace;
-        // plant
+        public Workspace workspace; // workspace model
         [ObservableProperty]
-        public Plant plant;
-        // list of workspace names and notes
+        public Plant plant; // plant model
         [ObservableProperty]
-        public List<string> workspaceNameAndNote;
+        public List<string> workspaceNameAndNote; // list of names and notes
+        [ObservableProperty]
+        public string currentWorkspaceName;// name of chosen workspace
+        [ObservableProperty]
+        public string currentPlantName;// name of chosen plant
+       
+        private WorkspaceService _workspaceService; // workspace service object
+        private InfluxService _influxService; // InfluxDB service object
 
-        // workspace service object
-        private WorkspaceService _workspaceService;
-        // InfluxDB service object
-        private InfluxService _influxService;
 
         // constructor
         public WorkspaceViewModel()
@@ -67,11 +67,31 @@ namespace Terra.ViewModels
             UpdateWorkspace(); // delete on UI (removing an element of workspaces List)
         }
 
+        public void GetCurrentWorkspace()
+        {
+            CurrentWorkspaceName = Preferences.Get("CurrentWorkspace", string.Empty);
+        }
+
         // navigate to workspace
         [RelayCommand]
-        Task ToWorkspace()
+        void ToWorkspace(string workspaceName)
         {
-            return Shell.Current.GoToAsync(nameof(WorkspaceDisplay));
+            Console.WriteLine("Line 74: " + workspaceName);
+            if (workspaceName is null) // make a toast
+            {
+                var message = "Please Add Your Workspace";
+                ToastDuration duration = ToastDuration.Short;
+                var fontSize = 14;
+                Toast.Make(message, duration, fontSize).Show();
+            }
+            else
+            {
+                if (!(Preferences.ContainsKey("CurrentWorkspace")))
+                {
+                    Preferences.Set("CurrentWorkspace", workspaceName);
+                }
+                Shell.Current.GoToAsync(nameof(WorkspaceDisplay));
+            }
         }
 
         /// <summary>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Terra.WorkspaceDisplay"
-             Title="WorkspaceDisplay"
+             Title="{Binding CurrentWorkspaceName}"
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
              x:DataType="viewmodel:WorkspaceViewModel"
              >
@@ -169,9 +169,6 @@
                     Text="N/A"
                     TextColor="Black"
                     FontSize="30"/>
-
-
-
             </Grid>
         </VerticalStackLayout>
 
@@ -180,7 +177,6 @@
             HorizontalOptions="StartAndExpand"
             VerticalOptions="StartAndExpand">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -199,37 +195,30 @@
                 TextColor="Black"
                 FontSize="30"
                 BackgroundColor="Azure"/>
-            <Button
+            <!-- status code rectangle -->
+            <BoxView
                 Grid.Column="1"
-                HeightRequest="70"
-                WidthRequest="70"
-                Text="2"
+                HeightRequest="10"
+                WidthRequest="20"
+                VerticalOptions="Start"
+                HorizontalOptions="Center"
+                Color="Black"/>
+            <Label
+                Grid.Column="1"
+                HeightRequest="35"
+                WidthRequest="140"
+                Text="{Binding CurrentPlantName}"
                 TextColor="Black"
-                FontSize="30"
-                BackgroundColor="Azure"/>
+                VerticalTextAlignment="Start"
+                FontSize="30"/>
             <Button
                 Grid.Column="2"
-                HeightRequest="70"
-                WidthRequest="70"
-                Text="3"
-                TextColor="Black"
-                FontSize="30"
-                BackgroundColor="Azure"/>
-            <Button
-                Grid.Column="4"
                 HeightRequest="70"
                 WidthRequest="70"
                 Text="4"
                 TextColor="Black"
                 FontSize="30"
                 BackgroundColor="Azure"/>
-
-
-
-
-
         </Grid>
-
     </VerticalStackLayout>
-
 </ContentPage>

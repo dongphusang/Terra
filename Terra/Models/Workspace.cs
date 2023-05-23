@@ -1,10 +1,13 @@
 ﻿
+using CommunityToolkit.Mvvm.ComponentModel;
 using System.Text;
 
 namespace Terra.Models;
 
-public class Workspace
+public partial class Workspace : ObservableObject
 {
-    public string WorkspaceName { get; set; } // workspace name
-    public string Note { get; set; }          // note on workspace upon creation
+    [ObservableProperty]
+    public string workspaceName;// workspace name
+    [ObservableProperty]
+    public string note;          // note on workspace upon creation
 }

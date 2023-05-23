@@ -22,6 +22,15 @@
         <member name="P:Terra.Models.Plant.Light">
             <inheritdoc cref="F:Terra.Models.Plant.light"/>
         </member>
+        <member name="T:Terra.Models.Workspace">
+            <inheritdoc/>
+        </member>
+        <member name="P:Terra.Models.Workspace.WorkspaceName">
+            <inheritdoc cref="F:Terra.Models.Workspace.workspaceName"/>
+        </member>
+        <member name="P:Terra.Models.Workspace.Note">
+            <inheritdoc cref="F:Terra.Models.Workspace.note"/>
+        </member>
         <member name="M:Terra.Services.InfluxService.GetConfiguration">
             <summary>
             Establish configuration file.
@@ -104,6 +113,12 @@
         <member name="P:Terra.ViewModels.WorkspaceViewModel.WorkspaceNameAndNote">
             <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.workspaceNameAndNote"/>
         </member>
+        <member name="P:Terra.ViewModels.WorkspaceViewModel.CurrentWorkspaceName">
+            <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.currentWorkspaceName"/>
+        </member>
+        <member name="P:Terra.ViewModels.WorkspaceViewModel.CurrentPlantName">
+            <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.currentPlantName"/>
+        </member>
         <member name="F:Terra.ViewModels.WorkspaceViewModel.postWorkspaceCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.WorkspaceViewModel.PostWorkspaceCommand"/>.</summary>
         </member>
@@ -126,7 +141,7 @@
             <summary>The backing field for <see cref="P:Terra.ViewModels.WorkspaceViewModel.ToWorkspaceCommand"/>.</summary>
         </member>
         <member name="P:Terra.ViewModels.WorkspaceViewModel.ToWorkspaceCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.WorkspaceViewModel.ToWorkspace"/>.</summary>
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:Terra.ViewModels.WorkspaceViewModel.ToWorkspace(System.String)"/>.</summary>
         </member>
         <member name="M:Terra.WorkspaceDisplay.FetchDataInflux(System.Threading.CancellationToken)">
             <summary>
@@ -137,7 +152,7 @@
         <member name="M:Terra.WorkspaceDisplay.OnNavigatedFrom(Microsoft.Maui.Controls.NavigatedFromEventArgs)">
             <summary>
             Upon leaving the page, cancel the cancellationToken, terminate background data 
-            fetching, and wait for the background process to finish before navigating.
+            fetching.
             </summary>
             <param name="args"></param>
         </member>
@@ -266,6 +281,12 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Light">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Light" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.WorkspaceName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "WorkspaceName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Note">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Note" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Workspace">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Workspace" generated properties.</summary>
         </member>
@@ -274,6 +295,12 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.WorkspaceNameAndNote">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "WorkspaceNameAndNote" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CurrentWorkspaceName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CurrentWorkspaceName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CurrentPlantName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CurrentPlantName" generated properties.</summary>
         </member>
         <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
             <summary>
@@ -296,6 +323,12 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Light">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Light" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.WorkspaceName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "WorkspaceName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Note">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Note" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Workspace">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Workspace" generated properties.</summary>
         </member>
@@ -304,6 +337,12 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.WorkspaceNameAndNote">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "WorkspaceNameAndNote" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CurrentWorkspaceName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CurrentWorkspaceName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CurrentPlantName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CurrentPlantName" generated properties.</summary>
         </member>
     </members>
 </doc>

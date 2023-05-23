@@ -1,60 +1,41 @@
 ﻿<Properties StartupConfiguration="{5314F4D7-FCBF-46FE-A733-79D87304EC8B}|Default">
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.R39M30EJA2J" />
+  <MultiItemStartupConfigurations />
   <Debugger.DebugSourceFolders>
     <String>/Users/sangdong/Library/Caches/VisualStudio/17.0/Symbols/raw.githubusercontent.com/xamarin/xamarin-android/af18b843d16f5ecad3171016fb66efecdb78c4bf</String>
   </Debugger.DebugSourceFolders>
-  <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="Android.pixel_5_-_api_31" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.pixel_5_-_api_31" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Terra/App.xaml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Terra/Views/WorkspaceDisplay.xaml">
     <Files>
-      <File FileName="Terra/Services/WorkspaceService.cs" Line="64" Column="10" />
-      <File FileName="Terra/ViewModels/MainPageViewModel.cs" Line="1" Column="1" />
-      <File FileName="Terra/Views/AddWorkspacePage.xaml" Line="24" Column="34" />
-      <File FileName="../../../usr/local/share/dotnet/packs/Microsoft.Android.Sdk.Darwin/33.0.26/targets/Microsoft.Android.Sdk.AssemblyResolution.targets" />
-      <File FileName="Terra/Views/AddWorkspacePage.xaml.cs" />
-      <File FileName="Terra/Models/Workspace.cs" />
-      <File FileName="../Library/Caches/VisualStudio/17.0/Symbols/raw.githubusercontent.com/xamarin/xamarin-android/af18b843d16f5ecad3171016fb66efecdb78c4bf/src/Mono.Android/Android.Runtime/JNIEnv.cs" />
-      <File FileName="Terra/Resources/Raw/AboutAssets.txt" />
-      <File FileName="Terra/ViewModels/WorkspaceViewModel.cs" Line="1" Column="1" />
-      <File FileName="Terra/Views/WorkspaceList.xaml" Line="16" Column="30" />
-      <File FileName="Terra/Views/MainPage.xaml" Line="125" Column="25" />
-      <File FileName="Terra/Platforms/Android/Resources/values/colors.xml" Line="4" Column="43" />
+      <File FileName="Terra/ViewModels/WorkspaceViewModel.cs" Line="23" Column="24" />
+      <File FileName="Terra/Models/Workspace.cs" Line="7" Column="8" />
+      <File FileName="Terra/Models/Plant.cs" Line="2" Column="1" />
+      <File FileName="Terra/Views/WorkspaceList.xaml" Line="1" Column="1" />
+      <File FileName="Terra/Views/WorkspaceDisplay.xaml.cs" Line="20" Column="36" />
+      <File FileName="Terra/Views/WorkspaceDisplay.xaml" Line="194" Column="25" />
       <File FileName="Terra/App.xaml.cs" Line="7" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Terra" expanded="True">
-            <Node name="Terra" expanded="True">
+            <Node name="Terra" expanded="True" selected="True">
               <Node name="Models" expanded="True" />
-              <Node name="Platforms" expanded="True">
-                <Node name="Android" expanded="True">
-                  <Node name="Resources" expanded="True">
-                    <Node name="values" expanded="True" />
-                  </Node>
-                </Node>
-                <Node name="Windows" expanded="True" />
-              </Node>
-              <Node name="Resources" expanded="True">
-                <Node name="Raw" expanded="True" />
-              </Node>
-              <Node name="Services" expanded="True" />
               <Node name="ViewModels" expanded="True" />
-              <Node name="Views" expanded="True" />
-              <Node name="App.xaml" expanded="True">
-                <Node name="App.xaml.cs" selected="True" />
+              <Node name="Views" expanded="True">
+                <Node name="WorkspaceDisplay.xaml" expanded="True" />
               </Node>
-              <Node name="AppShell.xaml" expanded="True" />
+              <Node name="App.xaml" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.26" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="Android.R39M30EJA2J" />
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.46" />
 </Properties>
