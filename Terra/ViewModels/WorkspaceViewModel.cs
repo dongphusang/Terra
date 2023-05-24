@@ -39,7 +39,7 @@ namespace Terra.ViewModels
         [RelayCommand]
         Task PostWorkspace()
         {
-             _workspaceService.InsertToTable("Workspace", Workspace.WorkspaceName, Workspace.Note);
+             _workspaceService.InsertToWorkspaceTable(Workspace.WorkspaceName, Workspace.Note);
             // make a toast
             {
                 var message = "Workspace added!";
@@ -72,11 +72,10 @@ namespace Terra.ViewModels
             CurrentWorkspaceName = Preferences.Get("CurrentWorkspace", string.Empty);
         }
 
-        // navigate to workspace
+        // navigate to workspace and assign current workspace to mem
         [RelayCommand]
         void ToWorkspace(string workspaceName)
         {
-            Console.WriteLine("Line 74: " + workspaceName);
             if (workspaceName is null) // make a toast
             {
                 var message = "Please Add Your Workspace";

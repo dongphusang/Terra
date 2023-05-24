@@ -4,6 +4,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 using Microsoft.Maui.Controls;
+using static Java.Util.Jar.Attributes;
 
 namespace Terra.Services
 {
@@ -128,8 +129,6 @@ namespace Terra.Services
                                 "name TEXT NOT NULL UNIQUE," +
                                 "date_added TEXT NOT NULL," +
                                 "note TEXT," +
-                                "water_module INTEGER NOT NULL," +
-                                "light_module INTEGER NOT NULL," +
                                 "workspaceID INTEGER," +
                                 "FOREIGN KEY (workspaceID) REFERENCES Workspace(id))";
                 // add workspace table to Terra database
@@ -151,14 +150,15 @@ namespace Terra.Services
         /// <param name="tableName"> name of table (workspace)</param>
         /// <param name="workspaceName"> name column </param>
         /// <param name="note"> note column</param>
-        public void InsertToTable(string tableName, string workspaceName, string note)
+        public void InsertToWorkspaceTable(string workspaceName, string note)
         {
+            var table = "Workspace";
             using (SqliteConnection connection = new(_connectionString)) 
             {
                 connection.OpenAsync().Wait();
-                if (!IsExist(tableName, workspaceName, connection))
+                if (!IsExist(table, workspaceName, connection))
                 {
-                    var a = $"INSERT INTO {tableName} (name, date_added, note) " +
+                    var a = $"INSERT INTO {table} (name, date_added, note) " +
                                            "VALUES (@name, @date_added, @note)";
 
                     using (SqliteCommand command = new(a, connection))
@@ -173,8 +173,39 @@ namespace Terra.Services
             }
         }
 
+        public void InsertToPlantTable(string plantName, string note)
+        {
+            var table = "Plant";
+            using SqliteConnection connection = new(_connectionString);
+            connection.OpenAsync().Wait();
+
+            if (!IsExist(table, plantName, connection))
+            {
+                var sql = $"INSERT INTO {table} (name, date_added, note, workspaceID) " +
+                                         "VALUES (@name, @date_added, @note, @workspaceID)";
+
+                using SqliteCommand command = new(sql, connection);
+                command.Parameters.AddWithValue("@name", plantName);
+                command.Parameters.AddWithValue("@date_added", DateTime.Now.ToString());
+                command.Parameters.AddWithValue("@note", note);
+            }
+        }
+
+        // change to Task later
+        private Task<int> RetrieveWorkspaceID(string workspaceName)
+        {
+            using SqliteConnection connection = new(_connectionString);
+            connection.OpenAsync().Wait();
+
+            var sql = $"SELECT id FROM Workspace WHERE name = @nameValue";
+            using SqliteCommand cmd = new(sql, connection);
+            cmd.Parameters.AddWithValue("@nameValue", workspaceName);
+
+            return cmd.ExecuteNonQueryAsync();
+        }
+
         /// <summary>
-        /// Return a list of workspaces' name
+        /// Return a list of workspaces' name and note
         /// </summary>
         /// <param name="tableName"> name of table (Workspace) </param>
         /// <returns></returns>
@@ -210,7 +241,7 @@ namespace Terra.Services
             connection.OpenAsync().Wait();
 
             // construct sql
-            var sql = "DELETE FROM Workspace WHERE  name = @nameValue";
+            var sql = "DELETE FROM Workspace WHERE name = @nameValue";
             using SqliteCommand cmd = new(sql, connection);
             cmd.Parameters.AddWithValue("@nameValue", name);
 

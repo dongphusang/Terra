@@ -61,7 +61,7 @@
             Create plant table in Terra db
             </summary>
         </member>
-        <member name="M:Terra.Services.WorkspaceService.InsertToTable(System.String,System.String,System.String)">
+        <member name="M:Terra.Services.WorkspaceService.InsertToWorkspaceTable(System.String,System.String)">
             <summary>
             insert to table 
             </summary>
