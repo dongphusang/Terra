@@ -4,7 +4,7 @@ namespace Terra;
 
 public partial class WorkspaceDisplay : ContentPage
 {
-	private WorkspaceViewModel _viewModel; // viewmodel object
+	private PlantViewModel _viewModel; // viewmodel object
 	private Task _backgroundThread; // background task to fetch data
 	private CancellationTokenSource _backgroundTokenSource; // cancellation token source (cancelling task)
 
@@ -13,11 +13,9 @@ public partial class WorkspaceDisplay : ContentPage
 	{
 		// initializing
 		InitializeComponent();
-		_viewModel = new WorkspaceViewModel();
+		_viewModel = new PlantViewModel();
         _backgroundTokenSource = new CancellationTokenSource();
         BindingContext = _viewModel;
-		// Current Workspace
-		_viewModel.GetCurrentWorkspace();
 		// start background task
 		_backgroundThread = Task.Run(() => FetchDataInflux(_backgroundTokenSource.Token));
 	}
@@ -44,6 +42,5 @@ public partial class WorkspaceDisplay : ContentPage
     {
         base.OnNavigatedFrom(args);
 		_backgroundTokenSource.Cancel();
-		//await _backgroundThread; causing bug and no need to wait for it to finish
     }
 }

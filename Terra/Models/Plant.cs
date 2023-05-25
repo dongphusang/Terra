@@ -18,6 +18,10 @@ namespace Terra.Models
         [ObservableProperty]
         public int waterLevel;
         [ObservableProperty]
-        public int light;      
+        public int light;
+        [ObservableProperty]
+        public string name;
+        [ObservableProperty]
+        public string note;
     }
 }

@@ -22,10 +22,14 @@ public static class MauiProgram
 		builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<MainPageViewModel>();
 
-		builder.Services.AddTransient<AddWorkspacePage>();
+        builder.Services.AddTransient<WorkspaceViewModel>();
+		builder.Services.AddTransient<PlantViewModel>();
+
+        builder.Services.AddTransient<AddWorkspacePage>();
 		builder.Services.AddTransient<WorkspaceList>();
 		builder.Services.AddTransient<WorkspaceDisplay>();
-		builder.Services.AddTransient<WorkspaceViewModel>();
+		builder.Services.AddTransient<AddPlantPage>();
+		builder.Services.AddTransient<EmptyPlantSlot>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

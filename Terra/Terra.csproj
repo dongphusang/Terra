@@ -32,6 +32,9 @@
 		
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.jpg" BaseSize="128,128" />
@@ -90,4 +93,3 @@
 	  </MauiXaml>
 	</ItemGroup>
 </Project>
-	

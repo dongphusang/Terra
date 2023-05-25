@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Terra sqlite3 service. Not just workspace
+
+using System;
 using Microsoft.Data.Sqlite;
 using System.IO;
 using System.Diagnostics;

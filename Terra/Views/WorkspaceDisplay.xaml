@@ -4,7 +4,7 @@
              x:Class="Terra.WorkspaceDisplay"
              Title="{Binding CurrentWorkspaceName}"
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
-             x:DataType="viewmodel:WorkspaceViewModel"
+             x:DataType="viewmodel:PlantViewModel"
              >
     <VerticalStackLayout>
         <VerticalStackLayout
@@ -207,8 +207,9 @@
                 Grid.Column="1"
                 HeightRequest="35"
                 WidthRequest="140"
-                Text="{Binding CurrentPlantName}"
+                Text="N/A"
                 TextColor="Black"
+                HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Start"
                 FontSize="30"/>
             <Button

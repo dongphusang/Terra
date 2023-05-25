@@ -34,11 +34,23 @@ build_metadata.AdditionalFiles.ManifestResourceName = Terra.Resources.Styles.Sty
 build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml
 
+[/Users/sangdong/Terra/Terra/Views/AddPlantPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.AddPlantPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/AddPlantPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/AddPlantPage.xaml
+
 [/Users/sangdong/Terra/Terra/Views/AddWorkspacePage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.AddWorkspacePage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views/AddWorkspacePage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views/AddWorkspacePage.xaml
+
+[/Users/sangdong/Terra/Terra/Views/EmptyPlantSlot.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.EmptyPlantSlot.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/EmptyPlantSlot.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/EmptyPlantSlot.xaml
 
 [/Users/sangdong/Terra/Terra/Views/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml

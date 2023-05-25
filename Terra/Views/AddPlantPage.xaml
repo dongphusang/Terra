@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Terra.AddPlantPage"
+             Title="AddPlantPage"
+             xmlns:viewmodel="clr-namespace:Terra.ViewModels"
+             x:DataType="viewmodel:PlantViewModel">
+    <VerticalStackLayout>
+        <!--Image at top-->
+        <Image
+            Source="plant.png"
+            Aspect="AspectFill"/>
+
+        <!-- Prompt Input Fields -->
+        <!-- Plant name *required -->
+        <Entry
+            Margin="25, -120, 25, 0"
+            FontSize="15"
+            HeightRequest="53"
+            BackgroundColor="#D9D9D9"
+            Placeholder="Plant name..."
+            PlaceholderColor="#838383"
+            Text="{Binding Plant.Name}"
+            />
+        <!-- Plant note *optional -->
+        <Editor
+            Margin="25, 34, 25, 0"
+            FontSize="15"
+            HeightRequest="90"
+            BackgroundColor="#D9D9D9"
+            Placeholder="Note..."
+            PlaceholderColor="#838383"      
+            Text="{Binding Plant.Note}"
+            />
+
+        <!-- Confirm Button -->
+        <Button
+            Margin="0, 100"
+            HeightRequest="40"
+            WidthRequest="222"
+            Text="Confirm"
+            TextColor="Black"
+            BackgroundColor="#CAD7C4"
+            />
+
+    </VerticalStackLayout>
+</ContentPage>
