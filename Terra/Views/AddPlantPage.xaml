@@ -41,6 +41,7 @@
             Text="Confirm"
             TextColor="Black"
             BackgroundColor="#CAD7C4"
+            Command="{Binding PostPlantCommand}"
             />
 
     </VerticalStackLayout>

@@ -51,10 +51,20 @@
         </member>
         <member name="M:Terra.Services.WorkspaceService.IsExist(System.String,System.String,Microsoft.Data.Sqlite.SqliteConnection)">
             <summary>
-            Used to verify if a table or a column is existed
+            Used to verify if a table or a column is existed.
             </summary>
             <param name="tableName"></param>
             <param name="column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Terra.Services.WorkspaceService.IsExist(System.String,System.String,System.String,Microsoft.Data.Sqlite.SqliteConnection)">
+            <summary>
+            Verify if a cell exists.
+            </summary>
+            <param name="tableName"></param>
+            <param name="column"></param>
+            <param name="cellValue"></param>
+            <param name="connection"></param>
             <returns></returns>
         </member>
         <member name="M:Terra.Services.WorkspaceService.CreateWorkspaceTable">
@@ -69,7 +79,7 @@
         </member>
         <member name="M:Terra.Services.WorkspaceService.InsertToWorkspaceTable(System.String,System.String)">
             <summary>
-            insert to table 
+            Open connection and add workspace entry to database.
             </summary>
             <param name="tableName"> name of table (workspace)</param>
             <param name="workspaceName"> name column </param>
@@ -100,6 +110,14 @@
         </member>
         <member name="T:Terra.ViewModels.PlantViewModel">
             <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="M:Terra.ViewModels.PlantViewModel.PostPlant">
+            <summary>
+            Add plant entry to database. (Not able to add to Plant table)
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Terra.ViewModels.PlantViewModel.GetDataFromInflux">
             <summary>
@@ -111,6 +129,18 @@
         </member>
         <member name="P:Terra.ViewModels.PlantViewModel.CurrentWorkspaceName">
             <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.currentWorkspaceName"/>
+        </member>
+        <member name="F:Terra.ViewModels.PlantViewModel.toWorkspaceDisplayCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.PlantViewModel.ToWorkspaceDisplayCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.PlantViewModel.ToWorkspaceDisplayCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.PlantViewModel.ToWorkspaceDisplay"/>.</summary>
+        </member>
+        <member name="F:Terra.ViewModels.PlantViewModel.postPlantCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.PlantViewModel.PostPlantCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.PlantViewModel.PostPlantCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.PlantViewModel.PostPlant"/>.</summary>
         </member>
         <member name="T:Terra.ViewModels.WorkspaceViewModel">
             <inheritdoc/>

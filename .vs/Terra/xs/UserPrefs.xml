@@ -1,28 +1,17 @@
 ﻿<Properties StartupConfiguration="{5314F4D7-FCBF-46FE-A733-79D87304EC8B}|Default">
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.46" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <Debugger.DebugSourceFolders>
     <String>/Users/sangdong/Library/Caches/VisualStudio/17.0/Symbols/raw.githubusercontent.com/xamarin/xamarin-android/af18b843d16f5ecad3171016fb66efecdb78c4bf</String>
   </Debugger.DebugSourceFolders>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Terra/Views/AddPlantPage.xaml">
+  <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Terra/Services/WorkspaceService.cs">
     <Files>
-      <File FileName="Terra/Services/WorkspaceService.cs" Line="1" Column="45" />
-      <File FileName="Terra/ViewModels/WorkspaceViewModel.cs" Line="20" Column="52" />
-      <File FileName="Terra/ViewModels/PlantViewModel.cs" Line="24" Column="32" />
-      <File FileName="Terra/Views/WorkspaceDisplay.xaml.cs" Line="16" Column="34" />
-      <File FileName="Terra/Views/AddPlantPage.xaml" Line="6" Column="14" />
-      <File FileName="Terra/Views/AddWorkspacePage.xaml" Line="6" Column="14" />
-      <File FileName="Terra/Models/Plant.cs" Line="24" Column="28" />
-      <File FileName="Terra/ViewModels/MainPageViewModel.cs" Line="1" Column="1" />
-      <File FileName="Terra/Views/AddPlantPage.xaml.cs" Line="11" Column="1" />
-      <File FileName="Terra/Views/AddWorkspacePage.xaml.cs" Line="1" Column="1" />
-      <File FileName="Terra/Views/WorkspaceDisplay.xaml" Line="212" Column="49" />
-      <File FileName="Terra/Views/WorkspaceList.xaml" Line="1" Column="1" />
-      <File FileName="Terra/App.xaml" Line="1" Column="1" />
-      <File FileName="Terra/App.xaml.cs" Line="1" Column="1" />
-      <File FileName="Terra/AppShell.xaml.cs" Line="13" Column="73" />
-      <File FileName="Terra/Services/InfluxService.cs" Line="1" Column="1" />
-      <File FileName="Terra/Views/EmptyPlantSlot.xaml" Line="4" Column="43" />
-      <File FileName="Terra/Views/EmptyPlantSlot.xaml.cs" Line="11" Column="1" />
-      <File FileName="Terra/MauiProgram.cs" Line="32" Column="51" />
+      <File FileName="Terra/ViewModels/PlantViewModel.cs" Line="35" Column="37" />
+      <File FileName="Terra/Services/WorkspaceService.cs" Line="156" Column="10" />
+      <File FileName="Terra/ViewModels/WorkspaceViewModel.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -30,28 +19,25 @@
           <Node name="Terra" expanded="True">
             <Node name="Terra" expanded="True">
               <Node name="Models" expanded="True" />
-              <Node name="Services" expanded="True" />
+              <Node name="Resources" expanded="True">
+                <Node name="Images" expanded="True" />
+              </Node>
+              <Node name="Services" expanded="True">
+                <Node name="WorkspaceService.cs" selected="True" />
+              </Node>
               <Node name="ViewModels" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="AddPlantPage.xaml" expanded="True" selected="True" />
-                <Node name="AddWorkspacePage.xaml" expanded="True" />
                 <Node name="EmptyPlantSlot.xaml" expanded="True" />
                 <Node name="WorkspaceDisplay.xaml" expanded="True" />
               </Node>
-              <Node name="AppShell.xaml" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.R39M30EJA2J" />
-  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.46" />
-  <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="Android.R39M30EJA2J" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
 </Properties>

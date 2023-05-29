@@ -79,11 +79,9 @@ namespace Terra.ViewModels
                 {
                     Preferences.Set("CurrentWorkspace", workspaceName);
                 }
-                Shell.Current.GoToAsync(nameof(WorkspaceDisplay));
+                Shell.Current.GoToAsync(nameof(EmptyPlantSlot));
             }
-        }
-
-        
+        } 
     }
 }
 

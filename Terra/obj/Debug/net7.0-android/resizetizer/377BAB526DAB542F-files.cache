@@ -5,6 +5,7 @@ obj/Debug/net7.0-android/resizetizer/r/mipmap-hdpi/appicon_foreground.png
 obj/Debug/net7.0-android/resizetizer/r/mipmap-hdpi/appicon.png
 obj/Debug/net7.0-android/resizetizer/r/mipmap-hdpi/appicon_background.png
 obj/Debug/net7.0-android/resizetizer/r/drawable/plant.png
+obj/Debug/net7.0-android/resizetizer/r/drawable/prompt_add_button.png
 obj/Debug/net7.0-android/resizetizer/r/drawable/plant_placeholder.png
 obj/Debug/net7.0-android/resizetizer/r/mipmap-xxxhdpi/appicon_foreground.png
 obj/Debug/net7.0-android/resizetizer/r/mipmap-xxxhdpi/appicon.png

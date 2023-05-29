@@ -6,7 +6,6 @@ using System.IO;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 using Microsoft.Maui.Controls;
-using static Java.Util.Jar.Attributes;
 
 namespace Terra.Services
 {
@@ -18,6 +17,8 @@ namespace Terra.Services
         {
             CreateWorkspaceTable();
             CreatePlantTable();
+            SpitIt("Workspace", "name");
+            SpitIt("Plant", "name");
         }
 
         // test. Put it in the constructor
@@ -55,12 +56,12 @@ namespace Terra.Services
             using SqliteDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                Console.WriteLine($"SSS: {reader.GetValue(0)}");
+                Console.WriteLine($"Line 58 {tableName}: {reader.GetValue(0)}");
             }
         }
 
         /// <summary>
-        /// Used to verify if a table or a column is existed
+        /// Used to verify if a table or a column is existed.
         /// </summary>
         /// <param name="tableName"></param>
         /// <param name="column"></param>
@@ -74,17 +75,49 @@ namespace Terra.Services
                 using SqliteDataReader reader = command.ExecuteReader();
                 if (reader.Read()) 
                 {
-                    Console.WriteLine("SSS: Found it");
-                    return true; // found target with content
+                    Console.WriteLine($"IsExist() {tableName}: Found it");
+                    return true; // found target table with content
                 }
-                Console.WriteLine("SSS: Found it, no content");
-                return true; // found target, no content
+                Console.WriteLine($"IsExist() {tableName}: Found it, no content");
+                return true; // found target table, no content
                      
             }catch(SqliteException ex)
             {
-                Console.WriteLine($"SSS: {ex}");
+                Console.WriteLine($"IsExist() {tableName}: {ex}");
                 return false; // target not found
             }        
+        }
+
+        /// <summary>
+        /// Verify if a cell exists.
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="column"></param>
+        /// <param name="cellValue"></param>
+        /// <param name="connection"></param>
+        /// <returns></returns>
+        private bool IsExist(string tableName, string column, string cellValue, SqliteConnection connection)
+        {
+            var sql = $"SELECT {column} FROM {tableName} WHERE {column} = @cellValue";
+            using SqliteCommand command = new(sql, connection);
+            command.Parameters.AddWithValue("@cellValue", cellValue);
+            try
+            {
+                using SqliteDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    Console.WriteLine($"IsExist() {tableName}: Found it");
+                    return true; // found target table, with content
+                }
+                Console.WriteLine($"IsExist() {tableName}: Found it, no content");
+                return false; // found target table, no such cell
+
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine($"IsExist() {tableName}: {ex}");
+                return true; // target table not found, hence no such cell
+            }
         }
 
         /// <summary>
@@ -131,8 +164,7 @@ namespace Terra.Services
                                 "name TEXT NOT NULL UNIQUE," +
                                 "date_added TEXT NOT NULL," +
                                 "note TEXT," +
-                                "workspaceID INTEGER," +
-                                "FOREIGN KEY (workspaceID) REFERENCES Workspace(id))";
+                                "from_workspace TEXT NOT NULL)";
                 // add workspace table to Terra database
                 if (!IsExist("Plant", "*", connection))
                 {
@@ -147,7 +179,7 @@ namespace Terra.Services
         }
 
         /// <summary>
-        /// insert to table 
+        /// Open connection and add workspace entry to database.
         /// </summary>
         /// <param name="tableName"> name of table (workspace)</param>
         /// <param name="workspaceName"> name column </param>
@@ -155,12 +187,13 @@ namespace Terra.Services
         public void InsertToWorkspaceTable(string workspaceName, string note)
         {
             var table = "Workspace";
+            var column = "name";
             using (SqliteConnection connection = new(_connectionString)) 
             {
                 connection.OpenAsync().Wait();
-                if (!IsExist(table, workspaceName, connection))
+                if (IsExist(table, column, workspaceName, connection) is false)
                 {
-                    var a = $"INSERT INTO {table} (name, date_added, note) " +
+                    var a = $"INSERT INTO Workspace (name, date_added, note) " +
                                            "VALUES (@name, @date_added, @note)";
 
                     using (SqliteCommand command = new(a, connection))
@@ -175,35 +208,28 @@ namespace Terra.Services
             }
         }
 
-        public void InsertToPlantTable(string plantName, string note)
+        // Open connection and add plant entry to database.
+        public void InsertToPlantTable(string workspaceName, string plantName, string note)
         {
             var table = "Plant";
+            var column = "name";
+            Console.WriteLine($"InsertToPlantTable(): {workspaceName} {plantName} {note}");
             using SqliteConnection connection = new(_connectionString);
             connection.OpenAsync().Wait();
 
-            if (!IsExist(table, plantName, connection))
+            if (IsExist(table, column, plantName, connection) is false)
             {
-                var sql = $"INSERT INTO {table} (name, date_added, note, workspaceID) " +
-                                         "VALUES (@name, @date_added, @note, @workspaceID)";
+                var sql = $"INSERT INTO Plant (name, date_added, note, from_workspace) " +
+                                         "VALUES (@name, @date_added, @note, @from_workspace)";
 
                 using SqliteCommand command = new(sql, connection);
                 command.Parameters.AddWithValue("@name", plantName);
                 command.Parameters.AddWithValue("@date_added", DateTime.Now.ToString());
                 command.Parameters.AddWithValue("@note", note);
+                command.Parameters.AddWithValue("@from_workspace", workspaceName);
+                command.ExecuteNonQueryAsync();
+                Console.WriteLine("AAA: Entry received");
             }
-        }
-
-        // change to Task later
-        private Task<int> RetrieveWorkspaceID(string workspaceName)
-        {
-            using SqliteConnection connection = new(_connectionString);
-            connection.OpenAsync().Wait();
-
-            var sql = $"SELECT id FROM Workspace WHERE name = @nameValue";
-            using SqliteCommand cmd = new(sql, connection);
-            cmd.Parameters.AddWithValue("@nameValue", workspaceName);
-
-            return cmd.ExecuteNonQueryAsync();
         }
 
         /// <summary>
@@ -237,7 +263,7 @@ namespace Terra.Services
             }                
         }
 
-        public void DeleteWorkspace(string name)
+        public void DeleteWorkspace(string workspaceName)
         {
             using SqliteConnection connection = new(_connectionString);
             connection.OpenAsync().Wait();
@@ -245,10 +271,10 @@ namespace Terra.Services
             // construct sql
             var sql = "DELETE FROM Workspace WHERE name = @nameValue";
             using SqliteCommand cmd = new(sql, connection);
-            cmd.Parameters.AddWithValue("@nameValue", name);
+            cmd.Parameters.AddWithValue("@nameValue", workspaceName);
 
             // if name isn't an empty string, remove that instance from available list 
-            if (name != null) cmd.ExecuteNonQuery();
+            if (workspaceName != null) cmd.ExecuteNonQuery();
         }
     }
 }

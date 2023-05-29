@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "jNyvsynliuVOBzl2xcclLelFW2PjymzNlLgaZm1P3uIDevq0X/6BLe3G7O609sjCRyVSXwkM51ZID2qYZnJUMA==",
+  "dgSpecHash": "0vMoBlReo5gmrts8S4VnJYFWVll7D4gKIRLfsf/jFpEIbM+pAZau8DlRRuZ+gN4alZ0xvIb/Ew0CsB70cjReQg==",
   "success": true,
   "projectFilePath": "/Users/sangdong/Terra/Terra/Terra.csproj",
   "expectedPackageFiles": [
-    "/Users/sangdong/.nuget/packages/communitytoolkit.maui/5.1.0/communitytoolkit.maui.5.1.0.nupkg.sha512",
-    "/Users/sangdong/.nuget/packages/communitytoolkit.maui.core/5.1.0/communitytoolkit.maui.core.5.1.0.nupkg.sha512",
+    "/Users/sangdong/.nuget/packages/communitytoolkit.maui/5.2.0/communitytoolkit.maui.5.2.0.nupkg.sha512",
+    "/Users/sangdong/.nuget/packages/communitytoolkit.maui.core/5.2.0/communitytoolkit.maui.core.5.2.0.nupkg.sha512",
     "/Users/sangdong/.nuget/packages/communitytoolkit.mvvm/8.2.0/communitytoolkit.mvvm.8.2.0.nupkg.sha512",
     "/Users/sangdong/.nuget/packages/csvhelper/30.0.1/csvhelper.30.0.1.nupkg.sha512",
     "/Users/sangdong/.nuget/packages/googlegson/2.9.1.1/googlegson.2.9.1.1.nupkg.sha512",

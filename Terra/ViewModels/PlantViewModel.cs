@@ -30,6 +30,31 @@ namespace Terra.ViewModels
             CurrentWorkspaceName = Preferences.Get("CurrentWorkspace", string.Empty); // get value from preferences (which assigned in WorkspaceViewModel)
         }
 
+        // navigate to specific plant display
+        [RelayCommand]
+        Task ToWorkspaceDisplay() => Shell.Current.GoToAsync(nameof(AddPlantPage));
+
+
+        /// <summary>
+        /// Add plant entry to database. (Not able to add to Plant table)
+        /// </summary>
+        /// <returns></returns>
+        [RelayCommand]
+        public Task PostPlant()
+        {
+            // insert plant entry to sqlite
+            _workspaceService.InsertToPlantTable(CurrentWorkspaceName, Plant.Name, Plant.Note);
+            // make a toast
+            {
+                var message = "Plant added!";
+                ToastDuration duration = ToastDuration.Short;
+                var fontSize = 14;
+                Toast.Make(message, duration, fontSize).Show();
+            }
+            // navigate to WorkspaceDisplay
+            return Shell.Current.GoToAsync(nameof(WorkspaceList));
+        }
+
         /// <summary>
         /// Invoke influx service object to query data from InfluxDB. Discard broken frames.
         /// </summary>
@@ -37,7 +62,7 @@ namespace Terra.ViewModels
         {
             // get data frame from Influx
             var data = Task.Run(() => _influxService.GetData()).Result;
-            // check if data frame is corrupted (five plant attributes. If received a 10 attribute frame, that is a duplicated or broken frame
+            // check if data frame is corrupted (a normal frame has five attributes. A broken frame has 10 attributes
             if (data.Split(",").Length == 5)
             {
                 Plant = JsonConvert.DeserializeObject<Plant>(data);

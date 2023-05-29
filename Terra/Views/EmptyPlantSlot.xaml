@@ -6,9 +6,22 @@
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
              x:DataType="viewmodel:PlantViewModel">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <!-- promt button -->
+        <Button
+            Margin="0, 200, 0 ,0"
+            ImageSource="prompt_add_button.png"
+            BackgroundColor="White"
+            HeightRequest="150"
+            WidthRequest="150"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Command="{Binding ToWorkspaceDisplayCommand}"/>
+        <!-- prompt label -->
+        <Label
+            Grid.Row="0"
+            HorizontalOptions="Center"
+            Text="Add Plant"
+            TextColor="#C6C6C6"
+            FontSize="25"/> 
     </VerticalStackLayout>
 </ContentPage>

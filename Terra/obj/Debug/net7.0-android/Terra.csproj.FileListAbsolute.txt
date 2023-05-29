@@ -1044,6 +1044,7 @@ C:/Users/sangs/Desktop/Terra/Terra/obj/Debug/net7.0-android/stamp/_ResolveLibrar
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/splash.png
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/resizetizer/r/drawable/plant.png
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/resizetizer/r/drawable/plant_placeholder.png
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/resizetizer/r/drawable/prompt_add_button.png
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/resizetizer/r/mipmap-anydpi-v26/appicon.xml
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/resizetizer/r/mipmap-anydpi-v26/appicon_round.xml
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0-android/resizetizer/r/mipmap-hdpi/appicon.png
