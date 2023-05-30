@@ -75,8 +75,7 @@ namespace Terra.ViewModels
             }
             else
             {
-                if (Preferences.ContainsKey("CurrentWorkspace") is false)
-                    Preferences.Set("CurrentWorkspace", workspaceName);
+                Preferences.Set("CurrentWorkspace", workspaceName);
 
                 var columnCount = Convert.ToInt32(Task.Run(() => _workspaceService.CountColumnValues(workspaceName)).Result);
 
