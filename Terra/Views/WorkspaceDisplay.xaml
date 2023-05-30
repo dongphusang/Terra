@@ -191,18 +191,10 @@
                 Grid.Column="0"
                 HeightRequest="70"
                 WidthRequest="70"
-                Text="1"
+                Text="B"
                 TextColor="Black"
                 FontSize="30"
-                BackgroundColor="Azure"/>
-            <!-- status code rectangle -->
-            <BoxView
-                Grid.Column="1"
-                HeightRequest="10"
-                WidthRequest="20"
-                VerticalOptions="Start"
-                HorizontalOptions="Center"
-                Color="Black"/>
+                BackgroundColor="Azure"/>           
             <Label
                 Grid.Column="1"
                 HeightRequest="35"
@@ -216,7 +208,7 @@
                 Grid.Column="2"
                 HeightRequest="70"
                 WidthRequest="70"
-                Text="4"
+                Text="N"
                 TextColor="Black"
                 FontSize="30"
                 BackgroundColor="Azure"/>

@@ -7,10 +7,13 @@
   </Debugger.DebugSourceFolders>
   <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="Android.R39M30EJA2J" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Terra/Services/WorkspaceService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Terra/ViewModels/WorkspaceViewModel.cs">
     <Files>
-      <File FileName="Terra/Services/WorkspaceService.cs" Line="249" Column="10" />
-      <File FileName="Terra/ViewModels/WorkspaceViewModel.cs" Line="76" Column="17" />
+      <File FileName="Terra/ViewModels/WorkspaceViewModel.cs" Line="79" Column="1" />
+      <File FileName="Terra/Views/WorkspaceDisplay.xaml" Line="211" Column="24" />
+      <File FileName="Terra/ViewModels/PlantViewModel.cs" Line="33" Column="41" />
+      <File FileName="Terra/App.xaml.cs" Line="7" Column="1" />
+      <File FileName="Terra/Services/WorkspaceService.cs" Line="60" Column="45" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,14 +24,15 @@
               <Node name="Resources" expanded="True">
                 <Node name="Images" expanded="True" />
               </Node>
-              <Node name="Services" expanded="True">
-                <Node name="WorkspaceService.cs" selected="True" />
+              <Node name="Services" expanded="True" />
+              <Node name="ViewModels" expanded="True">
+                <Node name="WorkspaceViewModel.cs" selected="True" />
               </Node>
-              <Node name="ViewModels" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="EmptyPlantSlot.xaml" expanded="True" />
                 <Node name="WorkspaceDisplay.xaml" expanded="True" />
               </Node>
+              <Node name="App.xaml" expanded="True" />
+              <Node name="AppShell.xaml" expanded="True" />
             </Node>
           </Node>
         </State>

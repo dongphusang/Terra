@@ -80,6 +80,8 @@ namespace Terra.ViewModels
 
                 var columnCount = Convert.ToInt32(Task.Run(() => _workspaceService.CountColumnValues(workspaceName)).Result);
 
+                Console.WriteLine($"ToWorkspace(): {columnCount}");
+
                 if (columnCount is not 0)
                     Shell.Current.GoToAsync(nameof(WorkspaceDisplay));  
                 else

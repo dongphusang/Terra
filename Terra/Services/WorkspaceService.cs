@@ -57,7 +57,7 @@ namespace Terra.Services
             using SqliteDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                Console.WriteLine($"Line 58 {tableName}: {reader.GetValue(0)}");
+                Console.WriteLine($"SpitIt() {tableName}: {reader.GetValue(0)}");
             }
         }
 
@@ -239,6 +239,7 @@ namespace Terra.Services
         // return object that contains number of cells in a column
         public Task<object> CountColumnValues(string workspaceName)
         {
+            Console.WriteLine($"CountColumnValues(): {workspaceName}");
             // open connection
             using SqliteConnection connection = new(_connectionString);
             connection.OpenAsync().Wait();
