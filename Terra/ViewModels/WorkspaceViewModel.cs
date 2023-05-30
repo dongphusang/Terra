@@ -75,11 +75,15 @@ namespace Terra.ViewModels
             }
             else
             {
-                if (!(Preferences.ContainsKey("CurrentWorkspace")))
-                {
+                if (Preferences.ContainsKey("CurrentWorkspace") is false)
                     Preferences.Set("CurrentWorkspace", workspaceName);
-                }
-                Shell.Current.GoToAsync(nameof(EmptyPlantSlot));
+
+                var columnCount = Convert.ToInt32(Task.Run(() => _workspaceService.CountColumnValues()).Result);
+
+                if (columnCount > 0)
+                    Shell.Current.GoToAsync(nameof(WorkspaceDisplay));
+                else
+                    Shell.Current.GoToAsync(nameof(EmptyPlantSlot));
             }
         } 
     }

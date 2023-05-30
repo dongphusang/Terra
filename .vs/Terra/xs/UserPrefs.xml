@@ -5,13 +5,12 @@
   <Debugger.DebugSourceFolders>
     <String>/Users/sangdong/Library/Caches/VisualStudio/17.0/Symbols/raw.githubusercontent.com/xamarin/xamarin-android/af18b843d16f5ecad3171016fb66efecdb78c4bf</String>
   </Debugger.DebugSourceFolders>
-  <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="Android.R39M30EJA2J" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workbench ActiveDocument="Terra/Services/WorkspaceService.cs">
     <Files>
-      <File FileName="Terra/ViewModels/PlantViewModel.cs" Line="35" Column="37" />
-      <File FileName="Terra/Services/WorkspaceService.cs" Line="156" Column="10" />
-      <File FileName="Terra/ViewModels/WorkspaceViewModel.cs" Line="1" Column="1" />
+      <File FileName="Terra/Services/WorkspaceService.cs" Line="249" Column="10" />
+      <File FileName="Terra/ViewModels/WorkspaceViewModel.cs" Line="76" Column="17" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -39,5 +38,5 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.R39M30EJA2J" />
 </Properties>

@@ -85,6 +85,14 @@
             <param name="workspaceName"> name column </param>
             <param name="note"> note column</param>
         </member>
+        <member name="M:Terra.Services.WorkspaceService.InsertToPlantTable(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="workspaceName"></param>
+            <param name="plantName"></param>
+            <param name="note"></param>
+        </member>
         <member name="M:Terra.Services.WorkspaceService.GetWorkspaces(System.String)">
             <summary>
             Return a list of workspaces' name and note

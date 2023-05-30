@@ -19,6 +19,7 @@ namespace Terra.Services
             CreatePlantTable();
             SpitIt("Workspace", "name");
             SpitIt("Plant", "name");
+            SpitIt("Plant", "from_workspace");
         }
 
         // test. Put it in the constructor
@@ -166,7 +167,7 @@ namespace Terra.Services
                                 "note TEXT," +
                                 "from_workspace TEXT NOT NULL)";
                 // add workspace table to Terra database
-                if (!IsExist("Plant", "*", connection))
+                if (IsExist("Plant", "*", connection) is false)
                 {
                     using (SqliteCommand command = connection.CreateCommand())
                     {
@@ -203,12 +204,16 @@ namespace Terra.Services
                         command.Parameters.AddWithValue("@note", note);
                         command.ExecuteNonQueryAsync();
                     }
-                    Console.WriteLine("SSS: Entry received");
                 } 
             }
         }
 
-        // Open connection and add plant entry to database.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="workspaceName"></param>
+        /// <param name="plantName"></param>
+        /// <param name="note"></param>
         public void InsertToPlantTable(string workspaceName, string plantName, string note)
         {
             var table = "Plant";
@@ -228,8 +233,19 @@ namespace Terra.Services
                 command.Parameters.AddWithValue("@note", note);
                 command.Parameters.AddWithValue("@from_workspace", workspaceName);
                 command.ExecuteNonQueryAsync();
-                Console.WriteLine("AAA: Entry received");
             }
+        }
+
+        // return object that contains number of cells in a column
+        public Task<object> CountColumnValues()
+        {
+            // open connection
+            using SqliteConnection connection = new(_connectionString);
+            connection.OpenAsync().Wait();
+
+            var sql = $"SELECT COUNT(from_workspace) FROM Plant";
+            using SqliteCommand cmd = new(sql, connection);
+            return cmd.ExecuteScalarAsync();
         }
 
         /// <summary>
@@ -263,6 +279,7 @@ namespace Terra.Services
             }                
         }
 
+
         public void DeleteWorkspace(string workspaceName)
         {
             using SqliteConnection connection = new(_connectionString);
@@ -274,7 +291,20 @@ namespace Terra.Services
             cmd.Parameters.AddWithValue("@nameValue", workspaceName);
 
             // if name isn't an empty string, remove that instance from available list 
-            if (workspaceName != null) cmd.ExecuteNonQuery();
+            if (workspaceName != null)
+            {
+                cmd.ExecuteNonQuery();
+                DeletePlant(connection, workspaceName);
+            }
+        }
+
+        private Task DeletePlant(SqliteConnection connection, string workspaceName)
+        {
+            var sql = "DELETE FROM Plant WHERE from_workspace = @nameValue";
+            using SqliteCommand cmd = new(sql, connection);
+            cmd.Parameters.AddWithValue("@nameValue", workspaceName);
+
+            return cmd.ExecuteNonQueryAsync();
         }
     }
 }
