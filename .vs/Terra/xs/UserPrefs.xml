@@ -7,14 +7,7 @@
   </Debugger.DebugSourceFolders>
   <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="MyAppleMacCatalystID" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Terra/ViewModels/WorkspaceViewModel.cs">
-    <Files>
-      <File FileName="Terra/ViewModels/WorkspaceViewModel.cs" Line="78" Column="17" />
-      <File FileName="Terra/Views/WorkspaceDisplay.xaml" Line="211" Column="24" />
-      <File FileName="Terra/ViewModels/PlantViewModel.cs" />
-      <File FileName="Terra/App.xaml.cs" />
-      <File FileName="Terra/Services/WorkspaceService.cs" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">

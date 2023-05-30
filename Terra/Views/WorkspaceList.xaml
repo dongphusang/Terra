@@ -33,6 +33,7 @@
                 HorizontalOptions="Start"
                 CornerRadius="10"
                 Color="#EFEDED"/>
+            <!-- workspace name -->
             <Label
                 Grid.Row="0"
                 Margin="25, 25"
@@ -40,6 +41,7 @@
                 FontAttributes="Bold"
                 FontSize="25"
                 />
+            <!-- workspace note -->
             <Label
                 Grid.Row="0"
                 Margin="25, 35"
@@ -92,18 +94,31 @@
                 HorizontalOptions="Start"
                 CornerRadius="10"
                 Color="#EFEDED"/>
+            <!-- workspace name -->
             <Label
                 Grid.Row="1"
                 Margin="25, 25"
                 Text="{Binding WorkspaceNameAndNote[2]}"
                 FontAttributes="Bold"
                 FontSize="25"/>
+            <!-- workspace note -->
             <Label
                 Grid.Row="1"
                 Margin="25, 35"
                 Text="{Binding WorkspaceNameAndNote[3]}"
                 FontSize="20"
                 VerticalOptions="End"/>
+            <!-- navigate to workspace -->
+            <Button
+                Grid.Row="1"
+                HeightRequest="110"
+                WidthRequest="280"
+                HorizontalOptions="Start"
+                CornerRadius="10"
+                Opacity="0"
+                Command="{Binding ToWorkspaceCommand}"
+                CommandParameter="{Binding WorkspaceNameAndNote[2]}"/>
+            <!-- delete workspace -->
             <Button
                 Grid.Row="1"
                 HeightRequest="110"
@@ -139,18 +154,31 @@
                 HorizontalOptions="Start"
                 CornerRadius="10"
                 Color="#EFEDED"/>
+            <!-- workspace name -->
             <Label
                 Grid.Row="2"
                 Margin="25, 25"
                 Text="{Binding WorkspaceNameAndNote[4]}"
                 FontAttributes="Bold"
                 FontSize="25"/>
+            <!-- workspace note -->
             <Label
                 Grid.Row="2"
                 Margin="25, 35"
                 Text="{Binding WorkspaceNameAndNote[5]}"
                 FontSize="20"
                 VerticalOptions="End"/>
+            <!-- navigate to workspace -->
+            <Button
+                Grid.Row="2"
+                HeightRequest="110"
+                WidthRequest="280"
+                HorizontalOptions="Start"
+                CornerRadius="10"
+                Opacity="0"
+                Command="{Binding ToWorkspaceCommand}"
+                CommandParameter="{Binding WorkspaceNameAndNote[4]}"/>
+            <!-- delete workspace -->
             <Button
                 Grid.Row="2"
                 HeightRequest="110"
@@ -185,18 +213,31 @@
                 HorizontalOptions="Start"
                 CornerRadius="10"
                 Color="#EFEDED"/>
+            <!-- workspace name -->
             <Label
                 Grid.Row="3"
                 Margin="25, 25"
                 Text="{Binding WorkspaceNameAndNote[6]}"
                 FontAttributes="Bold"
                 FontSize="25"/>
+            <!-- workspace note -->
             <Label
                 Grid.Row="3"
                 Margin="25, 35"
                 Text="{Binding WorkspaceNameAndNote[7]}"
                 FontSize="20"
                 VerticalOptions="End"/>
+            <!-- navigate to workspace -->
+            <Button
+                Grid.Row="3"
+                HeightRequest="110"
+                WidthRequest="280"
+                HorizontalOptions="Start"
+                CornerRadius="10"
+                Opacity="0"
+                Command="{Binding ToWorkspaceCommand}"
+                CommandParameter="{Binding WorkspaceNameAndNote[6]}"/>
+            <!-- delete workspace -->
             <Button
                 Grid.Row="3"
                 HeightRequest="110"

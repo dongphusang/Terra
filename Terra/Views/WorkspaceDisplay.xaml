@@ -183,35 +183,21 @@
             </Grid.ColumnDefinitions>
             <BoxView
                 Grid.Column="0"
-                Grid.ColumnSpan="4"
+                Grid.ColumnSpan="3"
                 HeightRequest="155"
                 HorizontalOptions="Fill"
                 Color="#EFEDED"/>
-            <Button
-                Grid.Column="0"
-                HeightRequest="70"
-                WidthRequest="70"
-                Text="B"
-                TextColor="Black"
-                FontSize="30"
-                BackgroundColor="Azure"/>           
+            <!-- plant name -->
             <Label
-                Grid.Column="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
                 HeightRequest="35"
-                WidthRequest="140"
+                WidthRequest="200"
                 Text="{Binding CurrentPlantName}"
                 TextColor="Black"
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Start"
                 FontSize="30"/>
-            <Button
-                Grid.Column="2"
-                HeightRequest="70"
-                WidthRequest="70"
-                Text="N"
-                TextColor="Black"
-                FontSize="30"
-                BackgroundColor="Azure"/>
         </Grid>
     </VerticalStackLayout>
 </ContentPage>
