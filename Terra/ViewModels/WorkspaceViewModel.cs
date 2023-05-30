@@ -64,7 +64,7 @@ namespace Terra.ViewModels
 
         // navigate to workspace and assign current workspace to mem
         [RelayCommand]
-        void ToWorkspace(string workspaceName)
+        public void ToWorkspace(string workspaceName)
         {
             if (workspaceName is null) // make a toast
             {
@@ -78,12 +78,12 @@ namespace Terra.ViewModels
                 if (Preferences.ContainsKey("CurrentWorkspace") is false)
                     Preferences.Set("CurrentWorkspace", workspaceName);
 
-                var columnCount = Convert.ToInt32(Task.Run(() => _workspaceService.CountColumnValues()).Result);
+                var columnCount = Convert.ToInt32(Task.Run(() => _workspaceService.CountColumnValues(workspaceName)).Result);
 
-                if (columnCount > 0)
-                    Shell.Current.GoToAsync(nameof(WorkspaceDisplay));
+                if (columnCount is not 0)
+                    Shell.Current.GoToAsync(nameof(WorkspaceDisplay));  
                 else
-                    Shell.Current.GoToAsync(nameof(EmptyPlantSlot));
+                    Shell.Current.GoToAsync(nameof(EmptyPlantSlot));               
             }
         } 
     }

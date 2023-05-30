@@ -207,7 +207,7 @@
                 Grid.Column="1"
                 HeightRequest="35"
                 WidthRequest="140"
-                Text="N/A"
+                Text="{Binding CurrentPlantName}"
                 TextColor="Black"
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Start"

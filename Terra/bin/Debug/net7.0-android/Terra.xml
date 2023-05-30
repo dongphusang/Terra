@@ -138,6 +138,9 @@
         <member name="P:Terra.ViewModels.PlantViewModel.CurrentWorkspaceName">
             <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.currentWorkspaceName"/>
         </member>
+        <member name="P:Terra.ViewModels.PlantViewModel.CurrentPlantName">
+            <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.currentPlantName"/>
+        </member>
         <member name="F:Terra.ViewModels.PlantViewModel.toWorkspaceDisplayCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.PlantViewModel.ToWorkspaceDisplayCommand"/>.</summary>
         </member>
@@ -340,6 +343,9 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CurrentWorkspaceName">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CurrentWorkspaceName" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CurrentPlantName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CurrentPlantName" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Workspace">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Workspace" generated properties.</summary>
         </member>
@@ -381,6 +387,9 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CurrentWorkspaceName">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CurrentWorkspaceName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CurrentPlantName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CurrentPlantName" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Workspace">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Workspace" generated properties.</summary>

@@ -237,14 +237,29 @@ namespace Terra.Services
         }
 
         // return object that contains number of cells in a column
-        public Task<object> CountColumnValues()
+        public Task<object> CountColumnValues(string workspaceName)
         {
             // open connection
             using SqliteConnection connection = new(_connectionString);
             connection.OpenAsync().Wait();
 
-            var sql = $"SELECT COUNT(from_workspace) FROM Plant";
+            var sql = $"SELECT COUNT(from_workspace) FROM Plant WHERE from_workspace = @nameValue";
             using SqliteCommand cmd = new(sql, connection);
+            cmd.Parameters.AddWithValue("@nameValue", workspaceName);
+
+            return cmd.ExecuteScalarAsync();
+        }
+
+        // retrieve plant entry from a workspace. Works for now since only one plant allowed per workspace.
+        public Task<object> GetPlantName(string currentWorkspaceName)
+        {               
+            using SqliteConnection connection = new(_connectionString);
+            connection.OpenAsync().Wait();
+
+            var sql = $"SELECT name FROM Plant WHERE from_workspace = @nameValue";
+            using SqliteCommand cmd = new(sql, connection);
+            cmd.Parameters.AddWithValue("@nameValue", currentWorkspaceName);
+
             return cmd.ExecuteScalarAsync();
         }
 

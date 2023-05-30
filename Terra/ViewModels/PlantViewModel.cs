@@ -15,6 +15,8 @@ namespace Terra.ViewModels
         public Plant plant; // plant model
         [ObservableProperty]
         public string currentWorkspaceName; // name of currently chosen workspace (representing a group of plants)
+        [ObservableProperty]
+        public string currentPlantName;
 
         // services objects
         private WorkspaceService _workspaceService;
@@ -28,12 +30,12 @@ namespace Terra.ViewModels
             _influxService = new();
 
             CurrentWorkspaceName = Preferences.Get("CurrentWorkspace", string.Empty); // get value from preferences (which assigned in WorkspaceViewModel)
+            CurrentPlantName = Unwrap();
         }
 
         // navigate to specific plant display
         [RelayCommand]
         Task ToWorkspaceDisplay() => Shell.Current.GoToAsync(nameof(AddPlantPage));
-
 
         /// <summary>
         /// Add plant entry to database. (Not able to add to Plant table)
@@ -76,6 +78,19 @@ namespace Terra.ViewModels
                 Plant.WaterLevel = 0;
             }
         }
+
+        // check if object returned from Task.Run() is null. Return non-null value
+        private string Unwrap()
+        {
+            var result = Task.Run(() => _workspaceService.GetPlantName(CurrentWorkspaceName)).Result;
+            if (result is null)
+            {
+                return "N/A";
+            }
+            return result.ToString();
+        }
+
+
     }
 }
 
