@@ -36,7 +36,12 @@ SPECIFICS
     
   MOBILE APP
   
-  <img src="https://github.com/dongphusang/Terra/assets/45107557/37116616-a191-4dce-a6bf-223bbf4569d7" width="360" height="760"> <img src="https://github.com/dongphusang/Terra/assets/45107557/1fd98765-7ad2-4515-89f8-13cf9af92cdb" width="360" height="760">
+  <img src="https://github.com/dongphusang/Terra/assets/45107557/37116616-a191-4dce-a6bf-223bbf4569d7" width="360" height="760"> <img src="https://github.com/dongphusang/Terra/assets/45107557/eff7756a-5746-4324-9033-f3391c97c91f" width="360" height="760">
+  <img src="https://github.com/dongphusang/Terra/assets/45107557/2a0da2d9-780f-49e2-bbf7-39d6c4c5a97a" width="360" height="760"> <img src="https://github.com/dongphusang/Terra/assets/45107557/e997c854-047e-4761-a4f0-77e7b9d44275" width="360" height="760">
+
+
+ 
+
 
   - Functionality:
     - Adds, removes workspaces
