@@ -18,9 +18,9 @@
             Margin="25, -120, 25, 0"
             FontSize="15"
             HeightRequest="53"
-            BackgroundColor="#D9D9D9"
+            BackgroundColor="#F7F7F7"
             Placeholder="Workspace name..."
-            PlaceholderColor="#838383"
+            PlaceholderColor="#838383"          
             Text="{Binding Workspace.WorkspaceName}"
             />
         <!-- Workspace note *optional -->
@@ -28,7 +28,7 @@
             Margin="25, 34, 25, 0"
             FontSize="15"
             HeightRequest="90"
-            BackgroundColor="#D9D9D9"
+            BackgroundColor="#F7F7F7"
             Placeholder="Note..."
             PlaceholderColor="#838383"      
             Text="{Binding Workspace.Note}"
