@@ -2,8 +2,8 @@
 Plant Management
 
 PRODUCT
-- This system enables automation in watering, ventilation, and lighting. Moreover, the way these modules work depends on input from environment sensors(soil moisture, humidity, light sensor). For example, if air humidity and temperature are higher than plant requirements, ventilation is increased by allowing more air to ventilate through the space(via vent, fans,..).
-- Users may also choose for these automated tasks to be on schedule, manual, or turn it off and enable only the monitoring capability.
+- This system takes input from environment sensors(soil moisture, humidity, light sensor) and enables automation in watering, lighting, and ventilation. For example, if air humidity and temperature are higher than plant requirements, ventilation is increased by allowing more air to ventilate through the space(via vent, fans,..).
+- Users may set these automated tasks on scheduled, manual, or turn it off and enable only the data monitoring capability.
 - Additionally, there will be a mobile app for users to interact with the embedded system.
 
 DEFINITION
