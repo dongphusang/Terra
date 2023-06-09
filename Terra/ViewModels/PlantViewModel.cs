@@ -54,7 +54,7 @@ namespace Terra.ViewModels
                 Toast.Make(message, duration, fontSize).Show();
             }
             // navigate to WorkspaceDisplay
-            return Shell.Current.GoToAsync(nameof(WorkspaceList));
+            return Shell.Current.GoToAsync("///MainPage");
         }
 
         /// <summary>

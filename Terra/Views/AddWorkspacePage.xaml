@@ -43,7 +43,17 @@
             TextColor="Black"
             BackgroundColor="#CAD7C4"
             Command="{Binding PostWorkspaceCommand}"
+            IsEnabled="{Binding IsAdditionRestricted}"
             />
+        <!-- Restriction Message -->
+        <Label
+            Margin="0, -70"
+            FontSize="14"
+            HeightRequest="40"
+            WidthRequest="300"
+            HorizontalOptions="CenterAndExpand"
+            Text="{Binding RestrictionMessage}"
+            TextColor="Red"/>
 
     </VerticalStackLayout>
 

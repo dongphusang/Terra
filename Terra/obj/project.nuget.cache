@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0vMoBlReo5gmrts8S4VnJYFWVll7D4gKIRLfsf/jFpEIbM+pAZau8DlRRuZ+gN4alZ0xvIb/Ew0CsB70cjReQg==",
+  "dgSpecHash": "B5RDJXFzSCrmP2Lv0GWixplp/QpuzAmjQmGlWiZ1bv5VOoaDQf1pJU4iNMTWyq2r1bQ34GVrBF8Nvfo19KMFcg==",
   "success": true,
   "projectFilePath": "/Users/sangdong/Terra/Terra/Terra.csproj",
   "expectedPackageFiles": [
@@ -29,7 +29,7 @@
     "/Users/sangdong/.nuget/packages/microsoft.extensions.objectpool/7.0.5/microsoft.extensions.objectpool.7.0.5.nupkg.sha512",
     "/Users/sangdong/.nuget/packages/microsoft.extensions.options/7.0.0/microsoft.extensions.options.7.0.0.nupkg.sha512",
     "/Users/sangdong/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512",
-    "/Users/sangdong/.nuget/packages/microsoft.maui.graphics/7.0.81/microsoft.maui.graphics.7.0.81.nupkg.sha512",
+    "/Users/sangdong/.nuget/packages/microsoft.maui.graphics/7.0.86/microsoft.maui.graphics.7.0.86.nupkg.sha512",
     "/Users/sangdong/.nuget/packages/microsoft.net.http.headers/2.2.8/microsoft.net.http.headers.2.2.8.nupkg.sha512",
     "/Users/sangdong/.nuget/packages/microsoft.win32.systemevents/6.0.0/microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "/Users/sangdong/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",

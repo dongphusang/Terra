@@ -295,6 +295,18 @@ namespace Terra.Services
             }                
         }
 
+        // get number of current workspaces in Workspace table
+        public Task<object> GetNumberofWorkspaces()
+        {
+            using SqliteConnection connection = new(_connectionString);
+            connection.OpenAsync().Wait();
+
+            var sql = "SELECT COUNT(name) FROM Workspace";
+            using SqliteCommand cmd = new(sql, connection);
+
+            return cmd.ExecuteScalarAsync();
+        }
+
 
         public void DeleteWorkspace(string workspaceName)
         {

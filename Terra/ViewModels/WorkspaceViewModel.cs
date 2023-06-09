@@ -15,6 +15,10 @@ namespace Terra.ViewModels
         public Workspace workspace; // workspace model
         [ObservableProperty]
         public List<string> workspaceNameAndNote; // list of names and notes
+        [ObservableProperty]
+        public bool isAdditionRestricted; // is workspace addition disabled
+        [ObservableProperty]
+        public string restrictionMessage; // popup message when restricted addition
 
         // service objects
         private WorkspaceService _workspaceService;
@@ -27,8 +31,23 @@ namespace Terra.ViewModels
             Workspace = new();
             _influxService = new();
             _workspaceService = new();
+            isAdditionRestricted = EvalAddibility();
         }
 
+        // call service method to see if user is allowed to add more workspaces
+        public bool EvalAddibility()
+        {
+            var result = Unwrap(Task.Run(_workspaceService.GetNumberofWorkspaces));
+
+            if (int.Parse(result) is -1 or 0) // no workspace currently, allow to add
+            {
+                RestrictionMessage = string.Empty;
+                return true;
+            }
+            // there is workspace, not allowed to add more
+            RestrictionMessage = "*Addibility reached limit, unable to add workspace";
+            return false;                     
+        }
 
         // posting new workspace entry onto Terra database
         [RelayCommand]
@@ -86,7 +105,20 @@ namespace Terra.ViewModels
                 else
                     Shell.Current.GoToAsync(nameof(EmptyPlantSlot));               
             }
-        } 
+        }
+
+        // check if object returned from Task.Run() is null. Return non-null value
+        private string Unwrap(Task<object> obj)
+        {
+            var result = obj.Result;
+            if (result is null || result is 0)
+            {
+                Console.WriteLine("Unwrap() WorkspaceViewmodel: -1");
+                return "-1";
+            }
+            Console.WriteLine("Unwrap() WorkspaceViewmodel: yea");
+            return result.ToString();
+        }
     }
 }
 
