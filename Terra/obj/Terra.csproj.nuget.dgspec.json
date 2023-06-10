@@ -62,6 +62,10 @@
               "target": "Package",
               "version": "[4.12.0, )"
             },
+            "LiveChartsCore.SkiaSharpView.Maui": {
+              "target": "Package",
+              "version": "[2.0.0-beta.710, )"
+            },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
               "version": "[7.0.5, )"
@@ -208,6 +212,10 @@
               "target": "Package",
               "version": "[4.12.0, )"
             },
+            "LiveChartsCore.SkiaSharpView.Maui": {
+              "target": "Package",
+              "version": "[2.0.0-beta.710, )"
+            },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
               "version": "[7.0.5, )"
@@ -298,6 +306,10 @@
             "InfluxDB.Client": {
               "target": "Package",
               "version": "[4.12.0, )"
+            },
+            "LiveChartsCore.SkiaSharpView.Maui": {
+              "target": "Package",
+              "version": "[2.0.0-beta.710, )"
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",

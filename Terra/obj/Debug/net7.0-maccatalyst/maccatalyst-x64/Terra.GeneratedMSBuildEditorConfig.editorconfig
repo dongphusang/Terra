@@ -1,0 +1,77 @@
+is_global = true
+build_property.TargetFramework = net7.0-maccatalyst
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Terra
+build_property.ProjectDir = /Users/sangdong/Terra/Terra/
+
+[/Users/sangdong/Terra/Terra/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[/Users/sangdong/Terra/Terra/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[/Users/sangdong/Terra/Terra/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Colors.xaml
+
+[/Users/sangdong/Terra/Terra/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml
+
+[/Users/sangdong/Terra/Terra/Views/AddPlantPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.AddPlantPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/AddPlantPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/AddPlantPage.xaml
+
+[/Users/sangdong/Terra/Terra/Views/AddWorkspacePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.AddWorkspacePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/AddWorkspacePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/AddWorkspacePage.xaml
+
+[/Users/sangdong/Terra/Terra/Views/EmptyPlantSlot.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.EmptyPlantSlot.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/EmptyPlantSlot.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/EmptyPlantSlot.xaml
+
+[/Users/sangdong/Terra/Terra/Views/GraphicalView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.GraphicalView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/GraphicalView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/GraphicalView.xaml
+
+[/Users/sangdong/Terra/Terra/Views/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/MainPage.xaml
+
+[/Users/sangdong/Terra/Terra/Views/WorkspaceDisplay.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.WorkspaceDisplay.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/WorkspaceDisplay.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/WorkspaceDisplay.xaml
+
+[/Users/sangdong/Terra/Terra/Views/WorkspaceList.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.WorkspaceList.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/WorkspaceList.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/WorkspaceList.xaml

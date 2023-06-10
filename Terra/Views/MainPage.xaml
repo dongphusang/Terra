@@ -62,7 +62,7 @@
                 TextColor="Black"
                 BackgroundColor="White"
                 HorizontalOptions="FillAndExpand"
-                x:Name="graphicalViewBtn"/>
+                Command="{Binding ToGraphicalViewCommand}"/>
             <!-- Line Break -->
             <Line
                 X1="10"

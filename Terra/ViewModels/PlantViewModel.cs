@@ -6,6 +6,8 @@ using Terra.Models;
 using Terra.Services;
 using CommunityToolkit.Maui.Core;
 using Newtonsoft.Json;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
 
 namespace Terra.ViewModels
 {
@@ -17,6 +19,16 @@ namespace Terra.ViewModels
         public string currentWorkspaceName; // name of currently chosen workspace (representing a group of plants)
         [ObservableProperty]
         public string currentPlantName;
+        public ISeries[] Series { get; set; }
+        = new ISeries[]
+        {
+            new LineSeries<double>
+            {
+                Values = new double[] { 2, 1, 3, 5, 3, 4, 6 },
+                Fill = null
+            }
+        };
+
 
         // services objects
         private WorkspaceService _workspaceService;
