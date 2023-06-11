@@ -1,4 +1,6 @@
-﻿using System;
+﻿// separate this class into numerical(current) and GraphicalPlantViewModel?
+
+using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Maui.Alerts;
@@ -6,8 +8,12 @@ using Terra.Models;
 using Terra.Services;
 using CommunityToolkit.Maui.Core;
 using Newtonsoft.Json;
+using SkiaSharp;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using LiveChartsCore.Measure;
+using LiveChartsCore.Defaults;
 
 namespace Terra.ViewModels
 {
@@ -19,16 +25,11 @@ namespace Terra.ViewModels
         public string currentWorkspaceName; // name of currently chosen workspace (representing a group of plants)
         [ObservableProperty]
         public string currentPlantName;
-        public ISeries[] Series { get; set; }
-        = new ISeries[]
-        {
-            new LineSeries<double>
-            {
-                Values = new double[] { 2, 1, 3, 5, 3, 4, 6 },
-                Fill = null
-            }
-        };
+        [ObservableProperty]
+        public IEnumerable<ISeries> series;
 
+        // placeholder for waterlevel attribute of plant. Used by gauge for dynamic update
+        public ObservableValue waterlevel;
 
         // services objects
         private WorkspaceService _workspaceService;
@@ -36,13 +37,22 @@ namespace Terra.ViewModels
 
         // constructor
         public PlantViewModel()
-		{
+        {
             Plant = new();
             _workspaceService = new();
             _influxService = new();
 
             CurrentWorkspaceName = Preferences.Get("CurrentWorkspace", string.Empty); // get value from preferences (which assigned in WorkspaceViewModel)
-            CurrentPlantName = Unwrap();
+            CurrentPlantName = Unwrap(Task.Run(() => _workspaceService.GetPlantName(CurrentWorkspaceName)));
+            Waterlevel = new() { Value = 0 };
+            Series = new GaugeBuilder()
+                .WithLabelsSize(50)
+                .WithInnerRadius(75)
+                .WithBackgroundInnerRadius(75)
+                .WithBackground(new SolidColorPaint(new SKColor(100, 181, 246, 90)))
+                .WithLabelsPosition(PolarLabelsPosition.ChartCenter)
+                .AddValue(Waterlevel)
+                .BuildSeries();            
         }
 
         // navigate to specific plant display
@@ -71,15 +81,17 @@ namespace Terra.ViewModels
 
         /// <summary>
         /// Invoke influx service object to query data from InfluxDB. Discard broken frames.
+        /// Then break down data and assign them to Plant model
         /// </summary>
         public void GetDataFromInflux()
         {
             // get data frame from Influx
             var data = Task.Run(() => _influxService.GetData()).Result;
-            // check if data frame is corrupted (a normal frame has five attributes. A broken frame has 10 attributes
+            // check if data frame is corrupted (a normal frame has five attributes. A broken frame has 10 attributes)
             if (data.Split(",").Length == 5)
             {
-                Plant = JsonConvert.DeserializeObject<Plant>(data);
+                Plant = JsonConvert.DeserializeObject<Plant>(data); // break down data
+                Waterlevel.Value = Plant.WaterLevel;                // dynamically update water level in gauge
             }
             else
             {
@@ -92,9 +104,9 @@ namespace Terra.ViewModels
         }
 
         // check if object returned from Task.Run() is null. Return non-null value
-        private string Unwrap()
+        private string Unwrap(Task<object> obj)
         {
-            var result = Task.Run(() => _workspaceService.GetPlantName(CurrentWorkspaceName)).Result;
+            var result = obj.Result;
             if (result is null)
             {
                 return "N/A";

@@ -17,9 +17,6 @@ namespace Terra.Services
         {
             CreateWorkspaceTable();
             CreatePlantTable();
-            SpitIt("Workspace", "name");
-            SpitIt("Plant", "name");
-            SpitIt("Plant", "from_workspace");
         }
 
         // test. Put it in the constructor

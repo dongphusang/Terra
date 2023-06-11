@@ -148,6 +148,12 @@
         <member name="P:Terra.ViewModels.PlantViewModel.CurrentPlantName">
             <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.currentPlantName"/>
         </member>
+        <member name="P:Terra.ViewModels.PlantViewModel.Series">
+            <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.series"/>
+        </member>
+        <member name="P:Terra.ViewModels.PlantViewModel.Waterlevel">
+            <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.waterlevel"/>
+        </member>
         <member name="F:Terra.ViewModels.PlantViewModel.toWorkspaceDisplayCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.PlantViewModel.ToWorkspaceDisplayCommand"/>.</summary>
         </member>
@@ -202,6 +208,19 @@
         </member>
         <member name="P:Terra.ViewModels.WorkspaceViewModel.ToWorkspaceCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:Terra.ViewModels.WorkspaceViewModel.ToWorkspace(System.String)"/>.</summary>
+        </member>
+        <member name="M:Terra.GraphicalView.FetchDataInflux(System.Threading.CancellationToken)">
+            <summary>
+            Continuously fetch data in background
+            </summary>
+            <param name="cancellationToken"> if set to cancelled, terminate the loop (data fetching in background) </param>
+        </member>
+        <member name="M:Terra.GraphicalView.OnNavigatedFrom(Microsoft.Maui.Controls.NavigatedFromEventArgs)">
+            <summary>
+            Upon leaving the page, cancel the cancellationToken, terminate background data 
+            fetching.
+            </summary>
+            <param name="args"></param>
         </member>
         <member name="M:Terra.WorkspaceDisplay.FetchDataInflux(System.Threading.CancellationToken)">
             <summary>
@@ -359,6 +378,12 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CurrentPlantName">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CurrentPlantName" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Series">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Series" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Waterlevel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Waterlevel" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Workspace">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Workspace" generated properties.</summary>
         </member>
@@ -409,6 +434,12 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CurrentPlantName">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CurrentPlantName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Series">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Series" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Waterlevel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Waterlevel" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Workspace">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Workspace" generated properties.</summary>

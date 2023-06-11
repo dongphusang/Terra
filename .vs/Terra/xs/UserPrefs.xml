@@ -1,26 +1,35 @@
 ﻿<Properties StartupConfiguration="{5314F4D7-FCBF-46FE-A733-79D87304EC8B}|Default">
-  <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="Android.R39M30EJA2J" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <Debugger.DebugSourceFolders>
+    <String>/Users/sangdong/Library/Caches/VisualStudio/17.0/Symbols/raw.githubusercontent.com/xamarin/xamarin-android/af18b843d16f5ecad3171016fb66efecdb78c4bf</String>
+  </Debugger.DebugSourceFolders>
+  <MultiItemStartupConfigurations />
   <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.46" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Terra/ViewModels/WorkspaceViewModel.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="MyAppleMacCatalystID" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Terra/ViewModels/PlantViewModel.cs">
     <Files>
-      <File FileName="Terra/ViewModels/WorkspaceViewModel.cs" Line="48" Column="9" />
+      <File FileName="Terra/ViewModels/PlantViewModel.cs" Line="1" Column="29" />
+      <File FileName="Terra/Views/AddWorkspacePage.xaml" Line="1" Column="1" />
+      <File FileName="Terra/ViewModels/WorkspaceViewModel.cs" Line="1" Column="1" />
+      <File FileName="Terra/Services/WorkspaceService.cs" Line="19" Column="32" />
+      <File FileName="Terra/Services/InfluxService.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Terra" expanded="True">
             <Node name="Terra" expanded="True">
-              <Node name="Resources" expanded="True">
-                <Node name="Images" expanded="True" />
-              </Node>
+              <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True" />
               <Node name="ViewModels" expanded="True">
-                <Node name="WorkspaceViewModel.cs" selected="True" />
+                <Node name="PlantViewModel.cs" selected="True" />
               </Node>
               <Node name="Views" expanded="True">
                 <Node name="EmptyPlantSlot.xaml" expanded="True" />
                 <Node name="GraphicalView.xaml" expanded="True" />
+                <Node name="WorkspaceDisplay.xaml" expanded="True" />
               </Node>
               <Node name="App.xaml" expanded="True" />
               <Node name="AppShell.xaml" expanded="True" />
@@ -30,13 +39,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
-  <Debugger.DebugSourceFolders>
-    <String>/Users/sangdong/Library/Caches/VisualStudio/17.0/Symbols/raw.githubusercontent.com/xamarin/xamarin-android/af18b843d16f5ecad3171016fb66efecdb78c4bf</String>
-  </Debugger.DebugSourceFolders>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.R39M30EJA2J" />
 </Properties>
