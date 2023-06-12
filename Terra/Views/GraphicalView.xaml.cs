@@ -4,16 +4,16 @@ namespace Terra;
 
 public partial class GraphicalView : ContentPage
 {
-    private PlantViewModel _viewModel; // viewmodel object
+    private GraphicalPlantViewModel _viewModel; // viewmodel object
     private Task _backgroundThread; // background task to fetch data
     private CancellationTokenSource _backgroundTokenSource; // cancellation token source (cancelling task)
 
     public GraphicalView()
 	{
 		InitializeComponent();
-        _viewModel = new PlantViewModel();
+        _viewModel = new();
         BindingContext = _viewModel;
-        _backgroundTokenSource = new CancellationTokenSource();
+        _backgroundTokenSource = new();
         // start background task
         _backgroundThread = Task.Run(() => FetchDataInflux(_backgroundTokenSource.Token));
     }

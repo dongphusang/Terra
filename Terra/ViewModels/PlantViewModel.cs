@@ -8,12 +8,6 @@ using Terra.Models;
 using Terra.Services;
 using CommunityToolkit.Maui.Core;
 using Newtonsoft.Json;
-using SkiaSharp;
-using LiveChartsCore;
-using LiveChartsCore.SkiaSharpView;
-using LiveChartsCore.SkiaSharpView.Painting;
-using LiveChartsCore.Measure;
-using LiveChartsCore.Defaults;
 
 namespace Terra.ViewModels
 {
@@ -21,17 +15,11 @@ namespace Terra.ViewModels
 	{
         [ObservableProperty]
         public Plant plant; // plant model
-        [ObservableProperty]
-        public string currentWorkspaceName; // name of currently chosen workspace (representing a group of plants)
-        [ObservableProperty]
-        public string currentPlantName;
-        [ObservableProperty]
-        public IEnumerable<ISeries> series;
 
-        // placeholder for waterlevel attribute of plant. Used by gauge for dynamic update
-        public ObservableValue waterlevel;
+        public string CurrentWorkspaceName { get; set; } // name of currently chosen workspace (representing a group of plants)
+        public string CurrentPlantName { get; set; } // name of currently chosen plant
 
-        // services objects
+        // service objects
         private WorkspaceService _workspaceService;
         private InfluxService _influxService;
 
@@ -43,16 +31,7 @@ namespace Terra.ViewModels
             _influxService = new();
 
             CurrentWorkspaceName = Preferences.Get("CurrentWorkspace", string.Empty); // get value from preferences (which assigned in WorkspaceViewModel)
-            CurrentPlantName = Unwrap(Task.Run(() => _workspaceService.GetPlantName(CurrentWorkspaceName)));
-            Waterlevel = new() { Value = 0 };
-            Series = new GaugeBuilder()
-                .WithLabelsSize(50)
-                .WithInnerRadius(75)
-                .WithBackgroundInnerRadius(75)
-                .WithBackground(new SolidColorPaint(new SKColor(100, 181, 246, 90)))
-                .WithLabelsPosition(PolarLabelsPosition.ChartCenter)
-                .AddValue(Waterlevel)
-                .BuildSeries();            
+            CurrentPlantName = Unwrap(Task.Run(() => _workspaceService.GetPlantName(CurrentWorkspaceName)));           
         }
 
         // navigate to specific plant display
@@ -91,7 +70,6 @@ namespace Terra.ViewModels
             if (data.Split(",").Length == 5)
             {
                 Plant = JsonConvert.DeserializeObject<Plant>(data); // break down data
-                Waterlevel.Value = Plant.WaterLevel;                // dynamically update water level in gauge
             }
             else
             {
@@ -103,7 +81,7 @@ namespace Terra.ViewModels
             }
         }
 
-        // check if object returned from Task.Run() is null. Return non-null value
+        // check if object returned from Task.Run() is null. Return non-null value. Usually used for sqlite operations
         private string Unwrap(Task<object> obj)
         {
             var result = obj.Result;

@@ -24,6 +24,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<MainPageViewModel>();
 
+		builder.Services.AddTransient<GraphicalPlantViewModel>();
         builder.Services.AddTransient<WorkspaceViewModel>();
 		builder.Services.AddTransient<PlantViewModel>();
 

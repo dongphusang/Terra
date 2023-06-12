@@ -4,7 +4,7 @@
              x:Class="Terra.GraphicalView"
              Title="GraphicalView"
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
-             x:DataType="viewmodel:PlantViewModel"
+             x:DataType="viewmodel:GraphicalPlantViewModel"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui">
 
     <ContentPage.Content>

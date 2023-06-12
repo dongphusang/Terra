@@ -100,6 +100,29 @@
             <param name="tableName"> name of table (Workspace) </param>
             <returns></returns>
         </member>
+        <member name="M:Terra.ViewModels.GraphicalPlantViewModel.GetDataFromInflux">
+            <summary>
+            Invoke influx service object to query data from InfluxDB. Discard broken frames.
+            Then break down data and assign them to Plant model
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Terra.ViewModels.GraphicalPlantViewModel.Unwrap(System.Threading.Tasks.Task{System.Object})" -->
+        <!-- Badly formed XML comment ignored for member "M:Terra.ViewModels.GraphicalPlantViewModel.Unwrap(System.Threading.Tasks.Task{System.String})" -->
+        <member name="M:Terra.ViewModels.GraphicalPlantViewModel.InitGraphAttributes">
+            <summary>
+            Init graph attributes.
+            </summary>
+        </member>
+        <member name="M:Terra.ViewModels.GraphicalPlantViewModel.InitSeries">
+            <summary>
+            Init and draw graphs based on defined attributes.
+            </summary>
+        </member>
+        <member name="M:Terra.ViewModels.GraphicalPlantViewModel.InitModelAndService">
+            <summary>
+            Init model and service objects.
+            </summary>
+        </member>
         <member name="T:Terra.ViewModels.MainPageViewModel">
             <inheritdoc/>
             <inheritdoc/>
@@ -137,22 +160,11 @@
         <member name="M:Terra.ViewModels.PlantViewModel.GetDataFromInflux">
             <summary>
             Invoke influx service object to query data from InfluxDB. Discard broken frames.
+            Then break down data and assign them to Plant model
             </summary>
         </member>
         <member name="P:Terra.ViewModels.PlantViewModel.Plant">
             <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.plant"/>
-        </member>
-        <member name="P:Terra.ViewModels.PlantViewModel.CurrentWorkspaceName">
-            <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.currentWorkspaceName"/>
-        </member>
-        <member name="P:Terra.ViewModels.PlantViewModel.CurrentPlantName">
-            <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.currentPlantName"/>
-        </member>
-        <member name="P:Terra.ViewModels.PlantViewModel.Series">
-            <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.series"/>
-        </member>
-        <member name="P:Terra.ViewModels.PlantViewModel.Waterlevel">
-            <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.waterlevel"/>
         </member>
         <member name="F:Terra.ViewModels.PlantViewModel.toWorkspaceDisplayCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.PlantViewModel.ToWorkspaceDisplayCommand"/>.</summary>
@@ -372,18 +384,6 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Plant">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Plant" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CurrentWorkspaceName">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CurrentWorkspaceName" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CurrentPlantName">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CurrentPlantName" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Series">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Series" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Waterlevel">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Waterlevel" generated properties.</summary>
-        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Workspace">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Workspace" generated properties.</summary>
         </member>
@@ -428,18 +428,6 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Plant">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Plant" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CurrentWorkspaceName">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CurrentWorkspaceName" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CurrentPlantName">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CurrentPlantName" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Series">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Series" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Waterlevel">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Waterlevel" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Workspace">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Workspace" generated properties.</summary>
