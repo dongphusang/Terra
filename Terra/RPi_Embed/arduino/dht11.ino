@@ -1,4 +1,4 @@
-//delay read to 2000 since this sensor doesn't change value frequently
+    //delay read to 2000 since this sensor doesn't change value frequently
 
 #include <DHT.h>
 #define Type DHT11

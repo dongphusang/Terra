@@ -9,12 +9,65 @@
 
     <ContentPage.Content>
 
-        <lvc:PieChart
-            Series="{Binding Series}"
-            InitialRotation="-225"
-            MaxAngle="270"
-            Total="100">
-        </lvc:PieChart>
+        <Grid
+            VerticalOptions="Center"
+            Padding="5, 15, 5 , 15"
+            RowSpacing="50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
+            <lvc:CartesianChart
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                LegendPosition="Right"
+                XAxes="{Binding XAxis}"
+                YAxes="{Binding YAxisTempHumid}"
+                Series="{Binding TempAndHumid}">
+            </lvc:CartesianChart>
+
+            <lvc:CartesianChart
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                LegendPosition="Right"
+                XAxes="{Binding XAxis}"
+                YAxes="{Binding YAxisSoilMoisture}"
+                Series="{Binding SoilMoisture}">
+            </lvc:CartesianChart>
+
+            <lvc:PieChart
+                Grid.Row="2"
+                Grid.Column="0"
+                LegendTextSize="40"
+                LegendPosition="Bottom"
+                InitialRotation="-225"
+                MaxAngle="270"
+                Total="100"
+                Series="{Binding LightGauge}">
+            </lvc:PieChart>
+
+            <lvc:PieChart
+                Grid.Row="2"
+                Grid.Column="1"
+                LegendTextSize="40"
+                LegendPosition="Bottom"
+                InitialRotation="-225"
+                MaxAngle="270"
+                Total="100"
+                Series="{Binding WaterLevelGauge}">
+            </lvc:PieChart>
+
+        </Grid>
+
+     
+        
     </ContentPage.Content>
 </ContentPage>

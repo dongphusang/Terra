@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="SwipeRefreshLayout">
-        <!-- Background color for SwipeRefreshLayout progress spinner. -->
-        <attr format="color" name="swipeRefreshLayoutProgressSpinnerBackgroundColor"/>
+    <attr format="reference" name="drawerLayoutStyle"/>
+    <attr format="dimension" name="elevation"/>
+    <dimen name="def_drawer_elevation">10dp</dimen>
+    <declare-styleable name="DrawerLayout">
+        <!-- The height difference between the drawer and the base surface. Only takes effect on API 21 and above -->
+        <attr name="elevation"/>
     </declare-styleable>
 </resources>
