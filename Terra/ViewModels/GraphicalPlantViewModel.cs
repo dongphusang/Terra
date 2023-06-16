@@ -44,12 +44,12 @@ namespace Terra.ViewModels
         // constructor
         public GraphicalPlantViewModel()
 		{
-            InitModelAndService(); // create service and model object
-            InitGraphAttributes(); // graph attributes init
-            InitXAxis();
-            InitYAxisTempHumid();
-            InitYAxisSoilMoisture();
-            InitSeries();          // init and draw graphs           
+            InitModelAndService();   // create service and model object
+            InitGraphAttributes();   // graph attributes init
+            InitXAxis();             //
+            InitYAxisTempHumid();    //
+            InitYAxisSoilMoisture(); //
+            InitSeries();            // init and draw graphs
         }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace Terra.ViewModels
                 .WithBackgroundInnerRadius(75)
                 .WithBackground(new SolidColorPaint(new SKColor(255, 247, 219, 90)))
                 .WithLabelsPosition(PolarLabelsPosition.ChartCenter)
-                .AddValue(_lightVal, "Light", new SKColor(255, 220, 95, 90), SKColors.Red) // defines the value and the color 
+                .AddValue(_lightVal, "Light (%)", new SKColor(255, 220, 95, 90), SKColors.Red) // defines the value and the color 
                 .BuildSeries();
 
             // gauge chart for water level
@@ -176,7 +176,7 @@ namespace Terra.ViewModels
                 .WithBackgroundInnerRadius(75)
                 .WithBackground(new SolidColorPaint(new SKColor(183, 207, 255, 90)))
                 .WithLabelsPosition(PolarLabelsPosition.ChartCenter)
-                .AddValue(_waterLevelVal, "Water Tank", new SKColor(44, 115, 255, 90), SKColors.Red) // defines the value and the color 
+                .AddValue(_waterLevelVal, "Water Tank (%)", new SKColor(44, 115, 255, 90), SKColors.Red) // defines the value and the color 
                 .BuildSeries();
 
         }
@@ -243,7 +243,7 @@ namespace Terra.ViewModels
 
                     LabelsPaint = new SolidColorPaint(SKColors.Blue),
                     LabelsRotation = 90,
-                    TextSize = 10,
+                    TextSize = 10,                   
                 }
             };
         }
