@@ -7,6 +7,7 @@ using CommunityToolkit.Maui.Core;
 
 using Terra.Models;
 using Terra.Services;
+using Terra.TerraConstants;
 
 using SkiaSharp;
 using LiveChartsCore;
@@ -46,10 +47,10 @@ namespace Terra.ViewModels
 		{
             InitModelAndService();   // create service and model object
             InitGraphAttributes();   // graph attributes init
-            InitXAxis();             //
-            InitYAxisTempHumid();    //
-            InitYAxisSoilMoisture(); //
-            InitSeries();            // init and draw graphs
+            InitXAxis();             // init x-axis for cartesian charts
+            InitYAxisTempHumid();    // init y-axis for temperature and humidity line chart
+            InitYAxisSoilMoisture(); // init y-axis for soil moisture line chart
+            InitSeries();            // init and draw charts
         }
 
         /// <summary>
@@ -57,10 +58,10 @@ namespace Terra.ViewModels
         /// Then break down data and assign them to Plant model
         /// </summary>
         public void GetDataFromInflux()
-        {
+        {   
             // get data frame from Influx
             var data = Unwrap(Task.Run(() => _influxService.GetData()));
-
+    
             // check if data frame is corrupted (a normal frame has five attributes. A broken frame has 10 attributes)
             if (data.Split(",").Length == 5)
             {
@@ -76,11 +77,11 @@ namespace Terra.ViewModels
             else
             {
                 // assign value of zero to represent corrupted data
-                _waterLevelVal.Value = 0;
-                _lightVal.Value = 0;
-                AddDataPoint(0, _temperaturePoints);
-                AddDataPoint(0, _humidityPoints);
-                AddDataPoint(0, _soilMoisturePoints);
+                _waterLevelVal.Value = GraphConstants.ZERO;
+                _lightVal.Value      = GraphConstants.ZERO;
+                AddDataPoint(GraphConstants.ZERO, _temperaturePoints);
+                AddDataPoint(GraphConstants.ZERO, _humidityPoints);
+                AddDataPoint(GraphConstants.ZERO, _soilMoisturePoints);
             }
         }
 
@@ -94,7 +95,7 @@ namespace Terra.ViewModels
             var result = obj.Result;
             if (result is null)
             {
-                return "N/A";
+                return GraphConstants.NOT_APPLICABLE;
             }
             return result.ToString();
         }
@@ -109,7 +110,7 @@ namespace Terra.ViewModels
             var result = obj.Result;
             if (result is null)
             {
-                return "N/A";
+                return GraphConstants.NOT_APPLICABLE;
             }
             return result.ToString();
         }
@@ -119,8 +120,8 @@ namespace Terra.ViewModels
         /// </summary>
         private void InitGraphAttributes()
         {
-            _waterLevelVal      = new() { Value = 0 };
-            _lightVal           = new() { Value = 0 };
+            _waterLevelVal      = new() { Value = GraphConstants.ZERO };
+            _lightVal           = new() { Value = GraphConstants.ZERO };
             _temperaturePoints  = new();
             _humidityPoints     = new();
             _soilMoisturePoints = new();
@@ -136,13 +137,13 @@ namespace Terra.ViewModels
             {
                 new LineSeries<ObservableValue>
                 {
-                    Name = "Humid (%)",
+                    Name = GraphConstants.HUMIDITY_CHART_LABEL,
                     Values = _humidityPoints,
                     Fill = null,
                 },
                 new LineSeries<ObservableValue>
                 {
-                    Name = "Temp (C)",
+                    Name = GraphConstants.TEMPERATURE_CHART_LABEL,
                     Values = _temperaturePoints,
                     Fill = null,
                 },               
@@ -153,7 +154,7 @@ namespace Terra.ViewModels
             {
                 new LineSeries<ObservableValue>
                 {
-                    Name = "SM",
+                    Name = GraphConstants.SOILMOISTURE_CHART_LABEL,
                     Values = _soilMoisturePoints,
                     Fill = null,
                 }
@@ -166,7 +167,7 @@ namespace Terra.ViewModels
                 .WithBackgroundInnerRadius(75)
                 .WithBackground(new SolidColorPaint(new SKColor(255, 247, 219, 90)))
                 .WithLabelsPosition(PolarLabelsPosition.ChartCenter)
-                .AddValue(_lightVal, "Light (%)", new SKColor(255, 220, 95, 90), SKColors.Red) // defines the value and the color 
+                .AddValue(_lightVal, GraphConstants.LIGHT_GAUGE_LABEL, new SKColor(255, 220, 95, 90), SKColors.Red) // defines the value and the color 
                 .BuildSeries();
 
             // gauge chart for water level
@@ -176,7 +177,7 @@ namespace Terra.ViewModels
                 .WithBackgroundInnerRadius(75)
                 .WithBackground(new SolidColorPaint(new SKColor(183, 207, 255, 90)))
                 .WithLabelsPosition(PolarLabelsPosition.ChartCenter)
-                .AddValue(_waterLevelVal, "Water Tank (%)", new SKColor(44, 115, 255, 90), SKColors.Red) // defines the value and the color 
+                .AddValue(_waterLevelVal, GraphConstants.WATERLEVEL_GAUGE_LABEL, new SKColor(44, 115, 255, 90), SKColors.Red) // defines the value and the color 
                 .BuildSeries();
 
         }
@@ -201,7 +202,7 @@ namespace Terra.ViewModels
         /// <param name="chartPoints"> Target line chart. </param>
         private void AddDataPoint(int point, ObservableCollection<ObservableValue> chartPoints)
         {
-            if (chartPoints.Count is not 7)
+            if (chartPoints.Count is not GraphConstants.MAXED_POINT_CAPACITY)
             {
                 chartPoints.Add(new ObservableValue(point));
             }
@@ -221,7 +222,7 @@ namespace Terra.ViewModels
             {
                 new Axis
                 {
-                    Name = "Time",
+                    Name = GraphConstants.X_AXIS_LABEL,
 
                     LabelsPaint = new SolidColorPaint(SKColors.Blue),
                     TextSize = 10,
@@ -239,7 +240,7 @@ namespace Terra.ViewModels
             {
                 new Axis
                 {
-                    Name = "(Temp: C | Humid: %)",
+                    Name = GraphConstants.Y_AXIS_TEMPxHUMID_LABEL, 
 
                     LabelsPaint = new SolidColorPaint(SKColors.Blue),
                     LabelsRotation = 90,
@@ -257,7 +258,7 @@ namespace Terra.ViewModels
             {
                 new Axis
                 {
-                    Name = "Soil Moisture",
+                    Name = GraphConstants.Y_AXIS_SOILMOISTURE_LABEL,
 
                     LabelsPaint = new SolidColorPaint(SKColors.Blue),
                     LabelsRotation = 90,

@@ -59,6 +59,8 @@
 	  <None Remove="Views\" />
 	  <None Remove="Services\" />
 	  <None Remove="Resources\Images\Prompt Add Button.png" />
+	  <None Remove="TerraEnums\" />
+	  <None Remove="TerraConstants\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -79,6 +81,8 @@
 
 	<ItemGroup>
 	  <Folder Include="RPi_Embed\" />
+	  <Folder Include="TerraEnums\" />
+	  <Folder Include="TerraConstants\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\MainPage.xaml">

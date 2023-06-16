@@ -21,13 +21,16 @@ public static class MauiProgram
 
             });
 
+		// Main Page
 		builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<MainPageViewModel>();
 
+		// View Models
 		builder.Services.AddTransient<GraphicalPlantViewModel>();
         builder.Services.AddTransient<WorkspaceViewModel>();
 		builder.Services.AddTransient<PlantViewModel>();
 
+		// Views
         builder.Services.AddTransient<AddWorkspacePage>();
 		builder.Services.AddTransient<WorkspaceList>();
 		builder.Services.AddTransient<WorkspaceDisplay>();

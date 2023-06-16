@@ -5,15 +5,19 @@
   <MultiItemStartupConfigurations />
   <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.46" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="Android.R39M30EJA2J" />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.R39M30EJA2J" />
+  <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="MyAppleMacCatalystID" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Terra/TerraConstants/GraphConstants.cs">
+    <Files>
+      <File FileName="Terra/ViewModels/GraphicalPlantViewModel.cs" Line="189" Column="8" />
+      <File FileName="Terra/TerraConstants/GraphConstants.cs" Line="2" Column="28" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Terra" expanded="True">
-            <Node name="Terra" expanded="True">
+            <Node name="Terra" expanded="True" selected="True">
               <Node name="Models" expanded="True" />
               <Node name="Platforms" expanded="True">
                 <Node name="Android" expanded="True" />
@@ -22,10 +26,13 @@
                 <Node name="arduino" expanded="True" />
               </Node>
               <Node name="Services" expanded="True" />
+              <Node name="TerraConstants" expanded="True" />
+              <Node name="TerraEnums" expanded="True" />
               <Node name="ViewModels" expanded="True" />
               <Node name="Views" expanded="True">
+                <Node name="AddPlantPage.xaml" expanded="True" />
                 <Node name="EmptyPlantSlot.xaml" expanded="True" />
-                <Node name="GraphicalView.xaml" expanded="True" selected="True" />
+                <Node name="GraphicalView.xaml" expanded="True" />
                 <Node name="WorkspaceDisplay.xaml" expanded="True" />
               </Node>
               <Node name="App.xaml" expanded="True" />
