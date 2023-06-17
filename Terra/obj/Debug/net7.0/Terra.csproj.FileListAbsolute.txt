@@ -1,0 +1,13 @@
+/Users/sangdong/Terra/Terra/bin/Debug/net7.0/Terra.deps.json
+/Users/sangdong/Terra/Terra/bin/Debug/net7.0/Terra.dll
+/Users/sangdong/Terra/Terra/bin/Debug/net7.0/Terra.pdb
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0/Terra.csproj.AssemblyReference.cache
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0/Terra.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0/Terra.AssemblyInfoInputs.cache
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0/Terra.AssemblyInfo.cs
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0/Terra.csproj.CoreCompileInputs.cache
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0/XamlC.stamp
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0/Terra.dll
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0/refint/Terra.dll
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0/Terra.pdb
+/Users/sangdong/Terra/Terra/obj/Debug/net7.0/ref/Terra.dll

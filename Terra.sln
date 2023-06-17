@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Terra", "Terra\Terra.csproj", "{5314F4D7-FCBF-46FE-A733-79D87304EC8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terra", "Terra\Terra.csproj", "{5314F4D7-FCBF-46FE-A733-79D87304EC8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terra.UnitTests", "Terra.UnitTests\Terra.UnitTests.csproj", "{BC812A0D-219C-488C-BE58-F4E0D8AAAC0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +19,10 @@ Global
 		{5314F4D7-FCBF-46FE-A733-79D87304EC8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5314F4D7-FCBF-46FE-A733-79D87304EC8B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5314F4D7-FCBF-46FE-A733-79D87304EC8B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{BC812A0D-219C-488C-BE58-F4E0D8AAAC0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC812A0D-219C-488C-BE58-F4E0D8AAAC0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC812A0D-219C-488C-BE58-F4E0D8AAAC0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC812A0D-219C-488C-BE58-F4E0D8AAAC0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

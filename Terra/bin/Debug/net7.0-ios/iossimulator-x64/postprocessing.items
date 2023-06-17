@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_PostProcessingItem Include="Terra.app/Terra">
+      <BCSymbolMapName>Terra.bcsymbolmap</BCSymbolMapName>
+      <NoDSymUtil>true</NoDSymUtil>
+      <dSYMSourcePathExists>false</dSYMSourcePathExists>
+      <NoSymbolStrip>true</NoSymbolStrip>
+      <dSYMInfoPlistRelativePath>Terra.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <SymbolFile>/Users/sangdong/Terra/Terra/obj/Debug/net7.0-ios/iossimulator-x64/mtouch-symbols.list</SymbolFile>
+      <DSymName>Terra.app.dSYM</DSymName>
+      <SourceProjectPath>/Users/sangdong/Terra/Terra</SourceProjectPath>
+    </_PostProcessingItem>
+  </ItemGroup>
+</Project>

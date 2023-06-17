@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(TargetFramework)' == 'net7.0' AND '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)system.text.json/7.0.2/buildTransitive/net6.0/System.Text.Json.targets" Condition="Exists('$(NuGetPackageRoot)system.text.json/7.0.2/buildTransitive/net6.0/System.Text.Json.targets')" />
+    <Import Project="$(NuGetPackageRoot)sqlitepclraw.lib.e_sqlite3/2.1.4/buildTransitive/net7.0/SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('$(NuGetPackageRoot)sqlitepclraw.lib.e_sqlite3/2.1.4/buildTransitive/net7.0/SQLitePCLRaw.lib.e_sqlite3.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.extensions.logging.abstractions/7.0.0/buildTransitive/net6.0/Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.logging.abstractions/7.0.0/buildTransitive/net6.0/Microsoft.Extensions.Logging.Abstractions.targets')" />
+    <Import Project="$(NuGetPackageRoot)communitytoolkit.mvvm/8.2.0/buildTransitive/netstandard2.1/CommunityToolkit.Mvvm.targets" Condition="Exists('$(NuGetPackageRoot)communitytoolkit.mvvm/8.2.0/buildTransitive/netstandard2.1/CommunityToolkit.Mvvm.targets')" />
+  </ImportGroup>
   <ImportGroup Condition=" '$(TargetFramework)' == 'net7.0-android' AND '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)xamarin.kotlin.stdlib.common/1.7.20.1/buildTransitive/net6.0-android31.0/Xamarin.Kotlin.StdLib.Common.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.kotlin.stdlib.common/1.7.20.1/buildTransitive/net6.0-android31.0/Xamarin.Kotlin.StdLib.Common.targets')" />
     <Import Project="$(NuGetPackageRoot)xamarin.jetbrains.annotations/23.0.0.5/buildTransitive/net6.0-android31.0/Xamarin.Jetbrains.Annotations.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.jetbrains.annotations/23.0.0.5/buildTransitive/net6.0-android31.0/Xamarin.Jetbrains.Annotations.targets')" />

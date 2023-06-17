@@ -18,6 +18,7 @@
           "/Users/sangdong/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
+          "net7.0",
           "net7.0-android",
           "net7.0-ios",
           "net7.0-maccatalyst"
@@ -27,6 +28,10 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          },
           "net7.0-android33.0": {
             "targetAlias": "net7.0-android",
             "projectReferences": {}
@@ -47,6 +52,103 @@
         }
       },
       "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "CommunityToolkit.Maui": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
+            "CommunityToolkit.Mvvm": {
+              "target": "Package",
+              "version": "[8.2.0, )"
+            },
+            "InfluxDB.Client": {
+              "target": "Package",
+              "version": "[4.12.0, )"
+            },
+            "LiveChartsCore.SkiaSharpView.Maui": {
+              "target": "Package",
+              "version": "[2.0.0-beta.801, )"
+            },
+            "Microsoft.Data.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.7, )"
+            },
+            "Microsoft.Data.Sqlite.Core": {
+              "target": "Package",
+              "version": "[7.0.7, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.Extensions.Logging": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.Extensions.Logging.Debug": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Maui.Graphics": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.86, )",
+              "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.Maui.Controls": {
+              "privateAssets": "all"
+            },
+            "Microsoft.Maui.Core": {
+              "privateAssets": "all"
+            },
+            "Microsoft.Maui.Essentials": {
+              "privateAssets": "all"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
+        },
         "net7.0-android33.0": {
           "targetAlias": "net7.0-android",
           "dependencies": {
@@ -64,15 +166,15 @@
             },
             "LiveChartsCore.SkiaSharpView.Maui": {
               "target": "Package",
-              "version": "[2.0.0-beta.710, )"
+              "version": "[2.0.0-beta.801, )"
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[7.0.5, )"
+              "version": "[7.0.7, )"
             },
             "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
-              "version": "[7.0.5, )"
+              "version": "[7.0.7, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -195,7 +297,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.302/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
         },
         "net7.0-ios16.1": {
           "targetAlias": "net7.0-ios",
@@ -214,15 +316,15 @@
             },
             "LiveChartsCore.SkiaSharpView.Maui": {
               "target": "Package",
-              "version": "[2.0.0-beta.710, )"
+              "version": "[2.0.0-beta.801, )"
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[7.0.5, )"
+              "version": "[7.0.7, )"
             },
             "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
-              "version": "[7.0.5, )"
+              "version": "[7.0.7, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -257,6 +359,10 @@
               "version": "[7.0.86, )",
               "autoReferenced": true
             },
+            "NUnit.Maui.Runner": {
+              "target": "Package",
+              "version": "[1.16.0, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
@@ -290,7 +396,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.302/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
         },
         "net7.0-maccatalyst16.1": {
           "targetAlias": "net7.0-maccatalyst",
@@ -309,15 +415,15 @@
             },
             "LiveChartsCore.SkiaSharpView.Maui": {
               "target": "Package",
-              "version": "[2.0.0-beta.710, )"
+              "version": "[2.0.0-beta.801, )"
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[7.0.5, )"
+              "version": "[7.0.7, )"
             },
             "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
-              "version": "[7.0.5, )"
+              "version": "[7.0.7, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -369,6 +475,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.maccatalyst-x64",
+              "version": "[7.0.7, 7.0.7]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.MacCatalyst": {
               "privateAssets": "all"
@@ -386,7 +498,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.302/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

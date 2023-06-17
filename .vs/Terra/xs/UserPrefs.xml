@@ -1,49 +1,41 @@
 ﻿<Properties StartupConfiguration="{5314F4D7-FCBF-46FE-A733-79D87304EC8B}|Default">
-  <Debugger.DebugSourceFolders>
-    <String>/Users/sangdong/Library/Caches/VisualStudio/17.0/Symbols/raw.githubusercontent.com/xamarin/xamarin-android/af18b843d16f5ecad3171016fb66efecdb78c4bf</String>
-  </Debugger.DebugSourceFolders>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.46" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="MyAppleMacCatalystID" />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Terra/TerraConstants/GraphConstants.cs">
-    <Files>
-      <File FileName="Terra/ViewModels/GraphicalPlantViewModel.cs" Line="189" Column="8" />
-      <File FileName="Terra/TerraConstants/GraphConstants.cs" Line="2" Column="28" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Terra" expanded="True">
-            <Node name="Terra" expanded="True" selected="True">
-              <Node name="Models" expanded="True" />
-              <Node name="Platforms" expanded="True">
-                <Node name="Android" expanded="True" />
-              </Node>
-              <Node name="RPi_Embed" expanded="True">
-                <Node name="arduino" expanded="True" />
-              </Node>
-              <Node name="Services" expanded="True" />
+            <Node name="Terra" expanded="True">
+              <Node name="Dependencies" expanded="True" />
               <Node name="TerraConstants" expanded="True" />
-              <Node name="TerraEnums" expanded="True" />
               <Node name="ViewModels" expanded="True" />
-              <Node name="Views" expanded="True">
-                <Node name="AddPlantPage.xaml" expanded="True" />
-                <Node name="EmptyPlantSlot.xaml" expanded="True" />
-                <Node name="GraphicalView.xaml" expanded="True" />
-                <Node name="WorkspaceDisplay.xaml" expanded="True" />
+            </Node>
+            <Node name="Terra.UnitTests" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" expanded="True" />
               </Node>
-              <Node name="App.xaml" expanded="True" />
-              <Node name="AppShell.xaml" expanded="True" />
+              <Node name="GraphicalTest.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Terra" expanded="True" />
+        </State>
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <Debugger.DebugSourceFolders>
+    <String>/Users/sangdong/Library/Caches/VisualStudio/17.0/Symbols/raw.githubusercontent.com/xamarin/xamarin-android/af18b843d16f5ecad3171016fb66efecdb78c4bf</String>
+  </Debugger.DebugSourceFolders>
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.ItemProperties.Terra.UnitTests PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Terra PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.68" />
 </Properties>
