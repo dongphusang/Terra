@@ -1,5 +1,5 @@
-; ModuleID = 'obj/Debug/net7.0-android/android/environment.armeabi-v7a.ll'
-source_filename = "obj/Debug/net7.0-android/android/environment.armeabi-v7a.ll"
+; ModuleID = 'obj\Debug\net7.0-android\android\environment.armeabi-v7a.ll'
+source_filename = "obj\Debug\net7.0-android\android\environment.armeabi-v7a.ll"
 target datalayout = "e-m:e-p:32:32-Fi8-i64:64-v128:64:128-a:0:32-n32-S64"
 target triple = "armv7-unknown-linux-android"
 
@@ -82,7 +82,7 @@ target triple = "armv7-unknown-linux-android"
 @__app_environment_variables_n_2.4 = internal constant [15 x i8] c"MONO_LOG_LEVEL\00", align 1
 @__app_environment_variables_v_2.5 = internal constant [5 x i8] c"info\00", align 1
 @__app_environment_variables_n_3.6 = internal constant [17 x i8] c"XAMARIN_BUILD_ID\00", align 1
-@__app_environment_variables_v_3.7 = internal constant [37 x i8] c"d3ceab99-9232-4967-8adb-315d397dfafe\00", align 1
+@__app_environment_variables_v_3.7 = internal constant [37 x i8] c"91d02109-dd88-4d13-bd65-1fc528e53105\00", align 1
 @__app_environment_variables_n_4.8 = internal constant [28 x i8] c"XA_HTTP_CLIENT_HANDLER_TYPE\00", align 1
 @__app_environment_variables_v_4.9 = internal constant [42 x i8] c"Xamarin.Android.Net.AndroidMessageHandler\00", align 1
 @__app_environment_variables_n_5.10 = internal constant [29 x i8] c"__XA_PACKAGE_NAMING_POLICY__\00", align 1
@@ -3958,4 +3958,4 @@ target triple = "armv7-unknown-linux-android"
 !0 = !{i32 1, !"wchar_size", i32 4}
 !1 = !{i32 7, !"PIC Level", i32 2}
 !2 = !{i32 1, !"min_enum_size", i32 4}
-!3 = !{!"Xamarin.Android remotes/origin/release/7.0.2xx @ a7e0eff127904fe24804423572ac38864346d200"}
+!3 = !{!"Xamarin.Android remotes/origin/release/7.0.2xx @ 58a54aef5213e50e3e59008e244a64896fe971b6"}

@@ -1,5 +1,5 @@
-; ModuleID = 'obj/Debug/net7.0-android/android/environment.x86_64.ll'
-source_filename = "obj/Debug/net7.0-android/android/environment.x86_64.ll"
+; ModuleID = 'obj\Debug\net7.0-android\android\environment.x86_64.ll'
+source_filename = "obj\Debug\net7.0-android\android\environment.x86_64.ll"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-android"
 
@@ -82,7 +82,7 @@ target triple = "x86_64-unknown-linux-android"
 @__app_environment_variables_n_2.4 = internal constant [15 x i8] c"MONO_LOG_LEVEL\00", align 1
 @__app_environment_variables_v_2.5 = internal constant [5 x i8] c"info\00", align 1
 @__app_environment_variables_n_3.6 = internal constant [17 x i8] c"XAMARIN_BUILD_ID\00", align 16
-@__app_environment_variables_v_3.7 = internal constant [37 x i8] c"d3ceab99-9232-4967-8adb-315d397dfafe\00", align 16
+@__app_environment_variables_v_3.7 = internal constant [37 x i8] c"91d02109-dd88-4d13-bd65-1fc528e53105\00", align 16
 @__app_environment_variables_n_4.8 = internal constant [28 x i8] c"XA_HTTP_CLIENT_HANDLER_TYPE\00", align 16
 @__app_environment_variables_v_4.9 = internal constant [42 x i8] c"Xamarin.Android.Net.AndroidMessageHandler\00", align 16
 @__app_environment_variables_n_5.10 = internal constant [29 x i8] c"__XA_PACKAGE_NAMING_POLICY__\00", align 16
@@ -3957,4 +3957,4 @@ target triple = "x86_64-unknown-linux-android"
 !llvm.ident = !{!2}
 !0 = !{i32 1, !"wchar_size", i32 4}
 !1 = !{i32 7, !"PIC Level", i32 2}
-!2 = !{!"Xamarin.Android remotes/origin/release/7.0.2xx @ a7e0eff127904fe24804423572ac38864346d200"}
+!2 = !{!"Xamarin.Android remotes/origin/release/7.0.2xx @ 58a54aef5213e50e3e59008e244a64896fe971b6"}

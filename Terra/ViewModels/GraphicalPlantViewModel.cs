@@ -57,10 +57,10 @@ namespace Terra.ViewModels
         /// Invoke influx service object to query data from InfluxDB. Discard broken frames.
         /// Then break down data and assign them to Plant model
         /// </summary>
-        public void GetDataFromInflux()
+        public string GetDataFromInflux()
         {   
             // get data frame from Influx
-            var data = Unwrap(Task.Run(() => _influxService.GetData()));
+            var data = Unwrap(Task.Run(_influxService.GetData));
     
             // check if data frame is corrupted (a normal frame has five attributes. A broken frame has 10 attributes)
             if (data.Split(",").Length == 5)
@@ -83,6 +83,8 @@ namespace Terra.ViewModels
                 AddDataPoint(GraphConstants.ZERO, _humidityPoints);
                 AddDataPoint(GraphConstants.ZERO, _soilMoisturePoints);
             }
+
+            return data;
         }
 
         /// <summary>
