@@ -53,6 +53,13 @@
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="TerraEnums\**" />
+	  <EmbeddedResource Remove="TerraEnums\**" />
+	  <MauiCss Remove="TerraEnums\**" />
+	  <MauiXaml Remove="TerraEnums\**" />
+	  <None Remove="TerraEnums\**" />
+	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="appconfig.json" />
@@ -76,8 +83,8 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
 		<PackageReference Include="InfluxDB.Client" Version="4.12.0" />
 		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.801" />
-		<PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.7" />
-		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="7.0.7" />
+		<PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.8" />
+		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="7.0.8" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
@@ -85,8 +92,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="EmailBody\" />
 	  <Folder Include="RPi_Embed\" />
-	  <Folder Include="TerraEnums\" />
 	  <Folder Include="TerraConstants\" />
 	</ItemGroup>
 	<ItemGroup>

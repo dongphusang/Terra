@@ -5,7 +5,6 @@ using Microsoft.Data.Sqlite;
 using System.IO;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
-using Microsoft.Maui.Controls;
 
 namespace Terra.Services
 {
@@ -59,7 +58,7 @@ namespace Terra.Services
         }
 
         /// <summary>
-        /// Used to verify if a table or a column is existed.
+        /// Verify if a table or column exists
         /// </summary>
         /// <param name="tableName"></param>
         /// <param name="column"></param>
@@ -71,17 +70,10 @@ namespace Terra.Services
             try
             {
                 using SqliteDataReader reader = command.ExecuteReader();
-                if (reader.Read()) 
-                {
-                    Console.WriteLine($"IsExist() {tableName}: Found it");
-                    return true; // found target table with content
-                }
-                Console.WriteLine($"IsExist() {tableName}: Found it, no content");
-                return true; // found target table, no content
-                     
+                if (reader.Read()) return true; // found target table with content  
+                else               return true; // found target table, no content                 
             }catch(SqliteException ex)
             {
-                Console.WriteLine($"IsExist() {tableName}: {ex}");
                 return false; // target not found
             }        
         }
@@ -136,7 +128,6 @@ namespace Terra.Services
                 // add workspace table to Terra database
                 if (!IsExist("Workspace","*",connection))
                 {
-                    Console.WriteLine("YES: hahaha");
                     using (SqliteCommand command = connection.CreateCommand())
                     {
                         command.CommandText = sql;
@@ -315,7 +306,7 @@ namespace Terra.Services
             using SqliteCommand cmd = new(sql, connection);
             cmd.Parameters.AddWithValue("@nameValue", workspaceName);
 
-            // if name isn't an empty string, remove that instance from available list 
+            // if name isn't an empty string, remove that instance from available list along with plant members
             if (workspaceName != null)
             {
                 cmd.ExecuteNonQuery();

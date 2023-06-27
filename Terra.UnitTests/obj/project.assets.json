@@ -229,10 +229,10 @@
           "build/netstandard2.0/Microsoft.CodeCoverage.targets": {}
         }
       },
-      "Microsoft.Data.Sqlite/7.0.7": {
+      "Microsoft.Data.Sqlite/7.0.8": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "7.0.7",
+          "Microsoft.Data.Sqlite.Core": "7.0.8",
           "SQLitePCLRaw.bundle_e_sqlite3": "2.1.4"
         },
         "compile": {
@@ -242,7 +242,7 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Microsoft.Data.Sqlite.Core/7.0.7": {
+      "Microsoft.Data.Sqlite.Core/7.0.8": {
         "type": "package",
         "dependencies": {
           "SQLitePCLRaw.core": "2.1.4"
@@ -1516,8 +1516,8 @@
           "CommunityToolkit.Mvvm": "8.2.0",
           "InfluxDB.Client": "4.12.0",
           "LiveChartsCore.SkiaSharpView.Maui": "2.0.0-beta.801",
-          "Microsoft.Data.Sqlite": "7.0.7",
-          "Microsoft.Data.Sqlite.Core": "7.0.7",
+          "Microsoft.Data.Sqlite": "7.0.8",
+          "Microsoft.Data.Sqlite.Core": "7.0.8",
           "Microsoft.Extensions.Configuration.Json": "7.0.0",
           "Microsoft.Extensions.Logging.Debug": "7.0.0",
           "Newtonsoft.Json": "13.0.3"
@@ -1999,23 +1999,23 @@
         "microsoft.codecoverage.nuspec"
       ]
     },
-    "Microsoft.Data.Sqlite/7.0.7": {
-      "sha512": "tiNmV1oPy+Z2R7Wd0bPB/FxCr8B+/5q11OpDMG751GA/YuOL7MZrBFfzv5oFRlFe08K6sjrnbrauzzGIeNrzLQ==",
+    "Microsoft.Data.Sqlite/7.0.8": {
+      "sha512": "b0OUUV99RWAqO5p5xPap4WEPPATuPgNFXqzMa+BhNemAEE2P8RraKlYQ+FjCuuX3cb8o48XEGrJFEMeJR6QKeA==",
       "type": "package",
-      "path": "microsoft.data.sqlite/7.0.7",
+      "path": "microsoft.data.sqlite/7.0.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/netstandard2.0/_._",
-        "microsoft.data.sqlite.7.0.7.nupkg.sha512",
+        "microsoft.data.sqlite.7.0.8.nupkg.sha512",
         "microsoft.data.sqlite.nuspec"
       ]
     },
-    "Microsoft.Data.Sqlite.Core/7.0.7": {
-      "sha512": "21FRzcJhaTrlv7kTrqr/ltFcSQM2TyuTTPhUcjO8H73od7Bb3QraNW90c7lUucNI/245XPkKZG4fp7/7OsKCSg==",
+    "Microsoft.Data.Sqlite.Core/7.0.8": {
+      "sha512": "I4Vp+DBwXduX3/T/SlUzNX/B2FL/Y4/+KVpXtUksDmpLJyRxDXxg1O+pFDlyaTNpK8HPoEvreXJw6M7f9rVX6Q==",
       "type": "package",
-      "path": "microsoft.data.sqlite.core/7.0.7",
+      "path": "microsoft.data.sqlite.core/7.0.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2024,7 +2024,7 @@
         "lib/net6.0/Microsoft.Data.Sqlite.xml",
         "lib/netstandard2.0/Microsoft.Data.Sqlite.dll",
         "lib/netstandard2.0/Microsoft.Data.Sqlite.xml",
-        "microsoft.data.sqlite.core.7.0.7.nupkg.sha512",
+        "microsoft.data.sqlite.core.7.0.8.nupkg.sha512",
         "microsoft.data.sqlite.core.nuspec"
       ]
     },

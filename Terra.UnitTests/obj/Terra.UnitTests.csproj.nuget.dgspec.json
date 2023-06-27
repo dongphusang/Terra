@@ -206,11 +206,11 @@
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[7.0.7, )"
+              "version": "[7.0.8, )"
             },
             "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
-              "version": "[7.0.7, )"
+              "version": "[7.0.8, )"
             },
             "Microsoft.Extensions.Configuration": {
               "suppressParent": "All",
@@ -303,11 +303,11 @@
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[7.0.7, )"
+              "version": "[7.0.8, )"
             },
             "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
-              "version": "[7.0.7, )"
+              "version": "[7.0.8, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -453,11 +453,11 @@
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[7.0.7, )"
+              "version": "[7.0.8, )"
             },
             "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
-              "version": "[7.0.7, )"
+              "version": "[7.0.8, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -552,11 +552,11 @@
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[7.0.7, )"
+              "version": "[7.0.8, )"
             },
             "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
-              "version": "[7.0.7, )"
+              "version": "[7.0.8, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -648,11 +648,11 @@
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[7.0.7, )"
+              "version": "[7.0.8, )"
             },
             "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
-              "version": "[7.0.7, )"
+              "version": "[7.0.8, )"
             },
             "Microsoft.Extensions.Configuration": {
               "suppressParent": "All",

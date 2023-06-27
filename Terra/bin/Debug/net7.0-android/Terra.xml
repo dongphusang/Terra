@@ -37,6 +37,12 @@
         <member name="P:Terra.Models.Workspace.Note">
             <inheritdoc cref="F:Terra.Models.Workspace.note"/>
         </member>
+        <member name="M:Terra.Services.EmailService.GetConfiguration">
+            <summary>
+            Establish configuration file.
+            </summary>
+            <returns> configuration builder </returns>
+        </member>
         <member name="M:Terra.Services.InfluxService.GetConfiguration">
             <summary>
             Establish configuration file.
@@ -51,7 +57,7 @@
         </member>
         <member name="M:Terra.Services.WorkspaceService.IsExist(System.String,System.String,Microsoft.Data.Sqlite.SqliteConnection)">
             <summary>
-            Used to verify if a table or a column is existed.
+            Verify if a table or column exists
             </summary>
             <param name="tableName"></param>
             <param name="column"></param>

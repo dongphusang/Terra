@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GX+qs6mzZbH1aLm7+m7J32FavQInU0LQ5O3zG8t6QbR15K7fGN6kWr2bHGXEzEVioPifk17fBL3RLHi+VkCDSw==",
+  "dgSpecHash": "akcfLx6x/1jTxtMgkCUipp+LZ8jxdLbHqAA1I3mfcrwHYLLvngtR+bxlp6eySQCO+cwaCUHrVInufjOIoiDGtA==",
   "success": true,
   "projectFilePath": "C:\\Users\\sangs\\Desktop\\Terra\\Terra.UnitTests\\Terra.UnitTests.csproj",
   "expectedPackageFiles": [
@@ -19,8 +19,8 @@
     "C:\\Users\\sangs\\.nuget\\packages\\livechartscore.skiasharpview\\2.0.0-beta.801\\livechartscore.skiasharpview.2.0.0-beta.801.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\livechartscore.skiasharpview.maui\\2.0.0-beta.801\\livechartscore.skiasharpview.maui.2.0.0-beta.801.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\microsoft.codecoverage\\17.6.2\\microsoft.codecoverage.17.6.2.nupkg.sha512",
-    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.data.sqlite\\7.0.7\\microsoft.data.sqlite.7.0.7.nupkg.sha512",
-    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.7\\microsoft.data.sqlite.core.7.0.7.nupkg.sha512",
+    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.data.sqlite\\7.0.8\\microsoft.data.sqlite.7.0.8.nupkg.sha512",
+    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.8\\microsoft.data.sqlite.core.7.0.8.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\7.0.0\\microsoft.extensions.configuration.fileextensions.7.0.0.nupkg.sha512",
