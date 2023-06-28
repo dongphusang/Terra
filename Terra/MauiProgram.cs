@@ -29,6 +29,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<GraphicalPlantViewModel>();
         builder.Services.AddTransient<WorkspaceViewModel>();
 		builder.Services.AddTransient<PlantViewModel>();
+		builder.Services.AddTransient<EmailSubViewModel>();
 
 		// Views
         builder.Services.AddTransient<AddWorkspacePage>();
@@ -37,6 +38,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<AddPlantPage>();
 		builder.Services.AddTransient<EmptyPlantSlot>();
 		builder.Services.AddTransient<GraphicalView>();
+		builder.Services.AddTransient<EmailSubPage>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

@@ -158,6 +158,7 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="F:Terra.ViewModels.MainPageViewModel.toAddWorkspacePageCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.MainPageViewModel.ToAddWorkspacePageCommand"/>.</summary>
@@ -176,6 +177,12 @@
         </member>
         <member name="P:Terra.ViewModels.MainPageViewModel.ToGraphicalViewCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.MainPageViewModel.ToGraphicalView"/>.</summary>
+        </member>
+        <member name="F:Terra.ViewModels.MainPageViewModel.toEmailSubPageCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.MainPageViewModel.ToEmailSubPageCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.MainPageViewModel.ToEmailSubPageCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.MainPageViewModel.ToEmailSubPage"/>.</summary>
         </member>
         <member name="T:Terra.ViewModels.PlantViewModel">
             <inheritdoc/>

@@ -21,6 +21,9 @@ namespace Terra.ViewModels
         [RelayCommand]
         public Task ToGraphicalView() => Shell.Current.GoToAsync(nameof(GraphicalView));
 
+        [RelayCommand]
+        public Task ToEmailSubPage() => Shell.Current.GoToAsync(nameof(EmailSubPage));
+
         
 
     }

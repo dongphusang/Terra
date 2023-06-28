@@ -46,6 +46,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.AddWorkspacePa
 build_metadata.AdditionalFiles.TargetPath = Views\AddWorkspacePage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\AddWorkspacePage.xaml
 
+[C:/Users/sangs/Desktop/Terra/Terra/Views/EmailSubPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.EmailSubPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\EmailSubPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\EmailSubPage.xaml
+
 [C:/Users/sangs/Desktop/Terra/Terra/Views/EmptyPlantSlot.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.EmptyPlantSlot.xaml

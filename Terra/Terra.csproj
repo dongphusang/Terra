@@ -97,6 +97,9 @@
 	  <Folder Include="TerraConstants\" />
 	</ItemGroup>
 	<ItemGroup>
+	  <MauiXaml Update="Views\EmailSubPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\MainPage.xaml">
 	    <SubType>Designer</SubType>
 	  </MauiXaml>

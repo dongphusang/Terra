@@ -77,7 +77,7 @@
                 TextColor="Black"
                 BackgroundColor="White"
                 HorizontalOptions="FillAndExpand"
-                x:Name="emailSubBtn"/>
+                Command="{Binding ToEmailSubPageCommand}"/>
             <!-- Line Break -->
             <Line
                 X1="10"
