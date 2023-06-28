@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
 using Newtonsoft.Json;
 
 namespace Terra.Services
@@ -15,16 +16,26 @@ namespace Terra.Services
     {
         private IConfigurationRoot _config; // configuration object
         private MailMessage _email;
+        private SmtpClient _smtpClient;
 
-        // connection attributes
-        readonly string API_KEY;
+        readonly string SENDER;
+        readonly string SENDER_PASS;
+        readonly string[] SUBSCRIBERS;
+        readonly int PORT;
+        readonly string SERVER;
 
         public EmailService()
         {
             _config = GetConfiguration();
 
-            API_KEY = _config.GetSection("MailChimp:API_KEY").Value;
-            
+            SENDER      = _config.GetSection("SMTP:ROOT").Value;
+            SENDER_PASS = _config.GetSection("SMTP:ROOT_PASSWORD").Value;
+            SUBSCRIBERS = _config.GetSection("SMTP:SUBSCRIBERS").GetChildren().Select(x => x.Value).ToArray();
+            PORT        = int.Parse(_config.GetSection("SMTP:PORT").Value);
+            SERVER      = _config.GetSection("SMTP:SMTP_SERVER").Value;
+
+            _email = new();
+            _smtpClient = new(SERVER, PORT);
         }
 
         /// <summary>
@@ -40,6 +51,25 @@ namespace Terra.Services
             var builder = new ConfigurationBuilder().AddJsonStream(new MemoryStream(Encoding.UTF8.GetBytes(json))).Build();
 
             return builder;
+        }
+
+        public void Send()
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls13 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            _email.From = new MailAddress(SENDER);
+
+            foreach (var recipient in SUBSCRIBERS)
+            {
+                _email.To.Add(recipient);
+            }
+            _email.Subject = "This is a test";
+            _email.Body = "You passed! Now put an html body";
+
+            _smtpClient.Credentials = new NetworkCredential(SENDER, SENDER_PASS);
+            _smtpClient.EnableSsl = true;
+            _smtpClient.Send(_email);
+
+            _smtpClient.Dispose();
         }
     }
 }
