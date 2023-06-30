@@ -1,4 +1,4 @@
-﻿// Terra sqlite3 service. Not just workspace
+﻿// read and write access to Terra db. Responsible for Plant and Workspace
 
 using System;
 using Microsoft.Data.Sqlite;
@@ -71,11 +71,13 @@ namespace Terra.Services
             {
                 using SqliteDataReader reader = command.ExecuteReader();
                 if (reader.Read()) return true; // found target table with content  
-                else               return true; // found target table, no content                 
-            }catch(SqliteException ex)
+                else return true; // found target table, no content                 
+            }
+            catch (SqliteException ex)
             {
+                Console.WriteLine($"IsExist() {tableName}: {ex}");
                 return false; // target not found
-            }        
+            }
         }
 
         /// <summary>
@@ -83,7 +85,7 @@ namespace Terra.Services
         /// </summary>
         /// <param name="tableName"></param>
         /// <param name="column"></param>
-        /// <param name="cellValue"></param>
+        /// <param name="cellValue"> User provided. </param>
         /// <param name="connection"></param>
         /// <returns></returns>
         private bool IsExist(string tableName, string column, string cellValue, SqliteConnection connection)
@@ -94,14 +96,8 @@ namespace Terra.Services
             try
             {
                 using SqliteDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
-                    Console.WriteLine($"IsExist() {tableName}: Found it");
-                    return true; // found target table, with content
-                }
-                Console.WriteLine($"IsExist() {tableName}: Found it, no content");
-                return false; // found target table, no such cell
-
+                if (reader.Read()) return true;  // found target table, with content
+                else return false; // found target table, no such cell
             }
             catch (SqliteException ex)
             {
@@ -111,30 +107,28 @@ namespace Terra.Services
         }
 
         /// <summary>
-        /// Create workspace table in Terra db
+        /// Open connection and create Workspace table in db.
         /// </summary>
         private void CreateWorkspaceTable()
         {
             // open connection
-            using (SqliteConnection connection = new(_connectionString))
+            using SqliteConnection connection = new(_connectionString);
+            connection.OpenAsync().Wait();
+
+            // sql for creating table workspace
+            string sql = $"CREATE TABLE Workspace (" +
+                            "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," +
+                            "name TEXT NOT NULL UNIQUE," +
+                            "date_added TEXT NOT NULL," +
+                            "note TEXT)";
+            // add workspace table to Terra database
+            if (IsExist("Workspace","*",connection) is false)
             {
-                connection.OpenAsync().Wait();
-                // sql for creating table workspace
-                string sql = $"CREATE TABLE Workspace (" +
-                                "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," +
-                                "name TEXT NOT NULL UNIQUE," +
-                                "date_added TEXT NOT NULL," +
-                                "note TEXT)";
-                // add workspace table to Terra database
-                if (!IsExist("Workspace","*",connection))
+                using (SqliteCommand command = connection.CreateCommand())
                 {
-                    using (SqliteCommand command = connection.CreateCommand())
-                    {
-                        command.CommandText = sql;
-                        command.ExecuteNonQuery();
-                    }
+                    command.CommandText = sql;
+                    command.ExecuteNonQuery();
                 }
-                connection.Close(); // close connection
             }
         }
 
@@ -144,90 +138,103 @@ namespace Terra.Services
         private void CreatePlantTable()
         {
             // open connection
-            using (SqliteConnection connection = new(_connectionString))
+            using SqliteConnection connection = new(_connectionString);
+            connection.OpenAsync().Wait();
+
+            // sql for creating table plant
+            string sql = $"CREATE TABLE Plant (" +
+                            "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," +
+                            "name TEXT NOT NULL UNIQUE," +
+                            "date_added TEXT NOT NULL," +
+                            "note TEXT," +
+                            "from_workspace TEXT NOT NULL)";
+
+            // add workspace table to Terra database
+            if (IsExist("Plant", "*", connection) is false)
             {
-                connection.OpenAsync().Wait();
-                // sql for creating table plant
-                string sql = $"CREATE TABLE Plant (" +
-                                "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," +
-                                "name TEXT NOT NULL UNIQUE," +
-                                "date_added TEXT NOT NULL," +
-                                "note TEXT," +
-                                "from_workspace TEXT NOT NULL)";
-                // add workspace table to Terra database
-                if (IsExist("Plant", "*", connection) is false)
+                using (SqliteCommand command = connection.CreateCommand())
                 {
-                    using (SqliteCommand command = connection.CreateCommand())
-                    {
-                        command.CommandText = sql;
-                        command.ExecuteNonQuery();
-                    }
+                    command.CommandText = sql;
+                    command.ExecuteNonQuery();
                 }
-                connection.Close(); // close connection
             }
         }
 
         /// <summary>
-        /// Open connection and add workspace entry to database.
+        /// Open connection and add workspace entry to table.
         /// </summary>
-        /// <param name="tableName"> name of table (workspace)</param>
-        /// <param name="workspaceName"> name column </param>
-        /// <param name="note"> note column</param>
-        public void InsertToWorkspaceTable(string workspaceName, string note)
+        /// <param name="workspaceName"> name of workspace </param>
+        /// <param name="note"> note of workspace </param>
+        /// <returns> Return true if workspace is added. Return false otherwise. </returns>
+        public bool InsertToWorkspaceTable(string workspaceName, string note)
         {
             var table = "Workspace";
             var column = "name";
-            using (SqliteConnection connection = new(_connectionString)) 
-            {
-                connection.OpenAsync().Wait();
-                if (IsExist(table, column, workspaceName, connection) is false)
-                {
-                    var a = $"INSERT INTO Workspace (name, date_added, note) " +
-                                           "VALUES (@name, @date_added, @note)";
 
-                    using (SqliteCommand command = new(a, connection))
-                    {
-                        command.Parameters.AddWithValue("@name", workspaceName);
-                        command.Parameters.AddWithValue("@date_added", DateTime.Now.ToString());
-                        command.Parameters.AddWithValue("@note", note);
-                        command.ExecuteNonQueryAsync();
-                    }
-                } 
+            // init connection to db
+            using SqliteConnection connection = new(_connectionString);
+            connection.OpenAsync().Wait();
+
+            // construct sql
+            var a = $"INSERT INTO Workspace (name, date_added, note) " +
+                                        "VALUES (@name, @date_added, @note)";
+
+            // add member if it doesn't exist
+            if (IsExist(table, column, workspaceName, connection) is false)
+            {
+                using SqliteCommand command = new(a, connection);
+                command.Parameters.AddWithValue("@name", workspaceName);
+                command.Parameters.AddWithValue("@date_added", DateTime.Now.ToString());
+                command.Parameters.AddWithValue("@note", note);
+
+                command.ExecuteNonQuery();
+
+                return true; // affirmative that member is added 
             }
+
+            return false; // affirmative that member already existed
         }
 
         /// <summary>
-        /// 
+        /// Open connection and add email entry to table.
         /// </summary>
         /// <param name="workspaceName"></param>
         /// <param name="plantName"></param>
         /// <param name="note"></param>
-        public void InsertToPlantTable(string workspaceName, string plantName, string note)
+        /// <returns> Return true if email is added. Return false otherwise. </returns>
+        public bool InsertToPlantTable(string workspaceName, string plantName, string note)
         {
             var table = "Plant";
             var column = "name";
-            Console.WriteLine($"InsertToPlantTable(): {workspaceName} {plantName} {note}");
+
+            // init connection to db
             using SqliteConnection connection = new(_connectionString);
             connection.OpenAsync().Wait();
 
-            if (IsExist(table, column, plantName, connection) is false)
-            {
-                var sql = $"INSERT INTO Plant (name, date_added, note, from_workspace) " +
+            // construct sql
+            var sql = $"INSERT INTO Plant (name, date_added, note, from_workspace) " +
                                          "VALUES (@name, @date_added, @note, @from_workspace)";
 
+            // add member if it doesn't exist
+            if (IsExist(table, column, plantName, connection) is false)
+            {
                 using SqliteCommand command = new(sql, connection);
                 command.Parameters.AddWithValue("@name", plantName);
                 command.Parameters.AddWithValue("@date_added", DateTime.Now.ToString());
                 command.Parameters.AddWithValue("@note", note);
                 command.Parameters.AddWithValue("@from_workspace", workspaceName);
-                command.ExecuteNonQueryAsync();
+
+                command.ExecuteNonQuery();
+
+                return true; // affirmative that member is added
             }
+
+            return false; // affirmative that member already existed
         }
 
         // return object that contains number of cells in a column
         public Task<object> CountColumnValues(string workspaceName)
         {
-            Console.WriteLine($"CountColumnValues(): {workspaceName}");
             // open connection
             using SqliteConnection connection = new(_connectionString);
             connection.OpenAsync().Wait();
@@ -241,7 +248,8 @@ namespace Terra.Services
 
         // retrieve plant entry from a workspace. Works for now since only one plant allowed per workspace.
         public Task<object> GetPlantName(string currentWorkspaceName)
-        {               
+        {             
+            // open connection
             using SqliteConnection connection = new(_connectionString);
             connection.OpenAsync().Wait();
 
@@ -260,11 +268,17 @@ namespace Terra.Services
         public List<string> GetWorkspaces(string tableName)
         {
             List<string> workspaces = new();
+
+            // init connection
             using SqliteConnection connection = new(_connectionString);
             connection.OpenAsync().Wait();
+
+            // construct sql
+            var sql = $"SELECT * from {tableName}";
+
+            // get members if table exists
             if (IsExist(tableName, "*", connection))
             {
-                var sql = $"SELECT * from {tableName}";
                 using SqliteCommand command = new(sql, connection);
                 using SqliteDataReader reader = command.ExecuteReader();
 
@@ -274,44 +288,58 @@ namespace Terra.Services
                     workspaces.Add(reader.GetValue(1).ToString()); // name
                     workspaces.Add(reader.GetValue(3).ToString()); // note
                 }              
-                return new List<string>(workspaces);
+
+                return new List<string>(workspaces); // values found
             }
             else
             {
                 // this is for error handling purposes, since in WokrspaceList.xml, it uses the index of List to get value, possible OutOfBounce
-                return (new List<string>() { "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA" });
+                return new List<string>() { "NA", "NA" }; // no names and notes were found
             }                
         }
 
         // get number of current workspaces in Workspace table
         public Task<object> GetNumberofWorkspaces()
         {
+            // open connection
             using SqliteConnection connection = new(_connectionString);
             connection.OpenAsync().Wait();
 
+            // construct sql
             var sql = "SELECT COUNT(name) FROM Workspace";
             using SqliteCommand cmd = new(sql, connection);
 
             return cmd.ExecuteScalarAsync();
         }
 
-
-        public void DeleteWorkspace(string workspaceName)
+        /// <summary>
+        /// Remove workspace from table.
+        /// </summary>
+        /// <param name="workspaceName"> name of workspace (not user provided). </param>
+        /// <returns> Return true if workspace is removed. Return false otherwise. </returns>
+        public bool DeleteWorkspace(string workspaceName)
         {
+            // init connection
             using SqliteConnection connection = new(_connectionString);
             connection.OpenAsync().Wait();
 
             // construct sql
             var sql = "DELETE FROM Workspace WHERE name = @nameValue";
-            using SqliteCommand cmd = new(sql, connection);
-            cmd.Parameters.AddWithValue("@nameValue", workspaceName);
 
             // if name isn't an empty string, remove that instance from available list along with plant members
             if (workspaceName != null)
             {
+                using SqliteCommand cmd = new(sql, connection);
+                cmd.Parameters.AddWithValue("@nameValue", workspaceName);
+
                 cmd.ExecuteNonQuery();
-                DeletePlant(connection, workspaceName);
+
+                DeletePlant(connection, workspaceName); // remove plant members
+
+                return true; // workspace and its plants are removed
             }
+
+            return false; // nothing was removed
         }
 
         private Task DeletePlant(SqliteConnection connection, string workspaceName)

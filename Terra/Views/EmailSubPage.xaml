@@ -26,19 +26,19 @@
             Grid.Row="0"
             HorizontalOptions="Fill">
             <StackLayout
-                HorizontalOptions="Fill">
+                BindableLayout.ItemsSource="{Binding EmailList}"
+                HorizontalOptions="Fill"
+                VerticalOptions="FillAndExpand">
                 <!-- Your content goes here -->
-                <Label Text="Item 1" FontSize="30" HorizontalTextAlignment="Center"/>
-                <Label Text="Item 1" FontSize="30" HorizontalTextAlignment="Center"/>
-                <Label Text="Item 1" FontSize="30" HorizontalTextAlignment="Center"/>
-                <Label Text="Item 1" FontSize="30" HorizontalTextAlignment="Center"/>
-                <Label Text="Item 1" FontSize="30" HorizontalTextAlignment="Center"/>
-                <Label Text="Item 1" FontSize="30" HorizontalTextAlignment="Center"/>
-                <Label Text="Item 1" FontSize="30" HorizontalTextAlignment="Center"/>
-                <Label Text="Item 1" FontSize="30" HorizontalTextAlignment="Center"/>
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding}"/>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
             </StackLayout>
         </ScrollView>
-
+        
+        <!-- Email prompt field -->
         <Entry
             Grid.Row="1"
             Margin="25"
@@ -48,7 +48,7 @@
             Placeholder="Enter your email..."
             PlaceholderColor="#838383"          
             />
-
+        <!-- Add email button -->
         <Button
             Grid.Row="2"
             HeightRequest="40"
@@ -56,6 +56,7 @@
             Text="Confirm"
             TextColor="Black"
             BackgroundColor="#CAD7C4"
+            Command="{Binding AddEmailCommand}"
             />
 
 

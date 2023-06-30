@@ -37,6 +37,50 @@
         <member name="P:Terra.Models.Workspace.Note">
             <inheritdoc cref="F:Terra.Models.Workspace.note"/>
         </member>
+        <member name="M:Terra.Services.EmailListDBService.IsExist(System.String,System.String,Microsoft.Data.Sqlite.SqliteConnection)">
+            <summary>
+            Verify if a table or column exists
+            </summary>
+            <param name="tableName"></param>
+            <param name="column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Terra.Services.EmailListDBService.IsExist(System.String,System.String,System.String,Microsoft.Data.Sqlite.SqliteConnection)">
+            <summary>
+            Verify if a cell exists.
+            </summary>
+            <param name="tableName"></param>
+            <param name="column"></param>
+            <param name="cellValue"> User provided. </param>
+            <param name="connection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Terra.Services.EmailListDBService.CreateEmailTable">
+            <summary>
+            Open connection and create EmailTable in db.
+            </summary>
+        </member>
+        <member name="M:Terra.Services.EmailListDBService.PostToEmailTable(System.String,System.String)">
+            <summary>
+            Open connection and add email entry to table.
+            </summary>
+            <param name="emailName"> name of email </param>
+            <param name="note"> note of email </param>
+            <returns> Return true if email is added. Return false otherwise.</returns>
+        </member>
+        <member name="M:Terra.Services.EmailListDBService.GetFromEmailTable">
+            <summary>
+            Get List of emails from table.
+            </summary>
+            <returns> Return List of emails from table. Return empty List if table not found </returns>
+        </member>
+        <member name="M:Terra.Services.EmailListDBService.DeleteEmail(System.String)">
+            <summary>
+            Remove email from table.
+            </summary>
+            <param name="emailName"> name of email (user provided by clicking). </param>
+            <returns> Return true if email is removed. Return false otherwise. </returns>
+        </member>
         <member name="M:Terra.Services.EmailService.GetConfiguration">
             <summary>
             Establish configuration file.
@@ -69,13 +113,13 @@
             </summary>
             <param name="tableName"></param>
             <param name="column"></param>
-            <param name="cellValue"></param>
+            <param name="cellValue"> User provided. </param>
             <param name="connection"></param>
             <returns></returns>
         </member>
         <member name="M:Terra.Services.WorkspaceService.CreateWorkspaceTable">
             <summary>
-            Create workspace table in Terra db
+            Open connection and create Workspace table in db.
             </summary>
         </member>
         <member name="M:Terra.Services.WorkspaceService.CreatePlantTable">
@@ -85,19 +129,20 @@
         </member>
         <member name="M:Terra.Services.WorkspaceService.InsertToWorkspaceTable(System.String,System.String)">
             <summary>
-            Open connection and add workspace entry to database.
+            Open connection and add workspace entry to table.
             </summary>
-            <param name="tableName"> name of table (workspace)</param>
-            <param name="workspaceName"> name column </param>
-            <param name="note"> note column</param>
+            <param name="workspaceName"> name of workspace </param>
+            <param name="note"> note of workspace </param>
+            <returns> Return true if workspace is added. Return false otherwise. </returns>
         </member>
         <member name="M:Terra.Services.WorkspaceService.InsertToPlantTable(System.String,System.String,System.String)">
             <summary>
-            
+            Open connection and add email entry to table.
             </summary>
             <param name="workspaceName"></param>
             <param name="plantName"></param>
             <param name="note"></param>
+            <returns> Return true if email is added. Return false otherwise. </returns>
         </member>
         <member name="M:Terra.Services.WorkspaceService.GetWorkspaces(System.String)">
             <summary>
@@ -105,6 +150,22 @@
             </summary>
             <param name="tableName"> name of table (Workspace) </param>
             <returns></returns>
+        </member>
+        <member name="M:Terra.Services.WorkspaceService.DeleteWorkspace(System.String)">
+            <summary>
+            Remove workspace from table.
+            </summary>
+            <param name="workspaceName"> name of workspace (not user provided). </param>
+            <returns> Return true if workspace is removed. Return false otherwise. </returns>
+        </member>
+        <member name="T:Terra.ViewModels.EmailSubViewModel">
+            <inheritdoc/>
+        </member>
+        <member name="F:Terra.ViewModels.EmailSubViewModel.addEmailCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.AddEmailCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.EmailSubViewModel.AddEmailCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.AddEmail"/>.</summary>
         </member>
         <member name="M:Terra.ViewModels.GraphicalPlantViewModel.GetDataFromInflux">
             <summary>
