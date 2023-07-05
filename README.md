@@ -69,7 +69,7 @@ This section is for visitors to see how the project is going. Every task or sub-
 
 Total UI Revamp Series (0%)      
 -
-- Main Page
+- <a href="[doc:introduction](https://github.com/dongphusang/Terra/issues/18)" target="_blank">Main Page</a>
 - Adding Workspace page
 - Workspace List page
 - Empty Plant Slot page
