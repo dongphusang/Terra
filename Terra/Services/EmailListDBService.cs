@@ -97,21 +97,20 @@ namespace Terra.Services
         /// <summary>
         /// Open connection and add email entry to table.
         /// </summary>
-        /// <param name="emailName"> name of email </param>
-        /// <param name="note"> note of email </param>
+        /// <param name="emailName"> name of email (user provided). </param>
         /// <returns> Return true if email is added. Return false otherwise.</returns>
-        public bool PostToEmailTable(string emailName, string note)
+        public bool PostToEmailTable(string emailName)
         {
             var table = "EmailTable";
-            var column = "name";
+            var column = "email";
 
             // init connection to db
             using SqliteConnection connection = new(_connectionString);
             connection.OpenAsync().Wait();
 
             // construct sql
-            var sql = $"INSERT INTO EmailTable (email, date_added, note) " +
-                                           "VALUES (@email, @date_added, @note)";
+            var sql = $"INSERT INTO EmailTable (email, date_added) " +
+                                           "VALUES (@email, @date_added)";
 
             // add member if it doesn't exist
             if (IsExist(table, column, emailName, connection) is false)
@@ -119,7 +118,6 @@ namespace Terra.Services
                 using SqliteCommand command = new(sql, connection);
                 command.Parameters.AddWithValue("@email", emailName);
                 command.Parameters.AddWithValue("@date_added", DateTime.Now.ToString());
-                command.Parameters.AddWithValue("@note", note);
 
                 command.ExecuteNonQuery();
 
@@ -175,10 +173,10 @@ namespace Terra.Services
             connection.OpenAsync().Wait();
 
             // construct sql
-            var sql = "DELETE FROM EmailTable WHERE name = @emailName";
+            var sql = "DELETE FROM EmailTable WHERE email = @emailName";
 
             // run removal sql if the name provided isn't null
-            if (emailName is not null)
+            if (emailName is not null && IsExist("EmailTable", "email", emailName, connection))
             {
                 using SqliteCommand command = new(sql, connection);
                 command.Parameters.AddWithValue("@emailName", emailName);
@@ -189,6 +187,28 @@ namespace Terra.Services
             }
 
             return false; // no email was removed
+        }
+
+        /// <summary>
+        /// Check if users can still add more emails. Max capacity is four emails.
+        /// </summary>
+        /// <returns> Return true if capacity exceeded. Return false otherwise. </returns>
+        public bool IsMaxCapacity()
+        {
+            // open connection
+            using SqliteConnection connection = new(_connectionString);
+            connection.OpenAsync().Wait();
+
+            // construct sql
+            var sql = $"SELECT COUNT(email) FROM EmailTable";
+            using SqliteCommand cmd = new(sql, connection);
+
+            // parse result
+            var currentCapacity = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
+            if (currentCapacity >= 4) return true;
+
+            return false;
         }
 
     }

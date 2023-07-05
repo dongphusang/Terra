@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
 using Newtonsoft.Json;
 
 namespace Terra.Services
@@ -20,7 +19,6 @@ namespace Terra.Services
 
         readonly string SENDER;
         readonly string SENDER_PASS;
-        readonly string[] SUBSCRIBERS;
         readonly int PORT;
         readonly string SERVER;
 
@@ -30,7 +28,6 @@ namespace Terra.Services
 
             SENDER      = _config.GetSection("SMTP:ROOT").Value;
             SENDER_PASS = _config.GetSection("SMTP:ROOT_PASSWORD").Value;
-            SUBSCRIBERS = _config.GetSection("SMTP:SUBSCRIBERS").GetChildren().Select(x => x.Value).ToArray();
             PORT        = int.Parse(_config.GetSection("SMTP:PORT").Value);
             SERVER      = _config.GetSection("SMTP:SMTP_SERVER").Value;
 
@@ -53,12 +50,13 @@ namespace Terra.Services
             return builder;
         }
 
-        public void Send()
+
+        public void Send(List<string> emails)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls13 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             _email.From = new MailAddress(SENDER);
 
-            foreach (var recipient in SUBSCRIBERS)
+            foreach (var recipient in emails)
             {
                 _email.To.Add(recipient);
             }

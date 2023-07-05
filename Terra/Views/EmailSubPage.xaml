@@ -7,7 +7,7 @@
              x:DataType="viewmodel:EmailSubViewModel">
     <Grid
         Padding="20"
-        >
+        HorizontalOptions="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -21,44 +21,80 @@
             CornerRadius="10"
             Color="LightGrey"
             />
+        <StackLayout
+            BindableLayout.ItemsSource="{Binding EmailList}"
+            HorizontalOptions="Center"
+            VerticalOptions="FillAndExpand">
+            <!-- Your content goes here -->
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Label 
+                        Text="{Binding}"
+                        x:Name="label"
+                        FontSize="30">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding DeleteEmailCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                CommandParameter="{Binding Text, Source={x:Reference Name=label}}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
 
-        <ScrollView
-            Grid.Row="0"
-            HorizontalOptions="Fill">
-            <StackLayout
-                BindableLayout.ItemsSource="{Binding EmailList}"
-                HorizontalOptions="Fill"
-                VerticalOptions="FillAndExpand">
-                <!-- Your content goes here -->
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <Label Text="{Binding}"/>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </StackLayout>
-        </ScrollView>
-        
         <!-- Email prompt field -->
         <Entry
             Grid.Row="1"
             Margin="25"
             FontSize="15"
             HeightRequest="53"
+            WidthRequest="300"
+            HorizontalOptions="CenterAndExpand"
             BackgroundColor="#F7F7F7"
             Placeholder="Enter your email..."
-            PlaceholderColor="#838383"          
+            PlaceholderColor="#838383"
+            Text="{Binding EmailModel.Email}"
             />
-        <!-- Add email button -->
-        <Button
+
+        <Grid
             Grid.Row="2"
+            ColumnSpacing="10"
+            HorizontalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Add email button -->
+            <Button
+                Grid.Column="0"
+                HeightRequest="40"
+                WidthRequest="222"
+                Text="Confirm"
+                TextColor="Black"
+                BackgroundColor="#CAD7C4"
+                Command="{Binding AddEmailCommand}"
+                />
+            <!-- Navigate to email removal page -->
+            <Button
+                Grid.Column="1"
+                HeightRequest="40"
+                WidthRequest="40"
+                Text="D"
+                BackgroundColor="#CAD7C4"
+                Command="{Binding NavigateToRemovalCommand}"/>
+        </Grid>
+        
+        <!-- Warning Message -->
+        <Label
+            Grid.Row="3"
+            Margin="5, 20"
+            FontSize="14"
             HeightRequest="40"
-            WidthRequest="222"
-            Text="Confirm"
-            TextColor="Black"
-            BackgroundColor="#CAD7C4"
-            Command="{Binding AddEmailCommand}"
-            />
-
-
+            WidthRequest="300"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            Text="{Binding MaxCapacityWarning}"
+            TextColor="Red"/>
     </Grid>
 </ContentPage>

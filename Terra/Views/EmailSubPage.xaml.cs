@@ -4,9 +4,12 @@ namespace Terra;
 
 public partial class EmailSubPage : ContentPage
 {
+	private EmailSubViewModel _viewModel;
 	public EmailSubPage()
 	{
 		InitializeComponent();
-		BindingContext = new EmailSubViewModel();
+		_viewModel = new();
+		BindingContext = _viewModel;
+		_viewModel.UpdateEmails();
 	}
 }
