@@ -86,6 +86,12 @@
             <param name="emailName"> name of email (user provided by clicking). </param>
             <returns> Return true if email is removed. Return false otherwise. </returns>
         </member>
+        <member name="M:Terra.Services.EmailListDBService.IsMaxCapacity">
+            <summary>
+            Check if users can still add more emails. Max capacity is four emails.
+            </summary>
+            <returns> Return true if capacity exceeded. Return false otherwise. </returns>
+        </member>
         <member name="M:Terra.Services.EmailService.GetConfiguration">
             <summary>
             Establish configuration file.

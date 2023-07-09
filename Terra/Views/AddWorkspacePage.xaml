@@ -4,57 +4,98 @@
              x:Class="Terra.AddWorkspacePage"
              Title="AddWorkspacePage"
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
-             x:DataType="viewmodel:WorkspaceViewModel"
-             >
-    <VerticalStackLayout>
-        <!--Image at top-->
-        <Image
-            Source="plant.png"
-            Aspect="AspectFill"/>
+             x:DataType="viewmodel:WorkspaceViewModel">
+    <Grid
+        Padding="30, 50, 30, 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <!-- Prompt Input Fields -->
-        <!-- Workspace name *required -->
+        <!-- workspace entry label -->
+        <Label
+            Margin="0,0,0,5"
+            Grid.Row="0"
+            Grid.Column="0"
+            FontSize="20"
+            FontAttributes="Bold"
+            Text="Workspace"/>
+        <!-- workspace entry background -->
+        <BoxView
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            HeightRequest="55"
+            Color="{StaticResource BoxViewTextPromptBackGround}"
+            CornerRadius="8"/>
+        <!-- workspace entry -->
         <Entry
-            Margin="25, -120, 25, 0"
-            FontSize="15"
-            HeightRequest="53"
-            BackgroundColor="#F7F7F7"
-            Placeholder="Workspace name..."
-            PlaceholderColor="#838383"          
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            HeightRequest="50"
+            BackgroundColor="Transparent"        
+            Placeholder="..."
+            FontSize="18"
             Text="{Binding Workspace.WorkspaceName}"
-            />
-        <!-- Workspace note *optional -->
+            IsEnabled="{Binding IsAdditionRestricted}"/>
+        
+        <!-- note editor label -->
+        <Label
+            Margin="0,20,0,5"
+            Grid.Row="2"
+            Grid.Column="0"
+            FontSize="20"
+            FontAttributes="Bold"
+            Text="Note"/>
+        <!-- note editor background -->
+        <BoxView
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            HeightRequest="250"
+            Color="{StaticResource BoxViewTextPromptBackGround}"
+            CornerRadius="8"/>
+        <!-- note editor -->
         <Editor
-            Margin="25, 34, 25, 0"
-            FontSize="15"
-            HeightRequest="90"
-            BackgroundColor="#F7F7F7"
-            Placeholder="Note..."
-            PlaceholderColor="#838383"      
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            HeightRequest="250"
+            BackgroundColor="Transparent"        
+            Placeholder="..."
+            FontSize="18"
             Text="{Binding Workspace.Note}"
-            />
+            IsEnabled="{Binding IsAdditionRestricted}"/>
 
         <!-- Confirm Button -->
         <Button
-            Margin="0, 100"
-            HeightRequest="40"
-            WidthRequest="222"
-            Text="Confirm"
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            HeightRequest="50"
+            WidthRequest="230"
+            Text="confirm"
             TextColor="Black"
-            BackgroundColor="#CAD7C4"
+            BackgroundColor="{StaticResource ButtonColorLight}"
             Command="{Binding PostWorkspaceCommand}"
-            IsEnabled="{Binding IsAdditionRestricted}"
-            />
+            IsEnabled="{Binding IsAdditionRestricted}"/>
         <!-- Restriction Message -->
         <Label
-            Margin="0, -70"
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
             FontSize="14"
-            HeightRequest="40"
-            WidthRequest="300"
             HorizontalOptions="CenterAndExpand"
             Text="{Binding RestrictionMessage}"
             TextColor="Red"/>
-
-    </VerticalStackLayout>
-
+        
+    </Grid>
 </ContentPage>
