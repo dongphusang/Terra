@@ -68,10 +68,10 @@ Others
 This section is for visitors to see how the project is going. Every task or sub-task once reaches 100%, they will have an image of their final version displayed.
 Every task below if they are actively in progress, they will be displayed as hyperlinks.
 
-Total UI Revamp Series (0%)      
+Total UI Revamp Series (12.5%)      
 -
 - <a href="https://github.com/dongphusang/Terra/issues/18" target="_blank">Main Page</a>
-- <a href="https://github.com/dongphusang/Terra/issues/19" target="_blank">Adding Workspace page</a>
+- <a href="https://github.com/dongphusang/Terra/issues/19" target="_blank">Add Workspace page</a> (100%)
 - Workspace List page
 - Empty Plant Slot page
 - Adding Plant page
