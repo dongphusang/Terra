@@ -6,122 +6,131 @@
              x:DataType="viewmodel:MainPageViewModel"
              >
 
-    <VerticalStackLayout>
-        <!--Image at top-->
-        <Image
-            Source="plant.png"
-            Aspect="AspectFill"/>
+    <Grid
+        Padding="20,10,20,0"
+        ColumnSpacing="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <!--Quick Action-->
+        <!-- event background -->
+        <BoxView
+            Margin="0, 0, 0, 15"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            HeightRequest="150"
+            Color="#F7E1AE"
+            CornerRadius="8">
+            <BoxView.Shadow>
+                <Shadow
+                    Brush="Gray"
+                    Offset="0,0"
+                    Radius="20"
+                    Opacity="0.5"/>
+            </BoxView.Shadow>
+        </BoxView>
+        
+        <!-- quick actions -->
         <Label
-            Margin="10, -140"
+            Margin="0, 0, 0, 10"
+            Grid.Row="1"
             Text="Quick Actions"
             FontSize="20"
             HorizontalTextAlignment="Start"/>
-        <!--Quick Action buttons-->
-        <HorizontalStackLayout
-            Margin="0, 160"
-            HorizontalOptions="Center">
-            <!--Add Button-->
-            <Button                
-                WidthRequest="170"
-                HeightRequest="100"
-                x:Name="addBtn"
-                Text="Add"
-                TextColor="Black"
-                FontAttributes="Bold"
-                Background="#D9D9D9"
-                Command="{Binding ToAddWorkspacePageCommand}"
-                />
-            <!--View Button-->
-            <Button         
-                Margin="10, 0"
-                WidthRequest="170"
-                HeightRequest="100"
-                x:Name="viewBtn"
-                Text="View"
-                TextColor="Black"
-                FontAttributes="Bold"
-                Background="#D9D9D9"
-                Command="{Binding ToWorkspaceListCommand}"
-                />
-        </HorizontalStackLayout>
-
-        <!--Others-->
-        <VerticalStackLayout
-            Margin="10, -140">
-            <!--Title-->
-            <Label
+        <!--add-->
+        <Button           
+            Grid.Row="2"
+            Grid.Column="0"
+            HeightRequest="210"
+            Text="Add"
+            TextColor="Black"
+            Background="{StaticResource BoxViewTextPromptBackGround}"
+            Command="{Binding ToAddWorkspacePageCommand}">
+            <Button.Shadow>
+                <Shadow
+                    Brush="Gray"
+                    Offset="0,0"
+                    Radius="20"
+                    Opacity="0.5"/>
+            </Button.Shadow>
+        </Button>
+        <!--view-->
+        <Button         
+            Grid.Row="2"
+            Grid.Column="1"          
+            HeightRequest="210"
+            Text="View"
+            TextColor="Black"
+            Background="{StaticResource BoxViewTextPromptBackGround}"
+            Command="{Binding ToWorkspaceListCommand}">
+            <Button.Shadow>
+                <Shadow
+                    Brush="Gray"
+                    Offset="0,0"
+                    Radius="20"
+                    Opacity="0.5"/>
+            </Button.Shadow>
+        </Button>
+        
+        <!-- Others -->
+        <Label
+            Margin="0, 20, 0, 0"
+            Grid.Row="3"
             Text="Others"
             FontSize="20"
             HorizontalTextAlignment="Start"/>
-            <!--GraphicalView Button-->
+        <VerticalStackLayout
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="2">
+            <!--graphical view-->
             <Button
                 HeightRequest="55"
                 Text="Graphical View"
                 TextColor="Black"
-                BackgroundColor="White"
-                HorizontalOptions="FillAndExpand"
+                BackgroundColor="Transparent"           
                 Command="{Binding ToGraphicalViewCommand}"/>
-            <!-- Line Break -->
             <Line
-                X1="10"
-                Y1="0"
-                X2="380"
-                Y2="0"
+                X1="10" Y1="0" X2="380" Y2="0" 
                 Stroke="#E2E2E2"/>
-            <!-- EmailSubscription Button -->
+            <!--email sub-->
             <Button
                 HeightRequest="55"
                 Text="Email Subscription"
                 TextColor="Black"
-                BackgroundColor="White"
-                HorizontalOptions="FillAndExpand"
+                BackgroundColor="Transparent"
                 Command="{Binding ToEmailSubPageCommand}"/>
-            <!-- Line Break -->
             <Line
-                X1="10"
-                Y1="0"
-                X2="380"
-                Y2="0"
+                X1="10" Y1="0" X2="380" Y2="0"
                 Stroke="#E2E2E2"/>
-            <!-- CurrentMode Button -->
+            <!--mode-->
             <Button
                 HeightRequest="55"
                 Text="Current Mode: Auto/Scheduled"
                 TextColor="Black"
-                BackgroundColor="White"
-                HorizontalOptions="FillAndExpand"
-                x:Name="moddeBtn"/>
-            <!-- Line Break -->
+                BackgroundColor="Transparent"/>
             <Line
-                X1="10"
-                Y1="0"
-                X2="380"
-                Y2="0"
+                X1="10" Y1="0" X2="380" Y2="0"
                 Stroke="#E2E2E2"/>
             <!-- PlantWiki Button -->
             <Button
                 HeightRequest="55"
                 Text="Plant Wiki"
                 TextColor="Black"
-                BackgroundColor="White"
-                HorizontalOptions="FillAndExpand"
-                x:Name="wikiBtn"/>
-            <!-- Line Break -->
-            <Line
-                X1="10"
-                Y1="0"
-                X2="380"
-                Y2="0"
-                Stroke="#E2E2E2"/>
-
-
+                BackgroundColor="Transparent"/>
+            
         </VerticalStackLayout>
 
-
-
-
-    </VerticalStackLayout>
+    </Grid>
+        
 
 </ContentPage>

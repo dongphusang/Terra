@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "SVX84zj74ynGkx+ZrnTFPo5lxAOlllwnpuPoAKqFBfPYVn2HhItdHV5GE7YsYFS+Fm19bs3jzRgwa0NaDf64Jg==",
+  "dgSpecHash": "mm6dV8+Me/1OIJMHwv6WETB1xxsg8qfy+ozP74HhcPPHJcaV4SbXIPXZ6c5ZknKzA4+YJNyL8xM4npVYj2/rsg==",
   "success": true,
   "projectFilePath": "C:\\Users\\sangs\\Desktop\\Terra\\Terra\\Terra.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sangs\\.nuget\\packages\\communitytoolkit.maui\\5.2.0\\communitytoolkit.maui.5.2.0.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\communitytoolkit.maui.core\\5.2.0\\communitytoolkit.maui.core.5.2.0.nupkg.sha512",
-    "C:\\Users\\sangs\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.0\\communitytoolkit.mvvm.8.2.0.nupkg.sha512",
+    "C:\\Users\\sangs\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.1\\communitytoolkit.mvvm.8.2.1.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\googlegson\\2.9.1.1\\googlegson.2.9.1.1.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\harfbuzzsharp\\2.8.2.3\\harfbuzzsharp.2.8.2.3.nupkg.sha512",

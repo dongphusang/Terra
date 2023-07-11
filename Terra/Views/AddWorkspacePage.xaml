@@ -76,7 +76,7 @@
             IsEnabled="{Binding IsAdditionRestricted}"/>
 
         <!-- Confirm Button -->
-        <Button
+        <Button            
             Grid.Row="4"
             Grid.Column="0"
             Grid.ColumnSpan="2"
@@ -86,7 +86,15 @@
             TextColor="Black"
             BackgroundColor="{StaticResource ButtonColorLight}"
             Command="{Binding PostWorkspaceCommand}"
-            IsEnabled="{Binding IsAdditionRestricted}"/>
+            IsEnabled="{Binding IsAdditionRestricted}">
+            <Button.Shadow>
+                <Shadow
+                    Brush="Gray"
+                    Offset="0,0"
+                    Radius="20"
+                    Opacity="1"/>
+            </Button.Shadow>
+        </Button>
         <!-- Restriction Message -->
         <Label
             Grid.Row="4"

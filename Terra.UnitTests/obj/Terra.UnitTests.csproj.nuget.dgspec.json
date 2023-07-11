@@ -194,7 +194,7 @@
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
-              "version": "[8.2.0, )"
+              "version": "[8.2.1, )"
             },
             "InfluxDB.Client": {
               "target": "Package",
@@ -291,7 +291,7 @@
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
-              "version": "[8.2.0, )"
+              "version": "[8.2.1, )"
             },
             "InfluxDB.Client": {
               "target": "Package",
@@ -441,7 +441,7 @@
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
-              "version": "[8.2.0, )"
+              "version": "[8.2.1, )"
             },
             "InfluxDB.Client": {
               "target": "Package",
@@ -540,7 +540,7 @@
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
-              "version": "[8.2.0, )"
+              "version": "[8.2.1, )"
             },
             "InfluxDB.Client": {
               "target": "Package",
@@ -636,7 +636,7 @@
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
-              "version": "[8.2.0, )"
+              "version": "[8.2.1, )"
             },
             "InfluxDB.Client": {
               "target": "Package",

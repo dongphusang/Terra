@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "akcfLx6x/1jTxtMgkCUipp+LZ8jxdLbHqAA1I3mfcrwHYLLvngtR+bxlp6eySQCO+cwaCUHrVInufjOIoiDGtA==",
+  "dgSpecHash": "NKx570Q6OlvTcmQrKLOoa4J6WajypdDKeA4Wy6WOc8g2eDmgR/czNjmOLCp+c/FWwKlRi00BoFTgEBijxZlfKw==",
   "success": true,
   "projectFilePath": "C:\\Users\\sangs\\Desktop\\Terra\\Terra.UnitTests\\Terra.UnitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sangs\\.nuget\\packages\\communitytoolkit.maui\\5.2.0\\communitytoolkit.maui.5.2.0.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\communitytoolkit.maui.core\\5.2.0\\communitytoolkit.maui.core.5.2.0.nupkg.sha512",
-    "C:\\Users\\sangs\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.0\\communitytoolkit.mvvm.8.2.0.nupkg.sha512",
+    "C:\\Users\\sangs\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.1\\communitytoolkit.mvvm.8.2.1.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\harfbuzzsharp\\2.8.2.3\\harfbuzzsharp.2.8.2.3.nupkg.sha512",
