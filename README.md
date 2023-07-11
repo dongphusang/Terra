@@ -38,9 +38,8 @@ SPECIFICS
     
   MOBILE APP
   
-  <img src="https://github.com/dongphusang/Terra/assets/45107557/37116616-a191-4dce-a6bf-223bbf4569d7" width="360" height="760"> <img src="https://github.com/dongphusang/Terra/assets/45107557/eff7756a-5746-4324-9033-f3391c97c91f" width="360" height="760">
+  <img src="https://github.com/dongphusang/Terra/assets/45107557/26046321-7ce2-4183-9aaa-4986448a9eff" width="360" height="760"> <img src="https://github.com/dongphusang/Terra/assets/45107557/55d4ad85-86bf-4ecb-845d-d96da8bcc84f" width="360" height="760">
   <img src="https://github.com/dongphusang/Terra/assets/45107557/2a0da2d9-780f-49e2-bbf7-39d6c4c5a97a" width="360" height="760"> <img src="https://github.com/dongphusang/Terra/assets/45107557/e997c854-047e-4761-a4f0-77e7b9d44275" width="360" height="760">
-
 
  
 
@@ -68,11 +67,11 @@ Others
 This section is for visitors to see how the project is going. Every task or sub-task once reaches 100%, they will have an image of their final version displayed.
 Every task below if they are actively in progress, they will be displayed as hyperlinks.
 
-Total UI Revamp Series (12.5%)      
+Total UI Revamp Series (36.25%)      
 -
-- <a href="https://github.com/dongphusang/Terra/issues/18" target="_blank">Main Page</a>
+- <a href="https://github.com/dongphusang/Terra/issues/18" target="_blank">Main Page</a> (90%)
 - <a href="https://github.com/dongphusang/Terra/issues/19" target="_blank">Add Workspace page</a> (100%)
-- Workspace List page
+- <a href="https://github.com/dongphusang/Terra/issues/19" target="_blank">WorkspaceList Page</a> (100%)
 - Empty Plant Slot page
 - Adding Plant page
 - Plant Status page
