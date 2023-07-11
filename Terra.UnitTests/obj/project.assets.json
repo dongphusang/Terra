@@ -167,7 +167,7 @@
           "lib/netstandard2.0/JsonSubTypes.dll": {}
         }
       },
-      "LiveChartsCore/2.0.0-beta.801": {
+      "LiveChartsCore/2.0.0-beta.810": {
         "type": "package",
         "compile": {
           "lib/net6.0/LiveChartsCore.dll": {
@@ -180,10 +180,10 @@
           }
         }
       },
-      "LiveChartsCore.SkiaSharpView/2.0.0-beta.801": {
+      "LiveChartsCore.SkiaSharpView/2.0.0-beta.810": {
         "type": "package",
         "dependencies": {
-          "LiveChartsCore": "2.0.0-beta.801",
+          "LiveChartsCore": "2.0.0-beta.810",
           "SkiaSharp": "2.88.3",
           "SkiaSharp.HarfBuzz": "2.88.3"
         },
@@ -198,11 +198,11 @@
           }
         }
       },
-      "LiveChartsCore.SkiaSharpView.Maui/2.0.0-beta.801": {
+      "LiveChartsCore.SkiaSharpView.Maui/2.0.0-beta.810": {
         "type": "package",
         "dependencies": {
-          "LiveChartsCore": "2.0.0-beta.801",
-          "LiveChartsCore.SkiaSharpView": "2.0.0-beta.801",
+          "LiveChartsCore": "2.0.0-beta.810",
+          "LiveChartsCore.SkiaSharpView": "2.0.0-beta.810",
           "SkiaSharp.Views.Maui.Controls.Compatibility": "2.88.3"
         },
         "compile": {
@@ -216,7 +216,7 @@
           }
         }
       },
-      "Microsoft.CodeCoverage/17.6.2": {
+      "Microsoft.CodeCoverage/17.6.3": {
         "type": "package",
         "compile": {
           "lib/netcoreapp3.1/Microsoft.VisualStudio.CodeCoverage.Shim.dll": {}
@@ -572,11 +572,11 @@
           }
         }
       },
-      "Microsoft.NET.Test.Sdk/17.6.2": {
+      "Microsoft.NET.Test.Sdk/17.6.3": {
         "type": "package",
         "dependencies": {
-          "Microsoft.CodeCoverage": "17.6.2",
-          "Microsoft.TestPlatform.TestHost": "17.6.2"
+          "Microsoft.CodeCoverage": "17.6.3",
+          "Microsoft.TestPlatform.TestHost": "17.6.3"
         },
         "compile": {
           "lib/netcoreapp3.1/_._": {}
@@ -601,7 +601,7 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.TestPlatform.ObjectModel/17.6.2": {
+      "Microsoft.TestPlatform.ObjectModel/17.6.3": {
         "type": "package",
         "dependencies": {
           "NuGet.Frameworks": "6.5.0",
@@ -698,10 +698,10 @@
           }
         }
       },
-      "Microsoft.TestPlatform.TestHost/17.6.2": {
+      "Microsoft.TestPlatform.TestHost/17.6.3": {
         "type": "package",
         "dependencies": {
-          "Microsoft.TestPlatform.ObjectModel": "17.6.2",
+          "Microsoft.TestPlatform.ObjectModel": "17.6.3",
           "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
@@ -1515,7 +1515,7 @@
           "CommunityToolkit.Maui": "5.2.0",
           "CommunityToolkit.Mvvm": "8.2.1",
           "InfluxDB.Client": "4.12.0",
-          "LiveChartsCore.SkiaSharpView.Maui": "2.0.0-beta.801",
+          "LiveChartsCore.SkiaSharpView.Maui": "2.0.0-beta.810",
           "Microsoft.Data.Sqlite": "7.0.8",
           "Microsoft.Data.Sqlite.Core": "7.0.8",
           "Microsoft.Extensions.Configuration.Json": "7.0.0",
@@ -1865,10 +1865,10 @@
         "lib/netstandard2.0/JsonSubTypes.dll"
       ]
     },
-    "LiveChartsCore/2.0.0-beta.801": {
-      "sha512": "4ugDe7wAYfxnW2jjo+YqyBM/ldsDcFpUmVKv+frjMI6uPQJtt3jApdyeB7FP3GmwBmHVFJUFup0wxbI6BLg2/A==",
+    "LiveChartsCore/2.0.0-beta.810": {
+      "sha512": "b9qZVXu0KMwFZJLpv36o1UawCwLcSf0MRbc8wNyx9aUVhCaG39Xd+zRv1AVcz/tfjYKFnZlEGH2bAOV9h1dH2A==",
       "type": "package",
-      "path": "livechartscore/2.0.0-beta.801",
+      "path": "livechartscore/2.0.0-beta.810",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1885,14 +1885,14 @@
         "lib/netcoreapp2.0/LiveChartsCore.xml",
         "lib/netstandard2.0/LiveChartsCore.dll",
         "lib/netstandard2.0/LiveChartsCore.xml",
-        "livechartscore.2.0.0-beta.801.nupkg.sha512",
+        "livechartscore.2.0.0-beta.810.nupkg.sha512",
         "livechartscore.nuspec"
       ]
     },
-    "LiveChartsCore.SkiaSharpView/2.0.0-beta.801": {
-      "sha512": "Bi5Y3x7E/K97hLmdfshXGLs+FODMnnNeAnpan0AgEiOMd+sSjdS002cysMcI5zOVVIVHsNZk6jX9f++C9lxgtw==",
+    "LiveChartsCore.SkiaSharpView/2.0.0-beta.810": {
+      "sha512": "mHotSKnwGb31ppfevU43rUWcsWKdUavegdesfM2qbtr7LAgGf3hGXzY6ecbab/y1tN+pGyfDA7WwF5gI8sFMPg==",
       "type": "package",
-      "path": "livechartscore.skiasharpview/2.0.0-beta.801",
+      "path": "livechartscore.skiasharpview/2.0.0-beta.810",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1909,14 +1909,14 @@
         "lib/netcoreapp2.0/LiveChartsCore.SkiaSharpView.xml",
         "lib/netstandard2.0/LiveChartsCore.SkiaSharpView.dll",
         "lib/netstandard2.0/LiveChartsCore.SkiaSharpView.xml",
-        "livechartscore.skiasharpview.2.0.0-beta.801.nupkg.sha512",
+        "livechartscore.skiasharpview.2.0.0-beta.810.nupkg.sha512",
         "livechartscore.skiasharpview.nuspec"
       ]
     },
-    "LiveChartsCore.SkiaSharpView.Maui/2.0.0-beta.801": {
-      "sha512": "GalrlwRHB91skh79vaeUPCa5cJsgpQyM6RrDm0rFTNLI7iQqhJcqp0B4C3+WHfhUC3j0LsuIKjZOPQkCUaVPbw==",
+    "LiveChartsCore.SkiaSharpView.Maui/2.0.0-beta.810": {
+      "sha512": "TDgjC8YzAXbPw8J3dshA96FbWQUt/PQac6HseEll9524GfxkK2JteptrRHPkAdrGAzhHgyd/EWbVEdWAooaCtg==",
       "type": "package",
-      "path": "livechartscore.skiasharpview.maui/2.0.0-beta.801",
+      "path": "livechartscore.skiasharpview.maui/2.0.0-beta.810",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1929,14 +1929,14 @@
         "lib/net6.0-maccatalyst16.1/LiveChartsCore.SkiaSharpView.Maui.xml",
         "lib/net6.0/LiveChartsCore.SkiaSharpView.Maui.dll",
         "lib/net6.0/LiveChartsCore.SkiaSharpView.Maui.xml",
-        "livechartscore.skiasharpview.maui.2.0.0-beta.801.nupkg.sha512",
+        "livechartscore.skiasharpview.maui.2.0.0-beta.810.nupkg.sha512",
         "livechartscore.skiasharpview.maui.nuspec"
       ]
     },
-    "Microsoft.CodeCoverage/17.6.2": {
-      "sha512": "t+DjPlq7GIxIkOK/jiTmNeiEMVkfVCynBEZyV+IMg2ro43NugKExng+7a04R1fBLi+d6voxjeDxL2ozdl+XyVg==",
+    "Microsoft.CodeCoverage/17.6.3": {
+      "sha512": "Gorg6F1dOxlI28yHYKhbQ3pOOfHeW6sUfsmwFQFaIV+xttUAZ+l8KarHIfsR+rBAnjY9VH71BXvPXBuObCkXsw==",
       "type": "package",
-      "path": "microsoft.codecoverage/17.6.2",
+      "path": "microsoft.codecoverage/17.6.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1995,7 +1995,7 @@
         "build/netstandard2.0/zh-Hant/Microsoft.VisualStudio.TraceDataCollector.resources.dll",
         "lib/net462/Microsoft.VisualStudio.CodeCoverage.Shim.dll",
         "lib/netcoreapp3.1/Microsoft.VisualStudio.CodeCoverage.Shim.dll",
-        "microsoft.codecoverage.17.6.2.nupkg.sha512",
+        "microsoft.codecoverage.17.6.3.nupkg.sha512",
         "microsoft.codecoverage.nuspec"
       ]
     },
@@ -2534,10 +2534,10 @@
         "microsoft.net.http.headers.nuspec"
       ]
     },
-    "Microsoft.NET.Test.Sdk/17.6.2": {
-      "sha512": "+WFxuoFVBG0aewD9Psw+1I90kaRToQgMIzK20xNVRO4QRWR9Bou3qGefrZvMZ/xTC+6bAmZppFbpPbiHDzrPyg==",
+    "Microsoft.NET.Test.Sdk/17.6.3": {
+      "sha512": "MglaNTl646dC2xpHKotSk1xscmHO5uV3x3NK057IUA9BM3Wgl16WMEb9ptGczk518JfLd1+Th5OAYwnoWgHQQQ==",
       "type": "package",
-      "path": "microsoft.net.test.sdk/17.6.2",
+      "path": "microsoft.net.test.sdk/17.6.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2553,7 +2553,7 @@
         "buildMultiTargeting/Microsoft.NET.Test.Sdk.props",
         "lib/net462/_._",
         "lib/netcoreapp3.1/_._",
-        "microsoft.net.test.sdk.17.6.2.nupkg.sha512",
+        "microsoft.net.test.sdk.17.6.3.nupkg.sha512",
         "microsoft.net.test.sdk.nuspec"
       ]
     },
@@ -2572,10 +2572,10 @@
         "runtime.json"
       ]
     },
-    "Microsoft.TestPlatform.ObjectModel/17.6.2": {
-      "sha512": "I3S/oELDAe/ckFltBnPb0PV+gADbpc8n0yGTtYfTd7q1hd0cAZKn/FrYoegA/rGws8fEFyJD/2PB6uq+nIjWsg==",
+    "Microsoft.TestPlatform.ObjectModel/17.6.3": {
+      "sha512": "gSqtX3RvcFisaLPs6sKXdZkSwUix83NQ9nOU/w6pYrHTl+d8GsVHSL9rvDNxMgoV5BNOdyU7zK7JOfbSaVMDWQ==",
       "type": "package",
-      "path": "microsoft.testplatform.objectmodel/17.6.2",
+      "path": "microsoft.testplatform.objectmodel/17.6.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2668,14 +2668,14 @@
         "lib/netstandard2.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll",
         "lib/netstandard2.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll",
         "lib/netstandard2.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll",
-        "microsoft.testplatform.objectmodel.17.6.2.nupkg.sha512",
+        "microsoft.testplatform.objectmodel.17.6.3.nupkg.sha512",
         "microsoft.testplatform.objectmodel.nuspec"
       ]
     },
-    "Microsoft.TestPlatform.TestHost/17.6.2": {
-      "sha512": "WszrF1CoG+Y2bA4WJFxlaPADQCWUuNP6TCxVRuScmP6DQsNvDDuOO9XiUxCA+wPmNOSyWVh9EGrPu7JoUpf2gA==",
+    "Microsoft.TestPlatform.TestHost/17.6.3": {
+      "sha512": "lrgRXKFfIZSPlhuoQGLtciO/osL+4oADYEYb0d5or7n7YyJATIWespq3lRgz2IQpRh6N7cm0DnCOWeZiCRGzxA==",
       "type": "package",
-      "path": "microsoft.testplatform.testhost/17.6.2",
+      "path": "microsoft.testplatform.testhost/17.6.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2738,7 +2738,7 @@
         "lib/netcoreapp3.1/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll",
         "lib/netcoreapp3.1/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll",
         "lib/netcoreapp3.1/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll",
-        "microsoft.testplatform.testhost.17.6.2.nupkg.sha512",
+        "microsoft.testplatform.testhost.17.6.3.nupkg.sha512",
         "microsoft.testplatform.testhost.nuspec"
       ]
     },
@@ -3847,7 +3847,7 @@
       "Microsoft.Extensions.Logging >= 7.0.0",
       "Microsoft.Extensions.Logging.Abstractions >= 7.0.0",
       "Microsoft.Maui.Graphics >= 7.0.86",
-      "Microsoft.NET.Test.Sdk >= 17.6.2",
+      "Microsoft.NET.Test.Sdk >= 17.6.3",
       "NUnit >= 3.13.3",
       "NUnit.Analyzers >= 3.6.1",
       "NUnit3TestAdapter >= 4.5.0",
@@ -3856,40 +3856,33 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sangs\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/sangdong/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sangs\\Desktop\\Terra\\Terra.UnitTests\\Terra.UnitTests.csproj",
+      "projectUniqueName": "/Users/sangdong/Terra/Terra.UnitTests/Terra.UnitTests.csproj",
       "projectName": "Terra.UnitTests",
-      "projectPath": "C:\\Users\\sangs\\Desktop\\Terra\\Terra.UnitTests\\Terra.UnitTests.csproj",
-      "packagesPath": "C:\\Users\\sangs\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sangs\\Desktop\\Terra\\Terra.UnitTests\\obj\\",
+      "projectPath": "/Users/sangdong/Terra/Terra.UnitTests/Terra.UnitTests.csproj",
+      "packagesPath": "/Users/sangdong/.nuget/packages/",
+      "outputPath": "/Users/sangdong/Terra/Terra.UnitTests/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\sangs\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/sangdong/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\sangs\\Desktop\\Terra\\Terra\\Terra.csproj": {
-              "projectPath": "C:\\Users\\sangs\\Desktop\\Terra\\Terra\\Terra.csproj"
+            "/Users/sangdong/Terra/Terra/Terra.csproj": {
+              "projectPath": "/Users/sangdong/Terra/Terra/Terra.csproj"
             }
           }
         }
@@ -3905,33 +3898,38 @@
         "targetAlias": "net7.0",
         "dependencies": {
           "Microsoft.Extensions.Configuration": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.0, )",
             "autoReferenced": true
           },
           "Microsoft.Extensions.DependencyInjection": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.0, )",
             "autoReferenced": true
           },
           "Microsoft.Extensions.Logging": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.0, )",
             "autoReferenced": true
           },
           "Microsoft.Extensions.Logging.Abstractions": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.0, )",
             "autoReferenced": true
           },
           "Microsoft.Maui.Graphics": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.86, )",
             "autoReferenced": true
           },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
-            "version": "[17.6.2, )"
+            "version": "[17.6.3, )"
           },
           "NUnit": {
             "target": "Package",
@@ -3977,7 +3975,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
       }
     }
   }
