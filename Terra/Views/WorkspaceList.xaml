@@ -6,64 +6,45 @@
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
              x:DataType="viewmodel:WorkspaceViewModel"
              >
-    <VerticalStackLayout
-        Padding="10, 40, 10, 0">
+    <VerticalStackLayout>
         <!--To be added dyamically. Static for now-->
         <Grid
-            HorizontalOptions="StartAndExpand"
-            VerticalOptions="StartAndExpand"
-            >
+            Padding="10, 80, 10, 0"
+            ColumnSpacing="10"
+            RowSpacing="30">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="110"/>
+                <RowDefinition Height="110"/>
+                <RowDefinition Height="110"/>
+                <RowDefinition Height="110"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="110"/>
+            </Grid.ColumnDefinitions>
 
             <!-- First workspace -->
-            <BoxView
-                Grid.Row="0"           
-                HeightRequest="120"
-                CornerRadius="10"
-                Color="White"/>
-            <BoxView
-                Grid.Row="0"
-                HeightRequest="110"
-                WidthRequest="280"
-                HorizontalOptions="Start"
-                CornerRadius="10"
-                Color="#EFEDED"/>
-            <!-- workspace name -->
-            <Label
-                Grid.Row="0"
-                Margin="25, 25"
-                Text="{Binding WorkspaceNameAndNote[0]}"
-                FontAttributes="Bold"
-                FontSize="25"
-                />
-            <!-- workspace note -->
-            <Label
-                Grid.Row="0"
-                Margin="25, 35"
-                Text="{Binding WorkspaceNameAndNote[1]}"
-                FontSize="20"
-                VerticalOptions="End"/>
-            <!-- Navigate to workspace -->
+            <!--navigate-->
             <Button
                 Grid.Row="0"
-                HeightRequest="110"
-                WidthRequest="280"
-                HorizontalOptions="Start"
+                Grid.Column="0"
+                HorizontalOptions="Fill"
                 CornerRadius="10"
-                Opacity="0"
+                BackgroundColor="#EFEDED"
                 Command="{Binding ToWorkspaceCommand}"
-                CommandParameter="{Binding WorkspaceNameAndNote[0]}"/>
-            <!-- Delete button -->
+                CommandParameter="{Binding WorkspaceNameAndNote[0]}">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Radius="10"
+                        Opacity="0.5"/>
+                </Button.Shadow>
+            </Button>
+            <!--delete-->
             <Button 
                 Grid.Row="0"
-                HeightRequest="110"
-                WidthRequest="100"
-                HorizontalOptions="End"
+                Grid.Column="1"
+                HorizontalOptions="Fill"
                 CornerRadius="10"
                 BackgroundColor="#EFEDED"
                 Text="DEL"
@@ -71,154 +52,181 @@
                 FontSize="32"
                 FontAttributes="Bold"
                 Command="{Binding DeleteWorkspaceCommand}"
-                CommandParameter="{Binding WorkspaceNameAndNote[0]}"/>
-            <Line
+                CommandParameter="{Binding WorkspaceNameAndNote[0]}">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Radius="10"
+                        Opacity="0.5"/>
+                </Button.Shadow>
+            </Button>
+            <!--workspace name-->
+            <Label
                 Grid.Row="0"
-                X1="0"
-                X2="400"
-                Y1="139"
-                Y2="139"
-                Stroke="#EFEDED"/>
+                Margin="25, 15"
+                Text="{Binding WorkspaceNameAndNote[0]}"
+                FontAttributes="Bold"
+                FontSize="25"
+                VerticalOptions="Start"
+                />
+            <!--workspace note-->
+            <Label
+                Grid.Row="0"
+                Margin="25, 15"
+                Text="{Binding WorkspaceNameAndNote[1]}"
+                FontSize="20"
+                VerticalOptions="End"/>
 
-
-            <!-- Second workspace-->
-            <BoxView
-                Grid.Row="1"           
-                HeightRequest="120"
-                CornerRadius="10"
-                Color="White"/>
-            <BoxView
+            <!-- Second Workspace -->          
+            <!--navigate-->
+            <Button 
                 Grid.Row="1"
-                HeightRequest="110"
-                WidthRequest="280"
-                HorizontalOptions="Start"
+                Grid.Column="0"
+                HorizontalOptions="Fill"
                 CornerRadius="10"
-                Color="#EFEDED"/>
+                BackgroundColor="#EFEDED">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Radius="10"
+                        Opacity="0.5"/>
+                </Button.Shadow>
+            </Button>
+            <!--delete-->
+            <Button 
+                Grid.Row="1"
+                Grid.Column="1"
+                HorizontalOptions="Fill"
+                CornerRadius="10"
+                BackgroundColor="#EFEDED"
+                Text="DEL"
+                TextColor="Black"
+                FontSize="32"
+                FontAttributes="Bold">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Radius="10"
+                        Opacity="0.5"/>
+                </Button.Shadow>
+            </Button>
             <!-- workspace name -->
             <Label
                 Grid.Row="1"
-                Margin="25, 25"
+                Margin="25, 15"
                 Text="Unavailable Slot"
                 FontAttributes="Bold"
-                FontSize="25"/>
-            <!-- workspace note -->
+                FontSize="25"
+                VerticalOptions="Start"/>
+                <!-- workspace note -->
             <Label
                 Grid.Row="1"
-                Margin="25, 35"
+                Margin="25, 15"
                 Text="n/a"
                 FontSize="20"
                 VerticalOptions="End"/>
-            <!-- Delete button -->
+
+            <!-- Third Workspace -->
+            <!--navigate-->
             <Button 
-                Grid.Row="1"
-                HeightRequest="110"
-                WidthRequest="100"
-                HorizontalOptions="End"
+                Grid.Row="2"
+                Grid.Column="0"
+                HorizontalOptions="Fill"
+                CornerRadius="10"
+                BackgroundColor="#EFEDED">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Radius="10"
+                        Opacity="0.5"/>
+                </Button.Shadow>
+            </Button>
+            <!--delete-->
+            <Button 
+                Grid.Row="2"
+                Grid.Column="1"
+                HorizontalOptions="Fill"
                 CornerRadius="10"
                 BackgroundColor="#EFEDED"
+                Text="DEL"
                 TextColor="Black"
                 FontSize="32"
-                FontAttributes="Bold"/>
-            <Line
-                Grid.Row="1"
-                X1="0"
-                X2="400"
-                Y1="139"
-                Y2="139"
-                Stroke="#EFEDED"/>
-
-
-            <!-- Third workspace -->
-            <BoxView
-                Grid.Row="2"           
-                HeightRequest="120"
-                CornerRadius="10"
-                Color="White"/>
-            <BoxView
-                Grid.Row="2"
-                HeightRequest="110"
-                WidthRequest="280"
-                HorizontalOptions="Start"
-                CornerRadius="10"
-                Color="#EFEDED"/>
+                FontAttributes="Bold">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Radius="10"
+                        Opacity="0.5"/>
+                </Button.Shadow>
+            </Button>
             <!-- workspace name -->
             <Label
                 Grid.Row="2"
-                Margin="25, 25"
+                Margin="25, 15"
                 Text="Unavailable Slot"
                 FontAttributes="Bold"
-                FontSize="25"/>
+                FontSize="25"
+                VerticalOptions="Start"/>
             <!-- workspace note -->
             <Label
                 Grid.Row="2"
-                Margin="25, 35"
+                Margin="25, 15"
                 Text="n/a"
                 FontSize="20"
                 VerticalOptions="End"/>
-            <!-- Delete button -->
+
+            <!-- Third Workspace -->
+            <!--navigate-->
             <Button 
-                Grid.Row="2"
-                HeightRequest="110"
-                WidthRequest="100"
-                HorizontalOptions="End"
+                Grid.Row="3"
+                Grid.Column="0"
+                HorizontalOptions="Fill"
+                CornerRadius="10"
+                BackgroundColor="#EFEDED">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Radius="10"
+                        Opacity="0.5"/>
+                </Button.Shadow>
+            </Button>
+            <!--delete-->
+            <Button 
+                Grid.Row="3"
+                Grid.Column="1"
+                HorizontalOptions="Fill"
                 CornerRadius="10"
                 BackgroundColor="#EFEDED"
+                Text="DEL"
                 TextColor="Black"
                 FontSize="32"
-                FontAttributes="Bold"/>
-            <Line
-                Grid.Row="2"
-                X1="0"
-                X2="400"
-                Y1="139"
-                Y2="139"
-                Stroke="#EFEDED"/>
-
-            <!-- Fourth workspace -->
-            <BoxView
-                Grid.Row="3"           
-                HeightRequest="120"
-                CornerRadius="10"
-                Color="White"/>
-            <BoxView
-                Grid.Row="3"
-                HeightRequest="110"
-                WidthRequest="280"
-                HorizontalOptions="Start"
-                CornerRadius="10"
-                Color="#EFEDED"/>
+                FontAttributes="Bold">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Radius="10"
+                        Opacity="0.5"/>
+                </Button.Shadow>
+            </Button>
             <!-- workspace name -->
             <Label
                 Grid.Row="3"
-                Margin="25, 25"
+                Margin="25, 15"
                 Text="Unavailable Slot"
                 FontAttributes="Bold"
-                FontSize="25"/>
+                FontSize="25"
+                VerticalOptions="Start"/>
             <!-- workspace note -->
             <Label
                 Grid.Row="3"
-                Margin="25, 35"
+                Margin="25, 15"
                 Text="n/a"
                 FontSize="20"
                 VerticalOptions="End"/>
-            <!-- Delete button -->
-            <Button 
-                Grid.Row="3"
-                HeightRequest="110"
-                WidthRequest="100"
-                HorizontalOptions="End"
-                CornerRadius="10"
-                BackgroundColor="#EFEDED"
-                TextColor="Black"
-                FontSize="32"
-                FontAttributes="Bold"/>
-            <Line
-                Grid.Row="3"
-                X1="0"
-                X2="400"
-                Y1="139"
-                Y2="139"
-                Stroke="White"/>
+
+
+
+
         </Grid>
     </VerticalStackLayout>
 </ContentPage>
