@@ -63,9 +63,15 @@
 
 	<ItemGroup>
 	  <None Remove="appconfig.json" />
+	  <None Remove="Resources\Images\droplet.svg" />
+	  <None Remove="Resources\Images\humidity.svg" />
+	  <None Remove="Resources\Images\light_bulb.svg" />
 	  <None Remove="Resources\Images\plant.png" />
 	  <None Remove="CommunityToolkit.Mvvm" />
 	  <None Remove="Resources\Images\plant_placeholder.png" />
+	  <None Remove="Resources\Images\temp.svg" />
+	  <None Remove="Resources\Images\warning.svg" />
+	  <None Remove="Resources\Images\water_tank.svg" />
 	  <None Remove="ViewModels\" />
 	  <None Remove="Models\" />
 	  <None Remove="Views\" />
@@ -73,6 +79,10 @@
 	  <None Remove="Resources\Images\Prompt Add Button.png" />
 	  <None Remove="TerraEnums\" />
 	  <None Remove="TerraConstants\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="appconfig.json" />
 	</ItemGroup>
 
 	<ItemGroup>
