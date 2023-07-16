@@ -6,198 +6,279 @@
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
              x:DataType="viewmodel:PlantViewModel"
              >
-    <VerticalStackLayout>
-        <VerticalStackLayout
-            Padding="10, 40, 10, 0">
-            <Grid
-                RowSpacing="10"
-                HorizontalOptions="FillAndExpand">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+    <VerticalStackLayout
+        VerticalOptions="FillAndExpand">
+        <Grid
+            VerticalOptions="FillAndExpand"
+            >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-                <!-- Lighting -->
-                <BoxView
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    HeightRequest="150"
-                    WidthRequest="150"
-                    HorizontalOptions="Start"
-                    CornerRadius="10"
-                    Color="#EFEDED"
-                    />
-                <Label
-                    Margin="10, 10"
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    Text="Lighting:"
-                    TextColor="Black"
-                    FontSize="30"/>
-                <Label
-                    Margin="10, 50"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Text="{Binding Plant.Light}"
-                    TextColor="Black"
-                    FontSize="30"/>
+            <!-- Soil Moisture -->
+            <BoxView
+                Grid.Column="0"
+                Grid.Row="0"
+                HeightRequest="200"
+                Color="#FEFCF3"/>
+            <Image
+                Margin="0, 40"
+                Grid.Column="0"
+                Grid.Row="0"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Source="droplet.svg"
+                HeightRequest="20"
+                WidthRequest="20"/>
+            <Label
+                Margin="0, 10"
+                Grid.Column="0"
+                Grid.Row="0"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Text="Soil Moist"
+                FontAttributes="Bold"
+                FontSize="25"/>
+            <Label
+                Margin="0, 60"
+                Grid.Column="0"
+                Grid.Row="0"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Text="{Binding Plant.SoilMoisture}"
+                FontSize="35"/>
 
+            <!-- Light -->
+            <BoxView
+                Grid.Column="1"
+                Grid.Row="0"
+                HeightRequest="200"
+                Color="#FDF0E0"/>
+            <Image
+                Margin="0, 40"
+                Grid.Column="1"
+                Grid.Row="0"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Source="light_bulb.svg"
+                HeightRequest="20"
+                WidthRequest="20"/>
+            <Label
+                Margin="0, 10"
+                Grid.Column="1"
+                Grid.Row="0"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Text="Light"
+                FontAttributes="Bold"
+                FontSize="25"/>
+            <Label
+                Margin="0, 60"
+                Grid.Column="1"
+                Grid.Row="0"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Text="{Binding Plant.Light}"
+                FontSize="35"/>
 
-                <!-- Soil Moisture -->
-                <BoxView
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    HeightRequest="150"
-                    WidthRequest="230"
-                    HorizontalOptions="End"
-                    CornerRadius="10"
-                    Color="#EFEDED"
-                    />
-                <Label
-                    Margin="10, 10"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Text="Soil Moisture:"
-                    TextColor="Black"
-                    FontSize="30"/>
-                <Label
-                    Margin="10, 50"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Text="{Binding Plant.SoilMoisture}"
-                    TextColor="Black"
-                    FontSize="30"/>
+            <!-- Temperature -->
+            <BoxView
+                Grid.Column="0"
+                Grid.Row="1"
+                HeightRequest="200"
+                Color="#FDF0E0"/>
+            <Image
+                Margin="0, 40"
+                Grid.Column="0"
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Source="temp.svg"
+                HeightRequest="20"
+                WidthRequest="20"/>
+            <Label
+                Margin="0, 10"
+                Grid.Column="0"
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Text="Temp (C)"
+                FontAttributes="Bold"
+                FontSize="25"/>
+            <Label
+                Margin="0, 60"
+                Grid.Column="0"
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Text="{Binding Plant.Temperature}"
+                FontSize="35"/>
 
-                <!-- Humidity & Temperature -->
-                <!-- Humidity -->
-                <BoxView
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    HeightRequest="150"
-                    WidthRequest="150"
-                    HorizontalOptions="Start"
-                    CornerRadius="10"
-                    Color="#EFEDED"/>
-                <Label
-                    Margin="10, 10"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Text="Humidity:"
-                    TextColor="Black"
-                    FontSize="30"/>
-                <Label
-                    Margin="10, 50"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Text="{Binding Plant.Humidity}"
-                    TextColor="Black"
-                    FontSize="30"/>
-                <!-- Temperature -->
-                <BoxView
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    HeightRequest="150"
-                    WidthRequest="230"
-                    HorizontalOptions="End"
-                    CornerRadius="10"
-                    Color="#EFEDED"
-                    />
-                <Label
-                    Margin="10, 10"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Text="Temperature:"
-                    TextColor="Black"
-                    FontSize="30"/>
-                <Label
-                    Margin="10, 50"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Text="{Binding Plant.Temperature}"
-                    TextColor="Black"
-                    FontSize="30"/>
+            <!-- Humidity -->
+            <BoxView
+                Grid.Column="1"
+                Grid.Row="1"
+                HeightRequest="200"
+                Color="#FEFCF3"/>
+            <Image
+                Margin="0, 40"
+                Grid.Column="1"
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Source="humidity.svg"
+                HeightRequest="20"
+                WidthRequest="20"/>
+            <Label
+                Margin="0, 10"
+                Grid.Column="1"
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Text="Humidity (%)"
+                FontAttributes="Bold"
+                FontSize="25"/>
+            <Label
+                Margin="0, 60"
+                Grid.Column="1"
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Text="{Binding Plant.Humidity}"
+                FontSize="35"/>
 
-                <!-- Water Level -->
-                <BoxView
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    HeightRequest="150"
-                    WidthRequest="150"
-                    HorizontalOptions="Start"
-                    CornerRadius="10"
-                    Color="#EFEDED"/>
-                <Label
-                    Margin="10, 10"
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Text="Water lvl:"
-                    TextColor="Black"
-                    FontSize="30"/>
-                <Label
-                    Margin="10, 50"
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Text="{Binding Plant.WaterLevel}"
-                    TextColor="Black"
-                    FontSize="30"/>
+            <!-- Water Tank -->
+            <BoxView
+                Grid.Column="0"
+                Grid.Row="2"
+                HeightRequest="200"
+                Color="#FEFCF3"/>
+            <Image
+                Margin="0, 40"
+                Grid.Column="0"
+                Grid.Row="2"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Source="water_tank.svg"
+                HeightRequest="20"
+                WidthRequest="20"/>
+            <Label
+                Margin="0, 10"
+                Grid.Column="0"
+                Grid.Row="2"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Text="Tank (%)"
+                FontAttributes="Bold"
+                FontSize="25"/>
+            <Label
+                Margin="0, 60"
+                Grid.Column="0"
+                Grid.Row="2"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Text="{Binding Plant.WaterLevel}"
+                FontSize="35"/>
 
-                <!-- Warning -->
-                <BoxView
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    HeightRequest="150"
-                    WidthRequest="230"
-                    HorizontalOptions="End"
-                    CornerRadius="10"
-                    Color="#EFEDED"/>
-                <Label
-                    Margin="10, 10"
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Text="Warning:"
-                    TextColor="Black"
-                    FontSize="30"/>
-                <Label
-                    Margin="10, 50"
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Text="N/A"
-                    TextColor="Black"
-                    FontSize="30"/>
-            </Grid>
-        </VerticalStackLayout>
+            <!-- Warning -->
+            <BoxView
+                Grid.Column="1"
+                Grid.Row="2"
+                HeightRequest="200"
+                Color="#FDF0E0"/>
+            <Image
+                Margin="0, 40"
+                Grid.Column="1"
+                Grid.Row="2"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Source="warning.svg"
+                HeightRequest="20"
+                WidthRequest="20"/>
+            <Label
+                Margin="0, 10"
+                Grid.Column="1"
+                Grid.Row="2"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Text="Warning"
+                FontAttributes="Bold"
+                FontSize="25"/>
+            <Label
+                Margin="0, 65"
+                Grid.Column="1"
+                Grid.Row="2"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Text="..."
+                FontSize="35"/>
+        </Grid>
 
         <Grid
-            Margin="0,55"
-            HorizontalOptions="StartAndExpand"
-            VerticalOptions="StartAndExpand">
+            ColumnSpacing="35"
+            Padding="35, 40">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+
             <BoxView
                 Grid.Column="0"
-                Grid.ColumnSpan="3"
-                HeightRequest="155"
-                HorizontalOptions="Fill"
-                Color="#EFEDED"/>
-            <!-- plant name -->
-            <Label
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                HeightRequest="35"
-                WidthRequest="200"
-                Text="{Binding CurrentPlantName}"
-                TextColor="Black"
-                HorizontalTextAlignment="Center"
-                VerticalTextAlignment="Start"
-                FontSize="30"/>
+                HorizontalOptions="Center"
+                HeightRequest="40"
+                Color="#F3EFE0"
+                CornerRadius="8">
+                <BoxView.Shadow>
+                    <Shadow
+                    Brush="Gray"
+                    Offset="0,0"
+                    Radius="20"
+                    Opacity="0.5"/>
+                </BoxView.Shadow>
+            </BoxView>
+
+
+            <BoxView
+                Grid.Column="1"
+                HorizontalOptions="Center"
+                HeightRequest="40"
+                Color="#F3EFE0"
+                CornerRadius="8">
+                <BoxView.Shadow>
+                    <Shadow
+                    Brush="Gray"
+                    Offset="0,0"
+                    Radius="20"
+                    Opacity="0.5"/>
+                </BoxView.Shadow>
+            </BoxView>
+
+            <BoxView
+                Grid.Column="2"
+                HorizontalOptions="Center"
+                HeightRequest="40"
+                Color="#F3EFE0"
+                CornerRadius="8">
+                <BoxView.Shadow>
+                    <Shadow
+                    Brush="Gray"
+                    Offset="0,0"
+                    Radius="20"
+                    Opacity="0.5"/>
+                </BoxView.Shadow>
+            </BoxView>
+
         </Grid>
+
+
+
+
     </VerticalStackLayout>
 </ContentPage>
