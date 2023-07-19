@@ -91,7 +91,8 @@
         <VerticalStackLayout
             Grid.Row="4"
             Grid.Column="0"
-            Grid.ColumnSpan="2">
+            Grid.ColumnSpan="2"
+            HorizontalOptions="Center">
             <!--graphical view-->
             <Button
                 HeightRequest="55"
@@ -127,7 +128,6 @@
                 Text="Plant Wiki"
                 TextColor="Black"
                 BackgroundColor="Transparent"/>
-            
         </VerticalStackLayout>
 
     </Grid>

@@ -38,6 +38,14 @@ namespace Terra.ViewModels
         [RelayCommand]
         Task ToWorkspaceDisplay() => Shell.Current.GoToAsync(nameof(AddPlantPage));
 
+        // navigate to graphical view
+        [RelayCommand]
+        Task ToGraphicalPage() => Shell.Current.GoToAsync(nameof(GraphicalView));
+
+        // navigate to plant info page
+        [RelayCommand]
+        Task ToPlantInfoPage() => Shell.Current.GoToAsync(nameof(PlantInfoPage));
+
         /// <summary>
         /// Add plant entry to database. (Not able to add to Plant table)
         /// </summary>

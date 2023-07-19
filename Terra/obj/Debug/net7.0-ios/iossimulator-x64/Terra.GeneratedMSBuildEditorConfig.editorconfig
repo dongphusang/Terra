@@ -70,6 +70,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\MainPage.xaml
 
+[C:/Users/sangs/Desktop/Terra/Terra/Views/PlantInfoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.PlantInfoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\PlantInfoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\PlantInfoPage.xaml
+
 [C:/Users/sangs/Desktop/Terra/Terra/Views/RemoveEmailPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.RemoveEmailPage.xaml

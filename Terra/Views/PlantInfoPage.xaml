@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Terra.PlantInfoPage"
+             Title="PlantInfoPage"
+             xmlns:viewmodel="clr-namespace:Terra.ViewModels"
+             x:DataType="viewmodel:PlantViewModel">
+    <ScrollView
+        Padding="30, 30, 30, 10">
+        <StackLayout>
+            <!--plant name-->
+            <Label
+                Text="Crispy Wave Fern"
+                FontSize="30"
+                FontAttributes="Bold"/>
+            
+            <!-- Recommendation -->
+            <!--header label-->
+            <Label
+                Margin="0, 25, 0, 5"
+                Text="Recommendation"
+                FontSize="23"
+                FontAttributes="Bold"/>
+            <!--boxed recommendation-->
+            <Grid
+                HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--box view-->
+                <BoxView
+                    Grid.ColumnSpan="2"
+                    Grid.RowSpan="3"
+                    HeightRequest="190"
+                    Color="#EFEDED"
+                    CornerRadius="8"/>
+                
+                <!--growth rate label-->
+                <Label
+                    Margin="15, 15, 0, 0"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Text="Growth Rate:"
+                    FontAttributes="Bold"
+                    FontSize="17"/>
+                <!--growth rate content (Binded)-->
+                <Label
+                    Margin="100, 15, 0, 0"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    HorizontalOptions="Center"
+                    Text="Low"
+                    FontSize="17"/>
+
+                <!--watering label-->
+                <Label
+                    Margin="15, 15, 0, 0"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Text="Watering:"
+                    FontAttributes="Bold"
+                    FontSize="17"/>
+                <!--watering content (Binded)-->
+                <Label
+                    Margin="45, 15, 0, 0"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    HorizontalOptions="Center"
+                    Text="Low"
+                    FontSize="17"/>
+                
+                <!--light label-->
+                <Label
+                    Margin="15, 5, 0 , 0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1"
+                    Text="Light:"
+                    FontAttributes="Bold"
+                    FontSize="17"/>
+                <!--light content (Binded)-->
+                <Label
+                    Margin="63, 5, 0, 0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1"
+                    HorizontalOptions="Start"
+                    Text="full sun, part shade, full shade"
+                    FontSize="17"/>
+                
+                <!--propagation label-->
+                <Label
+                    Margin="15, 5, 0 , 0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="2"
+                    Text="Propagation:"
+                    FontAttributes="Bold"
+                    FontSize="17"/>
+                <!--propagation content (Binded)-->
+                <Label
+                    Margin="120, 5, 0, 0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="2"
+                    HorizontalOptions="Start"
+                    Text="division, cutting, spore propagation,tissue culture"
+                    FontSize="17"/>
+                
+            </Grid>
+            
+            <!-- General Info -->
+            <!--header label-->
+            <Label
+                Margin="0, 25, 0, 0"
+                Text="Information"
+                FontAttributes="Bold"
+                FontSize="23"/>
+            <!--content-->
+            <Label
+                Margin="0, 10, 0, 0"
+                Text="The Bird's Nest Fern (Asplenium nidus 'Antiquum') is a rare and unique species of fern. Its stunning, wide-spreading fronds make it an attractive focal point, while its resistance to pests and diseases make it perfect for busy gardeners. Its foliage is a delight - deep green and glossy, with leathery leaves that are ruffled along the edges. Its yellow patches on the fronds add further to its aesthetic appeal and help it blend into other foliage. Its ability to adapt to different environments makes it a great choice for both indoor and outdoor spaces, making it a great choice for any tropical themed garden. It's also known for being an oxygen bomb."
+                HorizontalOptions="StartAndExpand"
+                LineHeight="1.3"
+                FontSize="18"/>
+            
+            <!-- User Note -->
+            <!--header label-->
+            <Label
+                Margin="0, 25, 0, 0"
+                Text="User's Note"
+                FontAttributes="Bold"
+                FontSize="23"/>
+            <!--content-->
+            <Label
+                Margin="0, 10, 0, 0"
+                Text="What do I need to know?"
+                HorizontalOptions="StartAndExpand"
+                LineHeight="1.3"
+                FontSize="18"/>
+
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -6,9 +6,10 @@
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
              x:DataType="viewmodel:PlantViewModel"
              >
-    <VerticalStackLayout
-        VerticalOptions="FillAndExpand">
+    <StackLayout
+        BackgroundColor="#617A55">
         <Grid
+            HorizontalOptions="Fill"
             VerticalOptions="FillAndExpand"
             >
             <Grid.ColumnDefinitions>
@@ -25,7 +26,7 @@
             <BoxView
                 Grid.Column="0"
                 Grid.Row="0"
-                HeightRequest="200"
+                HorizontalOptions="Fill"
                 Color="#FEFCF3"/>
             <Image
                 Margin="0, 40"
@@ -58,7 +59,7 @@
             <BoxView
                 Grid.Column="1"
                 Grid.Row="0"
-                HeightRequest="200"
+                HorizontalOptions="Fill"
                 Color="#FDF0E0"/>
             <Image
                 Margin="0, 40"
@@ -91,7 +92,7 @@
             <BoxView
                 Grid.Column="0"
                 Grid.Row="1"
-                HeightRequest="200"
+                HorizontalOptions="Fill"
                 Color="#FDF0E0"/>
             <Image
                 Margin="0, 40"
@@ -124,7 +125,7 @@
             <BoxView
                 Grid.Column="1"
                 Grid.Row="1"
-                HeightRequest="200"
+                HorizontalOptions="Fill"
                 Color="#FEFCF3"/>
             <Image
                 Margin="0, 40"
@@ -157,7 +158,7 @@
             <BoxView
                 Grid.Column="0"
                 Grid.Row="2"
-                HeightRequest="200"
+                HorizontalOptions="Fill"
                 Color="#FEFCF3"/>
             <Image
                 Margin="0, 40"
@@ -190,7 +191,7 @@
             <BoxView
                 Grid.Column="1"
                 Grid.Row="2"
-                HeightRequest="200"
+                HorizontalOptions="Fill"
                 Color="#FDF0E0"/>
             <Image
                 Margin="0, 40"
@@ -219,66 +220,75 @@
                 Text="..."
                 FontSize="35"/>
         </Grid>
-
+        
+        <!-- Navigation -->
         <Grid
             ColumnSpacing="35"
             Padding="35, 40">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="90"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
-            <BoxView
+            <!--subscribe-->
+            <Button
                 Grid.Column="0"
-                HorizontalOptions="Center"
+                HorizontalOptions="Fill"
                 HeightRequest="40"
-                Color="#F3EFE0"
-                CornerRadius="8">
-                <BoxView.Shadow>
+                BackgroundColor="#F3EFE0"
+                CornerRadius="8"
+                Text="SUB"
+                TextColor="Black"
+                FontAttributes="Bold">
+                <Button.Shadow>
                     <Shadow
-                    Brush="Gray"
+                    Brush="#F3EFE0"
                     Offset="0,0"
                     Radius="20"
                     Opacity="0.5"/>
-                </BoxView.Shadow>
-            </BoxView>
-
-
-            <BoxView
+                </Button.Shadow>
+            </Button>
+            <!--info view-->
+            <Button
                 Grid.Column="1"
-                HorizontalOptions="Center"
+                HorizontalOptions="Fill"
                 HeightRequest="40"
-                Color="#F3EFE0"
-                CornerRadius="8">
-                <BoxView.Shadow>
+                BackgroundColor="#F3EFE0"
+                CornerRadius="8"
+                Text="INFO"
+                TextColor="Black"
+                FontAttributes="Bold"
+                Command="{Binding ToPlantInfoPageCommand}">
+                <Button.Shadow>
                     <Shadow
-                    Brush="Gray"
+                    Brush="#F3EFE0"
                     Offset="0,0"
                     Radius="20"
                     Opacity="0.5"/>
-                </BoxView.Shadow>
-            </BoxView>
-
-            <BoxView
+                </Button.Shadow>
+            </Button>
+            <!--graphical view-->
+            <Button
                 Grid.Column="2"
-                HorizontalOptions="Center"
+                HorizontalOptions="Fill"
                 HeightRequest="40"
-                Color="#F3EFE0"
-                CornerRadius="8">
-                <BoxView.Shadow>
+                BackgroundColor="#F3EFE0"
+                CornerRadius="8"
+                Text="GRAPH"
+                TextColor="Black"
+                FontAttributes="Bold"
+                Command="{Binding ToGraphicalPageCommand}">
+                <Button.Shadow>
                     <Shadow
-                    Brush="Gray"
+                    Brush="#F3EFE0"
                     Offset="0,0"
                     Radius="20"
                     Opacity="0.5"/>
-                </BoxView.Shadow>
-            </BoxView>
+                </Button.Shadow>
+            </Button>
 
         </Grid>
 
 
-
-
-    </VerticalStackLayout>
+    </StackLayout>
 </ContentPage>

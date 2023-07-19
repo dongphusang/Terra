@@ -287,6 +287,8 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="M:Terra.ViewModels.PlantViewModel.PostPlant">
             <summary>
@@ -308,6 +310,18 @@
         </member>
         <member name="P:Terra.ViewModels.PlantViewModel.ToWorkspaceDisplayCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.PlantViewModel.ToWorkspaceDisplay"/>.</summary>
+        </member>
+        <member name="F:Terra.ViewModels.PlantViewModel.toGraphicalPageCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.PlantViewModel.ToGraphicalPageCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.PlantViewModel.ToGraphicalPageCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.PlantViewModel.ToGraphicalPage"/>.</summary>
+        </member>
+        <member name="F:Terra.ViewModels.PlantViewModel.toPlantInfoPageCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.PlantViewModel.ToPlantInfoPageCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.PlantViewModel.ToPlantInfoPageCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.PlantViewModel.ToPlantInfoPage"/>.</summary>
         </member>
         <member name="F:Terra.ViewModels.PlantViewModel.postPlantCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.PlantViewModel.PostPlantCommand"/>.</summary>
