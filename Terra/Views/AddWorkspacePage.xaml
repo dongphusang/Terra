@@ -95,6 +95,7 @@
                     Opacity="1"/>
             </Button.Shadow>
         </Button>
+        
         <!-- Restriction Message -->
         <Label
             Grid.Row="4"

@@ -39,7 +39,6 @@ public static class MauiProgram
 		builder.Services.AddTransient<EmptyPlantSlot>();
 		builder.Services.AddTransient<GraphicalView>();
 		builder.Services.AddTransient<EmailSubPage>();
-		builder.Services.AddTransient<RemoveEmailPage>();
 		builder.Services.AddTransient<PlantInfoPage>();
 
 #if DEBUG

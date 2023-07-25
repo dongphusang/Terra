@@ -10823,8 +10823,9 @@ public final class R {
     public static final int test_level_drawable=0x7f0700d8;
     public static final int tooltip_frame_dark=0x7f0700d9;
     public static final int tooltip_frame_light=0x7f0700da;
-    public static final int warning=0x7f0700db;
-    public static final int water_tank=0x7f0700dc;
+    public static final int trash_can=0x7f0700db;
+    public static final int warning=0x7f0700dc;
+    public static final int water_tank=0x7f0700dd;
   }
   public static final class id {
     public static final int ALT=0x7f080000;

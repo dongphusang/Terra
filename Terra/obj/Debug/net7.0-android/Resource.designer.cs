@@ -28121,10 +28121,13 @@ namespace Terra
 			public const int tooltip_frame_light = 2131165402;
 			
 			// aapt resource value: 0x7F0700DB
-			public const int warning = 2131165403;
+			public const int trash_can = 2131165403;
 			
 			// aapt resource value: 0x7F0700DC
-			public const int water_tank = 2131165404;
+			public const int warning = 2131165404;
+			
+			// aapt resource value: 0x7F0700DD
+			public const int water_tank = 2131165405;
 			
 			static Drawable()
 			{

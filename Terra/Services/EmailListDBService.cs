@@ -1,4 +1,4 @@
-﻿// read and write access to Terra db. Responsible for emai list
+﻿// read and write access to Terra db. Responsible for email list
 
 using System;
 using Microsoft.Data.Sqlite;
@@ -189,27 +189,6 @@ namespace Terra.Services
             return false; // no email was removed
         }
 
-        /// <summary>
-        /// Check if users can still add more emails. Max capacity is four emails.
-        /// </summary>
-        /// <returns> Return true if capacity exceeded. Return false otherwise. </returns>
-        public bool IsMaxCapacity()
-        {
-            // open connection
-            using SqliteConnection connection = new(_connectionString);
-            connection.OpenAsync().Wait();
-
-            // construct sql
-            var sql = $"SELECT COUNT(email) FROM EmailTable";
-            using SqliteCommand cmd = new(sql, connection);
-
-            // parse result
-            var currentCapacity = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-
-            if (currentCapacity >= 4) return true;
-
-            return false;
-        }
 
     }
 }

@@ -86,12 +86,6 @@
             <param name="emailName"> name of email (user provided by clicking). </param>
             <returns> Return true if email is removed. Return false otherwise. </returns>
         </member>
-        <member name="M:Terra.Services.EmailListDBService.IsMaxCapacity">
-            <summary>
-            Check if users can still add more emails. Max capacity is four emails.
-            </summary>
-            <returns> Return true if capacity exceeded. Return false otherwise. </returns>
-        </member>
         <member name="M:Terra.Services.EmailService.GetConfiguration">
             <summary>
             Establish configuration file.
@@ -173,25 +167,31 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
-            <inheritdoc/>
+        </member>
+        <member name="M:Terra.ViewModels.EmailSubViewModel.UpdateEmails">
+            <summary>
+            Retrieve mails from sqlite database and update view
+            </summary>
+        </member>
+        <member name="M:Terra.ViewModels.EmailSubViewModel.AddEmail">
+            <summary>
+            Add mail to database and update view
+            </summary>
+        </member>
+        <member name="M:Terra.ViewModels.EmailSubViewModel.DeleteEmail(System.String)">
+            <summary>
+            Remove mail from database and update view
+            </summary>
+            <param name="email"> Mail to be removed. </param>
         </member>
         <member name="P:Terra.ViewModels.EmailSubViewModel.EmailModel">
             <inheritdoc cref="F:Terra.ViewModels.EmailSubViewModel.emailModel"/>
         </member>
-        <member name="P:Terra.ViewModels.EmailSubViewModel.EmailList">
-            <inheritdoc cref="F:Terra.ViewModels.EmailSubViewModel.emailList"/>
+        <member name="P:Terra.ViewModels.EmailSubViewModel.Emails">
+            <inheritdoc cref="F:Terra.ViewModels.EmailSubViewModel.emails"/>
         </member>
-        <member name="P:Terra.ViewModels.EmailSubViewModel.IsMaxCapacity">
-            <inheritdoc cref="F:Terra.ViewModels.EmailSubViewModel.isMaxCapacity"/>
-        </member>
-        <member name="P:Terra.ViewModels.EmailSubViewModel.MaxCapacityWarning">
-            <inheritdoc cref="F:Terra.ViewModels.EmailSubViewModel.maxCapacityWarning"/>
-        </member>
-        <member name="F:Terra.ViewModels.EmailSubViewModel.navigateToRemovalCommand">
-            <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.NavigateToRemovalCommand"/>.</summary>
-        </member>
-        <member name="P:Terra.ViewModels.EmailSubViewModel.NavigateToRemovalCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.NavigateToRemoval"/>.</summary>
+        <member name="P:Terra.ViewModels.EmailSubViewModel.SelectedEmail">
+            <inheritdoc cref="F:Terra.ViewModels.EmailSubViewModel.selectedEmail"/>
         </member>
         <member name="F:Terra.ViewModels.EmailSubViewModel.addEmailCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.AddEmailCommand"/>.</summary>
@@ -203,7 +203,7 @@
             <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.DeleteEmailCommand"/>.</summary>
         </member>
         <member name="P:Terra.ViewModels.EmailSubViewModel.DeleteEmailCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.DeleteEmail"/>.</summary>
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.DeleteEmail(System.String)"/>.</summary>
         </member>
         <member name="M:Terra.ViewModels.GraphicalPlantViewModel.GetDataFromInflux">
             <summary>
@@ -538,14 +538,11 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.EmailModel">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "EmailModel" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.EmailList">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "EmailList" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Emails">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Emails" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsMaxCapacity">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsMaxCapacity" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.MaxCapacityWarning">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "MaxCapacityWarning" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedEmail">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedEmail" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Plant">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Plant" generated properties.</summary>
@@ -598,14 +595,11 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.EmailModel">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "EmailModel" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.EmailList">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "EmailList" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Emails">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Emails" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsMaxCapacity">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsMaxCapacity" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.MaxCapacityWarning">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "MaxCapacityWarning" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedEmail">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedEmail" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Plant">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Plant" generated properties.</summary>

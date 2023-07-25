@@ -2707,8 +2707,9 @@ int drawable temp 0x7f0700d7
 int drawable test_level_drawable 0x7f0700d8
 int drawable tooltip_frame_dark 0x7f0700d9
 int drawable tooltip_frame_light 0x7f0700da
-int drawable warning 0x7f0700db
-int drawable water_tank 0x7f0700dc
+int drawable trash_can 0x7f0700db
+int drawable warning 0x7f0700dc
+int drawable water_tank 0x7f0700dd
 int id ALT 0x7f080000
 int id BOTTOM_END 0x7f080001
 int id BOTTOM_START 0x7f080002

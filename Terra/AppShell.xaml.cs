@@ -14,7 +14,6 @@ public partial class AppShell : Shell
 		Routing.RegisterRoute(nameof(EmptyPlantSlot), typeof(EmptyPlantSlot));
 		Routing.RegisterRoute(nameof(GraphicalView), typeof(GraphicalView));
 		Routing.RegisterRoute(nameof(EmailSubPage), typeof(EmailSubPage));
-		Routing.RegisterRoute(nameof(RemoveEmailPage), typeof(RemoveEmailPage));
 		Routing.RegisterRoute(nameof(PlantInfoPage), typeof(PlantInfoPage));
     }
 }

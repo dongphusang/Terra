@@ -7,6 +7,7 @@ obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\humidity.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\light_bulb.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\splash.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\temp.png
+obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\trash_can.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\water_tank.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\dotnet_bot.png
@@ -15,6 +16,7 @@ obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\humidity.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\light_bulb.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\splash.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\temp.png
+obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\trash_can.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\water_tank.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\dotnet_bot.png
@@ -23,6 +25,7 @@ obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\humidity.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\light_bulb.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\splash.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\temp.png
+obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\trash_can.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\water_tank.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\dotnet_bot.png
@@ -31,6 +34,7 @@ obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\humidity.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\light_bulb.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\splash.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\temp.png
+obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\trash_can.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\water_tank.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\dotnet_bot.png
@@ -39,6 +43,7 @@ obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\humidity.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\light_bulb.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\splash.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\temp.png
+obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\trash_can.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\water_tank.png
 obj\Debug\net7.0-android\resizetizer\r\mipmap-anydpi-v26\appicon.xml

@@ -196,6 +196,10 @@
               "target": "Package",
               "version": "[8.2.1, )"
             },
+            "Google.Cloud.Firestore": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
             "InfluxDB.Client": {
               "target": "Package",
               "version": "[4.12.0, )"
@@ -206,11 +210,11 @@
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[7.0.8, )"
+              "version": "[7.0.9, )"
             },
             "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
-              "version": "[7.0.8, )"
+              "version": "[7.0.9, )"
             },
             "Microsoft.Extensions.Configuration": {
               "suppressParent": "All",
@@ -293,6 +297,10 @@
               "target": "Package",
               "version": "[8.2.1, )"
             },
+            "Google.Cloud.Firestore": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
             "InfluxDB.Client": {
               "target": "Package",
               "version": "[4.12.0, )"
@@ -303,11 +311,11 @@
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[7.0.8, )"
+              "version": "[7.0.9, )"
             },
             "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
-              "version": "[7.0.8, )"
+              "version": "[7.0.9, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -443,6 +451,10 @@
               "target": "Package",
               "version": "[8.2.1, )"
             },
+            "Google.Cloud.Firestore": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
             "InfluxDB.Client": {
               "target": "Package",
               "version": "[4.12.0, )"
@@ -453,11 +465,11 @@
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[7.0.8, )"
+              "version": "[7.0.9, )"
             },
             "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
-              "version": "[7.0.8, )"
+              "version": "[7.0.9, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -542,6 +554,10 @@
               "target": "Package",
               "version": "[8.2.1, )"
             },
+            "Google.Cloud.Firestore": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
             "InfluxDB.Client": {
               "target": "Package",
               "version": "[4.12.0, )"
@@ -552,11 +568,11 @@
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[7.0.8, )"
+              "version": "[7.0.9, )"
             },
             "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
-              "version": "[7.0.8, )"
+              "version": "[7.0.9, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -638,6 +654,10 @@
               "target": "Package",
               "version": "[8.2.1, )"
             },
+            "Google.Cloud.Firestore": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
             "InfluxDB.Client": {
               "target": "Package",
               "version": "[4.12.0, )"
@@ -648,11 +668,11 @@
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
-              "version": "[7.0.8, )"
+              "version": "[7.0.9, )"
             },
             "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
-              "version": "[7.0.8, )"
+              "version": "[7.0.9, )"
             },
             "Microsoft.Extensions.Configuration": {
               "suppressParent": "All",

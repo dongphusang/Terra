@@ -21,41 +21,40 @@
             CornerRadius="10"
             Color="LightGrey"
             />
-        <StackLayout
-            BindableLayout.ItemsSource="{Binding EmailList}"
+        <CollectionView
+            ItemsLayout="VerticalList"
+            ItemsSource="{Binding Emails}"
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedEmail}"
             HorizontalOptions="Center"
             VerticalOptions="FillAndExpand">
-            <!-- Your content goes here -->
-            <BindableLayout.ItemTemplate>
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Label 
-                        Text="{Binding}"
-                        x:Name="label"
-                        FontSize="30">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Command="{Binding DeleteEmailCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
-                                CommandParameter="{Binding Text, Source={x:Reference Name=label}}"/>
-                        </Label.GestureRecognizers>
-                    </Label>
+                    <StackLayout Margin="5">
+                        <Label Text="{Binding .}" 
+                               HorizontalOptions="Center"
+                               FontSize="30"/>
+                    </StackLayout>
                 </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </StackLayout>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
 
         <!-- Email prompt field -->
         <Entry
             Grid.Row="1"
             Margin="25"
             FontSize="15"
-            HeightRequest="53"
-            WidthRequest="300"
+            HeightRequest="60"
+            WidthRequest="330"
             HorizontalOptions="CenterAndExpand"
             BackgroundColor="#F7F7F7"
             Placeholder="Enter your email..."
             PlaceholderColor="#838383"
             Text="{Binding EmailModel.Email}"
             />
-
+        
+        <!-- Email Action -->
         <Grid
             Grid.Row="2"
             ColumnSpacing="10"
@@ -64,37 +63,41 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
-            <!-- Add email button -->
+            <!--add-->
             <Button
                 Grid.Column="0"
-                HeightRequest="40"
-                WidthRequest="222"
+                HeightRequest="50"
+                WidthRequest="230"
                 Text="Confirm"
                 TextColor="Black"
-                BackgroundColor="#CAD7C4"
-                Command="{Binding AddEmailCommand}"
-                />
-            <!-- Navigate to email removal page -->
+                BackgroundColor="{StaticResource ButtonColorLight}"
+                Command="{Binding AddEmailCommand}">
+                <Button.Shadow>
+                    <Shadow
+                    Brush="Gray"
+                    Offset="0,0"
+                    Radius="20"
+                    Opacity="1"/>
+                </Button.Shadow>
+            </Button>
+            <!--remove-->
             <Button
                 Grid.Column="1"
-                HeightRequest="40"
-                WidthRequest="40"
-                Text="D"
-                BackgroundColor="#CAD7C4"
-                Command="{Binding NavigateToRemovalCommand}"/>
+                HeightRequest="50"
+                WidthRequest="50"
+                ImageSource="trash_can.svg"
+                BackgroundColor="{StaticResource ButtonColorLight}"
+                Command="{Binding DeleteEmailCommand}"
+                CommandParameter="{Binding SelectedEmail}">
+                <Button.Shadow>
+                    <Shadow
+                    Brush="Gray"
+                    Offset="0,0"
+                    Radius="20"
+                    Opacity="1"/>
+                </Button.Shadow>
+            </Button>
         </Grid>
         
-        <!-- Warning Message -->
-        <Label
-            Grid.Row="3"
-            Margin="5, 20"
-            FontSize="14"
-            HeightRequest="40"
-            WidthRequest="300"
-            HorizontalOptions="End"
-            VerticalOptions="End"
-            Text="{Binding MaxCapacityWarning}"
-            TextColor="Red"/>
     </Grid>
 </ContentPage>

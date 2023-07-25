@@ -23,5 +23,9 @@ namespace Terra.Models
         public string name;
         [ObservableProperty]
         public string note;
+
+        public double WateringFreq; // watering frequency; how often plant receives water
+
+        public double WateringMode; // mist modes; intensity of mist when watering plant
     }
 }
