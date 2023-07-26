@@ -23,12 +23,17 @@ namespace Terra.ViewModels
         private WorkspaceService _workspaceService;
         private InfluxService _influxService;
 
+        // restriction warning
+        [ObservableProperty]
+        private bool isAdditionRestricted;
+
         // constructor
         public PlantViewModel()
         {
             Plant = new();
             _workspaceService = new();
             _influxService = new();
+            isAdditionRestricted = false;
 
             CurrentWorkspaceName = Preferences.Get("CurrentWorkspace", string.Empty); // get value from preferences (which assigned in WorkspaceViewModel)
             CurrentPlantName = Unwrap(Task.Run(() => _workspaceService.GetPlantName(CurrentWorkspaceName)));           
@@ -45,6 +50,10 @@ namespace Terra.ViewModels
         // navigate to plant info page
         [RelayCommand]
         Task ToPlantInfoPage() => Shell.Current.GoToAsync(nameof(PlantInfoPage));
+
+        // navigate to SubToPlantPage
+        [RelayCommand]
+        Task ToPlantSubscribing() => Shell.Current.GoToAsync(nameof(SubToPlantPage));
 
         /// <summary>
         /// Add plant entry to database. (Not able to add to Plant table)

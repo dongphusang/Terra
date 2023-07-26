@@ -40,6 +40,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<GraphicalView>();
 		builder.Services.AddTransient<EmailSubPage>();
 		builder.Services.AddTransient<PlantInfoPage>();
+		builder.Services.AddTransient<EmailSubPage>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

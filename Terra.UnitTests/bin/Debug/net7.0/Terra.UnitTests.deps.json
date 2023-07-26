@@ -13,7 +13,7 @@
           "Microsoft.Extensions.Logging": "7.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
           "Microsoft.Maui.Graphics": "7.0.86",
-          "Microsoft.NET.Test.Sdk": "17.6.2",
+          "Microsoft.NET.Test.Sdk": "17.6.3",
           "NUnit": "3.13.3",
           "NUnit.Analyzers": "3.6.1",
           "NUnit3TestAdapter": "4.5.0",
@@ -78,11 +78,11 @@
           }
         }
       },
-      "CommunityToolkit.Mvvm/8.2.0": {
+      "CommunityToolkit.Mvvm/8.2.1": {
         "runtime": {
           "lib/net6.0/CommunityToolkit.Mvvm.dll": {
             "assemblyVersion": "8.2.0.0",
-            "fileVersion": "8.2.0.1"
+            "fileVersion": "8.2.1.1"
           }
         }
       },
@@ -92,6 +92,186 @@
           "lib/net6.0/CsvHelper.dll": {
             "assemblyVersion": "30.0.0.0",
             "fileVersion": "30.0.1.0"
+          }
+        }
+      },
+      "Google.Api.CommonProtos/2.7.0": {
+        "dependencies": {
+          "Google.Protobuf": "3.21.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Api.CommonProtos.dll": {
+            "assemblyVersion": "2.7.0.0",
+            "fileVersion": "2.7.0.0"
+          }
+        }
+      },
+      "Google.Api.Gax/4.3.1": {
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "6.0.0",
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Google.Api.Gax.dll": {
+            "assemblyVersion": "4.3.1.0",
+            "fileVersion": "4.3.1.0"
+          }
+        }
+      },
+      "Google.Api.Gax.Grpc/4.3.1": {
+        "dependencies": {
+          "Google.Api.CommonProtos": "2.7.0",
+          "Google.Api.Gax": "4.3.1",
+          "Google.Apis.Auth": "1.58.0",
+          "Grpc.Auth": "2.51.0",
+          "Grpc.Core.Api": "2.51.0",
+          "Grpc.Net.Client": "2.51.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Google.Api.Gax.Grpc.dll": {
+            "assemblyVersion": "4.3.1.0",
+            "fileVersion": "4.3.1.0"
+          }
+        }
+      },
+      "Google.Apis/1.58.0": {
+        "dependencies": {
+          "Google.Apis.Core": "1.58.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.dll": {
+            "assemblyVersion": "1.58.0.0",
+            "fileVersion": "1.58.0.0"
+          }
+        }
+      },
+      "Google.Apis.Auth/1.58.0": {
+        "dependencies": {
+          "Google.Apis": "1.58.0",
+          "Google.Apis.Core": "1.58.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Auth.PlatformServices.dll": {
+            "assemblyVersion": "1.58.0.0",
+            "fileVersion": "1.58.0.0"
+          },
+          "lib/netstandard2.0/Google.Apis.Auth.dll": {
+            "assemblyVersion": "1.58.0.0",
+            "fileVersion": "1.58.0.0"
+          }
+        }
+      },
+      "Google.Apis.Core/1.58.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Core.dll": {
+            "assemblyVersion": "1.58.0.0",
+            "fileVersion": "1.58.0.0"
+          }
+        }
+      },
+      "Google.Cloud.Firestore/3.3.0": {
+        "dependencies": {
+          "Google.Cloud.Firestore.V1": "3.3.0",
+          "System.Collections.Immutable": "6.0.0",
+          "System.Linq.Async": "6.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Google.Cloud.Firestore.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.0.0"
+          }
+        }
+      },
+      "Google.Cloud.Firestore.V1/3.3.0": {
+        "dependencies": {
+          "Google.Api.Gax.Grpc": "4.3.1",
+          "Google.Cloud.Location": "2.0.0",
+          "Google.LongRunning": "3.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Google.Cloud.Firestore.V1.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.0.0"
+          }
+        }
+      },
+      "Google.Cloud.Location/2.0.0": {
+        "dependencies": {
+          "Google.Api.Gax.Grpc": "4.3.1"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Google.Cloud.Location.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "Google.LongRunning/3.0.0": {
+        "dependencies": {
+          "Google.Api.Gax.Grpc": "4.3.1"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Google.LongRunning.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        }
+      },
+      "Google.Protobuf/3.21.0": {
+        "runtime": {
+          "lib/net5.0/Google.Protobuf.dll": {
+            "assemblyVersion": "3.21.0.0",
+            "fileVersion": "3.21.0.0"
+          }
+        }
+      },
+      "Grpc.Auth/2.51.0": {
+        "dependencies": {
+          "Google.Apis.Auth": "1.58.0",
+          "Grpc.Core.Api": "2.51.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Grpc.Auth.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.51.0.0"
+          }
+        }
+      },
+      "Grpc.Core.Api/2.51.0": {
+        "dependencies": {
+          "System.Memory": "4.5.3"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Grpc.Core.Api.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.51.0.0"
+          }
+        }
+      },
+      "Grpc.Net.Client/2.51.0": {
+        "dependencies": {
+          "Grpc.Net.Common": "2.51.0",
+          "Microsoft.Extensions.Logging.Abstractions": "7.0.0"
+        },
+        "runtime": {
+          "lib/net7.0/Grpc.Net.Client.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.51.0.0"
+          }
+        }
+      },
+      "Grpc.Net.Common/2.51.0": {
+        "dependencies": {
+          "Grpc.Core.Api": "2.51.0"
+        },
+        "runtime": {
+          "lib/net7.0/Grpc.Net.Common.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.51.0.0"
           }
         }
       },
@@ -178,7 +358,7 @@
           }
         }
       },
-      "LiveChartsCore/2.0.0-beta.801": {
+      "LiveChartsCore/2.0.0-beta.810": {
         "runtime": {
           "lib/net6.0/LiveChartsCore.dll": {
             "assemblyVersion": "2.0.0.0",
@@ -186,9 +366,9 @@
           }
         }
       },
-      "LiveChartsCore.SkiaSharpView/2.0.0-beta.801": {
+      "LiveChartsCore.SkiaSharpView/2.0.0-beta.810": {
         "dependencies": {
-          "LiveChartsCore": "2.0.0-beta.801",
+          "LiveChartsCore": "2.0.0-beta.810",
           "SkiaSharp": "2.88.3",
           "SkiaSharp.HarfBuzz": "2.88.3"
         },
@@ -199,10 +379,10 @@
           }
         }
       },
-      "LiveChartsCore.SkiaSharpView.Maui/2.0.0-beta.801": {
+      "LiveChartsCore.SkiaSharpView.Maui/2.0.0-beta.810": {
         "dependencies": {
-          "LiveChartsCore": "2.0.0-beta.801",
-          "LiveChartsCore.SkiaSharpView": "2.0.0-beta.801",
+          "LiveChartsCore": "2.0.0-beta.810",
+          "LiveChartsCore.SkiaSharpView": "2.0.0-beta.810",
           "SkiaSharp.Views.Maui.Controls.Compatibility": "2.88.3"
         },
         "runtime": {
@@ -212,7 +392,15 @@
           }
         }
       },
-      "Microsoft.CodeCoverage/17.6.2": {
+      "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "Microsoft.CodeCoverage/17.6.3": {
         "runtime": {
           "lib/netcoreapp3.1/Microsoft.VisualStudio.CodeCoverage.Shim.dll": {
             "assemblyVersion": "15.0.0.0",
@@ -220,20 +408,20 @@
           }
         }
       },
-      "Microsoft.Data.Sqlite/7.0.7": {
+      "Microsoft.Data.Sqlite/7.0.9": {
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "7.0.7",
+          "Microsoft.Data.Sqlite.Core": "7.0.9",
           "SQLitePCLRaw.bundle_e_sqlite3": "2.1.4"
         }
       },
-      "Microsoft.Data.Sqlite.Core/7.0.7": {
+      "Microsoft.Data.Sqlite.Core/7.0.9": {
         "dependencies": {
           "SQLitePCLRaw.core": "2.1.4"
         },
         "runtime": {
           "lib/net6.0/Microsoft.Data.Sqlite.dll": {
-            "assemblyVersion": "7.0.7.0",
-            "fileVersion": "7.0.723.25405"
+            "assemblyVersion": "7.0.9.0",
+            "fileVersion": "7.0.923.31909"
           }
         }
       },
@@ -424,14 +612,14 @@
           }
         }
       },
-      "Microsoft.NET.Test.Sdk/17.6.2": {
+      "Microsoft.NET.Test.Sdk/17.6.3": {
         "dependencies": {
-          "Microsoft.CodeCoverage": "17.6.2",
-          "Microsoft.TestPlatform.TestHost": "17.6.2"
+          "Microsoft.CodeCoverage": "17.6.3",
+          "Microsoft.TestPlatform.TestHost": "17.6.3"
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {},
-      "Microsoft.TestPlatform.ObjectModel/17.6.2": {
+      "Microsoft.TestPlatform.ObjectModel/17.6.3": {
         "dependencies": {
           "NuGet.Frameworks": "6.5.0",
           "System.Reflection.Metadata": "1.6.0"
@@ -531,9 +719,9 @@
           }
         }
       },
-      "Microsoft.TestPlatform.TestHost/17.6.2": {
+      "Microsoft.TestPlatform.TestHost/17.6.3": {
         "dependencies": {
-          "Microsoft.TestPlatform.ObjectModel": "17.6.2",
+          "Microsoft.TestPlatform.ObjectModel": "17.6.3",
           "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
@@ -1043,6 +1231,17 @@
           }
         }
       },
+      "System.Linq.Async/6.0.1": {
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/System.Linq.Async.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1.35981"
+          }
+        }
+      },
       "System.Memory/4.5.3": {},
       "System.Reactive/5.0.0": {
         "runtime": {
@@ -1111,11 +1310,12 @@
       "Terra/1.0.0": {
         "dependencies": {
           "CommunityToolkit.Maui": "5.2.0",
-          "CommunityToolkit.Mvvm": "8.2.0",
+          "CommunityToolkit.Mvvm": "8.2.1",
+          "Google.Cloud.Firestore": "3.3.0",
           "InfluxDB.Client": "4.12.0",
-          "LiveChartsCore.SkiaSharpView.Maui": "2.0.0-beta.801",
-          "Microsoft.Data.Sqlite": "7.0.7",
-          "Microsoft.Data.Sqlite.Core": "7.0.7",
+          "LiveChartsCore.SkiaSharpView.Maui": "2.0.0-beta.810",
+          "Microsoft.Data.Sqlite": "7.0.9",
+          "Microsoft.Data.Sqlite.Core": "7.0.9",
           "Microsoft.Extensions.Configuration.Json": "7.0.0",
           "Microsoft.Extensions.Logging.Debug": "7.0.0",
           "Newtonsoft.Json": "13.0.3"
@@ -1161,12 +1361,12 @@
       "path": "communitytoolkit.maui.core/5.2.0",
       "hashPath": "communitytoolkit.maui.core.5.2.0.nupkg.sha512"
     },
-    "CommunityToolkit.Mvvm/8.2.0": {
+    "CommunityToolkit.Mvvm/8.2.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-F883u+B0AVUkRZS+VQBiZEJiqlGiiQhGA8Ejy1/Y8fl4ecBmSd+HYuDso0iiUhh+UxRDjp2aTQ7jGkuL2S4NrA==",
-      "path": "communitytoolkit.mvvm/8.2.0",
-      "hashPath": "communitytoolkit.mvvm.8.2.0.nupkg.sha512"
+      "sha512": "sha512-I24ofWVEdplxYjUez9/bljv/qb8r8Ccj6cvYXHexNBegLaD3iDy3QrzAAOYVMmfGWIXxlU1ZtECQNfU07+6hXQ==",
+      "path": "communitytoolkit.mvvm/8.2.1",
+      "hashPath": "communitytoolkit.mvvm.8.2.1.nupkg.sha512"
     },
     "coverlet.collector/6.0.0": {
       "type": "package",
@@ -1181,6 +1381,111 @@
       "sha512": "sha512-rcZtgbWR+As4G3Vpgx0AMNmShGuQLFjkHAPIIflzrfkJCx8/AOd4m96ZRmiU1Wi39qS5UVjV0P8qdgqOo5Cwyg==",
       "path": "csvhelper/30.0.1",
       "hashPath": "csvhelper.30.0.1.nupkg.sha512"
+    },
+    "Google.Api.CommonProtos/2.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Wpg4yRGJxX8FE3Ife+Gsj556MDHuki4KqVlZ1jOvvFX6yianI/hbScgvGUlteM9uu7vzbfCyKLc0Sv5/53M3hg==",
+      "path": "google.api.commonprotos/2.7.0",
+      "hashPath": "google.api.commonprotos.2.7.0.nupkg.sha512"
+    },
+    "Google.Api.Gax/4.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5ga69CUb1FQvI53J2zVcD8bDAtWp9ywsRdU/GMPOV16GgolFKM8PmsJNjZcxdPMYJgcttsUYglh5NmoeBRCAkg==",
+      "path": "google.api.gax/4.3.1",
+      "hashPath": "google.api.gax.4.3.1.nupkg.sha512"
+    },
+    "Google.Api.Gax.Grpc/4.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9SCjLjWIRcKtDdnhPQd9XmcbF/jTn/P/PCr5S9rE5CQJkDBo2FfguIudnGeUzy26OUOokutqNl/0VJwU1a5CBw==",
+      "path": "google.api.gax.grpc/4.3.1",
+      "hashPath": "google.api.gax.grpc.4.3.1.nupkg.sha512"
+    },
+    "Google.Apis/1.58.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OFIWLMbxL096T6L3b0cQLSQGAxRZWIZLNkjZtaYUQ5exz67aW7+Sd+OQnzdFGrV0yyTNlMOy+j6AqmdsenJHXA==",
+      "path": "google.apis/1.58.0",
+      "hashPath": "google.apis.1.58.0.nupkg.sha512"
+    },
+    "Google.Apis.Auth/1.58.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8HAVH23c/O6ODdpedkw/2B3VqG4YKEMk0v0Sb6tEz7GRaiqGwdMntytr7iez0iFvCFDA5SkHnYDCNCIztnSMhA==",
+      "path": "google.apis.auth/1.58.0",
+      "hashPath": "google.apis.auth.1.58.0.nupkg.sha512"
+    },
+    "Google.Apis.Core/1.58.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-e1QpJz6hMuxN7Whm9ORl98dV9/6kM4UC+zNHGFO/S7OVV4wglFkix9DMidzdEmo3AGrs9KZSk69N+rYHJKqn+A==",
+      "path": "google.apis.core/1.58.0",
+      "hashPath": "google.apis.core.1.58.0.nupkg.sha512"
+    },
+    "Google.Cloud.Firestore/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GlWgd9OQ1Y7/Hj1FTIvBqTzMxyZQAsTDv3OPcmt3GxwYRcqjLZhEp1eVvXZ57G3yyVh4N4u0hsfxkns+W3MCgA==",
+      "path": "google.cloud.firestore/3.3.0",
+      "hashPath": "google.cloud.firestore.3.3.0.nupkg.sha512"
+    },
+    "Google.Cloud.Firestore.V1/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ROlFT9ZA/mFdC+tRxnamlhIw6LTnZxThH34C1w97AH750USK2HRpjEDjpHPKKGABPNHbHgCWqlqybPVZuaYcNw==",
+      "path": "google.cloud.firestore.v1/3.3.0",
+      "hashPath": "google.cloud.firestore.v1.3.3.0.nupkg.sha512"
+    },
+    "Google.Cloud.Location/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qxJ6dATru5XYQzuE8f3izGKPE14Zpc5mEBEROMM/FXYzMug+3ezoRktcD00l2nmMeJ7CIwWZjx9uRpDIiZTLEA==",
+      "path": "google.cloud.location/2.0.0",
+      "hashPath": "google.cloud.location.2.0.0.nupkg.sha512"
+    },
+    "Google.LongRunning/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8+ctm1v0P90BX1fqQqyTaIrc/5zTTou3kyOsiLUJ6b1vfS/VtzF+L5onJoUDRAY0NWARSQBe73tewFm3ijWpYw==",
+      "path": "google.longrunning/3.0.0",
+      "hashPath": "google.longrunning.3.0.0.nupkg.sha512"
+    },
+    "Google.Protobuf/3.21.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LKtDRauLeBFzwhK7JKpzvyNCvIxYRPX9mHjeuTj3gtG9F6JnSVqF1X2h+UZnQB47Ihi4+EipvbU1fEG7XNa30A==",
+      "path": "google.protobuf/3.21.0",
+      "hashPath": "google.protobuf.3.21.0.nupkg.sha512"
+    },
+    "Grpc.Auth/2.51.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VYWlTq9xYvPpOAu2ISYQdgU3Qx6/h+iKjjmhGHBU1LvqsFAof0dYgIMqib69JjayI6les0qryPGu5Z5V5UNkfQ==",
+      "path": "grpc.auth/2.51.0",
+      "hashPath": "grpc.auth.2.51.0.nupkg.sha512"
+    },
+    "Grpc.Core.Api/2.51.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WUYCnxZKfdBWCKNs08lWFRoTjESt3iyFDthsZu5KcWguZ4OnnXrTu/K5mIdO+R9dUhuw5Xm1ygUrI1e2q8d1YA==",
+      "path": "grpc.core.api/2.51.0",
+      "hashPath": "grpc.core.api.2.51.0.nupkg.sha512"
+    },
+    "Grpc.Net.Client/2.51.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6XybyqUGn5+8UTMRKAfbM+aXagR3qxHROIEeFyul5gvh/dF3UqpnpnTkcRKIae4n5+Bt8j1J1VdNqYyEvYoYyg==",
+      "path": "grpc.net.client/2.51.0",
+      "hashPath": "grpc.net.client.2.51.0.nupkg.sha512"
+    },
+    "Grpc.Net.Common/2.51.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lAymSKjOHFopWt7RAF/Rxkf7SKGZaj+tJdabcnobm6XkdHX1zIQdkByeqIwmJesDbbCTpLEae6oSrn4eWWE9TQ==",
+      "path": "grpc.net.common/2.51.0",
+      "hashPath": "grpc.net.common.2.51.0.nupkg.sha512"
     },
     "HarfBuzzSharp/2.8.2.3": {
       "type": "package",
@@ -1224,47 +1529,54 @@
       "path": "jsonsubtypes/2.0.1",
       "hashPath": "jsonsubtypes.2.0.1.nupkg.sha512"
     },
-    "LiveChartsCore/2.0.0-beta.801": {
+    "LiveChartsCore/2.0.0-beta.810": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-4ugDe7wAYfxnW2jjo+YqyBM/ldsDcFpUmVKv+frjMI6uPQJtt3jApdyeB7FP3GmwBmHVFJUFup0wxbI6BLg2/A==",
-      "path": "livechartscore/2.0.0-beta.801",
-      "hashPath": "livechartscore.2.0.0-beta.801.nupkg.sha512"
+      "sha512": "sha512-b9qZVXu0KMwFZJLpv36o1UawCwLcSf0MRbc8wNyx9aUVhCaG39Xd+zRv1AVcz/tfjYKFnZlEGH2bAOV9h1dH2A==",
+      "path": "livechartscore/2.0.0-beta.810",
+      "hashPath": "livechartscore.2.0.0-beta.810.nupkg.sha512"
     },
-    "LiveChartsCore.SkiaSharpView/2.0.0-beta.801": {
+    "LiveChartsCore.SkiaSharpView/2.0.0-beta.810": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Bi5Y3x7E/K97hLmdfshXGLs+FODMnnNeAnpan0AgEiOMd+sSjdS002cysMcI5zOVVIVHsNZk6jX9f++C9lxgtw==",
-      "path": "livechartscore.skiasharpview/2.0.0-beta.801",
-      "hashPath": "livechartscore.skiasharpview.2.0.0-beta.801.nupkg.sha512"
+      "sha512": "sha512-mHotSKnwGb31ppfevU43rUWcsWKdUavegdesfM2qbtr7LAgGf3hGXzY6ecbab/y1tN+pGyfDA7WwF5gI8sFMPg==",
+      "path": "livechartscore.skiasharpview/2.0.0-beta.810",
+      "hashPath": "livechartscore.skiasharpview.2.0.0-beta.810.nupkg.sha512"
     },
-    "LiveChartsCore.SkiaSharpView.Maui/2.0.0-beta.801": {
+    "LiveChartsCore.SkiaSharpView.Maui/2.0.0-beta.810": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-GalrlwRHB91skh79vaeUPCa5cJsgpQyM6RrDm0rFTNLI7iQqhJcqp0B4C3+WHfhUC3j0LsuIKjZOPQkCUaVPbw==",
-      "path": "livechartscore.skiasharpview.maui/2.0.0-beta.801",
-      "hashPath": "livechartscore.skiasharpview.maui.2.0.0-beta.801.nupkg.sha512"
+      "sha512": "sha512-TDgjC8YzAXbPw8J3dshA96FbWQUt/PQac6HseEll9524GfxkK2JteptrRHPkAdrGAzhHgyd/EWbVEdWAooaCtg==",
+      "path": "livechartscore.skiasharpview.maui/2.0.0-beta.810",
+      "hashPath": "livechartscore.skiasharpview.maui.2.0.0-beta.810.nupkg.sha512"
     },
-    "Microsoft.CodeCoverage/17.6.2": {
+    "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-t+DjPlq7GIxIkOK/jiTmNeiEMVkfVCynBEZyV+IMg2ro43NugKExng+7a04R1fBLi+d6voxjeDxL2ozdl+XyVg==",
-      "path": "microsoft.codecoverage/17.6.2",
-      "hashPath": "microsoft.codecoverage.17.6.2.nupkg.sha512"
+      "sha512": "sha512-UcSjPsst+DfAdJGVDsu346FX0ci0ah+lw3WRtn18NUwEqRt70HaOQ7lI72vy3+1LxtqI3T5GWwV39rQSrCzAeg==",
+      "path": "microsoft.bcl.asyncinterfaces/6.0.0",
+      "hashPath": "microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512"
     },
-    "Microsoft.Data.Sqlite/7.0.7": {
+    "Microsoft.CodeCoverage/17.6.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tiNmV1oPy+Z2R7Wd0bPB/FxCr8B+/5q11OpDMG751GA/YuOL7MZrBFfzv5oFRlFe08K6sjrnbrauzzGIeNrzLQ==",
-      "path": "microsoft.data.sqlite/7.0.7",
-      "hashPath": "microsoft.data.sqlite.7.0.7.nupkg.sha512"
+      "sha512": "sha512-Gorg6F1dOxlI28yHYKhbQ3pOOfHeW6sUfsmwFQFaIV+xttUAZ+l8KarHIfsR+rBAnjY9VH71BXvPXBuObCkXsw==",
+      "path": "microsoft.codecoverage/17.6.3",
+      "hashPath": "microsoft.codecoverage.17.6.3.nupkg.sha512"
     },
-    "Microsoft.Data.Sqlite.Core/7.0.7": {
+    "Microsoft.Data.Sqlite/7.0.9": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-21FRzcJhaTrlv7kTrqr/ltFcSQM2TyuTTPhUcjO8H73od7Bb3QraNW90c7lUucNI/245XPkKZG4fp7/7OsKCSg==",
-      "path": "microsoft.data.sqlite.core/7.0.7",
-      "hashPath": "microsoft.data.sqlite.core.7.0.7.nupkg.sha512"
+      "sha512": "sha512-XZ/7gpAP3EFlaDkLqv21Ro1ZHMtkh7UpBImyLcv0x+G5qt2J9vvrAk1g5qYL2ykwzpzf7Stc6Xt1MSkv5YmdPg==",
+      "path": "microsoft.data.sqlite/7.0.9",
+      "hashPath": "microsoft.data.sqlite.7.0.9.nupkg.sha512"
+    },
+    "Microsoft.Data.Sqlite.Core/7.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ow2PPoeW0yFc7NhexacQUw/LVjkO1mLK3VZAxhVIVjmQWlgYl/4mo9/U7uz+z75I+ZN6LUvq9M0ftU3IE75Ilg==",
+      "path": "microsoft.data.sqlite.core/7.0.9",
+      "hashPath": "microsoft.data.sqlite.core.7.0.9.nupkg.sha512"
     },
     "Microsoft.Extensions.Configuration/7.0.0": {
       "type": "package",
@@ -1385,12 +1697,12 @@
       "path": "microsoft.net.http.headers/2.2.8",
       "hashPath": "microsoft.net.http.headers.2.2.8.nupkg.sha512"
     },
-    "Microsoft.NET.Test.Sdk/17.6.2": {
+    "Microsoft.NET.Test.Sdk/17.6.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-+WFxuoFVBG0aewD9Psw+1I90kaRToQgMIzK20xNVRO4QRWR9Bou3qGefrZvMZ/xTC+6bAmZppFbpPbiHDzrPyg==",
-      "path": "microsoft.net.test.sdk/17.6.2",
-      "hashPath": "microsoft.net.test.sdk.17.6.2.nupkg.sha512"
+      "sha512": "sha512-MglaNTl646dC2xpHKotSk1xscmHO5uV3x3NK057IUA9BM3Wgl16WMEb9ptGczk518JfLd1+Th5OAYwnoWgHQQQ==",
+      "path": "microsoft.net.test.sdk/17.6.3",
+      "hashPath": "microsoft.net.test.sdk.17.6.3.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
@@ -1399,19 +1711,19 @@
       "path": "microsoft.netcore.platforms/1.1.0",
       "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
     },
-    "Microsoft.TestPlatform.ObjectModel/17.6.2": {
+    "Microsoft.TestPlatform.ObjectModel/17.6.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-I3S/oELDAe/ckFltBnPb0PV+gADbpc8n0yGTtYfTd7q1hd0cAZKn/FrYoegA/rGws8fEFyJD/2PB6uq+nIjWsg==",
-      "path": "microsoft.testplatform.objectmodel/17.6.2",
-      "hashPath": "microsoft.testplatform.objectmodel.17.6.2.nupkg.sha512"
+      "sha512": "sha512-gSqtX3RvcFisaLPs6sKXdZkSwUix83NQ9nOU/w6pYrHTl+d8GsVHSL9rvDNxMgoV5BNOdyU7zK7JOfbSaVMDWQ==",
+      "path": "microsoft.testplatform.objectmodel/17.6.3",
+      "hashPath": "microsoft.testplatform.objectmodel.17.6.3.nupkg.sha512"
     },
-    "Microsoft.TestPlatform.TestHost/17.6.2": {
+    "Microsoft.TestPlatform.TestHost/17.6.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-WszrF1CoG+Y2bA4WJFxlaPADQCWUuNP6TCxVRuScmP6DQsNvDDuOO9XiUxCA+wPmNOSyWVh9EGrPu7JoUpf2gA==",
-      "path": "microsoft.testplatform.testhost/17.6.2",
-      "hashPath": "microsoft.testplatform.testhost.17.6.2.nupkg.sha512"
+      "sha512": "sha512-lrgRXKFfIZSPlhuoQGLtciO/osL+4oADYEYb0d5or7n7YyJATIWespq3lRgz2IQpRh6N7cm0DnCOWeZiCRGzxA==",
+      "path": "microsoft.testplatform.testhost/17.6.3",
+      "hashPath": "microsoft.testplatform.testhost.17.6.3.nupkg.sha512"
     },
     "Microsoft.Win32.SystemEvents/6.0.0": {
       "type": "package",
@@ -1587,6 +1899,13 @@
       "sha512": "sha512-NfuoKUiP2nUWwKZN6twGqXioIe1zVD0RIj2t976A+czLHr2nY454RwwXs6JU9Htc6mwqL6Dn/nEL3dpVf2jOhg==",
       "path": "system.drawing.common/6.0.0",
       "hashPath": "system.drawing.common.6.0.0.nupkg.sha512"
+    },
+    "System.Linq.Async/6.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0YhHcaroWpQ9UCot3Pizah7ryAzQhNvobLMSxeDIGmnXfkQn8u5owvpOH0K6EVB+z9L7u6Cc4W17Br/+jyttEQ==",
+      "path": "system.linq.async/6.0.1",
+      "hashPath": "system.linq.async.6.0.1.nupkg.sha512"
     },
     "System.Memory/4.5.3": {
       "type": "package",

@@ -6,43 +6,103 @@
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
              x:DataType="viewmodel:PlantViewModel">
     <VerticalStackLayout>
-        <!--Image at top-->
-        <Image
-            Source="plant.png"
-            Aspect="AspectFill"/>
+        <Grid
+            Padding="30, 50, 30, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-        <!-- Prompt Input Fields -->
-        <!-- Plant name *required -->
-        <Entry
-            Margin="25, -120, 25, 0"
-            FontSize="15"
-            HeightRequest="53"
-            BackgroundColor="#F7F7F7"
-            Placeholder="Plant name..."
-            PlaceholderColor="#838383"
-            Text="{Binding Plant.Name}"
-            />
-        <!-- Plant note *optional -->
-        <Editor
-            Margin="25, 34, 25, 0"
-            FontSize="15"
-            HeightRequest="90"
-            BackgroundColor="#F7F7F7"
-            Placeholder="Note..."
-            PlaceholderColor="#838383"      
-            Text="{Binding Plant.Note}"
-            />
+            <!-- workspace entry label -->
+            <Label
+                Margin="0,0,0,5"
+                Grid.Row="0"
+                FontSize="20"
+                FontAttributes="Bold"
+                Text="Plant Name"/>
+            <!-- workspace entry background -->
+            <BoxView
+                Grid.Row="1"
+                HeightRequest="55"
+                Color="{StaticResource BoxViewTextPromptBackGround}"
+                CornerRadius="8"/>
+            <!-- workspace entry -->
+            <Entry
+                Grid.Row="1"
+                HeightRequest="50"
+                BackgroundColor="Transparent"        
+                Placeholder="..."
+                FontSize="18"
+                Text="{Binding Plant.Name}"
+                IsEnabled="{Binding IsAdditionRestricted}"/>
+            <!-- plant picker -->
+            <Picker
+                Grid.Row="2"
+                HeightRequest="60"
+                Title="Pick a plant"
+                SelectedItem="{Binding Plant.Name}">
+                
 
-        <!-- Confirm Button -->
-        <Button
-            Margin="0, 100"
-            HeightRequest="40"
-            WidthRequest="222"
-            Text="Confirm"
-            TextColor="Black"
-            BackgroundColor="#CAD7C4"
-            Command="{Binding PostPlantCommand}"
-            />
+                </Picker>   
 
+            <!-- note editor label -->
+            <Label
+                Margin="0,20,0,5"
+                Grid.Row="3"
+                FontSize="20"
+                FontAttributes="Bold"
+                Text="Note"/>
+            <!-- note editor background -->
+            <BoxView
+                Grid.Row="4"
+                HeightRequest="250"
+                Color="{StaticResource BoxViewTextPromptBackGround}"
+                CornerRadius="8"/>
+            <!-- note editor -->
+            <Editor
+                Grid.Row="4"
+                HeightRequest="250"
+                BackgroundColor="Transparent"        
+                Placeholder="..."
+                FontSize="18"
+                Text="{Binding Plant.Note}"
+                IsEnabled="{Binding IsAdditionRestricted}"/>
+
+            <!-- Confirm Button -->
+            <Button       
+                Margin="0, 50, 0, 0"
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                HeightRequest="50"
+                WidthRequest="230"
+                Text="confirm"
+                TextColor="Black"
+                BackgroundColor="{StaticResource ButtonColorLight}"
+                Command="{Binding PostPlantCommand}"
+                IsEnabled="{Binding IsAdditionRestricted}">
+                    <Button.Shadow>
+                        <Shadow
+                        Brush="Gray"
+                        Offset="0,0"
+                        Radius="20"
+                        Opacity="1"/>
+                    </Button.Shadow>
+                </Button>
+
+            <!-- Restriction Message -->
+            <Label
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                FontSize="14"
+                HorizontalOptions="CenterAndExpand"
+                Text="haha"
+                TextColor="Red"/>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

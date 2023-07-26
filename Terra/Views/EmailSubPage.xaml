@@ -9,18 +9,17 @@
         Padding="20"
         HorizontalOptions="Center">
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/> 
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>  
 
         <BoxView
             Grid.Row="0"
             HorizontalOptions="Center"
             HeightRequest="250"
             CornerRadius="10"
-            Color="LightGrey"
-            />
+            Color="LightGrey"/>
         <CollectionView
             ItemsLayout="VerticalList"
             ItemsSource="{Binding Emails}"
@@ -32,8 +31,8 @@
                 <DataTemplate>
                     <StackLayout Margin="5">
                         <Label Text="{Binding .}" 
-                               HorizontalOptions="Center"
-                               FontSize="30"/>
+                               HorizontalOptions="Center" 
+                               FontSize="25"/>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -68,7 +67,7 @@
                 Grid.Column="0"
                 HeightRequest="50"
                 WidthRequest="230"
-                Text="Confirm"
+                Text="confirm"
                 TextColor="Black"
                 BackgroundColor="{StaticResource ButtonColorLight}"
                 Command="{Binding AddEmailCommand}">

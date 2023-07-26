@@ -76,6 +76,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.PlantInfoPage.
 build_metadata.AdditionalFiles.TargetPath = Views\PlantInfoPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\PlantInfoPage.xaml
 
+[C:/Users/sangs/Desktop/Terra/Terra/Views/SubToPlantPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.SubToPlantPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\SubToPlantPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\SubToPlantPage.xaml
+
 [C:/Users/sangs/Desktop/Terra/Terra/Views/WorkspaceDisplay.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Terra.Views.WorkspaceDisplay.xaml

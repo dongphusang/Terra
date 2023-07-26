@@ -239,7 +239,8 @@
                 CornerRadius="8"
                 Text="SUB"
                 TextColor="Black"
-                FontAttributes="Bold">
+                FontAttributes="Bold"
+                Command="{Binding ToPlantSubscribingCommand}">
                 <Button.Shadow>
                     <Shadow
                     Brush="#F3EFE0"

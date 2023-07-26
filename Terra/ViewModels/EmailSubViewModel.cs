@@ -22,21 +22,35 @@ namespace Terra.ViewModels
         // services
         private EmailService _emailService;
         private EmailListDBService _emailListDBService;
+        private WorkspaceService _workspaceService;
 
         // email list
         [ObservableProperty]
-        public List<string> emails;
+        public List<string> emails; // emails that are available
+        [ObservableProperty]
+        public ObservableCollection<string> activeEmails; // emails that subscribe for a particular plant, receiving its information
 
         // email selected for removal
         [ObservableProperty]
         public string selectedEmail;
 
+        // plant and workspace name
+        [ObservableProperty]
+        public string currentWorkspaceName;
+        [ObservableProperty]
+        public string currentPlantName;
+
         public EmailSubViewModel()
         {
             Emails = new();
+            ActiveEmails = new();
             EmailModel = new();
             _emailService = new();
             _emailListDBService = new();
+            _workspaceService = new();
+
+            CurrentWorkspaceName = Preferences.Get("CurrentWorkspace", string.Empty); // get value from preferences (which assigned in WorkspaceViewModel)
+            CurrentPlantName = Unwrap(Task.Run(() => _workspaceService.GetPlantName(CurrentWorkspaceName)));
         }
 
         /// <summary>
@@ -72,6 +86,33 @@ namespace Terra.ViewModels
         {
             _emailListDBService.DeleteEmail(email);
             UpdateEmails();
+        }
+
+        // activate subscription for one email
+        [RelayCommand]
+        public void ModifySubscription()
+        {
+            if (ActiveEmails.Contains(SelectedEmail))
+            {
+                ActiveEmails.Remove(SelectedEmail);
+                SelectedEmail = null;
+            }
+            else
+            {
+                ActiveEmails.Add(SelectedEmail);
+                SelectedEmail = null;
+            }
+        }
+
+        // check if object returned from Task.Run() is null. Return non-null value. Usually used for sqlite operations
+        private string Unwrap(Task<object> obj)
+        {
+            var result = obj.Result;
+            if (result is null)
+            {
+                return "N/A";
+            }
+            return result.ToString();
         }
 
     }
