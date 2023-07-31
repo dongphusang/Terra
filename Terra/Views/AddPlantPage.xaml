@@ -5,15 +5,16 @@
              Title="AddPlantPage"
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
              x:DataType="viewmodel:PlantViewModel">
-    <VerticalStackLayout>
+    <ScrollView>
         <Grid
-            Padding="30, 50, 30, 0">
+            Padding="30, 50, 30, 0"
+            HeightRequest="{Binding ScreenHeight}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
@@ -30,7 +31,7 @@
                 HeightRequest="55"
                 Color="{StaticResource BoxViewTextPromptBackGround}"
                 CornerRadius="8"/>
-            <!-- workspace entry -->
+            <!-- plant entry -->
             <Entry
                 Grid.Row="1"
                 HeightRequest="50"
@@ -38,16 +39,30 @@
                 Placeholder="..."
                 FontSize="18"
                 Text="{Binding Plant.Name}"
-                IsEnabled="{Binding IsAdditionRestricted}"/>
+                TextChanged="Entry_TextChanged"
+                IsEnabled="{Binding IsAdditionRestricted}"
+                x:Name="plant_entry"/>
             <!-- plant picker -->
-            <Picker
+            <CollectionView
                 Grid.Row="2"
-                HeightRequest="60"
-                Title="Pick a plant"
-                SelectedItem="{Binding Plant.Name}">
-                
+                HeightRequest="100"
+                ItemsLayout="VerticalList"
+                ItemsSource="{Binding PlantNames}"
+                SelectionMode="Single"
+                SelectedItem="{Binding ApiPlant.SelectedPlant}"
+                HorizontalOptions="Center"
+                VerticalOptions="FillAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="5" BackgroundColor="Beige">
+                            <Label Text="{Binding .}" 
+                                HorizontalOptions="Center" 
+                                FontSize="25"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
-                </Picker>   
+            </CollectionView>
 
             <!-- note editor label -->
             <Label
@@ -83,8 +98,10 @@
                 Text="confirm"
                 TextColor="Black"
                 BackgroundColor="{StaticResource ButtonColorLight}"
-                Command="{Binding PostPlantCommand}"
-                IsEnabled="{Binding IsAdditionRestricted}">
+                Command="{Binding GetPickerOptionsCommand}"
+                CommandParameter="{Binding Plant.Name}"
+                IsEnabled="{Binding IsAdditionRestricted}"
+                >
                     <Button.Shadow>
                         <Shadow
                         Brush="Gray"
@@ -104,5 +121,5 @@
                 Text="haha"
                 TextColor="Red"/>
         </Grid>
-    </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

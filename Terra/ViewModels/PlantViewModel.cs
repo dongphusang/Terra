@@ -8,6 +8,7 @@ using Terra.Models;
 using Terra.Services;
 using CommunityToolkit.Maui.Core;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Terra.ViewModels
 {
@@ -15,6 +16,8 @@ namespace Terra.ViewModels
 	{
         [ObservableProperty]
         public Plant plant; // plant model
+        [ObservableProperty]
+        public APIPlant apiPlant;
 
         public string CurrentWorkspaceName { get; set; } // name of currently chosen workspace (representing a group of plants)
         public string CurrentPlantName { get; set; } // name of currently chosen plant
@@ -22,18 +25,33 @@ namespace Terra.ViewModels
         // service objects
         private WorkspaceService _workspaceService;
         private InfluxService _influxService;
+        private PlantAPIService _plantAPIService;
 
         // restriction warning
         [ObservableProperty]
         private bool isAdditionRestricted;
 
+        [ObservableProperty]
+        double screenHeight;
+        [ObservableProperty]
+        double screenWidth;
+        [ObservableProperty]
+        List<string> plantNames; // retrieved from api
+
         // constructor
         public PlantViewModel()
         {
             Plant = new();
+
             _workspaceService = new();
             _influxService = new();
-            isAdditionRestricted = false;
+            _plantAPIService = new();
+
+            ScreenHeight = DeviceDisplay.MainDisplayInfo.Height;
+            ScreenWidth = DeviceDisplay.MainDisplayInfo.Width;
+            isAdditionRestricted = true;
+
+            Console.WriteLine($"SIZE: {ScreenWidth} {ScreenHeight}");
 
             CurrentWorkspaceName = Preferences.Get("CurrentWorkspace", string.Empty); // get value from preferences (which assigned in WorkspaceViewModel)
             CurrentPlantName = Unwrap(Task.Run(() => _workspaceService.GetPlantName(CurrentWorkspaceName)));           
@@ -54,6 +72,12 @@ namespace Terra.ViewModels
         // navigate to SubToPlantPage
         [RelayCommand]
         Task ToPlantSubscribing() => Shell.Current.GoToAsync(nameof(SubToPlantPage));
+
+        [RelayCommand]
+        public void GetPickerOptions(string query)
+        {
+            PlantNames = _plantAPIService.GetPlantOptions(query).Result;
+        }
 
         /// <summary>
         /// Add plant entry to database. (Not able to add to Plant table)

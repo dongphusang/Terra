@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ThreadNetwork;
 using System.Reflection;
-using System.Net.Http;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.Text.Json.Nodes;
+using Terra.Models;
 
 namespace Terra.Services
 {
@@ -14,12 +16,9 @@ namespace Terra.Services
     {
         private IConfigurationRoot _config; // configuration object
         private HttpClient _httpClient;
-        private HttpResponseMessage _response;
-
-        List<string> result; // result query
-
         // connection attributes
         readonly string KEY;
+        const string URL = "https://perenual.com/api/species-list";
 
         public PlantAPIService()
         {
@@ -45,10 +44,29 @@ namespace Terra.Services
             return builder;
         }
 
-
-        public async Task ProcessRepositoriesAsync(HttpClient client)
+        /// <summary>
+        /// Get plant names from API based user's input
+        /// </summary>
+        /// <param name="plantName"> Name of plant. </param>
+        /// <returns> Dictionary on plant's information. </returns>
+        public async Task<List<string>> GetPlantOptions(string query)
         {
-            result = _httpClient.GetAsync()
+            
+            // construct URI
+            var uri = new Uri(URL + "?key=" +KEY + "&q=" + query);
+            // get resource from api
+            HttpResponseMessage result = _httpClient.GetAsync(uri).Result;
+            // if succeeded
+            if (result.IsSuccessStatusCode)
+            {
+                var response = await result.Content.ReadAsStringAsync();
+                var deserialized = JsonConvert.DeserializeObject<List<APIPlant>>(JObject.Parse(response)["data"].ToString());
+                var filteredList = deserialized.Select(apiPlant => apiPlant.Common_name).ToList();
+
+                return new List<string>(filteredList);
+            }
+
+            return new List<string>() { "empty"};
         }
     }
 }
