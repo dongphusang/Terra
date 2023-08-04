@@ -69,14 +69,16 @@ Every task below if they are actively in progress, they will be displayed as hyp
 
 Total UI Revamp Series (36.25%)      
 -
-- <a href="https://github.com/dongphusang/Terra/issues/18" target="_blank">Main Page</a> (90%)
+- <a href="https://github.com/dongphusang/Terra/issues/18" target="_blank">Main page</a> (90%)
 - <a href="https://github.com/dongphusang/Terra/issues/19" target="_blank">Add Workspace page</a> (100%)
 - <a href="https://github.com/dongphusang/Terra/issues/19" target="_blank">WorkspaceList Page</a> (100%)
 - Empty Plant Slot page
-- Adding Plant page
-- Plant Status page
-- Email Subscribe page
-- Email Unsubscribe page
+- <a href="https://github.com/dongphusang/Terra/issues/21" target="_blank">Adding Plant page</a> (100%)
+- <a href="https://github.com/dongphusang/Terra/issues/22" target="_blank">Plant Status page</a> (100%)
+- <a href="https://github.com/dongphusang/Terra/issues/23" target="_blank">Email Subscribe page</a> (100%)
+- <a href="https://github.com/dongphusang/Terra/issues/24" target="_blank">Plant Info page</a> (100%)
+- System Mode page
+- Wiki page
 
 First Unit Testing (0%)
 - 
