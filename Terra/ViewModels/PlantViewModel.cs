@@ -9,6 +9,7 @@ using Terra.Services;
 using CommunityToolkit.Maui.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Terra.ViewModels
 {
@@ -42,6 +43,7 @@ namespace Terra.ViewModels
         public PlantViewModel()
         {
             Plant = new();
+            ApiPlant = new();
 
             _workspaceService = new();
             _influxService = new();
@@ -50,8 +52,6 @@ namespace Terra.ViewModels
             ScreenHeight = DeviceDisplay.MainDisplayInfo.Height;
             ScreenWidth = DeviceDisplay.MainDisplayInfo.Width;
             isAdditionRestricted = true;
-
-            Console.WriteLine($"SIZE: {ScreenWidth} {ScreenHeight}");
 
             CurrentWorkspaceName = Preferences.Get("CurrentWorkspace", string.Empty); // get value from preferences (which assigned in WorkspaceViewModel)
             CurrentPlantName = Unwrap(Task.Run(() => _workspaceService.GetPlantName(CurrentWorkspaceName)));           
@@ -73,35 +73,54 @@ namespace Terra.ViewModels
         [RelayCommand]
         Task ToPlantSubscribing() => Shell.Current.GoToAsync(nameof(SubToPlantPage));
 
+        /// <summary>
+        /// Update collection view that displays matching plants with user's entry.
+        /// </summary>
+        /// <param name="query"> Entry's text characters. </param>
         [RelayCommand]
-        public void GetPickerOptions(string query)
+        public async Task UpdateCollectionView(string query)
         {
-            PlantNames = _plantAPIService.GetPlantOptions(query).Result;
+            PlantNames = await _plantAPIService.GetPlantOptions(query);
         }
 
         /// <summary>
-        /// Add plant entry to database. (Not able to add to Plant table)
+        /// Add plant entry to database.
         /// </summary>
         /// <returns></returns>
         [RelayCommand]
         public Task PostPlant()
         {
+            if (Plant.Name is null)
+            {
+                // make toast: want users to choose a plant from list of plant names
+                ThrowToast("Choose Plant!");
+                // don't update database
+                return Task.CompletedTask;
+            }
             // insert plant entry to sqlite
             _workspaceService.InsertToPlantTable(CurrentWorkspaceName, Plant.Name, Plant.Note);
-            // make a toast
-            {
-                var message = "Plant added!";
-                ToastDuration duration = ToastDuration.Short;
-                var fontSize = 14;
-                Toast.Make(message, duration, fontSize).Show();
-            }
+            // make  toast: notify users the plant has been added
+            ThrowToast("Plant Added!");
+
             // navigate to WorkspaceDisplay
             return Shell.Current.GoToAsync("///MainPage");
         }
 
         /// <summary>
-        /// Invoke influx service object to query data from InfluxDB. Discard broken frames.
-        /// Then break down data and assign them to Plant model
+        /// 
+        /// </summary>
+        public void GetPlantDataFromAPI()
+        {
+            var id = _plantAPIService.GetPlantID(CurrentPlantName).Result;
+            ApiPlant = _plantAPIService.GetPlantDetails(id).Result;
+            ApiPlant.Light = string.Join(", ", ApiPlant.Sunlight);
+            ApiPlant.PropagationMethods = string.Join(", ", ApiPlant.Propagation);
+            Plant.Note = Unwrap(Task.Run(() => _workspaceService.GetPlantNote(CurrentPlantName)));
+        }
+
+        /// <summary>
+        /// Invoke influx service object to query data from InfluxDB, discard broken frames,
+        /// then break down data and assign them to Plant model.
         /// </summary>
         public void GetDataFromInflux()
         {
@@ -131,6 +150,14 @@ namespace Terra.ViewModels
                 return "N/A";
             }
             return result.ToString();
+        }
+
+        // throw toast of a message
+        private void ThrowToast(string message)
+        {
+            ToastDuration duration = ToastDuration.Short;
+            var fontSize = 14;
+            Toast.Make(message, duration, fontSize).Show();
         }
 
 

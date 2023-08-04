@@ -5,7 +5,7 @@
              Title="AddPlantPage"
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
              x:DataType="viewmodel:PlantViewModel">
-    <ScrollView>
+    <StackLayout>
         <Grid
             Padding="30, 50, 30, 0"
             HeightRequest="{Binding ScreenHeight}">
@@ -18,66 +18,68 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <!-- workspace entry label -->
+            <!-- NAME -->
+            <!--workspace entry label-->
             <Label
                 Margin="0,0,0,5"
                 Grid.Row="0"
                 FontSize="20"
                 FontAttributes="Bold"
                 Text="Plant Name"/>
-            <!-- workspace entry background -->
+            <!--workspace entry background-->
             <BoxView
                 Grid.Row="1"
                 HeightRequest="55"
                 Color="{StaticResource BoxViewTextPromptBackGround}"
                 CornerRadius="8"/>
-            <!-- plant entry -->
+            <!--plant entry-->
             <Entry
                 Grid.Row="1"
                 HeightRequest="50"
                 BackgroundColor="Transparent"        
                 Placeholder="..."
                 FontSize="18"
-                Text="{Binding Plant.Name}"
                 TextChanged="Entry_TextChanged"
                 IsEnabled="{Binding IsAdditionRestricted}"
-                x:Name="plant_entry"/>
-            <!-- plant picker -->
+                x:Name="plant_entry">
+            </Entry>
+            <!--plant picker-->
             <CollectionView
                 Grid.Row="2"
                 HeightRequest="100"
                 ItemsLayout="VerticalList"
                 ItemsSource="{Binding PlantNames}"
                 SelectionMode="Single"
-                SelectedItem="{Binding ApiPlant.SelectedPlant}"
+                SelectedItem="{Binding Plant.Name}"
                 HorizontalOptions="Center"
                 VerticalOptions="FillAndExpand">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Margin="5" BackgroundColor="Beige">
+                        <StackLayout Margin="4">
                             <Label Text="{Binding .}" 
                                 HorizontalOptions="Center" 
-                                FontSize="25"/>
+                                HorizontalTextAlignment="Center"
+                                FontSize="20"/>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-
             </CollectionView>
-
-            <!-- note editor label -->
+            
+            <!-- NOTE -->
+            <!--note editor label-->
             <Label
-                Margin="0,20,0,5"
+                Margin="0,15,0,5"
                 Grid.Row="3"
                 FontSize="20"
                 FontAttributes="Bold"
                 Text="Note"/>
-            <!-- note editor background -->
+            <!--note editor background-->
             <BoxView
                 Grid.Row="4"
                 HeightRequest="250"
                 Color="{StaticResource BoxViewTextPromptBackGround}"
                 CornerRadius="8"/>
-            <!-- note editor -->
+            <!--note editor-->
             <Editor
                 Grid.Row="4"
                 HeightRequest="250"
@@ -95,13 +97,12 @@
                 Grid.ColumnSpan="2"
                 HeightRequest="50"
                 WidthRequest="230"
+                VerticalOptions="End"
                 Text="confirm"
                 TextColor="Black"
                 BackgroundColor="{StaticResource ButtonColorLight}"
-                Command="{Binding GetPickerOptionsCommand}"
-                CommandParameter="{Binding Plant.Name}"
-                IsEnabled="{Binding IsAdditionRestricted}"
-                >
+                Command="{Binding PostPlantCommand}"
+                IsEnabled="{Binding IsAdditionRestricted}">
                     <Button.Shadow>
                         <Shadow
                         Brush="Gray"
@@ -121,5 +122,5 @@
                 Text="haha"
                 TextColor="Red"/>
         </Grid>
-    </ScrollView>
+    </StackLayout>
 </ContentPage>

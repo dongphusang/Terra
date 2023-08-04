@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Text.Json.Nodes;
 using Terra.Models;
+using System.Net.Sockets;
 
 namespace Terra.Services
 {
@@ -19,6 +20,7 @@ namespace Terra.Services
         // connection attributes
         readonly string KEY;
         const string URL = "https://perenual.com/api/species-list";
+        const string SPECIEDEET_URL = "https://perenual.com/api/species/details/";
 
         public PlantAPIService()
         {
@@ -50,8 +52,7 @@ namespace Terra.Services
         /// <param name="plantName"> Name of plant. </param>
         /// <returns> Dictionary on plant's information. </returns>
         public async Task<List<string>> GetPlantOptions(string query)
-        {
-            
+        {         
             // construct URI
             var uri = new Uri(URL + "?key=" +KEY + "&q=" + query);
             // get resource from api
@@ -59,14 +60,61 @@ namespace Terra.Services
             // if succeeded
             if (result.IsSuccessStatusCode)
             {
+                // read response as string
                 var response = await result.Content.ReadAsStringAsync();
-                var deserialized = JsonConvert.DeserializeObject<List<APIPlant>>(JObject.Parse(response)["data"].ToString());
-                var filteredList = deserialized.Select(apiPlant => apiPlant.Common_name).ToList();
 
+                var deserializedList = new List<APIPlant>(); // declare deserialized json var
+                var filteredList = new List<string>();   // declare a filtered list from json content
+
+                try
+                {
+                    // deserialize json
+                    deserializedList = JsonConvert.DeserializeObject<List<APIPlant>>(JObject.Parse(response)["data"].ToString());
+                    // filter content and convert that into a List
+                    filteredList = deserializedList.Select(apiPlant => apiPlant.Common_name).Distinct().ToList();
+                }
+                catch (JsonSerializationException ex) // this happens when user's entry belongs to paid content (currently using free tier api)
+                {
+                    return new List<string>();
+                }
                 return new List<string>(filteredList);
             }
 
-            return new List<string>() { "empty"};
+            return new List<string>();
+        }
+
+        public async Task<APIPlant> GetPlantDetails(int plantID)
+        {
+            // construct URI
+            var uri = new Uri(SPECIEDEET_URL + plantID + "?key=" + KEY);
+            // get resource from api
+            HttpResponseMessage result = _httpClient.GetAsync(uri).Result;
+
+            if (result.IsSuccessStatusCode)
+            {
+                var response = await result.Content.ReadAsStringAsync();
+                var deserializedModel = JsonConvert.DeserializeObject<APIPlant>(JObject.Parse(response).ToString());
+
+                return deserializedModel;
+            }
+            return new APIPlant();
+        }
+
+        public async Task<int> GetPlantID(string plantName)
+        {
+            // construct URI
+            var uri = new Uri(URL + "?key=" + KEY + "&q=" + plantName);
+            // get resource from api
+            HttpResponseMessage result = _httpClient.GetAsync(uri).Result;
+
+            if (result.IsSuccessStatusCode)
+            {
+                var response = await result.Content.ReadAsStringAsync();
+                var deserializedModel = JsonConvert.DeserializeObject<List<APIPlant>>(JObject.Parse(response)["data"].ToString())[0];
+
+                return deserializedModel.Id;
+            }
+            return -1;
         }
     }
 }

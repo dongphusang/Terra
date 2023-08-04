@@ -11,5 +11,6 @@ public partial class PlantInfoPage : ContentPage
 		InitializeComponent();
         _viewModel = new PlantViewModel();
         BindingContext = _viewModel;
+        _viewModel.GetPlantDataFromAPI();
     }
 }

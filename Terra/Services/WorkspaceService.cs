@@ -232,6 +232,20 @@ namespace Terra.Services
             return false; // affirmative that member already existed
         }
 
+        // return object that contains plant note
+        public Task<object> GetPlantNote(string plantName)
+        {
+            // init connection
+            using SqliteConnection connection = new(_connectionString);
+            connection.OpenAsync().Wait();
+
+            var sql = $"SELECT note FROM Plant Where name = @nameValue";
+            using SqliteCommand cmd = new(sql, connection);
+            cmd.Parameters.AddWithValue("@nameValue", plantName);
+            
+            return cmd.ExecuteScalarAsync();
+        }
+
         // return object that contains number of cells in a column
         public Task<object> CountColumnValues(string workspaceName)
         {

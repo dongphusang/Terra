@@ -10,7 +10,7 @@
         <StackLayout>
             <!--plant name-->
             <Label
-                Text="Crispy Wave Fern"
+                Text="{Binding ApiPlant.Common_name}"
                 FontSize="30"
                 FontAttributes="Bold"/>
             
@@ -37,7 +37,7 @@
                 <BoxView
                     Grid.ColumnSpan="2"
                     Grid.RowSpan="3"
-                    HeightRequest="190"
+                    HeightRequest="200"
                     Color="#EFEDED"
                     CornerRadius="8"/>
                 
@@ -55,7 +55,7 @@
                     Grid.Column="0"
                     Grid.Row="0"
                     HorizontalOptions="Center"
-                    Text="Low"
+                    Text="{Binding ApiPlant.Growth_rate}"
                     FontSize="17"/>
 
                 <!--watering label-->
@@ -68,11 +68,11 @@
                     FontSize="17"/>
                 <!--watering content (Binded)-->
                 <Label
-                    Margin="45, 15, 0, 0"
+                    Margin="0, 15, 17, 0"
                     Grid.Column="1"
                     Grid.Row="0"
-                    HorizontalOptions="Center"
-                    Text="Low"
+                    HorizontalOptions="End"
+                    Text="{Binding ApiPlant.Watering}"
                     FontSize="17"/>
                 
                 <!--light label-->
@@ -89,9 +89,9 @@
                     Grid.ColumnSpan="2"
                     Grid.Row="1"
                     HorizontalOptions="Start"
-                    Text="full sun, part shade, full shade"
+                    Text="{Binding ApiPlant.Light}"
                     FontSize="17"/>
-                
+
                 <!--propagation label-->
                 <Label
                     Margin="15, 5, 0 , 0"
@@ -106,7 +106,7 @@
                     Grid.ColumnSpan="2"
                     Grid.Row="2"
                     HorizontalOptions="Start"
-                    Text="division, cutting, spore propagation,tissue culture"
+                    Text="{Binding ApiPlant.PropagationMethods}"
                     FontSize="17"/>
                 
             </Grid>
@@ -121,7 +121,7 @@
             <!--content-->
             <Label
                 Margin="0, 10, 0, 0"
-                Text="The Bird's Nest Fern (Asplenium nidus 'Antiquum') is a rare and unique species of fern. Its stunning, wide-spreading fronds make it an attractive focal point, while its resistance to pests and diseases make it perfect for busy gardeners. Its foliage is a delight - deep green and glossy, with leathery leaves that are ruffled along the edges. Its yellow patches on the fronds add further to its aesthetic appeal and help it blend into other foliage. Its ability to adapt to different environments makes it a great choice for both indoor and outdoor spaces, making it a great choice for any tropical themed garden. It's also known for being an oxygen bomb."
+                Text="{Binding ApiPlant.Description}"
                 HorizontalOptions="StartAndExpand"
                 LineHeight="1.3"
                 FontSize="18"/>
@@ -136,7 +136,7 @@
             <!--content-->
             <Label
                 Margin="0, 10, 0, 0"
-                Text="What do I need to know?"
+                Text="{Binding Plant.Note}"
                 HorizontalOptions="StartAndExpand"
                 LineHeight="1.3"
                 FontSize="18"/>

@@ -7,20 +7,25 @@
         <member name="T:Terra.Models.APIPlant">
             <inheritdoc/>
         </member>
-        <member name="P:Terra.Models.APIPlant.SelectedPlant">
-            <inheritdoc cref="F:Terra.Models.APIPlant.selectedPlant"/>
+        <member name="F:Terra.Models.APIPlant.light">
+            <summary>
+            Parsed after Sunlight is deserialized. Because of formatting purposes, this var is parsed using string.Join on Sunlight property to add "," 
+            to every element and displayed as a single string. Set as [ObservableProperty] to counter the delay in updating UI.
+            To be binded with light content in PlantInfoPage.xml
+            </summary>
         </member>
-        <member name="P:Terra.Models.APIPlant.Id">
-            <inheritdoc cref="F:Terra.Models.APIPlant.id"/>
+        <member name="F:Terra.Models.APIPlant.propagationMethods">
+            <summary>
+            Parsed after Propagation is deserialized. Because of formatting purposes, this var is parsed using string.Join on 
+            Propagation property, adding ", " to every element and displayed as a single string. Set as [ObservableProperty] to 
+            counter the delay in updating UI. To be binded with propagation content in PlantInfoPage.xml
+            </summary>
         </member>
-        <member name="P:Terra.Models.APIPlant.Common_name">
-            <inheritdoc cref="F:Terra.Models.APIPlant.common_name"/>
+        <member name="P:Terra.Models.APIPlant.Light">
+            <inheritdoc cref="F:Terra.Models.APIPlant.light"/>
         </member>
-        <member name="P:Terra.Models.APIPlant.Watering">
-            <inheritdoc cref="F:Terra.Models.APIPlant.watering"/>
-        </member>
-        <member name="P:Terra.Models.APIPlant.Sunlight">
-            <inheritdoc cref="F:Terra.Models.APIPlant.sunlight"/>
+        <member name="P:Terra.Models.APIPlant.PropagationMethods">
+            <inheritdoc cref="F:Terra.Models.APIPlant.propagationMethods"/>
         </member>
         <member name="T:Terra.Models.Plant">
             <inheritdoc/>
@@ -339,16 +344,27 @@
             <inheritdoc/>
             <inheritdoc/>
         </member>
+        <member name="M:Terra.ViewModels.PlantViewModel.UpdateCollectionView(System.String)">
+            <summary>
+            Update collection view that displays matching plants with user's entry.
+            </summary>
+            <param name="query"> Entry's text characters. </param>
+        </member>
         <member name="M:Terra.ViewModels.PlantViewModel.PostPlant">
             <summary>
-            Add plant entry to database. (Not able to add to Plant table)
+            Add plant entry to database.
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Terra.ViewModels.PlantViewModel.GetPlantDataFromAPI">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Terra.ViewModels.PlantViewModel.GetDataFromInflux">
             <summary>
-            Invoke influx service object to query data from InfluxDB. Discard broken frames.
-            Then break down data and assign them to Plant model
+            Invoke influx service object to query data from InfluxDB, discard broken frames,
+            then break down data and assign them to Plant model.
             </summary>
         </member>
         <member name="P:Terra.ViewModels.PlantViewModel.Plant">
@@ -393,11 +409,11 @@
         <member name="P:Terra.ViewModels.PlantViewModel.ToPlantSubscribingCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.PlantViewModel.ToPlantSubscribing"/>.</summary>
         </member>
-        <member name="F:Terra.ViewModels.PlantViewModel.getPickerOptionsCommand">
-            <summary>The backing field for <see cref="P:Terra.ViewModels.PlantViewModel.GetPickerOptionsCommand"/>.</summary>
+        <member name="F:Terra.ViewModels.PlantViewModel.updateCollectionViewCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.PlantViewModel.UpdateCollectionViewCommand"/>.</summary>
         </member>
-        <member name="P:Terra.ViewModels.PlantViewModel.GetPickerOptionsCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:Terra.ViewModels.PlantViewModel.GetPickerOptions(System.String)"/>.</summary>
+        <member name="P:Terra.ViewModels.PlantViewModel.UpdateCollectionViewCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Terra.ViewModels.PlantViewModel.UpdateCollectionView(System.String)"/>.</summary>
         </member>
         <member name="F:Terra.ViewModels.PlantViewModel.postPlantCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.PlantViewModel.PostPlantCommand"/>.</summary>
@@ -584,20 +600,11 @@
             for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
             </summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedPlant">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedPlant" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Light">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Light" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Id">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Id" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Common_name">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Common_name" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Watering">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Watering" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Sunlight">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Sunlight" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.PropagationMethods">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "PropagationMethods" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SoilMoisture">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SoilMoisture" generated properties.</summary>
@@ -610,9 +617,6 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.WaterLevel">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "WaterLevel" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Light">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Light" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Name">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Name" generated properties.</summary>
@@ -677,20 +681,11 @@
             for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
             </summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedPlant">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedPlant" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Light">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Light" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Id">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Id" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Common_name">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Common_name" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Watering">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Watering" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Sunlight">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Sunlight" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.PropagationMethods">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "PropagationMethods" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SoilMoisture">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SoilMoisture" generated properties.</summary>
@@ -703,9 +698,6 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.WaterLevel">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "WaterLevel" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Light">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Light" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Name">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Name" generated properties.</summary>

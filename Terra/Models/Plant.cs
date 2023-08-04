@@ -9,6 +9,7 @@ namespace Terra.Models
 {
     public partial class Plant : ObservableObject
     {
+        // sensor values
         [ObservableProperty]
         public int soilMoisture;
         [ObservableProperty]
@@ -19,13 +20,11 @@ namespace Terra.Models
         public int waterLevel;
         [ObservableProperty]
         public int light;
+        
+        // plant attributes
         [ObservableProperty]
         public string name;
         [ObservableProperty]
         public string note;
-
-        public double WateringFreq; // watering frequency; how often plant receives water
-
-        public double WateringMode; // mist modes; intensity of mist when watering plant
     }
 }
