@@ -93,7 +93,7 @@
             <summary>
             Open connection and add email entry to table.
             </summary>
-            <param name="emailName"> name of email (user provided). </param>
+            <param name="mail"> name of email (user provided). </param>
             <returns> Return true if email is added. Return false otherwise.</returns>
         </member>
         <member name="M:Terra.Services.EmailListDBService.GetFromEmailTable">
@@ -106,14 +106,42 @@
             <summary>
             Remove email from table.
             </summary>
-            <param name="emailName"> name of email (user provided by clicking). </param>
+            <param name="email"> name of email (user provided by clicking). </param>
             <returns> Return true if email is removed. Return false otherwise. </returns>
         </member>
-        <member name="M:Terra.Services.EmailService.GetConfiguration">
+        <member name="M:Terra.Services.FirestoreService.GetAccountSetting">
             <summary>
-            Establish configuration file.
+            Get content from accountSetting.json
             </summary>
             <returns> configuration builder </returns>
+        </member>
+        <member name="M:Terra.Services.FirestoreService.GetKeysAsCollection(System.String,System.String)">
+            <summary>
+            Get dictionary keys from a document, and return them as a observable collection.
+            [Usage]: Get a list of active emails.
+            </summary>
+            <param name="collection"> Firestore collection. </param>
+            <param name="document"> Firestore document. </param>
+            <returns> Observable collection of dictionary keys. </returns>
+        </member>
+        <member name="M:Terra.Services.FirestoreService.Post(System.String,System.String,System.String,System.String)">
+            <summary>
+            Upload key-value data to firestore.
+            </summary>
+            <param name="key"> Dictionary key. </param>
+            <param name="value"> Dictionary value. </param>
+            <param name="collection"> Target firestore collection. </param>
+            <param name="document"> Target firestore document of said collection. </param>
+            <returns> Firestore write-result. </returns>
+        </member>
+        <member name="M:Terra.Services.FirestoreService.Remove(System.String,System.String,System.String)">
+            <summary>
+            Remove key-value data from firestore.
+            </summary>
+            <param name="key"> Dictionary key. </param>
+            <param name="collection"> Target firestore collection. </param>
+            <param name="document"> Target firestore document of said collection. </param>
+            <returns> Firestore write-result. </returns>
         </member>
         <member name="M:Terra.Services.InfluxService.GetConfiguration">
             <summary>
@@ -204,6 +232,7 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="M:Terra.ViewModels.EmailSubViewModel.UpdateEmails">
             <summary>
@@ -212,12 +241,14 @@
         </member>
         <member name="M:Terra.ViewModels.EmailSubViewModel.AddEmail">
             <summary>
-            Add mail to database and update view
+            Add mail to database, update view, and upload mail to firestore
+            [Used: EmailSubPage]
             </summary>
         </member>
         <member name="M:Terra.ViewModels.EmailSubViewModel.DeleteEmail(System.String)">
             <summary>
-            Remove mail from database and update view
+            Remove mail from database, update view, and remove mail from firestore
+            [Used: EmailSubPage]
             </summary>
             <param name="email"> Mail to be removed. </param>
         </member>
@@ -243,19 +274,25 @@
             <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.AddEmailCommand"/>.</summary>
         </member>
         <member name="P:Terra.ViewModels.EmailSubViewModel.AddEmailCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.AddEmail"/>.</summary>
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.AddEmail"/>.</summary>
         </member>
         <member name="F:Terra.ViewModels.EmailSubViewModel.deleteEmailCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.DeleteEmailCommand"/>.</summary>
         </member>
         <member name="P:Terra.ViewModels.EmailSubViewModel.DeleteEmailCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.DeleteEmail(System.String)"/>.</summary>
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.DeleteEmail(System.String)"/>.</summary>
         </member>
         <member name="F:Terra.ViewModels.EmailSubViewModel.modifySubscriptionCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.ModifySubscriptionCommand"/>.</summary>
         </member>
         <member name="P:Terra.ViewModels.EmailSubViewModel.ModifySubscriptionCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.ModifySubscription"/>.</summary>
+        </member>
+        <member name="F:Terra.ViewModels.EmailSubViewModel.saveEmailCollectionToDatabasesCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.SaveEmailCollectionToDatabasesCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.EmailSubViewModel.SaveEmailCollectionToDatabasesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.SaveEmailCollectionToDatabases"/>.</summary>
         </member>
         <member name="M:Terra.ViewModels.GraphicalPlantViewModel.GetDataFromInflux">
             <summary>

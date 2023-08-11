@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Terra.Models;
 using Terra.Services;
+using Terra.TerraConstants;
+using CommunityToolkit.Maui.Core.Extensions;
 
 namespace Terra.ViewModels
 {
@@ -20,17 +22,17 @@ namespace Terra.ViewModels
         public TerraEmail emailModel;
 
         // services
-        private EmailService _emailService;
         private EmailListDBService _emailListDBService;
         private WorkspaceService _workspaceService;
+        private FirestoreService _firestoreService;
 
         // email list
         [ObservableProperty]
-        public List<string> emails; // emails that are available
+        public List<string> emails; // emails that haven't subscribed to anything
         [ObservableProperty]
-        public ObservableCollection<string> activeEmails; // emails that subscribe for a particular plant, receiving its information
+        public ObservableCollection<string> activeEmails; // emails that subscribe for a particular plant
 
-        // email selected for removal
+        // email selected in collection view
         [ObservableProperty]
         public string selectedEmail;
 
@@ -45,10 +47,10 @@ namespace Terra.ViewModels
             Emails = new();
             ActiveEmails = new();
             EmailModel = new();
-            _emailService = new();
             _emailListDBService = new();
             _workspaceService = new();
-
+            _firestoreService = new();
+            
             CurrentWorkspaceName = Preferences.Get("CurrentWorkspace", string.Empty); // get value from preferences (which assigned in WorkspaceViewModel)
             CurrentPlantName = Unwrap(Task.Run(() => _workspaceService.GetPlantName(CurrentWorkspaceName)));
         }
@@ -56,16 +58,19 @@ namespace Terra.ViewModels
         /// <summary>
         /// Retrieve mails from sqlite database and update view
         /// </summary>
-        public void UpdateEmails()
+        public async void UpdateEmails()
         {
             Emails = _emailListDBService.GetFromEmailTable();
+            ActiveEmails = (await _firestoreService.GetKeysAsCollection(FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS)).ToObservableCollection();
+            FormatForEmail(ActiveEmails);
         }
 
         /// <summary>
-        /// Add mail to database and update view
+        /// Add mail to database, update view, and upload mail to firestore
+        /// [Used: EmailSubPage -> add button]
         /// </summary>
         [RelayCommand]
-        public void AddEmail()
+        public Task AddEmail()
         {           
             if (EmailModel.Email is not null)
             {
@@ -73,34 +78,67 @@ namespace Terra.ViewModels
                 {
                     _emailListDBService.PostToEmailTable(EmailModel.Email);
                     UpdateEmails();
+                    return _firestoreService.Post(FormatForFirestore(EmailModel.Email), "Terra", FirestoreConstant.SUBSCRIPTION, FirestoreConstant.INACTIVE_EMAILS);
                 }                
             }        
+            return Task.CompletedTask;
         }
 
         /// <summary>
-        /// Remove mail from database and update view
+        /// Remove email from database, update view, and remove mail from firestore
+        /// [Used: EmailSubPage -> remove button]
         /// </summary>
         /// <param name="email"> Mail to be removed. </param>
         [RelayCommand]
-        public void DeleteEmail(string email)
+        public Task DeleteEmail(string email)
         {
             _emailListDBService.DeleteEmail(email);
             UpdateEmails();
+
+            return TotalRemoveFromFirestore(email);
         }
 
-        // activate subscription for one email
+        /// <summary>
+        /// Add email to active email list for subscribing to a plantm
+        /// [Used: EmailSubPage -> "Email List" collection view]
+        /// </summary>
         [RelayCommand]
         public void ModifySubscription()
         {
-            if (ActiveEmails.Contains(SelectedEmail))
+            if (ActiveEmails.Contains(SelectedEmail) && SelectedEmail is not null)
             {
                 ActiveEmails.Remove(SelectedEmail);
                 SelectedEmail = null;
             }
-            else
+            else if (ActiveEmails.Contains(SelectedEmail) is false && SelectedEmail is not null)
             {
                 ActiveEmails.Add(SelectedEmail);
                 SelectedEmail = null;
+            }
+        }
+
+        /// <summary>
+        /// Change email status between active and inactive. 
+        /// Active meaning the email subscribes to a plant.
+        /// Inactive meaning the email not subscribe to a plant.
+        /// </summary>
+        /// <returns> Subscription tasks. </returns>
+        [RelayCommand]
+        public async Task ChangeSubscription()
+        {
+            // add email to active document in firestore
+            if (ActiveEmails.Count > 0)
+            {
+                foreach (var email in ActiveEmails)
+                {
+                    await ActivateSubscription(email);
+                }
+                
+            }
+            // remove email from active document in firestore
+            foreach (var email in Emails.Except(ActiveEmails))
+            {
+                await DeactivateSubscription(email);
             }
         }
 
@@ -113,6 +151,48 @@ namespace Terra.ViewModels
                 return "N/A";
             }
             return result.ToString();
+        }
+
+        // strip off "@gmail.com" from firestore operations
+        private string FormatForFirestore(string target)
+        {
+            return target[..target.IndexOf('@')];
+        }
+
+        // add "@gmail.com" to string
+        private void FormatForEmail(ObservableCollection<string> usernames)
+        {
+            for (int i = 0; i < usernames.Count; i++) 
+            {
+                usernames[i] = $"{usernames[i]}@gmail.com";
+            }
+        }
+
+        // remove email from both active and inactive documents in firestore
+        private Task TotalRemoveFromFirestore(string email)
+        {
+            _firestoreService.Remove(FormatForFirestore(email), FirestoreConstant.SUBSCRIPTION, FirestoreConstant.INACTIVE_EMAILS);
+            _firestoreService.Remove(FormatForFirestore(email), FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
+
+            return Task.CompletedTask;
+        }
+
+        // move emails from inactive document to active document
+        private Task ActivateSubscription(string email)
+        {
+            _firestoreService.Remove(FormatForFirestore(email), FirestoreConstant.SUBSCRIPTION, FirestoreConstant.INACTIVE_EMAILS);
+            _firestoreService.Post(FormatForFirestore(email), "Terra", FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
+
+            return Task.CompletedTask;
+        }
+
+        // move emails from active document to inactive document
+        private Task DeactivateSubscription(string email)
+        {
+            _firestoreService.Remove(FormatForFirestore(email), FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
+            _firestoreService.Post(FormatForFirestore(email), "Terra", FirestoreConstant.SUBSCRIPTION, FirestoreConstant.INACTIVE_EMAILS);
+
+            return Task.CompletedTask;
         }
 
     }

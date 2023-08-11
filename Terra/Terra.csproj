@@ -62,6 +62,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="accountSetting.json" />
 	  <None Remove="appconfig.json" />
 	  <None Remove="Resources\Images\droplet.svg" />
 	  <None Remove="Resources\Images\humidity.svg" />
@@ -102,7 +103,10 @@
 	<ItemGroup>
 	  <Folder Include="EmailBody\" />
 	  <Folder Include="RPi_Embed\" />
-	  <Folder Include="TerraConstants\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="accountSetting.json" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Views\EmailSubPage.xaml">

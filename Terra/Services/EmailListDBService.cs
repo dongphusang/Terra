@@ -78,10 +78,9 @@ namespace Terra.Services
 
             // sql for creating table workspace
             string sql = $"CREATE TABLE EmailTable (" +
-                            "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," +
-                            "email TEXT NOT NULL UNIQUE," +
-                            "date_added TEXT NOT NULL," +
-                            "note TEXT)";
+                            "email TEXT NOT NULL UNIQUE," + // full email format
+                            "user TEXT NOT NULL UNIQUE," +  // email after stripped of @___.com
+                            "bucket TEXT)";          // influx db bucket name, representing a plant database (for now)
 
             // add EmailTable to Terra database
             if (IsExist("EmailTable", "*", connection) is false)
@@ -97,9 +96,9 @@ namespace Terra.Services
         /// <summary>
         /// Open connection and add email entry to table.
         /// </summary>
-        /// <param name="emailName"> name of email (user provided). </param>
+        /// <param name="mail"> name of email (user provided). </param>
         /// <returns> Return true if email is added. Return false otherwise.</returns>
-        public bool PostToEmailTable(string emailName)
+        public bool PostToEmailTable(string mail)
         {
             var table = "EmailTable";
             var column = "email";
@@ -109,15 +108,15 @@ namespace Terra.Services
             connection.OpenAsync().Wait();
 
             // construct sql
-            var sql = $"INSERT INTO EmailTable (email, date_added) " +
-                                           "VALUES (@email, @date_added)";
+            var sql = $"INSERT INTO EmailTable (email, user) " +
+                                           "VALUES (@email, @user)";
 
             // add member if it doesn't exist
-            if (IsExist(table, column, emailName, connection) is false)
+            if (IsExist(table, column, mail, connection) is false)
             {
                 using SqliteCommand command = new(sql, connection);
-                command.Parameters.AddWithValue("@email", emailName);
-                command.Parameters.AddWithValue("@date_added", DateTime.Now.ToString());
+                command.Parameters.AddWithValue("@email", mail);
+                command.Parameters.AddWithValue("@user", mail[..mail.IndexOf("@")]);
 
                 command.ExecuteNonQuery();
 
@@ -152,10 +151,10 @@ namespace Terra.Services
                 // get available emails
                 while (reader.Read())
                 {
-                    emails.Add(reader.GetValue(1).ToString());
+                    emails.Add(reader.GetValue(0).ToString());
                 }
 
-                return new List<string>(emails); // emails found
+                return new List<string>(emails.Distinct().ToList()); // emails found
             }
 
             return new List<string>(); // no emails found in table
@@ -164,22 +163,22 @@ namespace Terra.Services
         /// <summary>
         /// Remove email from table.
         /// </summary>
-        /// <param name="emailName"> name of email (user provided by clicking). </param>
+        /// <param name="email"> name of email (user provided by clicking). </param>
         /// <returns> Return true if email is removed. Return false otherwise. </returns>
-        public bool DeleteEmail(string emailName)
+        public bool DeleteEmail(string emailAddress)
         {
             // init connection
             using SqliteConnection connection = new(_connectionString);
             connection.OpenAsync().Wait();
 
             // construct sql
-            var sql = "DELETE FROM EmailTable WHERE email = @emailName";
+            var sql = "DELETE FROM EmailTable WHERE email = @email_address";
 
             // run removal sql if the name provided isn't null
-            if (emailName is not null && IsExist("EmailTable", "email", emailName, connection))
+            if (emailAddress is not null && IsExist("EmailTable", "email", emailAddress, connection))
             {
                 using SqliteCommand command = new(sql, connection);
-                command.Parameters.AddWithValue("@emailName", emailName);
+                command.Parameters.AddWithValue("@email_address", emailAddress);
 
                 command.ExecuteNonQuery();
 
@@ -188,6 +187,46 @@ namespace Terra.Services
 
             return false; // no email was removed
         }
+
+        // take an active email, return associated buckets of that email
+        // STATUS: DORMANT method (for future use)
+        /*public Task<object> GetBucketsForMail(string email_address)
+        {
+            // init connection
+            using SqliteConnection connection = new(_connectionString);
+            connection.OpenAsync().Wait();
+
+            // construct sql
+            var sql = "SELECT bucket FROM EmailTable WHERE email = @email_address";
+
+            // retrieve buckets
+            using SqliteCommand command = new(sql, connection);
+            command.Parameters.AddWithValue("@email_address", email_address);
+
+            return command.ExecuteScalarAsync();
+        }*/
+
+        // associate subscribed plant to the email, saving it in sqlite db
+        // STATUS: DORMANT method (for future use)
+        /*public async Task SaveBucketsForMail(string email_address, string plant)
+        {
+            // init connection
+            using SqliteConnection connection = new(_connectionString);
+            connection.OpenAsync().Wait();
+
+            // construct sql
+            var sql = $"UPDATE EmailTable " +
+                        "SET bucket = @buckets " +
+                        "WHERE email = @email_address";
+
+            // modify entry of target email address, saving buckets associated with the email
+            using SqliteCommand command = new(sql, connection);
+            command.Parameters.AddWithValue("@buckets", plant);
+            command.Parameters.AddWithValue("@email_address", email_address);
+
+            await command.ExecuteScalarAsync();
+        }*/
+
 
 
     }
