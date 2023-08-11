@@ -1,5 +1,5 @@
 # Terra - Plant Management
-PRODUCT
+OVERVIEW
 -
 - This system takes input from environment sensors(soil moisture, humidity, light sensor) and enables automation in watering, lighting, and ventilation. For example, if air humidity and temperature are higher than plant requirements, ventilation is increased by allowing more air to ventilate through the space(via vent, fans,..).
 - Users may set these automated tasks on scheduled, manual, or turn it off and enable only the data monitoring capability.
@@ -26,7 +26,7 @@ SPECIFICS
   - Sensors & Actuators (non exhaustive list):
     - photoresistor
     - thermistor
-    - humidity sensor(DHT11)
+    - humidity sensor(DHT22)
     - servo motor(for vent opening)
     - water level sensor
     - water pump
@@ -38,10 +38,9 @@ SPECIFICS
     
   MOBILE APP
   
-  <img src="https://github.com/dongphusang/Terra/assets/45107557/26046321-7ce2-4183-9aaa-4986448a9eff" width="360" height="760"> <img src="https://github.com/dongphusang/Terra/assets/45107557/55d4ad85-86bf-4ecb-845d-d96da8bcc84f" width="360" height="760">
-  <img src="https://github.com/dongphusang/Terra/assets/45107557/2a0da2d9-780f-49e2-bbf7-39d6c4c5a97a" width="360" height="760"> <img src="https://github.com/dongphusang/Terra/assets/45107557/e997c854-047e-4761-a4f0-77e7b9d44275" width="360" height="760">
+  <img src="https://github.com/dongphusang/Terra/assets/45107557/26046321-7ce2-4183-9aaa-4986448a9eff" width="360" height="760"> <img src="https://github.com/dongphusang/Terra/assets/45107557/18247e78-8309-467a-a5e6-74e0ef1e9599" width="360" height="760">
+  <img src="https://github.com/dongphusang/Terra/assets/45107557/bd2ad351-0c45-4afa-8f1f-40a064cd7873" width="360" height="760"> <img src="https://github.com/dongphusang/Terra/assets/45107557/afde57ff-2a89-4e2d-bfbe-6df32c390fb2" width="360" height="760">
 
- 
 
 
   - Functionality:
@@ -67,18 +66,15 @@ Others
 This section is for visitors to see how the project is going. Every task or sub-task once reaches 100%, they will have an image of their final version displayed.
 Every task below if they are actively in progress, they will be displayed as hyperlinks.
 
-Total UI Revamp Series (...)      
+Total UI Revamp Series #1 (100%)      
 -
-- <a href="https://github.com/dongphusang/Terra/issues/18" target="_blank">Main page</a> (90%)
+- <a href="https://github.com/dongphusang/Terra/issues/18" target="_blank">Main page</a> (100%)
 - <a href="https://github.com/dongphusang/Terra/issues/19" target="_blank">Add Workspace page</a> (100%)
 - <a href="https://github.com/dongphusang/Terra/issues/19" target="_blank">WorkspaceList Page</a> (100%)
-- Empty Plant Slot page
 - <a href="https://github.com/dongphusang/Terra/issues/21" target="_blank">Adding Plant page</a> (100%)
 - <a href="https://github.com/dongphusang/Terra/issues/22" target="_blank">Plant Status page</a> (100%)
 - <a href="https://github.com/dongphusang/Terra/issues/23" target="_blank">Email Subscribe page</a> (100%)
 - <a href="https://github.com/dongphusang/Terra/issues/24" target="_blank">Plant Info page</a> (100%)
-- System Mode page
-- Wiki page
 
 First Unit Testing (0%)
 - 
