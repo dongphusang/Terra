@@ -242,15 +242,29 @@
         <member name="M:Terra.ViewModels.EmailSubViewModel.AddEmail">
             <summary>
             Add mail to database, update view, and upload mail to firestore
-            [Used: EmailSubPage]
+            [Used: EmailSubPage -> add button]
             </summary>
         </member>
         <member name="M:Terra.ViewModels.EmailSubViewModel.DeleteEmail(System.String)">
             <summary>
-            Remove mail from database, update view, and remove mail from firestore
-            [Used: EmailSubPage]
+            Remove email from database, update view, and remove mail from firestore
+            [Used: EmailSubPage -> remove button]
             </summary>
             <param name="email"> Mail to be removed. </param>
+        </member>
+        <member name="M:Terra.ViewModels.EmailSubViewModel.ModifySubscription">
+            <summary>
+            Add email to active email list for subscribing to a plantm
+            [Used: EmailSubPage -> "Email List" collection view]
+            </summary>
+        </member>
+        <member name="M:Terra.ViewModels.EmailSubViewModel.ChangeSubscription">
+            <summary>
+            Change email status between active and inactive. 
+            Active meaning the email subscribes to a plant.
+            Inactive meaning the email not subscribe to a plant.
+            </summary>
+            <returns> Subscription tasks. </returns>
         </member>
         <member name="P:Terra.ViewModels.EmailSubViewModel.EmailModel">
             <inheritdoc cref="F:Terra.ViewModels.EmailSubViewModel.emailModel"/>
@@ -288,11 +302,11 @@
         <member name="P:Terra.ViewModels.EmailSubViewModel.ModifySubscriptionCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.ModifySubscription"/>.</summary>
         </member>
-        <member name="F:Terra.ViewModels.EmailSubViewModel.saveEmailCollectionToDatabasesCommand">
-            <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.SaveEmailCollectionToDatabasesCommand"/>.</summary>
+        <member name="F:Terra.ViewModels.EmailSubViewModel.changeSubscriptionCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.ChangeSubscriptionCommand"/>.</summary>
         </member>
-        <member name="P:Terra.ViewModels.EmailSubViewModel.SaveEmailCollectionToDatabasesCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.SaveEmailCollectionToDatabases"/>.</summary>
+        <member name="P:Terra.ViewModels.EmailSubViewModel.ChangeSubscriptionCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.ChangeSubscription"/>.</summary>
         </member>
         <member name="M:Terra.ViewModels.GraphicalPlantViewModel.GetDataFromInflux">
             <summary>

@@ -68,7 +68,7 @@
                 BackgroundColor="{StaticResource ButtonColorLight}"
                 Text="confirm"
                 TextColor="Black"
-                Command="{Binding SaveEmailCollectionToDatabasesCommand}">
+                Command="{Binding ChangeSubscriptionCommand}">
                 <Button.Shadow>
                     <Shadow
                     Brush="Gray"
