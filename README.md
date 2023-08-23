@@ -88,19 +88,17 @@ First Unit Testing (0%)
 - InfluxService class
 - WorkspaceService class
 
-Embedded System (25%)
+Embedded System (...)
 - 
 - Draft code of sensors and micro-controllers: Collecting data from sensors and upload data onto InfluxDB. (100%)
-- Sensors code
-- Arduino Uno code
-- Raspberry Pi code
+- Arduino Uno script (90%)
+- Raspberry Pi script (60%)
 
-3D Printing (0%)
+3D Printing (100%)
 -
 The purpose of 3D printing is to make the final product looks a little more aesthetic, we don't have to see as many electrical components.
-- Water Tank (45%)
+- Water Tank (100%)
 - Micro-controller holders
-- Plant Pot (Do I need it tho...)
 
 Web App (0%)
 -
