@@ -51,7 +51,7 @@ void loop() {
 
   // send off data to RPi
   serializeJson(measurements, Serial);
-  delay(5000);
+  delay(1500);
 }
 
 int read_water_level() {

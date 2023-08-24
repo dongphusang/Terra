@@ -1,5 +1,6 @@
 
 import serial
+import json
 from datetime import datetime
 import influxdb_client, os, time
 from influxdb_client import InfluxDBClient, Point, WritePrecision
@@ -29,7 +30,8 @@ if __name__ == '__main__':
                 .time(datetime.utcnow(), WritePrecision.MS))
             
             
-            write_api.write(bucket=bucket, org=org, record=point)
-            time.sleep(1)
             print(line)
+
+            write_api.write(bucket=bucket, org=org, record=point)           
+            
             print()
