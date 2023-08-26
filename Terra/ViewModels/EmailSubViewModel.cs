@@ -99,7 +99,7 @@ namespace Terra.ViewModels
         }
 
         /// <summary>
-        /// Add email to active email list for subscribing to a plantm
+        /// Add email to local active email list for subscribing to a plantm
         /// [Used: EmailSubPage -> "Email List" collection view]
         /// </summary>
         [RelayCommand]
@@ -122,9 +122,8 @@ namespace Terra.ViewModels
         /// Active meaning the email subscribes to a plant.
         /// Inactive meaning the email not subscribe to a plant.
         /// </summary>
-        /// <returns> Subscription tasks. </returns>
         [RelayCommand]
-        public async Task ChangeSubscription()
+        public async Task CommitSubscriptions()
         {
             // add email to active document in firestore
             if (ActiveEmails.Count > 0)
@@ -181,7 +180,7 @@ namespace Terra.ViewModels
         private Task ActivateSubscription(string email)
         {
             _firestoreService.Remove(FormatForFirestore(email), FirestoreConstant.SUBSCRIPTION, FirestoreConstant.INACTIVE_EMAILS);
-            _firestoreService.Post(FormatForFirestore(email), "Terra", FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
+            _firestoreService.Post(FormatForFirestore(email), CurrentPlantName, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
 
             return Task.CompletedTask;
         }

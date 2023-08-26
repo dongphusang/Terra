@@ -10,6 +10,7 @@ using CommunityToolkit.Maui.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
 
 namespace Terra.ViewModels
 {
@@ -28,9 +29,11 @@ namespace Terra.ViewModels
         private InfluxService _influxService;
         private PlantAPIService _plantAPIService;
 
-        // restriction warning
+        // warnings
         [ObservableProperty]
-        private bool isAdditionRestricted;
+        private bool isAdditionRestricted; // plant addition warning
+        [ObservableProperty]
+        List<string> warningIcons; // plant attribute warning
 
         [ObservableProperty]
         double screenHeight;
@@ -38,6 +41,8 @@ namespace Terra.ViewModels
         double screenWidth;
         [ObservableProperty]
         List<string> plantNames; // retrieved from api
+
+        
 
         // constructor
         public PlantViewModel()
@@ -138,6 +143,32 @@ namespace Terra.ViewModels
                 Plant.Temperature = 0;
                 Plant.Humidity = 0;
                 Plant.WaterLevel = 0;
+            }
+        }
+
+        // assess current data and give corresponding warnings
+        public void AssessWarnings()
+        {
+            WarningIcons = new();
+            if (Plant.SoilMoisture < 300)
+            {
+                WarningIcons.Add("moisture_warning.svg");
+            }
+            if (Plant.Light < 100)
+            {
+                WarningIcons.Add("light_warning.svg");
+            }
+            if (Plant.Temperature < 23)
+            {
+                WarningIcons.Add("temp_warning.svg");
+            }
+            if (Plant.Humidity > 60)
+            {
+                WarningIcons.Add("humidity_warning.svg");
+            }
+            if (Plant.WaterLevel < 10)
+            {
+                WarningIcons.Add("water_tank_warning.svg");
             }
         }
 

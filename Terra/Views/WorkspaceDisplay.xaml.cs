@@ -29,6 +29,7 @@ public partial class WorkspaceDisplay : ContentPage
 		while (!cancellationToken.IsCancellationRequested)
 		{
 			_viewModel.GetDataFromInflux();
+			_viewModel.AssessWarnings();
 			Thread.Sleep(1000);
 		}
 	}

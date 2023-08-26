@@ -211,14 +211,27 @@
                 Text="Warning"
                 FontAttributes="Bold"
                 FontSize="25"/>
-            <Label
+            <CollectionView
                 Margin="0, 65"
                 Grid.Column="1"
                 Grid.Row="2"
-                HorizontalOptions="Center"
-                VerticalOptions="Start"
-                Text="..."
-                FontSize="35"/>
+                ItemsLayout="HorizontalList"              
+                ItemsSource="{Binding WarningIcons}"
+                HorizontalOptions="CenterAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Image
+                                Margin="0, 0, 10, 0"
+                                Source="{Binding .}"
+                                HeightRequest="30"
+                                WidthRequest="30"/>
+                        </StackLayout>
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
         </Grid>
         
         <!-- Navigation -->

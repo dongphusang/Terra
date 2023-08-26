@@ -68,7 +68,7 @@
                 BackgroundColor="{StaticResource ButtonColorLight}"
                 Text="confirm"
                 TextColor="Black"
-                Command="{Binding ChangeSubscriptionCommand}">
+                Command="{Binding CommitSubscriptionsCommand}">
                 <Button.Shadow>
                     <Shadow
                     Brush="Gray"
