@@ -58,9 +58,11 @@ SPECIFICS
 Others
 -
 - C# .NET MAUI is used for development
-- sqlite3 is used to store local workspace and plant information
+- sqlite3 is used to store local workspace, plant, email information
 - InfluxDB is used for storing time-series data
 - Python is used for uploading data from Raspberry Pi to InfluxDB
+- Plant API: 
+- Web App: 
 
 # In Progress 
 This section is for visitors to see how the project is going. Every task or sub-task once reaches 100%, they will have an image of their final version displayed.
@@ -100,5 +102,9 @@ The purpose of 3D printing is to make the final product looks a little more aest
 - Water Tank (100%)
 - Micro-controller holders
 
-Web App (0%)
+Web App (0%) 
+-
+- 
+
+Plant API (0%)
 -
