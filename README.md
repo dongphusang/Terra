@@ -104,7 +104,6 @@ The purpose of 3D printing is to make the final product looks a little more aest
 
 Web App (0%) 
 -
-- 
 
 Plant API (0%)
 -
