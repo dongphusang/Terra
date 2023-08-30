@@ -43,9 +43,8 @@ namespace Terra.Services
             return json;
         }
 
-        /// <summary>
-        /// Get dictionary keys from a document, and return them as a observable collection.
-        /// [Usage]: Get a list of active emails.
+        /*/// <summary>
+        /// DORMANT METHOD
         /// </summary>
         /// <param name="collection"> Firestore collection. </param>
         /// <param name="document"> Firestore document. </param>
@@ -56,6 +55,25 @@ namespace Terra.Services
             DocumentSnapshot dictionary = await docRef.GetSnapshotAsync();
 
             return new ObservableCollection<string>(dictionary.ToDictionary().Keys.ToObservableCollection());
+        }*/
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="collection"></param>
+        /// <param name="document"></param>
+        /// <returns></returns>
+        public async Task<List<object>> GetValue(string key, string collection, string document)
+        {
+            docRef = firestore.Collection(collection).Document(document);
+            var dictionary = (await docRef.GetSnapshotAsync()).ToDictionary();
+            
+            if (dictionary.ContainsKey(key))
+            {
+                return new List<object>((List<object>)dictionary[key]);
+            }
+            else return new List<object>();
         }
 
         /// <summary>
@@ -66,10 +84,10 @@ namespace Terra.Services
         /// <param name="collection"> Target firestore collection. </param>
         /// <param name="document"> Target firestore document of said collection. </param>
         /// <returns> Firestore write-result. </returns>
-        public Task Post(string key, string value, string collection, string document)
+        public Task Post(string key, object value, string collection, string document)
         {
             docRef = firestore.Collection(collection).Document(document);
-            Dictionary<string, string> data = new()
+            Dictionary<string, object> data = new()
             {
                 {key, value},
             };
@@ -78,7 +96,7 @@ namespace Terra.Services
         } 
 
         /// <summary>
-        /// Remove key-value data from firestore.
+        /// Remove a key from firestore document.
         /// </summary>
         /// <param name="key"> Dictionary key. </param>
         /// <param name="collection"> Target firestore collection. </param>
@@ -99,6 +117,50 @@ namespace Terra.Services
             {
                 return Task.CompletedTask;
             }          
-        }   
+        }
+
+        /// <summary>
+        /// Remove an element from all documents within a parent collection.
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <param name="formatted_mail"></param>
+        /// <returns></returns>
+        public async Task RemoveFromParentCollection(string mail, string formatted_mail)
+        {
+            // removal from Active document
+            var collection = FirestoreConstant.SUBSCRIPTION;
+            var document = FirestoreConstant.ACTIVE_EMAILS;
+
+            docRef = firestore.Collection(collection).Document(document);
+            var dictionary = (await docRef.GetSnapshotAsync()).ToDictionary();
+
+            // iterate through all collection within the document to find target element
+            foreach (KeyValuePair<string, object> kvp in dictionary)
+            {
+                var array = (List<object>)kvp.Value;
+                if (array.Contains(mail))
+                {                   
+                    // if child collection has one element, remove the key anyway
+                    if (array.Count == 1)
+                    {                       
+                        await Remove(kvp.Key, collection, document);
+                        return;
+                    }
+                    // else, remove only an element of the key
+                    array.Remove(mail);
+                    var new_dict = new Dictionary<string, object>()
+                    {
+                        [kvp.Key] = array
+                    };
+
+                    // upload new key-value data to firestore and replace old one
+                    await docRef.SetAsync(new_dict, SetOptions.MergeAll);                   
+                }
+            }
+
+            // removal from Inactive document
+            document = FirestoreConstant.INACTIVE_EMAILS;
+            await Remove(formatted_mail, collection, document);
+        }
     }
 }

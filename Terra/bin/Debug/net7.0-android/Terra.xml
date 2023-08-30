@@ -115,16 +115,16 @@
             </summary>
             <returns> configuration builder </returns>
         </member>
-        <member name="M:Terra.Services.FirestoreService.GetKeysAsCollection(System.String,System.String)">
+        <member name="M:Terra.Services.FirestoreService.GetValue(System.String,System.String,System.String)">
             <summary>
-            Get dictionary keys from a document, and return them as a observable collection.
-            [Usage]: Get a list of active emails.
+             
             </summary>
-            <param name="collection"> Firestore collection. </param>
-            <param name="document"> Firestore document. </param>
-            <returns> Observable collection of dictionary keys. </returns>
+            <param name="key"></param>
+            <param name="collection"></param>
+            <param name="document"></param>
+            <returns></returns>
         </member>
-        <member name="M:Terra.Services.FirestoreService.Post(System.String,System.String,System.String,System.String)">
+        <member name="M:Terra.Services.FirestoreService.Post(System.String,System.Object,System.String,System.String)">
             <summary>
             Upload key-value data to firestore.
             </summary>
@@ -245,13 +245,6 @@
             [Used: EmailSubPage -> add button]
             </summary>
         </member>
-        <member name="M:Terra.ViewModels.EmailSubViewModel.DeleteEmail(System.String)">
-            <summary>
-            Remove email from database, update view, and remove mail from firestore
-            [Used: EmailSubPage -> remove button]
-            </summary>
-            <param name="email"> Mail to be removed. </param>
-        </member>
         <member name="M:Terra.ViewModels.EmailSubViewModel.ModifySubscription">
             <summary>
             Add email to local active email list for subscribing to a plantm
@@ -264,6 +257,14 @@
             Active meaning the email subscribes to a plant.
             Inactive meaning the email not subscribe to a plant.
             </summary>
+        </member>
+        <member name="M:Terra.ViewModels.EmailSubViewModel.DeleteEmail(System.String)">
+            <summary>
+            Remove email from database, update view, and remove mail from firestore
+            [Used: EmailSubPage -> remove button]
+            [FIX: remove collection if mail count of plant is 0]
+            </summary>
+            <param name="email"> Mail to be removed. </param>
         </member>
         <member name="P:Terra.ViewModels.EmailSubViewModel.EmailModel">
             <inheritdoc cref="F:Terra.ViewModels.EmailSubViewModel.emailModel"/>
@@ -289,12 +290,6 @@
         <member name="P:Terra.ViewModels.EmailSubViewModel.AddEmailCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.AddEmail"/>.</summary>
         </member>
-        <member name="F:Terra.ViewModels.EmailSubViewModel.deleteEmailCommand">
-            <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.DeleteEmailCommand"/>.</summary>
-        </member>
-        <member name="P:Terra.ViewModels.EmailSubViewModel.DeleteEmailCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.DeleteEmail(System.String)"/>.</summary>
-        </member>
         <member name="F:Terra.ViewModels.EmailSubViewModel.modifySubscriptionCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.ModifySubscriptionCommand"/>.</summary>
         </member>
@@ -306,6 +301,12 @@
         </member>
         <member name="P:Terra.ViewModels.EmailSubViewModel.CommitSubscriptionsCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.CommitSubscriptions"/>.</summary>
+        </member>
+        <member name="F:Terra.ViewModels.EmailSubViewModel.deleteEmailCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.DeleteEmailCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.EmailSubViewModel.DeleteEmailCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.DeleteEmail(System.String)"/>.</summary>
         </member>
         <member name="M:Terra.ViewModels.GraphicalPlantViewModel.GetDataFromInflux">
             <summary>

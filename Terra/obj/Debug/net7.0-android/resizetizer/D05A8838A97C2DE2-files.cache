@@ -6,7 +6,6 @@ obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\droplet.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\humidity.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\humidity_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\light_bulb.png
-obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\light_bulb_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\light_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\moisture_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\splash.png
@@ -21,7 +20,6 @@ obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\droplet.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\humidity.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\humidity_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\light_bulb.png
-obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\light_bulb_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\light_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\moisture_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\splash.png
@@ -36,7 +34,6 @@ obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\droplet.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\humidity.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\humidity_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\light_bulb.png
-obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\light_bulb_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\light_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\moisture_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xhdpi\splash.png
@@ -51,7 +48,6 @@ obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\droplet.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\humidity.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\humidity_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\light_bulb.png
-obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\light_bulb_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\light_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\moisture_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxhdpi\splash.png
@@ -66,7 +62,6 @@ obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\droplet.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\humidity.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\humidity_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\light_bulb.png
-obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\light_bulb_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\light_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\moisture_warning.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-xxxhdpi\splash.png

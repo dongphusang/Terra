@@ -61,8 +61,7 @@ namespace Terra.ViewModels
         public async void UpdateEmails()
         {
             Emails = _emailListDBService.GetFromEmailTable();
-            ActiveEmails = (await _firestoreService.GetKeysAsCollection(FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS)).ToObservableCollection();
-            FormatForEmail(ActiveEmails);
+            ConvertToDisplayableList(await _firestoreService.GetValue(CurrentPlantName, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS));
         }
 
         /// <summary>
@@ -82,20 +81,6 @@ namespace Terra.ViewModels
                 }                
             }        
             return Task.CompletedTask;
-        }
-
-        /// <summary>
-        /// Remove email from database, update view, and remove mail from firestore
-        /// [Used: EmailSubPage -> remove button]
-        /// </summary>
-        /// <param name="email"> Mail to be removed. </param>
-        [RelayCommand]
-        public Task DeleteEmail(string email)
-        {
-            _emailListDBService.DeleteEmail(email);
-            UpdateEmails();
-
-            return TotalRemoveFromFirestore(email);
         }
 
         /// <summary>
@@ -126,19 +111,23 @@ namespace Terra.ViewModels
         public async Task CommitSubscriptions()
         {
             // add email to active document in firestore
-            if (ActiveEmails.Count > 0)
-            {
-                foreach (var email in ActiveEmails)
-                {
-                    await ActivateSubscription(email);
-                }
-                
-            }
-            // remove email from active document in firestore
-            foreach (var email in Emails.Except(ActiveEmails))
-            {
-                await DeactivateSubscription(email);
-            }
+            if (ActiveEmails.Count > 0) await ActivateSubscription();
+            // remove subscription if no emails are subscribed to current plant
+            else await _firestoreService.Remove(CurrentPlantName, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
+        }
+
+        /// <summary>
+        /// Remove email from database, update view, and remove mail from firestore
+        /// [Used: EmailSubPage -> remove button]
+        /// </summary>
+        /// <param name="email"> Mail to be removed. </param>
+        [RelayCommand]
+        public async Task DeleteEmail(string email)
+        {
+            _emailListDBService.DeleteEmail(email);
+            UpdateEmails();
+
+            await _firestoreService.RemoveFromParentCollection(email, FormatForFirestore(email));
         }
 
         // check if object returned from Task.Run() is null. Return non-null value. Usually used for sqlite operations
@@ -158,38 +147,29 @@ namespace Terra.ViewModels
             return target[..target.IndexOf('@')];
         }
 
-        // add "@gmail.com" to string
-        private void FormatForEmail(ObservableCollection<string> usernames)
+        // copy List<object>'s content to List<string> for UI display (List<object> can't display strings on UI)
+        private void ConvertToDisplayableList(List<object> usernames)
         {
+            ActiveEmails = new();
             for (int i = 0; i < usernames.Count; i++) 
             {
-                usernames[i] = $"{usernames[i]}@gmail.com";
+                ActiveEmails.Add(usernames[i].ToString());
             }
         }
 
-        // remove email from both active and inactive documents in firestore
-        private Task TotalRemoveFromFirestore(string email)
+        // add subscribing section for current plant in Active collection
+        private Task ActivateSubscription()
         {
-            _firestoreService.Remove(FormatForFirestore(email), FirestoreConstant.SUBSCRIPTION, FirestoreConstant.INACTIVE_EMAILS);
-            _firestoreService.Remove(FormatForFirestore(email), FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
+            //_firestoreService.Remove(FormatForFirestore(email), FirestoreConstant.SUBSCRIPTION, FirestoreConstant.INACTIVE_EMAILS);
+            _firestoreService.Post(CurrentPlantName, ActiveEmails, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
 
             return Task.CompletedTask;
         }
 
-        // move emails from inactive document to active document
-        private Task ActivateSubscription(string email)
+        // remove subscribing section of current plant from Active collection
+        private Task DeactivateSubscription()
         {
-            _firestoreService.Remove(FormatForFirestore(email), FirestoreConstant.SUBSCRIPTION, FirestoreConstant.INACTIVE_EMAILS);
-            _firestoreService.Post(FormatForFirestore(email), CurrentPlantName, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
-
-            return Task.CompletedTask;
-        }
-
-        // move emails from active document to inactive document
-        private Task DeactivateSubscription(string email)
-        {
-            _firestoreService.Remove(FormatForFirestore(email), FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
-            _firestoreService.Post(FormatForFirestore(email), "Terra", FirestoreConstant.SUBSCRIPTION, FirestoreConstant.INACTIVE_EMAILS);
+            _firestoreService.Remove(CurrentPlantName, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
 
             return Task.CompletedTask;
         }
