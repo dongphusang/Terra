@@ -165,14 +165,5 @@ namespace Terra.ViewModels
 
             return Task.CompletedTask;
         }
-
-        // remove subscribing section of current plant from Active collection
-        private Task DeactivateSubscription()
-        {
-            _firestoreService.Remove(CurrentPlantName, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
-
-            return Task.CompletedTask;
-        }
-
     }
 }
