@@ -21,8 +21,10 @@ DHT HT(dhtPin, Type);
 int soil_moist_val = 0;
 
 /* json data */
-const int capacity = JSON_OBJECT_SIZE(5);
-StaticJsonDocument<capacity> measures;
+const int sensor_json_capacity = JSON_OBJECT_SIZE(6);
+const int care_json_capacity = JSON_OBJECT_SIZE(5);
+StaticJsonDocument<sensor_json_capacity> measures;
+StaticJsonDocument<care_json_capacity> care_config;
 
 // function declaration
 int read_soil_moist();
@@ -30,6 +32,8 @@ int read_water_level();
 int read_light_val();
 int read_tempC();
 int read_humidity();
+String read_last_watered();
+String read_watering_freq();
 
 void setup() {
   // relay, water level sensor
@@ -45,16 +49,24 @@ void setup() {
 }
 
 void loop() {
-  // create and init json data for payload to raspberry pi
-  JsonObject obj = measures.to<JsonObject>();
-  obj["SoilMoisture"] = read_soil_moist();
-  obj["Temperature"] = read_tempC();
-  obj["Humidity"] = read_humidity();
-  obj["WaterLevel"] = read_water_level();
-  obj["Light"] = read_light_val();
+  
+  // create and init sensor data. Exporting payload to RPi
+  JsonObject sensor_json_object = measures.to<JsonObject>();
+  sensor_json_object["SoilMoisture"] = read_soil_moist();
+  sensor_json_object["Temperature"] = read_tempC();
+  sensor_json_object["Humidity"] = read_humidity();
+  sensor_json_object["WaterLevel"] = read_water_level();
+  sensor_json_object["Light"] = read_light_val();
+
 
   // send off data to RPi
-  serializeJson(measures, Serial);
+  serializeJson(measures, Serial); 
+
+  // receive care config from RPi
+  
+
+
+  
 
   // start_watering_auto
   if (measures["SoilMoisture"].as<int>() > 450) {
@@ -70,7 +82,6 @@ void loop() {
       
   }
   
-
   delay(1500);
 }
 
@@ -101,4 +112,13 @@ int read_tempC() {
 // read and return humidity of DHT22
 int read_humidity() {
   return HT.readHumidity();
+}
+
+// read incoming serial data from RPi and return it
+String read_last_watered() {
+ 
+}
+
+String read_watering_freq() {
+
 }
