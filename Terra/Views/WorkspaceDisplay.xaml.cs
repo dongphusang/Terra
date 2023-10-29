@@ -16,19 +16,17 @@ public partial class WorkspaceDisplay : ContentPage
 		_viewModel = new PlantViewModel();
         _backgroundTokenSource = new CancellationTokenSource();
         BindingContext = _viewModel;
-		// start background task
-		_backgroundThread = Task.Run(() => FetchDataInflux(_backgroundTokenSource.Token));
 	}
 
 	/// <summary>
 	/// Continuously fetch data in background
 	/// </summary>
 	/// <param name="cancellationToken"> if set to cancelled, terminate the loop (data fetching in background) </param>
-	private void FetchDataInflux(CancellationToken cancellationToken)
+	private async Task FetchDataInflux(CancellationToken cancellationToken)
 	{
 		while (!cancellationToken.IsCancellationRequested)
 		{
-			_viewModel.GetDataFromInflux();
+			await _viewModel.GetDataFromInflux();
 			_viewModel.AssessWarnings();
 			Thread.Sleep(1000);
 		}
@@ -44,4 +42,16 @@ public partial class WorkspaceDisplay : ContentPage
         base.OnNavigatedFrom(args);
 		_backgroundTokenSource.Cancel();
     }
+
+	/// <summary>
+	/// Resume data fetching on page appearing.
+	/// </summary>
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+		// start background task
+		_backgroundTokenSource = new();
+        _backgroundThread = Task.Run(() => FetchDataInflux(_backgroundTokenSource.Token));
+    }
+
 }

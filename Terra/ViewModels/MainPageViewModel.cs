@@ -13,16 +13,16 @@ namespace Terra.ViewModels
 		}
 
         [RelayCommand]
-        public Task ToAddWorkspacePage() => Shell.Current.GoToAsync(nameof(AddWorkspacePage));
+        async Task ToAddWorkspacePage() => await Task.Run(() => Shell.Current.GoToAsync(nameof(AddWorkspacePage), false));
 
         [RelayCommand]
-        public Task ToWorkspaceList() => Shell.Current.GoToAsync(nameof(WorkspaceList));
+        async Task ToWorkspaceList() => await Task.Run(() => Shell.Current.GoToAsync(nameof(WorkspaceList), false));
 
         [RelayCommand]
-        public Task ToGraphicalView() => Shell.Current.GoToAsync(nameof(GraphicalView));
+        async Task ToGraphicalView() => await Task.Run(() => Shell.Current.GoToAsync(nameof(GraphicalView), false));
 
         [RelayCommand]
-        public Task ToEmailSubPage() => Shell.Current.GoToAsync(nameof(EmailSubPage));
+        async Task ToEmailSubPage() => await Task.Run(() => Shell.Current.GoToAsync(nameof(EmailSubPage), false));
 
         
 

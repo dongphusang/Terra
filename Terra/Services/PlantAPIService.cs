@@ -49,7 +49,6 @@ namespace Terra.Services
         /// <summary>
         /// Get plant names from API based user's input
         /// </summary>
-        /// <param name="plantName"> Name of plant. </param>
         /// <returns> Dictionary on plant's information. </returns>
         public async Task<List<string>> GetPlantOptions(string query)
         {         

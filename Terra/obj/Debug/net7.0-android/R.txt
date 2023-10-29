@@ -2715,6 +2715,13 @@ int drawable trash_can 0x7f0700df
 int drawable warning 0x7f0700e0
 int drawable water_tank 0x7f0700e1
 int drawable water_tank_warning 0x7f0700e2
+int drawable workspace_display_conf_button 0x7f0700e3
+int drawable workspace_display_config_icon 0x7f0700e4
+int drawable workspace_display_graph_button 0x7f0700e5
+int drawable workspace_display_graph_icon 0x7f0700e6
+int drawable workspace_display_info_button 0x7f0700e7
+int drawable workspace_display_info_icon 0x7f0700e8
+int drawable workspace_display_sub_button 0x7f0700e9
 int id ALT 0x7f080000
 int id BOTTOM_END 0x7f080001
 int id BOTTOM_START 0x7f080002

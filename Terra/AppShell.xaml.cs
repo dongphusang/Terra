@@ -1,5 +1,4 @@
-﻿
-namespace Terra;
+﻿namespace Terra;
 
 public partial class AppShell : Shell
 {
@@ -16,5 +15,6 @@ public partial class AppShell : Shell
 		Routing.RegisterRoute(nameof(EmailSubPage), typeof(EmailSubPage));
 		Routing.RegisterRoute(nameof(PlantInfoPage), typeof(PlantInfoPage));
 		Routing.RegisterRoute(nameof(SubToPlantPage), typeof(SubToPlantPage));
+		Routing.RegisterRoute(nameof(ModeConfigPage), typeof(ModeConfigPage));
     }
 }

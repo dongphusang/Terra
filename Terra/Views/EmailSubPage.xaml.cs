@@ -12,6 +12,6 @@ public partial class EmailSubPage : ContentPage
 		InitializeComponent();
 		_viewModel = new();
 		BindingContext = _viewModel;
-		_viewModel.UpdateEmails();
+		Task.Run(_viewModel.UpdateEmails);
 	}
 }

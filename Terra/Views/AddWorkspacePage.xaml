@@ -5,106 +5,116 @@
              Title="AddWorkspacePage"
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
              x:DataType="viewmodel:WorkspaceViewModel">
-    <Grid
-        Padding="30, 50, 30, 0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <ScrollView
+        Padding="30">
+        <Grid
+            RowSpacing="50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-        <!-- workspace entry label -->
-        <Label
-            Margin="0,0,0,5"
-            Grid.Row="0"
-            Grid.Column="0"
-            FontSize="20"
-            FontAttributes="Bold"
-            Text="Workspace"/>
-        <!-- workspace entry background -->
-        <BoxView
-            Grid.Row="1"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            HeightRequest="55"
-            Color="{StaticResource BoxViewTextPromptBackGround}"
-            CornerRadius="8"/>
-        <!-- workspace entry -->
-        <Entry
-            Grid.Row="1"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            HeightRequest="50"
-            BackgroundColor="Transparent"        
-            Placeholder="..."
-            FontSize="18"
-            Text="{Binding Workspace.WorkspaceName}"
-            IsEnabled="{Binding IsAdditionRestricted}"/>
-        
-        <!-- note editor label -->
-        <Label
-            Margin="0,20,0,5"
-            Grid.Row="2"
-            Grid.Column="0"
-            FontSize="20"
-            FontAttributes="Bold"
-            Text="Note"/>
-        <!-- note editor background -->
-        <BoxView
-            Grid.Row="3"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            HeightRequest="250"
-            Color="{StaticResource BoxViewTextPromptBackGround}"
-            CornerRadius="8"/>
-        <!-- note editor -->
-        <Editor
-            Grid.Row="3"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            HeightRequest="250"
-            BackgroundColor="Transparent"        
-            Placeholder="..."
-            FontSize="18"
-            Text="{Binding Workspace.Note}"
-            IsEnabled="{Binding IsAdditionRestricted}"/>
+            <!-- Workspace Name -->
+            <StackLayout
+                Grid.Row="0">
+                <Label
+                    Text="Name"
+                    FontSize="27"
+                    FontAttributes="Bold"/>
+                <Grid
+                    Margin="0, 15, 0, 0">
+                    <!-- workspace entry background -->
+                    <BoxView
+                        HeightRequest="55"
+                        Color="{StaticResource BoxViewTextPromptBackGround}"
+                        CornerRadius="8"/>
+                    <!-- workspace entry -->
+                    <Entry
+                        HeightRequest="50"
+                        BackgroundColor="Transparent"        
+                        Placeholder="workspace name..."
+                        FontSize="20"
+                        Text="{Binding WorkspaceModel.WorkspaceName}"
+                        IsEnabled="{Binding IsAdditionRestricted}"/>
+                </Grid>
+            </StackLayout>
 
-        <!-- Confirm Button -->
-        <Button            
-            Grid.Row="4"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            HeightRequest="50"
-            WidthRequest="230"
-            Text="confirm"
-            TextColor="Black"
-            BackgroundColor="{StaticResource ButtonColorLight}"
-            Command="{Binding PostWorkspaceCommand}"
-            IsEnabled="{Binding IsAdditionRestricted}">
-            <Button.Shadow>
-                <Shadow
-                    Brush="Gray"
-                    Offset="0,0"
-                    Radius="20"
-                    Opacity="1"/>
-            </Button.Shadow>
-        </Button>
-        
-        <!-- Restriction Message -->
-        <Label
-            Grid.Row="4"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            FontSize="14"
-            HorizontalOptions="CenterAndExpand"
-            Text="{Binding RestrictionMessage}"
-            TextColor="Red"/>
-        
-    </Grid>
+            <!-- Workspace Note -->
+            <StackLayout
+                Grid.Row="1">
+                <Label
+                    Text="Note"
+                    FontSize="27"
+                    FontAttributes="Bold"/>
+                <Grid
+                    Margin="0, 15, 0, 0">
+                    <!-- note editor background -->
+                    <BoxView
+                        HeightRequest="250"
+                        Color="{StaticResource BoxViewTextPromptBackGround}"
+                        CornerRadius="8"/>
+                    <!-- note editor -->
+                    <Editor
+                        HeightRequest="250"
+                        BackgroundColor="Transparent"        
+                        Placeholder="workspace note..."
+                        FontSize="20"
+                        Text="{Binding WorkspaceModel.Note}"
+                        IsEnabled="{Binding IsAdditionRestricted}"/>
+                </Grid>
+            </StackLayout>
+            
+            <!-- Workspace Controller Chip -->
+            <StackLayout
+                Grid.Row="2">
+                <Label
+                    Text="Microcontroller"
+                    FontSize="27"
+                    FontAttributes="Bold"/>
+                <Grid
+                    Margin="0, 15, 0, 0">
+                    <BoxView
+                        HeightRequest="50"
+                        Color="{StaticResource BoxViewTextPromptBackGround}"
+                        CornerRadius="8"/>
+                    <Picker
+                        SelectedItem="{Binding WorkspaceModel.Microcontroller}"
+                        ItemsSource="{Binding Measurements}"
+                        IsEnabled="{Binding IsAdditionRestricted}"
+                        />
+                </Grid>
+            </StackLayout>
+
+            <!-- Button & Warning -->
+            <StackLayout
+                Grid.Row="3">
+                <!-- restriction message -->
+                <Label
+                    FontSize="14"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{Binding RestrictionMessage}"
+                    TextColor="Red"/>
+                <!-- confirm button -->
+                <Button            
+                    HeightRequest="50"
+                    WidthRequest="230"
+                    HorizontalOptions="Center"
+                    Text="confirm"
+                    TextColor="Black"
+                    BackgroundColor="{StaticResource ButtonColorLight}"
+                    Command="{Binding PostWorkspaceCommand}"
+                    IsEnabled="{Binding IsAdditionRestricted}">
+                    <Button.Shadow>
+                        <Shadow
+                            Brush="Gray"
+                            Offset="0,0"
+                            Radius="20"
+                            Opacity="1"/>
+                    </Button.Shadow>
+                </Button>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
 </ContentPage>

@@ -50,7 +50,7 @@
                 ItemsLayout="VerticalList"
                 ItemsSource="{Binding PlantNames}"
                 SelectionMode="Single"
-                SelectedItem="{Binding Plant.Name}"
+                SelectedItem="{Binding PlantModel.Name}"
                 HorizontalOptions="Center"
                 VerticalOptions="FillAndExpand">
                 <CollectionView.ItemTemplate>
@@ -86,7 +86,7 @@
                 BackgroundColor="Transparent"        
                 Placeholder="..."
                 FontSize="18"
-                Text="{Binding Plant.Note}"
+                Text="{Binding PlantModel.Note}"
                 IsEnabled="{Binding IsAdditionRestricted}"/>
 
             <!-- Confirm Button -->

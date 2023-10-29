@@ -14,6 +14,8 @@ namespace Terra.TerraConstants
         // documents
         public const string ACTIVE_EMAILS = "Active";
         public const string INACTIVE_EMAILS = "Inactive";
+        public const string SCHEDULE = "Schedule";
+        public const string WATERMOD = "WateringModule";
 
         // documents key value pairs
         

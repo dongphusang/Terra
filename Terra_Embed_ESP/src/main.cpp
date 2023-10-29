@@ -12,10 +12,9 @@
 #define INFLUXDB_TOKEN "gkSWc1Vzwfq8nr3vKRhklT_ebchZakq1rzF4dRpAgJdaBp1orj5G6kZVeflHZgzf2TdWrB75vKwYpjwhfK_htg=="
 #define INFLUXDB_ORG "marcodsang@gmail.com"
 #define INFLUXDB_BUCKET "Terra"
-//#define TZ_INFO "UTC-4"
 
 // WIFI
-Point esp("ESP32");
+Point esp("ESP32-1");
 InfluxDBClient client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN, InfluxDbCloud2CACert);
 
 /*  define variables */

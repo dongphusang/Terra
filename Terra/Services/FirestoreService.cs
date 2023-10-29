@@ -64,27 +64,40 @@ namespace Terra.Services
         /// <param name="collection"></param>
         /// <param name="document"></param>
         /// <returns></returns>
-        public async Task<List<object>> GetValue(string key, string collection, string document)
+        public async Task<ObservableCollection<object>> GetValues(string key, string collection, string document)
         {
             docRef = firestore.Collection(collection).Document(document);
             var dictionary = (await docRef.GetSnapshotAsync()).ToDictionary();
             
             if (dictionary.ContainsKey(key))
             {
-                return new List<object>((List<object>)dictionary[key]);
+                return new ObservableCollection<object>((ObservableCollection<object>)dictionary[key]);
             }
-            else return new List<object>();
+            else return new ObservableCollection<object>();
         }
 
+        public async Task<string> GetValue(string key, string collection, string document)
+        {
+            docRef = firestore.Collection(collection).Document(document);
+            var dictionary = (await docRef.GetSnapshotAsync()).ToDictionary();
+
+            if (dictionary.ContainsKey(key))
+            {
+                return dictionary[key].ToString();
+            }
+            else return string.Empty;
+        }
+
+
         /// <summary>
-        /// Upload key-value data to firestore.
+        /// Upload and merge key-value data to firestore.
         /// </summary>
         /// <param name="key"> Dictionary key. </param>
         /// <param name="value"> Dictionary value. </param>
         /// <param name="collection"> Target firestore collection. </param>
         /// <param name="document"> Target firestore document of said collection. </param>
         /// <returns> Firestore write-result. </returns>
-        public Task Post(string key, object value, string collection, string document)
+        public Task PostMerge(string key, object value, string collection, string document)
         {
             docRef = firestore.Collection(collection).Document(document);
             Dictionary<string, object> data = new()
@@ -93,7 +106,26 @@ namespace Terra.Services
             };
 
             return docRef.SetAsync(data, SetOptions.MergeAll);
-        } 
+        }
+
+        /// <summary>
+        /// Upload and overwrite key-value data of firestore. 
+        /// </summary>
+        /// <param name="key"> Dictionary key. </param>
+        /// <param name="value"> Dictionary value. </param>
+        /// <param name="collection"> Target firestore collection. </param>
+        /// <param name="document"> Target firestore document of said collection. </param>
+        /// <returns> Firestore write-result. </returns>
+        public Task PostOverride(string key, object value, string collection, string document)
+        {
+            docRef = firestore.Collection(collection).Document(document);
+            Dictionary<string, object> data = new()
+            {
+                {key, value},
+            };
+
+            return docRef.SetAsync(data, SetOptions.Overwrite);
+        }
 
         /// <summary>
         /// Remove a key from firestore document.

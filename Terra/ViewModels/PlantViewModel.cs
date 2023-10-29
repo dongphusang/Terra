@@ -17,9 +17,9 @@ namespace Terra.ViewModels
 	public partial class PlantViewModel : ObservableObject
 	{
         [ObservableProperty]
-        public Plant plant; // plant model
+        public Plant plantModel; // plant model
         [ObservableProperty]
-        public APIPlant apiPlant;
+        public APIPlant apiPlantModel;
 
         public string CurrentWorkspaceName { get; set; } // name of currently chosen workspace (representing a group of plants)
         public string CurrentPlantName { get; set; } // name of currently chosen plant
@@ -47,8 +47,8 @@ namespace Terra.ViewModels
         // constructor
         public PlantViewModel()
         {
-            Plant = new();
-            ApiPlant = new();
+            PlantModel = new();
+            ApiPlantModel = new();
 
             _workspaceService = new();
             _influxService = new();
@@ -58,25 +58,32 @@ namespace Terra.ViewModels
             ScreenWidth = DeviceDisplay.MainDisplayInfo.Width;
             isAdditionRestricted = true;
 
+            PlantNames = new();
+            WarningIcons = new();
+
             CurrentWorkspaceName = Preferences.Get("CurrentWorkspace", string.Empty); // get value from preferences (which assigned in WorkspaceViewModel)
             CurrentPlantName = Unwrap(Task.Run(() => _workspaceService.GetPlantName(CurrentWorkspaceName)));           
         }
 
         // navigate to specific plant display
         [RelayCommand]
-        Task ToWorkspaceDisplay() => Shell.Current.GoToAsync(nameof(AddPlantPage));
+        async Task ToWorkspaceDisplay() => await Task.Run(() => Shell.Current.GoToAsync(nameof(AddPlantPage), false));
 
         // navigate to graphical view
         [RelayCommand]
-        Task ToGraphicalPage() => Shell.Current.GoToAsync(nameof(GraphicalView));
+        async Task ToGraphicalPage() => await Task.Run(() => Shell.Current.GoToAsync(nameof(GraphicalView), false));
 
         // navigate to plant info page
         [RelayCommand]
-        Task ToPlantInfoPage() => Shell.Current.GoToAsync(nameof(PlantInfoPage));
+        async Task ToPlantInfoPage() => await Task.Run(() => Shell.Current.GoToAsync(nameof(PlantInfoPage), false));
 
         // navigate to SubToPlantPage
         [RelayCommand]
-        Task ToPlantSubscribing() => Shell.Current.GoToAsync(nameof(SubToPlantPage));
+        async Task ToPlantSubscribing() => await Task.Run(() => Shell.Current.GoToAsync(nameof(SubToPlantPage), false));
+
+        [RelayCommand]
+        async Task ToOperatingConfig() => await Task.Run(() => Shell.Current.GoToAsync(nameof(ModeConfigPage), false));
+
 
         /// <summary>
         /// Update collection view that displays matching plants with user's entry.
@@ -95,7 +102,7 @@ namespace Terra.ViewModels
         [RelayCommand]
         public Task PostPlant()
         {
-            if (Plant.Name is null)
+            if (PlantModel.Name is null)
             {
                 // make toast: want users to choose a plant from list of plant names
                 ThrowToast("Choose Plant!");
@@ -103,7 +110,7 @@ namespace Terra.ViewModels
                 return Task.CompletedTask;
             }
             // insert plant entry to sqlite
-            _workspaceService.InsertToPlantTable(CurrentWorkspaceName, Plant.Name, Plant.Note);
+            _workspaceService.InsertToPlantTable(CurrentWorkspaceName, PlantModel.Name, PlantModel.Note);
             // make  toast: notify users the plant has been added
             ThrowToast("Plant Added!");
 
@@ -117,56 +124,59 @@ namespace Terra.ViewModels
         public void GetPlantDataFromAPI()
         {
             var id = _plantAPIService.GetPlantID(CurrentPlantName).Result;
-            ApiPlant = _plantAPIService.GetPlantDetails(id).Result;
-            ApiPlant.Light = string.Join(", ", ApiPlant.Sunlight);
-            ApiPlant.PropagationMethods = string.Join(", ", ApiPlant.Propagation);
-            Plant.Note = Unwrap(Task.Run(() => _workspaceService.GetPlantNote(CurrentPlantName)));
+            ApiPlantModel = _plantAPIService.GetPlantDetails(id).Result;
+            ApiPlantModel.Light = string.Join(", ", ApiPlantModel.Sunlight);
+            ApiPlantModel.PropagationMethods = string.Join(", ", ApiPlantModel.Propagation);
+            PlantModel.Note = Unwrap(Task.Run(() => _workspaceService.GetPlantNote(CurrentPlantName)));
         }
 
         /// <summary>
         /// Invoke influx service object to query data from InfluxDB, discard broken frames,
         /// then break down data and assign them to Plant model.
         /// </summary>
-        public void GetDataFromInflux()
+        public async Task GetDataFromInflux()
         {
+            // get MCU associated with current workspace
+            var targetMCU = Unwrap(Task.Run(() => _workspaceService.GetWorkspaceMCU(CurrentWorkspaceName)));
             // get data frame from Influx
-            var data = Task.Run(() => _influxService.GetData()).Result;
+            var data = await _influxService.GetData(targetMCU);
             // check if data frame is corrupted (a normal frame has five attributes. A broken frame has 10 attributes)
             if (data.Split(",").Length == 5)
             {
-                Plant = JsonConvert.DeserializeObject<Plant>(data); // break down data
+                PlantModel = JsonConvert.DeserializeObject<Plant>(data); // break down data
             }
             else
             {
-                Plant.SoilMoisture = 0;
-                Plant.Light = 0;
-                Plant.Temperature = 0;
-                Plant.Humidity = 0;
-                Plant.WaterLevel = 0;
+                PlantModel.SoilMoisture = 0;
+                PlantModel.Light = 0;
+                PlantModel.Temperature = 0;
+                PlantModel.Humidity = 0;
+                PlantModel.WaterLevel = 0;
             }
+            Console.WriteLine($"SANG: "+PlantModel.SoilMoisture);
         }
 
         // assess current data and give corresponding warnings
         public void AssessWarnings()
         {
             WarningIcons = new();
-            if (Plant.SoilMoisture < 300)
+            if (PlantModel.SoilMoisture < 300)
             {
                 WarningIcons.Add("moisture_warning.svg");
             }
-            if (Plant.Light < 100)
+            if (PlantModel.Light < 100)
             {
                 WarningIcons.Add("light_warning.svg");
             }
-            if (Plant.Temperature < 23)
+            if (PlantModel.Temperature < 23)
             {
                 WarningIcons.Add("temp_warning.svg");
             }
-            if (Plant.Humidity > 60)
+            if (PlantModel.Humidity > 60)
             {
                 WarningIcons.Add("humidity_warning.svg");
             }
-            if (Plant.WaterLevel < 10)
+            if (PlantModel.WaterLevel < 10)
             {
                 WarningIcons.Add("water_tank_warning.svg");
             }
@@ -182,6 +192,22 @@ namespace Terra.ViewModels
             }
             return result.ToString();
         }
+
+        /// <summary>
+        /// Check if Task<> object is null. Used for parsing InfluxDB query results.
+        /// </summary>
+        /// <param name="obj"> InfluxDB query result </param>
+        /// <returns> Parsed value of InfluxDB query result. </returns>
+        private string Unwrap(Task<string> obj)
+        {
+            var result = obj.Result;
+            if (result is null)
+            {
+                return "N/A";
+            }
+            return result.ToString();
+        }
+
 
         // throw toast of a message
         private void ThrowToast(string message)

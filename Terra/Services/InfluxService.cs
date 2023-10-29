@@ -15,6 +15,7 @@ namespace Terra.Services
         private InfluxDBClient _client;
 
         List<string> records; // storing results from InfluxDB query
+        List<string> measurements; // storing measurements for users to choose from. Essentially, this a measurement decides which MCU the phone should pull data from.
 
         // connection attributes
         readonly string BUCKET;
@@ -33,6 +34,8 @@ namespace Terra.Services
             URL = _config.GetSection("InfluxDB:URL").Value;
 
             _client = new InfluxDBClient(URL, TOKEN); // establish InfluxDB client
+
+            
         }
 
         /// <summary>
@@ -53,11 +56,12 @@ namespace Terra.Services
         /// <summary>
         /// Query data frame from InfluxDB from the last minute.
         /// </summary>
+        /// <param name="mcu"> microcontroller/measurement to pull data from influxdb </param>
         /// <returns></returns>
-        public async Task<string> GetData()
+        public async Task<string> GetData(string mcu)
         {
             records = new();
-            var flux = $"from(bucket:\"{BUCKET}\") |> range(start: -1m)";
+            var flux = $"from(bucket:\"{BUCKET}\") |> range(start: -1m) |> filter(fn: (r) => r._measurement == \"{mcu}\")";
             var fluxTables = await _client.GetQueryApi().QueryAsync(flux, ORG);
             foreach (var fluxTable in fluxTables)
             {
@@ -67,8 +71,29 @@ namespace Terra.Services
                     records.Add(record.GetValue().ToString());
                 }
             }
+            
             return records[^1];           
         }
+        
+        /// <summary>
+        /// Return a list of measurements representing MCUs.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<string>> RetrieveMeasurements()
+        {
+            measurements = new();
+            var flux = $"import \"influxdata/influxdb/schema\"\nschema.measurements(bucket: \"{BUCKET}\")";
+            var fluxTables = await _client.GetQueryApi().QueryAsync(flux, ORG);
+            foreach (var item in fluxTables)
+            {
+                var records = item.Records;
+                foreach (var record in records)
+                {
+                    measurements.Add(record.GetValue().ToString());
+                }
+            }
 
+            return measurements;
+        }
     }
 }

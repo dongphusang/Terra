@@ -28144,6 +28144,27 @@ namespace Terra
 			// aapt resource value: 0x7F0700E2
 			public const int water_tank_warning = 2131165410;
 			
+			// aapt resource value: 0x7F0700E4
+			public const int workspace_display_config_icon = 2131165412;
+			
+			// aapt resource value: 0x7F0700E3
+			public const int workspace_display_conf_button = 2131165411;
+			
+			// aapt resource value: 0x7F0700E5
+			public const int workspace_display_graph_button = 2131165413;
+			
+			// aapt resource value: 0x7F0700E6
+			public const int workspace_display_graph_icon = 2131165414;
+			
+			// aapt resource value: 0x7F0700E7
+			public const int workspace_display_info_button = 2131165415;
+			
+			// aapt resource value: 0x7F0700E8
+			public const int workspace_display_info_icon = 2131165416;
+			
+			// aapt resource value: 0x7F0700E9
+			public const int workspace_display_sub_button = 2131165417;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

@@ -54,10 +54,15 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Compile Remove="EmailBody\**" />
 	  <Compile Remove="TerraEnums\**" />
+	  <EmbeddedResource Remove="EmailBody\**" />
 	  <EmbeddedResource Remove="TerraEnums\**" />
+	  <MauiCss Remove="EmailBody\**" />
 	  <MauiCss Remove="TerraEnums\**" />
+	  <MauiXaml Remove="EmailBody\**" />
 	  <MauiXaml Remove="TerraEnums\**" />
+	  <None Remove="EmailBody\**" />
 	  <None Remove="TerraEnums\**" />
 	</ItemGroup>
 
@@ -79,6 +84,10 @@
 	  <None Remove="Resources\Images\warning.svg" />
 	  <None Remove="Resources\Images\water_tank.svg" />
 	  <None Remove="Resources\Images\water_tank_warning.svg" />
+	  <None Remove="Resources\Images\workspace_display_conf_button.svg" />
+	  <None Remove="Resources\Images\workspace_display_graph_button.svg" />
+	  <None Remove="Resources\Images\workspace_display_info_button.svg" />
+	  <None Remove="Resources\Images\workspace_display_sub_button.svg" />
 	  <None Remove="ViewModels\" />
 	  <None Remove="Models\" />
 	  <None Remove="Views\" />
@@ -106,10 +115,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="EmailBody\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <EmbeddedResource Include="accountSetting.json" />
 	</ItemGroup>
 	<ItemGroup>
@@ -121,6 +126,9 @@
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AddWorkspacePage.xaml">
 	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ModeConfigPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\PlantInfoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>

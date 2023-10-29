@@ -4,10 +4,13 @@ namespace Terra;
 
 public partial class AddWorkspacePage : ContentPage
 {
+	WorkspaceViewModel _viewModel;
+
 	public AddWorkspacePage()
 	{
+		_viewModel = new WorkspaceViewModel();
 		InitializeComponent();
-		BindingContext = new WorkspaceViewModel(); 
+		BindingContext = _viewModel;
 	}
 
 

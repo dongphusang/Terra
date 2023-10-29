@@ -51,6 +51,15 @@
         <member name="P:Terra.Models.Plant.Note">
             <inheritdoc cref="F:Terra.Models.Plant.note"/>
         </member>
+        <member name="T:Terra.Models.Schedule">
+            <inheritdoc/>
+        </member>
+        <member name="P:Terra.Models.Schedule.WeekDay">
+            <inheritdoc cref="F:Terra.Models.Schedule.weekDay"/>
+        </member>
+        <member name="P:Terra.Models.Schedule.Time">
+            <inheritdoc cref="F:Terra.Models.Schedule.time"/>
+        </member>
         <member name="T:Terra.Models.TerraEmail">
             <inheritdoc/>
         </member>
@@ -65,6 +74,9 @@
         </member>
         <member name="P:Terra.Models.Workspace.Note">
             <inheritdoc cref="F:Terra.Models.Workspace.note"/>
+        </member>
+        <member name="P:Terra.Models.Workspace.Microcontroller">
+            <inheritdoc cref="F:Terra.Models.Workspace.microcontroller"/>
         </member>
         <member name="M:Terra.Services.EmailListDBService.IsExist(System.String,System.String,Microsoft.Data.Sqlite.SqliteConnection)">
             <summary>
@@ -115,7 +127,7 @@
             </summary>
             <returns> configuration builder </returns>
         </member>
-        <member name="M:Terra.Services.FirestoreService.GetValue(System.String,System.String,System.String)">
+        <member name="M:Terra.Services.FirestoreService.GetValues(System.String,System.String,System.String)">
             <summary>
              
             </summary>
@@ -124,9 +136,19 @@
             <param name="document"></param>
             <returns></returns>
         </member>
-        <member name="M:Terra.Services.FirestoreService.Post(System.String,System.Object,System.String,System.String)">
+        <member name="M:Terra.Services.FirestoreService.PostMerge(System.String,System.Object,System.String,System.String)">
             <summary>
-            Upload key-value data to firestore.
+            Upload and merge key-value data to firestore.
+            </summary>
+            <param name="key"> Dictionary key. </param>
+            <param name="value"> Dictionary value. </param>
+            <param name="collection"> Target firestore collection. </param>
+            <param name="document"> Target firestore document of said collection. </param>
+            <returns> Firestore write-result. </returns>
+        </member>
+        <member name="M:Terra.Services.FirestoreService.PostOverride(System.String,System.Object,System.String,System.String)">
+            <summary>
+            Upload and overwrite key-value data of firestore. 
             </summary>
             <param name="key"> Dictionary key. </param>
             <param name="value"> Dictionary value. </param>
@@ -157,9 +179,16 @@
             </summary>
             <returns> configuration builder </returns>
         </member>
-        <member name="M:Terra.Services.InfluxService.GetData">
+        <member name="M:Terra.Services.InfluxService.GetData(System.String)">
             <summary>
             Query data frame from InfluxDB from the last minute.
+            </summary>
+            <param name="mcu"> microcontroller/measurement to pull data from influxdb </param>
+            <returns></returns>
+        </member>
+        <member name="M:Terra.Services.InfluxService.RetrieveMeasurements">
+            <summary>
+            Return a list of measurements representing MCUs.
             </summary>
             <returns></returns>
         </member>
@@ -173,7 +202,6 @@
             <summary>
             Get plant names from API based user's input
             </summary>
-            <param name="plantName"> Name of plant. </param>
             <returns> Dictionary on plant's information. </returns>
         </member>
         <member name="M:Terra.Services.WorkspaceService.IsExist(System.String,System.String,Microsoft.Data.Sqlite.SqliteConnection)">
@@ -204,7 +232,7 @@
             Create plant table in Terra db
             </summary>
         </member>
-        <member name="M:Terra.Services.WorkspaceService.InsertToWorkspaceTable(System.String,System.String)">
+        <member name="M:Terra.Services.WorkspaceService.InsertToWorkspaceTable(System.String,System.String,System.String)">
             <summary>
             Open connection and add workspace entry to table.
             </summary>
@@ -242,6 +270,12 @@
             <inheritdoc/>
             <inheritdoc/>
         </member>
+        <member name="M:Terra.ViewModels.EmailSubViewModel.GetWorkspaceDetails">
+            <summary>
+            Get plant name and microcontroller relevant to a workspace.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Terra.ViewModels.EmailSubViewModel.UpdateEmails">
             <summary>
             Retrieve mails from sqlite database and update view
@@ -250,20 +284,18 @@
         <member name="M:Terra.ViewModels.EmailSubViewModel.AddEmail">
             <summary>
             Add mail to database, update view, and upload mail to firestore
-            [Used: EmailSubPage -> add button]
             </summary>
         </member>
         <member name="M:Terra.ViewModels.EmailSubViewModel.ModifySubscription">
             <summary>
-            Add email to local active email list for subscribing to a plantm
-            [Used: EmailSubPage -> "Email List" collection view]
+            Add email to local active email list for subscribing to a plant.
             </summary>
         </member>
         <member name="M:Terra.ViewModels.EmailSubViewModel.CommitSubscriptions">
             <summary>
             Change email status between active and inactive. 
-            Active meaning the email subscribes to a plant.
-            Inactive meaning the email not subscribe to a plant.
+            Active meaning the email subscribes to a plant, and pushed to "active" document;
+            Inactive meaning the email not subscribe to a plant, and pushed to "inactive" document.
             </summary>
         </member>
         <member name="M:Terra.ViewModels.EmailSubViewModel.DeleteEmail(System.String)">
@@ -285,12 +317,6 @@
         <member name="P:Terra.ViewModels.EmailSubViewModel.SelectedEmail">
             <inheritdoc cref="F:Terra.ViewModels.EmailSubViewModel.selectedEmail"/>
         </member>
-        <member name="P:Terra.ViewModels.EmailSubViewModel.CurrentWorkspaceName">
-            <inheritdoc cref="F:Terra.ViewModels.EmailSubViewModel.currentWorkspaceName"/>
-        </member>
-        <member name="P:Terra.ViewModels.EmailSubViewModel.CurrentPlantName">
-            <inheritdoc cref="F:Terra.ViewModels.EmailSubViewModel.currentPlantName"/>
-        </member>
         <member name="F:Terra.ViewModels.EmailSubViewModel.addEmailCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.AddEmailCommand"/>.</summary>
         </member>
@@ -301,7 +327,7 @@
             <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.ModifySubscriptionCommand"/>.</summary>
         </member>
         <member name="P:Terra.ViewModels.EmailSubViewModel.ModifySubscriptionCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.ModifySubscription"/>.</summary>
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.EmailSubViewModel.ModifySubscription"/>.</summary>
         </member>
         <member name="F:Terra.ViewModels.EmailSubViewModel.commitSubscriptionsCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.EmailSubViewModel.CommitSubscriptionsCommand"/>.</summary>
@@ -393,7 +419,74 @@
         <member name="P:Terra.ViewModels.MainPageViewModel.ToEmailSubPageCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.MainPageViewModel.ToEmailSubPage"/>.</summary>
         </member>
+        <member name="T:Terra.ViewModels.OperatingModeViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="M:Terra.ViewModels.OperatingModeViewModel.GetWorkspaceDetails">
+            <summary>
+            Get plant name and microcontroller relevant to a workspace.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Terra.ViewModels.OperatingModeViewModel.GetAutoConfigAsync">
+            <summary>
+            Get config for automation mode.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Terra.ViewModels.OperatingModeViewModel.AddSchedule">
+            <summary>
+            Save inputs to ObservableCollection and update schedules view.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Terra.ViewModels.OperatingModeViewModel.RemoveSchedule">
+            <summary>
+            Remove inputs from ObservableCollection and update schedules view.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Terra.ViewModels.OperatingModeViewModel.UpdateSchedules">
+            <summary>
+            Get schedules from firestore and replace the local ObservableCollection schedules.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Terra.ViewModels.OperatingModeViewModel.IsLightingAuto">
+            <inheritdoc cref="F:Terra.ViewModels.OperatingModeViewModel.isLightingAuto"/>
+        </member>
+        <member name="P:Terra.ViewModels.OperatingModeViewModel.IsWateringAuto">
+            <inheritdoc cref="F:Terra.ViewModels.OperatingModeViewModel.isWateringAuto"/>
+        </member>
+        <member name="P:Terra.ViewModels.OperatingModeViewModel.Schedules">
+            <inheritdoc cref="F:Terra.ViewModels.OperatingModeViewModel.schedules"/>
+        </member>
+        <member name="P:Terra.ViewModels.OperatingModeViewModel.PickedSchedule">
+            <inheritdoc cref="F:Terra.ViewModels.OperatingModeViewModel.pickedSchedule"/>
+        </member>
+        <member name="F:Terra.ViewModels.OperatingModeViewModel.addScheduleCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.OperatingModeViewModel.AddScheduleCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.OperatingModeViewModel.AddScheduleCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.OperatingModeViewModel.AddSchedule"/>.</summary>
+        </member>
+        <member name="F:Terra.ViewModels.OperatingModeViewModel.removeScheduleCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.OperatingModeViewModel.RemoveScheduleCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.OperatingModeViewModel.RemoveScheduleCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.OperatingModeViewModel.RemoveSchedule"/>.</summary>
+        </member>
+        <member name="F:Terra.ViewModels.OperatingModeViewModel.commitSchedulesCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.OperatingModeViewModel.CommitSchedulesCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.OperatingModeViewModel.CommitSchedulesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.OperatingModeViewModel.CommitSchedules"/>.</summary>
+        </member>
         <member name="T:Terra.ViewModels.PlantViewModel">
+            <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
@@ -425,11 +518,12 @@
             then break down data and assign them to Plant model.
             </summary>
         </member>
-        <member name="P:Terra.ViewModels.PlantViewModel.Plant">
-            <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.plant"/>
+        <!-- Badly formed XML comment ignored for member "M:Terra.ViewModels.PlantViewModel.Unwrap(System.Threading.Tasks.Task{System.String})" -->
+        <member name="P:Terra.ViewModels.PlantViewModel.PlantModel">
+            <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.plantModel"/>
         </member>
-        <member name="P:Terra.ViewModels.PlantViewModel.ApiPlant">
-            <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.apiPlant"/>
+        <member name="P:Terra.ViewModels.PlantViewModel.ApiPlantModel">
+            <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.apiPlantModel"/>
         </member>
         <member name="P:Terra.ViewModels.PlantViewModel.IsAdditionRestricted">
             <inheritdoc cref="F:Terra.ViewModels.PlantViewModel.isAdditionRestricted"/>
@@ -470,6 +564,12 @@
         <member name="P:Terra.ViewModels.PlantViewModel.ToPlantSubscribingCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.PlantViewModel.ToPlantSubscribing"/>.</summary>
         </member>
+        <member name="F:Terra.ViewModels.PlantViewModel.toOperatingConfigCommand">
+            <summary>The backing field for <see cref="P:Terra.ViewModels.PlantViewModel.ToOperatingConfigCommand"/>.</summary>
+        </member>
+        <member name="P:Terra.ViewModels.PlantViewModel.ToOperatingConfigCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:Terra.ViewModels.PlantViewModel.ToOperatingConfig"/>.</summary>
+        </member>
         <member name="F:Terra.ViewModels.PlantViewModel.updateCollectionViewCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.PlantViewModel.UpdateCollectionViewCommand"/>.</summary>
         </member>
@@ -489,8 +589,8 @@
             <inheritdoc/>
             <inheritdoc/>
         </member>
-        <member name="P:Terra.ViewModels.WorkspaceViewModel.Workspace">
-            <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.workspace"/>
+        <member name="P:Terra.ViewModels.WorkspaceViewModel.WorkspaceModel">
+            <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.workspaceModel"/>
         </member>
         <member name="P:Terra.ViewModels.WorkspaceViewModel.WorkspaceNameAndNote">
             <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.workspaceNameAndNote"/>
@@ -500,6 +600,9 @@
         </member>
         <member name="P:Terra.ViewModels.WorkspaceViewModel.RestrictionMessage">
             <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.restrictionMessage"/>
+        </member>
+        <member name="P:Terra.ViewModels.WorkspaceViewModel.Measurements">
+            <inheritdoc cref="F:Terra.ViewModels.WorkspaceViewModel.measurements"/>
         </member>
         <member name="F:Terra.ViewModels.WorkspaceViewModel.postWorkspaceCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.WorkspaceViewModel.PostWorkspaceCommand"/>.</summary>
@@ -523,7 +626,7 @@
             <summary>The backing field for <see cref="P:Terra.ViewModels.WorkspaceViewModel.ToWorkspaceCommand"/>.</summary>
         </member>
         <member name="P:Terra.ViewModels.WorkspaceViewModel.ToWorkspaceCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:Terra.ViewModels.WorkspaceViewModel.ToWorkspace(System.String)"/>.</summary>
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Terra.ViewModels.WorkspaceViewModel.ToWorkspace(System.String)"/>.</summary>
         </member>
         <member name="M:Terra.GraphicalView.FetchDataInflux(System.Threading.CancellationToken)">
             <summary>
@@ -685,11 +788,20 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Note">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Note" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.WeekDay">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "WeekDay" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Time">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Time" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Email">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Email" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.WorkspaceName">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "WorkspaceName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Microcontroller">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Microcontroller" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.EmailModel">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "EmailModel" generated properties.</summary>
@@ -703,17 +815,23 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedEmail">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedEmail" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CurrentWorkspaceName">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CurrentWorkspaceName" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsLightingAuto">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsLightingAuto" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CurrentPlantName">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CurrentPlantName" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsWateringAuto">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsWateringAuto" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Plant">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Plant" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Schedules">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Schedules" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ApiPlant">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ApiPlant" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.PickedSchedule">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "PickedSchedule" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.PlantModel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "PlantModel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ApiPlantModel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ApiPlantModel" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsAdditionRestricted">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsAdditionRestricted" generated properties.</summary>
@@ -730,14 +848,17 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.PlantNames">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "PlantNames" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Workspace">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Workspace" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.WorkspaceModel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "WorkspaceModel" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.WorkspaceNameAndNote">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "WorkspaceNameAndNote" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.RestrictionMessage">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "RestrictionMessage" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Measurements">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Measurements" generated properties.</summary>
         </member>
         <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
             <summary>
@@ -769,11 +890,20 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Note">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Note" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.WeekDay">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "WeekDay" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Time">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Time" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Email">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Email" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.WorkspaceName">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "WorkspaceName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Microcontroller">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Microcontroller" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.EmailModel">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "EmailModel" generated properties.</summary>
@@ -787,17 +917,23 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedEmail">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedEmail" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CurrentWorkspaceName">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CurrentWorkspaceName" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsLightingAuto">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsLightingAuto" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CurrentPlantName">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CurrentPlantName" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsWateringAuto">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsWateringAuto" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Plant">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Plant" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Schedules">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Schedules" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ApiPlant">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ApiPlant" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.PickedSchedule">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "PickedSchedule" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.PlantModel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "PlantModel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ApiPlantModel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ApiPlantModel" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsAdditionRestricted">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsAdditionRestricted" generated properties.</summary>
@@ -814,14 +950,17 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.PlantNames">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "PlantNames" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Workspace">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Workspace" generated properties.</summary>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.WorkspaceModel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "WorkspaceModel" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.WorkspaceNameAndNote">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "WorkspaceNameAndNote" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.RestrictionMessage">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "RestrictionMessage" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Measurements">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Measurements" generated properties.</summary>
         </member>
     </members>
 </doc>

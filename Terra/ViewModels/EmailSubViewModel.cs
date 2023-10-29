@@ -11,6 +11,8 @@ using Terra.Models;
 using Terra.Services;
 using Terra.TerraConstants;
 using CommunityToolkit.Maui.Core.Extensions;
+using CommunityToolkit.Maui.Views;
+using System.ComponentModel;
 
 namespace Terra.ViewModels
 {
@@ -22,25 +24,25 @@ namespace Terra.ViewModels
         public TerraEmail emailModel;
 
         // services
-        private EmailListDBService _emailListDBService;
-        private WorkspaceService _workspaceService;
-        private FirestoreService _firestoreService;
+        private EmailListDBService _emailListDBService; // add and remove emails from sqlitedb
+        private WorkspaceService _workspaceService;     // get workspace associated with current plant
+        private FirestoreService _firestoreService;     // manipulate email list on firestore
 
         // email list
         [ObservableProperty]
-        public List<string> emails; // emails that haven't subscribed to anything
+        public List<string> emails; // email pool
         [ObservableProperty]
-        public ObservableCollection<string> activeEmails; // emails that subscribe for a particular plant
+        public ObservableCollection<string> activeEmails; // emails that subscribed for a particular plant
 
         // email selected in collection view
         [ObservableProperty]
         public string selectedEmail;
 
-        // plant and workspace name
-        [ObservableProperty]
-        public string currentWorkspaceName;
-        [ObservableProperty]
-        public string currentPlantName;
+        // currently viewing workspace, plant, mcu
+        private string _currentWorkspaceName;
+        private string _currentPlantName;
+        private string _currentMCU;       
+
 
         public EmailSubViewModel()
         {
@@ -50,23 +52,36 @@ namespace Terra.ViewModels
             _emailListDBService = new();
             _workspaceService = new();
             _firestoreService = new();
-            
-            CurrentWorkspaceName = Preferences.Get("CurrentWorkspace", string.Empty); // get value from preferences (which assigned in WorkspaceViewModel)
-            CurrentPlantName = Unwrap(Task.Run(() => _workspaceService.GetPlantName(CurrentWorkspaceName)));
+          
+            GetWorkspaceDetails();
+            Console.WriteLine($"SANG: {_currentWorkspaceName}, {_currentPlantName}, {_currentMCU}");
+        }
+
+        /// <summary>
+        /// Get plant name and microcontroller relevant to a workspace.
+        /// </summary>
+        /// <returns></returns>
+        private Task GetWorkspaceDetails()
+        {
+            _currentWorkspaceName = Preferences.Get("CurrentWorkspace", string.Empty); // get value from preferences (which assigned in WorkspaceViewModel)
+            _currentPlantName = (string) _workspaceService.GetPlantName(_currentWorkspaceName).Result;
+            _currentMCU = (string) _workspaceService.GetWorkspaceMCU(_currentWorkspaceName).Result;
+
+            return Task.CompletedTask;
         }
 
         /// <summary>
         /// Retrieve mails from sqlite database and update view
         /// </summary>
-        public async void UpdateEmails()
+        public async Task UpdateEmails()
         {
             Emails = _emailListDBService.GetFromEmailTable();
-            ConvertToDisplayableList(await _firestoreService.GetValue(CurrentPlantName, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS));
+
+            ConvertToDisplayableList(await _firestoreService.GetValues(_currentPlantName, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS));
         }
 
         /// <summary>
         /// Add mail to database, update view, and upload mail to firestore
-        /// [Used: EmailSubPage -> add button]
         /// </summary>
         [RelayCommand]
         public Task AddEmail()
@@ -76,19 +91,18 @@ namespace Terra.ViewModels
                 if (EmailModel.Email.Trim() is not "")
                 {
                     _emailListDBService.PostToEmailTable(EmailModel.Email);
-                    UpdateEmails();
-                    return _firestoreService.Post(FormatForFirestore(EmailModel.Email), "Terra", FirestoreConstant.SUBSCRIPTION, FirestoreConstant.INACTIVE_EMAILS);
+                    Task.Run(UpdateEmails);
+                    return _firestoreService.PostMerge(FormatForFirestore(EmailModel.Email), "Terra", FirestoreConstant.SUBSCRIPTION, FirestoreConstant.INACTIVE_EMAILS);
                 }                
             }        
             return Task.CompletedTask;
         }
 
         /// <summary>
-        /// Add email to local active email list for subscribing to a plantm
-        /// [Used: EmailSubPage -> "Email List" collection view]
+        /// Add email to local active email list for subscribing to a plant.
         /// </summary>
         [RelayCommand]
-        public void ModifySubscription()
+        public Task ModifySubscription()
         {
             if (ActiveEmails.Contains(SelectedEmail) && SelectedEmail is not null)
             {
@@ -100,20 +114,24 @@ namespace Terra.ViewModels
                 ActiveEmails.Add(SelectedEmail);
                 SelectedEmail = null;
             }
+
+            return Task.CompletedTask;
         }
 
         /// <summary>
         /// Change email status between active and inactive. 
-        /// Active meaning the email subscribes to a plant.
-        /// Inactive meaning the email not subscribe to a plant.
+        /// Active meaning the email subscribes to a plant, and pushed to "active" document;
+        /// Inactive meaning the email not subscribe to a plant, and pushed to "inactive" document.
         /// </summary>
         [RelayCommand]
-        public async Task CommitSubscriptions()
+        public Task CommitSubscriptions()
         {
             // add email to active document in firestore
-            if (ActiveEmails.Count > 0) await ActivateSubscription();
+            if (ActiveEmails.Count > 0) 
+                return ActivateSubscription();
             // remove subscription if no emails are subscribed to current plant
-            else await _firestoreService.Remove(CurrentPlantName, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
+            else 
+                return _firestoreService.Remove(_currentPlantName, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
         }
 
         /// <summary>
@@ -122,12 +140,12 @@ namespace Terra.ViewModels
         /// </summary>
         /// <param name="email"> Mail to be removed. </param>
         [RelayCommand]
-        public async Task DeleteEmail(string email)
+        public Task DeleteEmail(string email)
         {
             _emailListDBService.DeleteEmail(email);
-            UpdateEmails();
+            Task.Run(UpdateEmails);
 
-            await _firestoreService.RemoveFromParentCollection(email, FormatForFirestore(email));
+            return _firestoreService.RemoveFromParentCollection(email, FormatForFirestore(email));
         }
 
         // check if object returned from Task.Run() is null. Return non-null value. Usually used for sqlite operations
@@ -148,7 +166,7 @@ namespace Terra.ViewModels
         }
 
         // copy List<object>'s content to List<string> for UI display (List<object> can't display strings on UI)
-        private void ConvertToDisplayableList(List<object> usernames)
+        private void ConvertToDisplayableList(ObservableCollection<object> usernames)
         {
             ActiveEmails = new();
             for (int i = 0; i < usernames.Count; i++) 
@@ -160,8 +178,7 @@ namespace Terra.ViewModels
         // add subscribing section for current plant in Active collection
         private Task ActivateSubscription()
         {
-            //_firestoreService.Remove(FormatForFirestore(email), FirestoreConstant.SUBSCRIPTION, FirestoreConstant.INACTIVE_EMAILS);
-            _firestoreService.Post(CurrentPlantName, ActiveEmails, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
+            _firestoreService.PostMerge(_currentPlantName, ActiveEmails, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
 
             return Task.CompletedTask;
         }

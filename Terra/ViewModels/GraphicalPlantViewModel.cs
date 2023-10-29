@@ -27,6 +27,8 @@ namespace Terra.ViewModels
 		private WorkspaceService _workspaceService;
 		private InfluxService _influxService;
 
+        private string _currentWorkspaceName; // name of currently chosen workspace (representing a group of plants)
+
         private ObservableValue _waterLevelVal; // water level for gauge chart
         private ObservableValue _lightVal;      // light level for gauge chart
         private ObservableCollection<ObservableValue> _temperaturePoints;  // line chart points
@@ -51,6 +53,8 @@ namespace Terra.ViewModels
             InitYAxisTempHumid();    // init y-axis for temperature and humidity line chart
             InitYAxisSoilMoisture(); // init y-axis for soil moisture line chart
             InitSeries();            // init and draw charts
+
+            _currentWorkspaceName = Preferences.Get("CurrentWorkspace", string.Empty); // get value from preferences (which assigned in WorkspaceViewModel) 
         }
 
         /// <summary>
@@ -59,8 +63,10 @@ namespace Terra.ViewModels
         /// </summary>
         public string GetDataFromInflux()
         {   
+            // get MCU associated with current workspace
+            var targetMCU = Unwrap(Task.Run(() => _workspaceService.GetWorkspaceMCU(_currentWorkspaceName)));
             // get data frame from Influx
-            var data = Unwrap(Task.Run(_influxService.GetData));
+            var data = Unwrap(Task.Run(() => _influxService.GetData(targetMCU)));
     
             // check if data frame is corrupted (a normal frame has five attributes. A broken frame has 10 attributes)
             if (data.Split(",").Length == 5)

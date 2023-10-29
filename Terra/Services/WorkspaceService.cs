@@ -120,7 +120,8 @@ namespace Terra.Services
                             "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," +
                             "name TEXT NOT NULL UNIQUE," +
                             "date_added TEXT NOT NULL," +
-                            "note TEXT)";
+                            "note TEXT," +
+                            "mcu TEXT NOT NULL UNIQUE)";
             // add workspace table to Terra database
             if (IsExist("Workspace","*",connection) is false)
             {
@@ -166,7 +167,7 @@ namespace Terra.Services
         /// <param name="workspaceName"> name of workspace </param>
         /// <param name="note"> note of workspace </param>
         /// <returns> Return true if workspace is added. Return false otherwise. </returns>
-        public bool InsertToWorkspaceTable(string workspaceName, string note)
+        public bool InsertToWorkspaceTable(string workspaceName, string note, string mcu)
         {
             var table = "Workspace";
             var column = "name";
@@ -176,8 +177,8 @@ namespace Terra.Services
             connection.OpenAsync().Wait();
 
             // construct sql
-            var a = $"INSERT INTO Workspace (name, date_added, note) " +
-                                        "VALUES (@name, @date_added, @note)";
+            var a = $"INSERT INTO Workspace (name, date_added, note, mcu) " +
+                                        "VALUES (@name, @date_added, @note, @mcu)";
 
             // add member if it doesn't exist
             if (IsExist(table, column, workspaceName, connection) is false)
@@ -186,6 +187,7 @@ namespace Terra.Services
                 command.Parameters.AddWithValue("@name", workspaceName);
                 command.Parameters.AddWithValue("@date_added", DateTime.Now.ToString());
                 command.Parameters.AddWithValue("@note", note);
+                command.Parameters.AddWithValue("@mcu", mcu);
 
                 command.ExecuteNonQuery();
 
@@ -243,6 +245,20 @@ namespace Terra.Services
             using SqliteCommand cmd = new(sql, connection);
             cmd.Parameters.AddWithValue("@nameValue", plantName);
             
+            return cmd.ExecuteScalarAsync();
+        }
+
+        // return object that contains workspace mcu
+        public Task<object> GetWorkspaceMCU(string workspaceName)
+        {
+            // init connection
+            using SqliteConnection connection = new(_connectionString);
+            connection.OpenAsync().Wait();
+
+            var sql = $"SELECT mcu FROM Workspace WHERE name = @nameValue";
+            using SqliteCommand cmd = new(sql, connection);
+            cmd.Parameters.AddWithValue("@nameValue", workspaceName);
+
             return cmd.ExecuteScalarAsync();
         }
 

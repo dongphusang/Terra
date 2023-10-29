@@ -12,13 +12,15 @@ namespace Terra.ViewModels
     public partial class WorkspaceViewModel : ObservableObject
     {
         [ObservableProperty]
-        public Workspace workspace; // workspace model
+        public Workspace workspaceModel; // workspace model
         [ObservableProperty]
         public List<string> workspaceNameAndNote; // list of names and notes
         [ObservableProperty]
         public bool isAdditionRestricted; // is workspace addition disabled
         [ObservableProperty]
         public string restrictionMessage; // popup message when restricted addition
+        [ObservableProperty]
+        public List<string> measurements; // measurement representing a MCU, to pull data from 
 
         // service objects
         private WorkspaceService _workspaceService;
@@ -28,10 +30,11 @@ namespace Terra.ViewModels
         // constructor
         public WorkspaceViewModel()
         {
-            Workspace = new();
+            WorkspaceModel = new();
             _influxService = new();
             _workspaceService = new();
             isAdditionRestricted = EvalAddibility();
+            Measurements = new List<string>(Task.Run(_influxService.RetrieveMeasurements).Result);
         }
 
         // call service method to see if user is allowed to add more workspaces
@@ -53,7 +56,7 @@ namespace Terra.ViewModels
         [RelayCommand]
         Task PostWorkspace()
         {
-             _workspaceService.InsertToWorkspaceTable(Workspace.WorkspaceName, Workspace.Note);
+             _workspaceService.InsertToWorkspaceTable(WorkspaceModel.WorkspaceName, WorkspaceModel.Note, WorkspaceModel.Microcontroller);
             // make a toast
             {
                 var message = "Workspace added!";
@@ -61,6 +64,7 @@ namespace Terra.ViewModels
                 var fontSize = 14;
                 Toast.Make(message, duration, fontSize).Show();             
             }
+
             // navigate to Main
             return Shell.Current.GoToAsync("///MainPage");
         }
@@ -83,27 +87,27 @@ namespace Terra.ViewModels
 
         // navigate to workspace and assign current workspace to mem
         [RelayCommand]
-        public void ToWorkspace(string workspaceName)
+        public async Task ToWorkspace(string workspaceName)
         {
             if (workspaceName is null) // make a toast
             {
                 var message = "Please Add Your Workspace";
                 ToastDuration duration = ToastDuration.Short;
                 var fontSize = 14;
-                Toast.Make(message, duration, fontSize).Show();
+                await Toast.Make(message, duration, fontSize).Show();
             }
             else
             {
                 Preferences.Set("CurrentWorkspace", workspaceName);
 
-                var columnCount = Convert.ToInt32(Task.Run(() => _workspaceService.CountColumnValues(workspaceName)).Result);
+                var columnCount = Convert.ToInt32(await _workspaceService.CountColumnValues(workspaceName));
 
                 Console.WriteLine($"ToWorkspace(): {columnCount}");
 
                 if (columnCount is not 0)
-                    Shell.Current.GoToAsync(nameof(WorkspaceDisplay));  
+                    await Shell.Current.GoToAsync(nameof(WorkspaceDisplay), false);  
                 else
-                    Shell.Current.GoToAsync(nameof(EmptyPlantSlot));               
+                    await Shell.Current.GoToAsync(nameof(EmptyPlantSlot), false);               
             }
         }
 
