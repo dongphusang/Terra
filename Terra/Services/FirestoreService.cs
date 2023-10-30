@@ -64,16 +64,16 @@ namespace Terra.Services
         /// <param name="collection"></param>
         /// <param name="document"></param>
         /// <returns></returns>
-        public async Task<ObservableCollection<object>> GetValues(string key, string collection, string document)
+        public async Task<List<object>> GetValues(string key, string collection, string document)
         {
             docRef = firestore.Collection(collection).Document(document);
             var dictionary = (await docRef.GetSnapshotAsync()).ToDictionary();
             
             if (dictionary.ContainsKey(key))
             {
-                return new ObservableCollection<object>((ObservableCollection<object>)dictionary[key]);
+                return new List<object>((List<object>)dictionary[key]);
             }
-            else return new ObservableCollection<object>();
+            else return new List<object>();
         }
 
         public async Task<string> GetValue(string key, string collection, string document)

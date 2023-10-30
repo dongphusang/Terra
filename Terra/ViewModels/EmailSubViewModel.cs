@@ -166,7 +166,7 @@ namespace Terra.ViewModels
         }
 
         // copy List<object>'s content to List<string> for UI display (List<object> can't display strings on UI)
-        private void ConvertToDisplayableList(ObservableCollection<object> usernames)
+        private void ConvertToDisplayableList(List<object> usernames)
         {
             ActiveEmails = new();
             for (int i = 0; i < usernames.Count; i++) 

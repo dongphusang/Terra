@@ -5,41 +5,240 @@
              Title="ModeConfigPage"
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
              x:DataType="viewmodel:OperatingModeViewModel">
-    <VerticalStackLayout>
-        <Grid
-            Padding="30">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
 
-            <StackLayout
-                Grid.Row="0">
-                <Label
-                    Text="Automation"
-                    FontSize="27"
-                    FontAttributes="Bold"/>
-                <HorizontalStackLayout
-                    Margin="0, 20, 0, 0">
-                    <Grid>
-                        <BoxView
-                            Color="#E6E6E6"
-                            HeightRequest="30"
-                            HorizontalOptions="Fill"/>
+    <Grid
+        Padding="30"
+        RowSpacing="50">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Automation -->
+        <StackLayout
+            Grid.Row="0">
+            <!--label-->
+            <Label
+                Text="Automation"
+                FontSize="27"
+                FontAttributes="Bold"/>
+            <!--modules-->
+            <HorizontalStackLayout
+                HorizontalOptions="CenterAndExpand"
+                    
+                Margin="0, 20, 0, 0">
+                <!--watering-->
+                <Grid
+                        
+                    Margin="0, 0, 20, 0">
+                    <!--watering_background-->
+                    <BoxView
+                        Color="#E6E6E6"
+                        HeightRequest="41"
+                        WidthRequest="143"
+                        CornerRadius="8"/>
+                    <!--option-->
+                    <HorizontalStackLayout
+                        HorizontalOptions="Center">
                         <Label
-                            Text="disable watering module?"
-                            FontSize="20"
-                            VerticalOptions="Center"/>
+                            Text="Watering"
+                            FontSize="17"
+                            VerticalOptions="Center"
+                                
+                            Margin="0, 0, 20, 0"/>
+                        <CheckBox
+                            IsChecked="{Binding IsWateringAuto}"
+                            WidthRequest="30"
+                            HeightRequest="30"/>
+                    </HorizontalStackLayout>
+                </Grid>
+                <!--lighting-->
+                <Grid>
+                    <!--lighting_background-->
+                    <BoxView
+                        Color="#E6E6E6"
+                        HeightRequest="41"
+                        WidthRequest="143"
+                        CornerRadius="8"/>
+                    <!--option-->
+                    <HorizontalStackLayout
+                        HorizontalOptions="Center">
+                        <Label
+                            Text="Lighting"
+                            FontSize="17"
+                            VerticalOptions="Center"
+                                
+                            Margin="0, 0, 20, 0"/>
                         <CheckBox
                             WidthRequest="30"
                             HeightRequest="30"/>
-                    </Grid>
-                </HorizontalStackLayout>
+                    </HorizontalStackLayout>
+                </Grid>
+            </HorizontalStackLayout>
+        </StackLayout>
+        
+        <!-- Scheduled -->
+        <StackLayout
+            Grid.Row="1">
+            <!--label-->
+            <Label
+                Text="Scheduled"
+                FontSize="27"
+                FontAttributes="Bold"/>
+            <!--schedules & pickers-->
+            <StackLayout               
+                
+                Margin="0, 25, 0, 0">
+                <!--schedules-->
+                <Label
+                    Text="Watering Schedules"
+                    FontSize="12"
+                    
+                    Margin="0, 0, 0, 5"/>
+                <Grid>
+                    <BoxView
+                        HeightRequest="118"
+                        HorizontalOptions="Fill"
+                        Color="#E6E6E6"
+                        CornerRadius="8"/>
+                    <CollectionView
+                        HeightRequest="100"
+                        ItemsLayout="VerticalList"
+                        ItemsSource="{Binding Schedules}"                 
+                        SelectedItem="{Binding PickedSchedule}"
+                        SelectionMode="Single"
+                        IsEnabled="{Binding IsWateringAuto}"                        
+                        
+                        Margin="0, 10, 0 ,0">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Label 
+                                    VerticalTextAlignment="Center"
+                                    Text="{Binding .}" 
+                                    HorizontalOptions="Center" 
+                                    HorizontalTextAlignment="Center"
+                                    FontSize="20"
+                                        
+                                    Margin="10"/>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
 
+                <!--pickers-->
+                <HorizontalStackLayout
+                    HorizontalOptions="CenterAndExpand"
+                    
+                    Margin="0, 20, 0, 0">
+                    <!--day picker-->
+                    <StackLayout
+                        
+                        Margin="0, 0, 20, 0">
+                        <Label
+                            Text="Day"
+                            FontSize="12"
+                            
+                            Margin="0, 0, 0, 5"/>
+                        <Grid>
+                            <BoxView
+                                HeightRequest="41"
+                                WidthRequest="143"
+                                Color="#E6E6E6"
+                                CornerRadius="8"/>
+                            <Picker
+                                FontSize="17"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                SelectedItem="{Binding ScheduleModel.WeekDay}"
+                                ItemsSource="{Binding Days}"
+                                IsEnabled="{Binding IsWateringAuto}"/>
+                        </Grid>
+                    </StackLayout>
+                    <!--time picker-->
+                    <StackLayout>
+                        <Label
+                            Text="Time"
+                            FontSize="12"
+                            
+                            Margin="0, 0, 0, 5"/>
+                        <Grid>
+                            <BoxView
+                                HeightRequest="41"
+                                WidthRequest="143"
+                                Color="#E6E6E6"
+                                CornerRadius="8"/>
+                            <TimePicker
+                                Time="{Binding ScheduleModel.Time}"
+                                TextColor="Black"
+                                FontSize="17"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                IsEnabled="{Binding IsWateringAuto}"/>
+                        </Grid>
+                    </StackLayout>
+                </HorizontalStackLayout>
             </StackLayout>
+        </StackLayout>
+        
+        <!-- Buttons -->
+        <StackLayout
+            Grid.Row="2"
             
-            
-        </Grid>
-    </VerticalStackLayout>
+            Margin="0, 60, 0, 0">
+            <Button
+                Text="confirm"
+                TextColor="Black"
+                BackgroundColor="#A4D0A4"
+                WidthRequest="250"
+                HeightRequest="44"
+                Command="{Binding CommitSchedulesCommand}"
+                
+                Margin="0, 0, 0, 10">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Gray"
+                        Offset="0,0"
+                        Radius="10"
+                        Opacity="1"/>
+                </Button.Shadow>
+            </Button>
+            <Button
+                Text="add schedule"
+                TextColor="Black"
+                BackgroundColor="#E6E6E6"
+                WidthRequest="250"
+                HeightRequest="44"
+                Command="{Binding AddScheduleCommand}"
+                
+                Margin="0, 0, 0, 10">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Gray"
+                        Offset="0,0"
+                        Radius="10"
+                        Opacity="1"/>
+                </Button.Shadow>
+            </Button>
+            <Button
+                Text="remove schedule"
+                TextColor="Black"
+                BackgroundColor="#E6E6E6"
+                WidthRequest="250"
+                HeightRequest="44"
+                Command="{Binding RemoveScheduleCommand}">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Gray"
+                        Offset="0,0"
+                        Radius="10"
+                        Opacity="1"/>
+                </Button.Shadow>
+            </Button>
+        </StackLayout>
+    </Grid>
+
 </ContentPage>

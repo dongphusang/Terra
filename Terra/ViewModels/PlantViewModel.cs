@@ -67,22 +67,22 @@ namespace Terra.ViewModels
 
         // navigate to specific plant display
         [RelayCommand]
-        async Task ToWorkspaceDisplay() => await Task.Run(() => Shell.Current.GoToAsync(nameof(AddPlantPage), false));
+        async Task ToWorkspaceDisplay() => await Shell.Current.GoToAsync(nameof(AddPlantPage), false);
 
         // navigate to graphical view
         [RelayCommand]
-        async Task ToGraphicalPage() => await Task.Run(() => Shell.Current.GoToAsync(nameof(GraphicalView), false));
+        async Task ToGraphicalPage() => await Shell.Current.GoToAsync(nameof(GraphicalView), false);
 
         // navigate to plant info page
         [RelayCommand]
-        async Task ToPlantInfoPage() => await Task.Run(() => Shell.Current.GoToAsync(nameof(PlantInfoPage), false));
+        async Task ToPlantInfoPage() => await Shell.Current.GoToAsync(nameof(PlantInfoPage), false);
 
         // navigate to SubToPlantPage
         [RelayCommand]
-        async Task ToPlantSubscribing() => await Task.Run(() => Shell.Current.GoToAsync(nameof(SubToPlantPage), false));
+        async Task ToPlantSubscribing() => await Shell.Current.GoToAsync(nameof(SubToPlantPage), false);
 
         [RelayCommand]
-        async Task ToOperatingConfig() => await Task.Run(() => Shell.Current.GoToAsync(nameof(ModeConfigPage), false));
+        async Task ToOperatingConfig() => await Shell.Current.GoToAsync(nameof(ModeConfigPage), false);
 
 
         /// <summary>

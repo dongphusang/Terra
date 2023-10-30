@@ -12,6 +12,6 @@ namespace Terra.Models
         [ObservableProperty]
         public string weekDay;
         [ObservableProperty]
-        public string time;
+        public TimeSpan time;
     }
 }

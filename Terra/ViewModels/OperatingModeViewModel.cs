@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
@@ -15,7 +17,8 @@ namespace Terra.ViewModels
     partial class OperatingModeViewModel : ObservableObject
     {
         // declaring models
-        Schedule _schedule;
+        [ObservableProperty]
+        public Schedule scheduleModel;
 
         // declaring relevant services
         private WorkspaceService _workspaceService;     // get workspace associated with current plant
@@ -24,7 +27,13 @@ namespace Terra.ViewModels
         // declaring privates
         private string _currentMCU;             // target microcontroller associating with current workspace
         private string _currentWorkspaceName;   // target workspace
-        private string _currentPlantName;       // target plant within the workspace
+        private string _currentPlantName;       // target plant within the workspace      
+
+        // on selections changed 
+        [ObservableProperty]
+        public int wateringScheduleOpacity;
+        [ObservableProperty]
+        public bool wateringScheduleStatus;
 
         // declaring binding properties
         [ObservableProperty]
@@ -35,16 +44,17 @@ namespace Terra.ViewModels
         public ObservableCollection<string> schedules;
         [ObservableProperty]
         public string pickedSchedule; // a schedule picked from ObservableCollection
+        [ObservableProperty]
+        public List<string> days = new() { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
         public OperatingModeViewModel()
         {
-            _schedule = new();
+            ScheduleModel = new();
             _workspaceService = new WorkspaceService();
             _firestoreService = new FirestoreService();
             
             GetWorkspaceDetails().ConfigureAwait(false);
             GetAutoConfigAsync().ConfigureAwait(false);
-            Schedules = new();
         }
         
         /// <summary>
@@ -66,8 +76,7 @@ namespace Terra.ViewModels
         /// <returns></returns>
         private async Task GetAutoConfigAsync()
         {
-            IsLightingAuto = Convert.ToBoolean(await _firestoreService.GetValue(_currentMCU, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.WATERMOD));
-            IsWateringAuto = true;
+            IsWateringAuto = Convert.ToBoolean(await _firestoreService.GetValue(_currentMCU, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.WATERMOD));
         }
 
         /// <summary>
@@ -77,10 +86,13 @@ namespace Terra.ViewModels
         [RelayCommand]
         public Task AddSchedule()
         {
-            // add users' schedule 
-            var schedule = $"{_schedule.WeekDay}, {_schedule.Time}";
+            // format input time from 00:00:00 to 12:00 AM
+            var formattedTime = DateTime.Today.Add(ScheduleModel.Time).ToString("hh:mm tt");
+            // concat time and weekday into schedule
+            var schedule = $"{ScheduleModel.WeekDay}, {formattedTime}";
 
-            if (Schedules.Contains(schedule) is false && _schedule.WeekDay is not null)
+            // add new schedule to list of schedules
+            if (Schedules.Contains(schedule) is false && ScheduleModel.WeekDay is not null && IsWateringAuto is true)
             {
                 Schedules.Add(schedule);
             }
@@ -95,7 +107,7 @@ namespace Terra.ViewModels
         [RelayCommand]
         public Task RemoveSchedule()
         {
-            if (Schedules.Contains(PickedSchedule) && PickedSchedule is not null)
+            if (Schedules.Contains(PickedSchedule) && IsWateringAuto is true)
             {
                 Schedules.Remove(PickedSchedule);
             }
@@ -109,6 +121,7 @@ namespace Terra.ViewModels
         /// <returns></returns>
         public async Task UpdateSchedules()
         {
+            // pull schedules
             Schedules = new();
             var firestoreSchedule = await _firestoreService.GetValues(_currentMCU, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.SCHEDULE);
 
@@ -119,14 +132,12 @@ namespace Terra.ViewModels
         }
 
         [RelayCommand]
-        public Task CommitSchedules() => _firestoreService.PostOverride(_currentMCU, Schedules, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.SCHEDULE);
-        
+        public Task CommitSchedules()
+        {
+            _firestoreService.PostOverride(_currentMCU, Schedules, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.SCHEDULE);
+            _firestoreService.PostOverride(_currentMCU, IsWateringAuto, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.WATERMOD);
 
-        
-
-
-
-
-
+            return Toast.Make("Changes Made!", ToastDuration.Short).Show();
+        }        
     }
 }

@@ -10832,12 +10832,9 @@ public final class R {
     public static final int water_tank=0x7f0700e1;
     public static final int water_tank_warning=0x7f0700e2;
     public static final int workspace_display_conf_button=0x7f0700e3;
-    public static final int workspace_display_config_icon=0x7f0700e4;
-    public static final int workspace_display_graph_button=0x7f0700e5;
-    public static final int workspace_display_graph_icon=0x7f0700e6;
-    public static final int workspace_display_info_button=0x7f0700e7;
-    public static final int workspace_display_info_icon=0x7f0700e8;
-    public static final int workspace_display_sub_button=0x7f0700e9;
+    public static final int workspace_display_graph_button=0x7f0700e4;
+    public static final int workspace_display_info_button=0x7f0700e5;
+    public static final int workspace_display_sub_button=0x7f0700e6;
   }
   public static final class id {
     public static final int ALT=0x7f080000;

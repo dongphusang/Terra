@@ -110,7 +110,7 @@
                         <Shadow
                             Brush="Gray"
                             Offset="0,0"
-                            Radius="20"
+                            Radius="10"
                             Opacity="1"/>
                     </Button.Shadow>
                 </Button>
