@@ -27,58 +27,60 @@
                 FontSize="27"
                 FontAttributes="Bold"/>
             <!--modules-->
-            <HorizontalStackLayout
-                HorizontalOptions="CenterAndExpand"
-                    
+            <Grid
+                ColumnSpacing="20"
+                
                 Margin="0, 20, 0, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 <!--watering-->
-                <Grid
-                        
-                    Margin="0, 0, 20, 0">
-                    <!--watering_background-->
-                    <BoxView
-                        Color="#E6E6E6"
-                        HeightRequest="41"
-                        WidthRequest="143"
-                        CornerRadius="8"/>
-                    <!--option-->
-                    <HorizontalStackLayout
-                        HorizontalOptions="Center">
-                        <Label
-                            Text="Watering"
-                            FontSize="17"
-                            VerticalOptions="Center"
+                <!--watering_background-->
+                <BoxView
+                    Grid.Column="0"
+                    Color="#E6E6E6"
+                    HeightRequest="45"
+                    HorizontalOptions="Fill"
+                    CornerRadius="8"/>
+                <!--option-->
+                <HorizontalStackLayout
+                    Grid.Column="0"
+                    HorizontalOptions="Center">
+                    <Label
+                        Text="Watering"
+                        FontSize="17"
+                        VerticalOptions="Center"
                                 
-                            Margin="0, 0, 20, 0"/>
-                        <CheckBox
-                            IsChecked="{Binding IsWateringAuto}"
-                            WidthRequest="30"
-                            HeightRequest="30"/>
-                    </HorizontalStackLayout>
-                </Grid>
+                        Margin="0, 0, 20, 0"/>
+                    <CheckBox
+                        IsChecked="{Binding IsWateringAuto}"
+                        WidthRequest="40"
+                        HeightRequest="40"/>
+                </HorizontalStackLayout>
                 <!--lighting-->
-                <Grid>
-                    <!--lighting_background-->
-                    <BoxView
-                        Color="#E6E6E6"
-                        HeightRequest="41"
-                        WidthRequest="143"
-                        CornerRadius="8"/>
-                    <!--option-->
-                    <HorizontalStackLayout
-                        HorizontalOptions="Center">
-                        <Label
-                            Text="Lighting"
-                            FontSize="17"
-                            VerticalOptions="Center"
+                <!--lighting_background-->
+                <BoxView
+                    Grid.Column="1"
+                    Color="#E6E6E6"
+                    HeightRequest="45"
+                    HorizontalOptions="Fill"
+                    CornerRadius="8"/>
+                <!--option-->
+                <HorizontalStackLayout
+                    Grid.Column="1"
+                    HorizontalOptions="Center">
+                    <Label
+                        Text="Lighting"
+                        FontSize="17"
+                        VerticalOptions="Center"
                                 
-                            Margin="0, 0, 20, 0"/>
-                        <CheckBox
-                            WidthRequest="30"
-                            HeightRequest="30"/>
-                    </HorizontalStackLayout>
-                </Grid>
-            </HorizontalStackLayout>
+                        Margin="0, 0, 20, 0"/>
+                    <CheckBox
+                        WidthRequest="40"
+                        HeightRequest="40"/>
+                </HorizontalStackLayout>
+            </Grid>
         </StackLayout>
         
         <!-- Scheduled -->
@@ -129,58 +131,68 @@
                     </CollectionView>
                 </Grid>
 
-                <!--pickers-->
-                <HorizontalStackLayout
-                    HorizontalOptions="CenterAndExpand"
+                <!--day&time pickers-->
+                <Grid
+                    ColumnSpacing="20"
                     
                     Margin="0, 20, 0, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
                     <!--day picker-->
-                    <StackLayout
-                        
-                        Margin="0, 0, 20, 0">
-                        <Label
-                            Text="Day"
-                            FontSize="12"
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Day"
+                        FontSize="12"
                             
-                            Margin="0, 0, 0, 5"/>
-                        <Grid>
-                            <BoxView
-                                HeightRequest="41"
-                                WidthRequest="143"
-                                Color="#E6E6E6"
-                                CornerRadius="8"/>
-                            <Picker
-                                FontSize="17"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                                SelectedItem="{Binding ScheduleModel.WeekDay}"
-                                ItemsSource="{Binding Days}"
-                                IsEnabled="{Binding IsWateringAuto}"/>
-                        </Grid>
-                    </StackLayout>
+                        Margin="0, 0, 0, 5"/>
+                    <BoxView
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        HeightRequest="45"
+                        HorizontalOptions="Fill"
+                        Color="#E6E6E6"
+                        CornerRadius="8"/>
+                    <Picker
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        FontSize="17"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        SelectedItem="{Binding ScheduleModel.WeekDay}"
+                        ItemsSource="{Binding Days}"
+                        IsEnabled="{Binding IsWateringAuto}"/>
                     <!--time picker-->
-                    <StackLayout>
-                        <Label
-                            Text="Time"
-                            FontSize="12"
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Text="Time"
+                        FontSize="12"
                             
-                            Margin="0, 0, 0, 5"/>
-                        <Grid>
-                            <BoxView
-                                HeightRequest="41"
-                                WidthRequest="143"
-                                Color="#E6E6E6"
-                                CornerRadius="8"/>
-                            <TimePicker
-                                Time="{Binding ScheduleModel.Time}"
-                                TextColor="Black"
-                                FontSize="17"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                                IsEnabled="{Binding IsWateringAuto}"/>
-                        </Grid>
-                    </StackLayout>
-                </HorizontalStackLayout>
+                        Margin="0, 0, 0, 5"/>
+                    <BoxView
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HeightRequest="45"
+                        HorizontalOptions="Fill"
+                        Color="#E6E6E6"
+                        CornerRadius="8"/>
+                    <TimePicker
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Time="{Binding ScheduleModel.Time}"
+                        TextColor="Black"
+                        FontSize="17"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        IsEnabled="{Binding IsWateringAuto}"/>
+                </Grid>
             </StackLayout>
         </StackLayout>
         
