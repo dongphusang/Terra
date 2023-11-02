@@ -23,7 +23,7 @@
             Grid.Row="0">
             <!--label-->
             <Label
-                Text="Automation"
+                Text="Automation (disable)"
                 FontSize="27"
                 FontAttributes="Bold"/>
             <!--modules-->

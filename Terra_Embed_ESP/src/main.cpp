@@ -5,13 +5,7 @@
 #include <WiFiMulti.h>
 #include <InfluxDbClient.h>
 #include <InfluxDbCloud.h>
-
-#define WIFI_SSID "NaUOa"
-#define WIFI_PASSWORD "hetthuocchua@60"
-#define INFLUXDB_URL "https://us-east-1-1.aws.cloud2.influxdata.com"
-#define INFLUXDB_TOKEN "gkSWc1Vzwfq8nr3vKRhklT_ebchZakq1rzF4dRpAgJdaBp1orj5G6kZVeflHZgzf2TdWrB75vKwYpjwhfK_htg=="
-#define INFLUXDB_ORG "marcodsang@gmail.com"
-#define INFLUXDB_BUCKET "Terra"
+#include "secrets.hpp"
 
 // WIFI
 Point esp("ESP32-1");
@@ -58,7 +52,7 @@ void setup() {
   HT.begin();
 
   // setup wifi
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  WiFi.begin(SSID, PASSWORD);
 
   // start serial
   Serial.begin(9600);
@@ -90,18 +84,9 @@ void loop() {
 
   result.clear();
 
+  // note: to get value from json here use measures["SoilMoisture"].as<int>()
   // start_watering_auto
-  if (measures["SoilMoisture"].as<int>() > 450) {
-    // if water level is permitable
-    if (measures["WaterLevel"].as<int>() > 10) {
-      // true: check plant's watering setting
-          // if plant does need water now?
-            // true: activate relay which runs pump
-            // false: go back to checking soil (or do nothing)
-      // false: go back to checking soil
-    }
-      
-  }
+  
   delay(1000);
 }
 
