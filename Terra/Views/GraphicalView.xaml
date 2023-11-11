@@ -50,7 +50,7 @@
                 LegendPosition="Bottom"
                 InitialRotation="-225"
                 MaxAngle="270"
-                Total="1023"
+                Total="100"
                 Series="{Binding LightGauge}">
             </lvc:PieChart>
 

@@ -27,7 +27,9 @@ namespace Terra.TerraConstants
 
         public const int ZERO = 0; 
 
-        public const int MAXED_POINT_CAPACITY = 7; // line chart's max point capacity; seven points are displayable at any time
+        public const int MAXED_POINT_CAPACITY_SHORT = 7; // line chart's max point capacity; seven points are displayable at any time
+
+        public const int MAXED_POINT_CAPACITY_LONG = 21; // line chart's max point capacity; 15 points are displayable at any time
     }
 }
 

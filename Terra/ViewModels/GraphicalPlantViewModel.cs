@@ -76,18 +76,18 @@ namespace Terra.ViewModels
                 // dynamically update graph attributes
                 _waterLevelVal.Value = _plant.WaterLevel;
                 _lightVal.Value = _plant.Light;
-                AddDataPoint(_plant.Temperature, _temperaturePoints);
-                AddDataPoint(_plant.Humidity, _humidityPoints);
-                AddDataPoint(_plant.SoilMoisture, _soilMoisturePoints);
+                AddDataPointShort(_plant.Temperature, _temperaturePoints);
+                AddDataPointShort(_plant.Humidity, _humidityPoints);
+                AddDataPointLong(_plant.SoilMoisture, _soilMoisturePoints);
             }
             else
             {
                 // assign value of zero to represent corrupted data
                 _waterLevelVal.Value = GraphConstants.ZERO;
                 _lightVal.Value      = GraphConstants.ZERO;
-                AddDataPoint(GraphConstants.ZERO, _temperaturePoints);
-                AddDataPoint(GraphConstants.ZERO, _humidityPoints);
-                AddDataPoint(GraphConstants.ZERO, _soilMoisturePoints);
+                AddDataPointShort(GraphConstants.ZERO, _temperaturePoints);
+                AddDataPointShort(GraphConstants.ZERO, _humidityPoints);
+                AddDataPointLong(GraphConstants.ZERO, _soilMoisturePoints);
             }
 
             return data;
@@ -203,14 +203,33 @@ namespace Terra.ViewModels
         /// <summary>
         /// main: Add data point to line chart | explaination: Every line chart can show seven points at a time. With
         /// every extra point, we remove the oldest point (first point) in the chart, offset all points' position
-        /// by minus one, then add the newest point
-        /// at the end of the chart.
+        /// by minus one, then add the newest point at the end of the chart.
         /// </summary>
         /// <param name="point"> Data point to be added. </param>
         /// <param name="chartPoints"> Target line chart. </param>
-        private void AddDataPoint(int point, ObservableCollection<ObservableValue> chartPoints)
+        private void AddDataPointShort(int point, ObservableCollection<ObservableValue> chartPoints)
         {
-            if (chartPoints.Count is not GraphConstants.MAXED_POINT_CAPACITY)
+            if (chartPoints.Count is not GraphConstants.MAXED_POINT_CAPACITY_SHORT)
+            {
+                chartPoints.Add(new ObservableValue(point));
+            }
+            else
+            {
+                chartPoints.RemoveAt(0);
+                chartPoints.Add(new ObservableValue(point));
+            }
+        }
+
+        /// <summary>
+        /// main: Add data point to line chart | explaination: Every line chart can show 21 points at a time. With
+        /// every extra point, we remove the oldest point (first point) in the chart, offset all points' position
+        /// by minus one, then add the newest point at the end of the chart.
+        /// </summary>
+        /// <param name="point"> Data point to be added. </param>
+        /// <param name="chartPoints"> Target line chart. </param>
+        private void AddDataPointLong(int point, ObservableCollection<ObservableValue> chartPoints)
+        {
+            if (chartPoints.Count is not GraphConstants.MAXED_POINT_CAPACITY_LONG)
             {
                 chartPoints.Add(new ObservableValue(point));
             }

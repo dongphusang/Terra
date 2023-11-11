@@ -6,9 +6,10 @@
 #include <InfluxDbClient.h>
 #include <InfluxDbCloud.h>
 #include "secrets.hpp"
+#include <Firebase_ESP_Client.h>
 
 // WIFI
-Point esp("ESP32-1");
+Point esp("ESP32_1");
 InfluxDBClient client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN, InfluxDbCloud2CACert);
 
 /*  define variables */
@@ -31,10 +32,16 @@ int soil_moist_val = 0;
 const int sensor_json_capacity = JSON_OBJECT_SIZE(6);
 const int care_json_capacity = JSON_OBJECT_SIZE(5);
 StaticJsonDocument<sensor_json_capacity> measures;
-StaticJsonDocument<care_json_capacity> care_config;
+DynamicJsonDocument doc(512);
 String result;
 
-// function declaration
+/* FIRESTORE */
+FirebaseData fbdo;
+FirebaseAuth auth;
+FirebaseConfig config;
+std::vector<String> list; // array to contain individual String typed schedules from json
+
+// FUNCTION DECLARATION
 int read_soil_moist();
 int read_water_level();
 int read_light_val();
@@ -53,6 +60,16 @@ void setup() {
 
   // setup wifi
   WiFi.begin(SSID, PASSWORD);
+
+  // firebase
+  config.api_key = API_KEY;
+  auth.user.email = USER_EMAIL;
+  auth.user.password = USER_PASSWORD;
+  Firebase.reconnectNetwork(true);
+  fbdo.setBSSLBufferSize(4096, 1024);
+  fbdo.setResponseSize(2048);
+
+  Firebase.begin(&config, &auth);
 
   // start serial
   Serial.begin(9600);
@@ -76,7 +93,7 @@ void loop() {
   // Store measured value into point
   // Add json string to field
   esp.addField("sensors", result);
-  // Write point
+  // Write point to Influx
   if (!client.writePoint(esp)) {
     Serial.print("InfluxDB write failed: ");
     Serial.println(client.getLastErrorMessage());
@@ -85,7 +102,37 @@ void loop() {
   result.clear();
 
   // note: to get value from json here use measures["SoilMoisture"].as<int>()
-  // start_watering_auto
+  /* Download watering module mode */
+  if (WiFi.status() == WL_CONNECTED && Firebase.ready()) {
+    /* retrieve watering schedules from firestore */
+    String path = "Subscriptions/Schedule";
+    String mask = "ESP32_1";
+    Firebase.Firestore.getDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), mask.c_str());
+    /* parse firestore content */
+    FirebaseJson content;     // firestore json
+    FirebaseJsonArray array;  // array to contain individual FirebaseJsonArray typed schedules
+    FirebaseJsonData jsonData;// contains jsondata from firestore json
+    list.clear();
+    content.setJsonData(fbdo.payload().c_str());
+    content.get(jsonData, "fields/ESP32_1/arrayValue/values", true);
+    /* parse firestore json to array to check for number of schedules */
+    jsonData.get<FirebaseJsonArray>(array);
+    /* based on result array, we have the size to iterate and get all schedules */
+    for (size_t i = 0; i < array.size(); i++){
+      content.get(jsonData, "fields/ESP32_1/arrayValue/values/["+std::to_string(i)+"]/stringValue", true);
+      list.push_back(jsonData.to<String>());
+    }
+    for (size_t i = 0; i < list.size(); i++){
+      Serial.print("index: ");
+      Serial.println(i);
+      Serial.print("value: ");
+      Serial.println(list[i]);
+    }
+  }
+  else
+    Serial.print("hey bitch: ");
+    Serial.println(fbdo.errorReason());
+  // activate water module based on care settings
   
   delay(1000);
 }

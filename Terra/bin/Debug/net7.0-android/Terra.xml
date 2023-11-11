@@ -364,12 +364,20 @@
             Init model and service objects.
             </summary>
         </member>
-        <member name="M:Terra.ViewModels.GraphicalPlantViewModel.AddDataPoint(System.Int32,System.Collections.ObjectModel.ObservableCollection{LiveChartsCore.Defaults.ObservableValue})">
+        <member name="M:Terra.ViewModels.GraphicalPlantViewModel.AddDataPointShort(System.Int32,System.Collections.ObjectModel.ObservableCollection{LiveChartsCore.Defaults.ObservableValue})">
             <summary>
             main: Add data point to line chart | explaination: Every line chart can show seven points at a time. With
             every extra point, we remove the oldest point (first point) in the chart, offset all points' position
-            by minus one, then add the newest point
-            at the end of the chart.
+            by minus one, then add the newest point at the end of the chart.
+            </summary>
+            <param name="point"> Data point to be added. </param>
+            <param name="chartPoints"> Target line chart. </param>
+        </member>
+        <member name="M:Terra.ViewModels.GraphicalPlantViewModel.AddDataPointLong(System.Int32,System.Collections.ObjectModel.ObservableCollection{LiveChartsCore.Defaults.ObservableValue})">
+            <summary>
+            main: Add data point to line chart | explaination: Every line chart can show 15 points at a time. With
+            every extra point, we remove the oldest point (first point) in the chart, offset all points' position
+            by minus one, then add the newest point at the end of the chart.
             </summary>
             <param name="point"> Data point to be added. </param>
             <param name="chartPoints"> Target line chart. </param>
