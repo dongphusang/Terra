@@ -8,6 +8,7 @@
 #include "secrets.hpp"
 #include <Firebase_ESP_Client.h>
 
+
 // WIFI
 Point esp("ESP32_1");
 InfluxDBClient client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN, InfluxDbCloud2CACert);
@@ -105,7 +106,7 @@ void loop() {
   /* Download watering module mode */
   if (WiFi.status() == WL_CONNECTED && Firebase.ready()) {
     /* retrieve watering schedules from firestore */
-    String path = "Subscriptions/Schedule";
+    String path = "Subscriptions/LastWatered";
     String mask = "ESP32_1";
     Firebase.Firestore.getDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), mask.c_str());
     /* parse firestore content */
@@ -122,16 +123,25 @@ void loop() {
       content.get(jsonData, "fields/ESP32_1/arrayValue/values/["+std::to_string(i)+"]/stringValue", true);
       list.push_back(jsonData.to<String>());
     }
+    struct tm t = {0};
+    time_t timeSinceEpoch = mktime(&t);
+    /* debug */
     for (size_t i = 0; i < list.size(); i++){
+      Serial.print("time: ");
+      Serial.print(timeSinceEpoch);
       Serial.print("index: ");
       Serial.println(i);
       Serial.print("value: ");
       Serial.println(list[i]);
+      Serial.println(" ");
     }
   }
   else
+  {
     Serial.print("hey bitch: ");
     Serial.println(fbdo.errorReason());
+  }
+    
   // activate water module based on care settings
   
   delay(1000);
