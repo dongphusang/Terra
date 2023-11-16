@@ -7,7 +7,7 @@ OVERVIEW
 
 DEFINITION
 -
-- Workspace: The defined physical space that encompasses monitored plants. (garden, backyard, living room,...)
+- Workspace: The defined physical space that encompasses monitored plants. (garden beds, pots,...)
 
 USER NEEDS
 -
@@ -20,9 +20,8 @@ SPECIFICS
   
   EMBEDDED SYSTEM 
   - Microcontrollers:
-    - Arduino Uno (possibly Nano)
-    - Raspberry Pi 4
-    - Connected to eachother using serial connection. Python (possibly Rust) is used to setup communication between the two controllers.
+    - ESP32: collects and uploads sensors data to the cloud
+    - Raspberry Pi 4: facilitates plant's health emails and sends them to subscribed users on a daily basis.
   - Sensors & Actuators (non exhaustive list):
     - photoresistor
     - thermistor
@@ -33,22 +32,18 @@ SPECIFICS
     - fan
     - relay (to power water pump)
     - soil moisture sensor
-  - Database:
-    - Raspberry Pi 4 pushes data received from Arduino onto InfluxDB
     
   MOBILE APP
   
   <img src="https://github.com/dongphusang/Terra/assets/45107557/26046321-7ce2-4183-9aaa-4986448a9eff" width="360" height="760"> <img src="https://github.com/dongphusang/Terra/assets/45107557/18247e78-8309-467a-a5e6-74e0ef1e9599" width="360" height="760">
-  <img src="https://github.com/dongphusang/Terra/assets/45107557/bd2ad351-0c45-4afa-8f1f-40a064cd7873" width="360" height="760"> <img src="https://github.com/dongphusang/Terra/assets/45107557/afde57ff-2a89-4e2d-bfbe-6df32c390fb2" width="360" height="760">
-
-
+  <img src="https://github.com/dongphusang/Terra/assets/45107557/0aa20e90-e21c-469c-a9b0-1d370d58cbcf" width="360" height="760"> <img src="https://github.com/dongphusang/Terra/assets/45107557/afde57ff-2a89-4e2d-bfbe-6df32c390fb2" width="360" height="760">
 
   - Functionality:
     - Adds, removes workspaces
     - Adds, removes, modifies plant entries within workspaces
-    - Views collected data in numeric, text values
+    - Views collected data in numeric format
     - Views collected data in graphical format
-    - Opt-in to receive emails on how your plants health. This email report includes stats from yesterday, year-to-date, and recommendations on what to do
+    - Opt-in to receive emails regarding your plants health. This email report includes stats from yesterday, year-to-date, and recommendations on what to do
     - Selecting between modes:
       - Auto: system takes care of your plant depending on what modules are enabled (watering, lighting, ventilation) and decision making is based on sensors input.
       - Scheduled: system still performs automated tasks, however, it is now on demand. Users schedule these automated tasks.
@@ -57,10 +52,13 @@ SPECIFICS
   
 Others
 -
-- C# .NET MAUI is used for development
+- C# .NET MAUI is used for mobile app development
 - sqlite3 is used to store local workspace, plant, email information
 - InfluxDB is used for storing time-series data
-- Python is used for uploading data from Raspberry Pi to InfluxDB
+- Firestore is used as a common database for mobile app and ESP32, storing configuration info
+- Python facilitates plants report email to users
+- C, C++ are for embedded development
+- ReactJS is for web app development
 - Plant API: 
 - Web App: 
 
@@ -93,14 +91,16 @@ First Unit Testing (0%)
 Embedded System (...)
 - 
 - Draft code of sensors and micro-controllers: Collecting data from sensors and upload data onto InfluxDB. (100%)
-- Arduino Uno script (90%)
-- Raspberry Pi script (60%)
+- ESP32 script (30%)
+- Raspberry Pi script (0%)
 
 3D Printing (100%)
 -
 The purpose of 3D printing is to make the final product looks a little more aesthetic, we don't have to see as many electrical components.
-- Water Tank (100%)
-- Micro-controller holders
+- Water Tank prototype (100%)
+<img src="https://github.com/dongphusang/Terra/assets/45107557/483644cd-9ab8-4531-a070-cc58f2f6bddc" width="500" height="375">
+<img src="https://github.com/dongphusang/Terra/assets/45107557/39d21d51-ba47-4d4c-9e14-6b0a22a0555e" width="500" height="375">
+<img src="https://github.com/dongphusang/Terra/assets/45107557/412f6a21-2b96-45d9-9895-a7a9f9851e4a" width="500" height="375">
 
 Web App (0%) 
 -
