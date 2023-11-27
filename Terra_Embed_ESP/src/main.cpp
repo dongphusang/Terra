@@ -7,11 +7,31 @@
 #include <InfluxDbCloud.h>
 #include "secrets.hpp"
 #include <Firebase_ESP_Client.h>
+#include <chrono>
+#include <unordered_map>
+#include <string>
+#include <time.h>
+
+// date hashmap
+enum wday { SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY };
+std::unordered_map<std::string, wday> const week_days = {
+    {"Sunday", SUNDAY},
+    {"Monday", MONDAY},
+    {"Tuesday", TUESDAY},
+    {"Wednesday", WEDNESDAY},
+    {"Thursday", THURSDAY},
+    {"Friday", FRIDAY},
+    {"Saturday", SATURDAY} };
 
 
 // WIFI
 Point esp("ESP32_1");
 InfluxDBClient client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN, InfluxDbCloud2CACert);
+
+// NTP
+const char* ntpServer = "pool.ntp.org";
+const long gmtOffset_sec = -18000;
+const int daylightOffset_sec = 3600;
 
 /*  define variables */
 // relay, water level sensor
@@ -40,7 +60,7 @@ String result;
 FirebaseData fbdo;
 FirebaseAuth auth;
 FirebaseConfig config;
-std::vector<String> list; // array to contain individual String typed schedules from json
+std::vector<std::string> schedules; // array to contain individual String typed schedules from json
 
 // FUNCTION DECLARATION
 int read_soil_moist();
@@ -48,6 +68,7 @@ int read_water_level();
 int read_light_val();
 int read_tempC();
 int read_humidity();
+int calculate_schedule_hash(std::string schedule);
 String read_last_watered();
 String read_watering_freq();
 
@@ -71,6 +92,9 @@ void setup() {
   fbdo.setResponseSize(2048);
 
   Firebase.begin(&config, &auth);
+
+  // setup time
+  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
 
   // start serial
   Serial.begin(9600);
@@ -103,47 +127,75 @@ void loop() {
   result.clear();
 
   // note: to get value from json here use measures["SoilMoisture"].as<int>()
-  /* Download watering module mode */
+  /* Watering Module */
   if (WiFi.status() == WL_CONNECTED && Firebase.ready()) {
-    /* retrieve watering schedules from firestore */
-    String path = "Subscriptions/LastWatered";
-    String mask = "ESP32_1";
-    Firebase.Firestore.getDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), mask.c_str());
-    /* parse firestore content */
     FirebaseJson content;     // firestore json
     FirebaseJsonArray array;  // array to contain individual FirebaseJsonArray typed schedules
     FirebaseJsonData jsonData;// contains jsondata from firestore json
-    list.clear();
+    std::string mask = "ESP32_1";
+    int operating_mode;
+    /* retrieve operating mode from firestore */
+    std::string path = "Subscriptions/WateringModule";
+    Firebase.Firestore.getDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), mask.c_str());
     content.setJsonData(fbdo.payload().c_str());
-    content.get(jsonData, "fields/ESP32_1/arrayValue/values", true);
-    /* parse firestore json to array to check for number of schedules */
-    jsonData.get<FirebaseJsonArray>(array);
-    /* based on result array, we have the size to iterate and get all schedules */
-    for (size_t i = 0; i < array.size(); i++){
+    content.get(jsonData, "fields/ESP32_1/booleanValue");
+    operating_mode = jsonData.boolValue;
+    // scheduled mode
+    if (operating_mode == 1) {
+      // retrieve data from firestore path
+      path = "Subscriptions/Schedule";
+      Firebase.Firestore.getDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), mask.c_str());
+      // parse retrieved data
+      schedules.clear();
+      content.setJsonData(fbdo.payload().c_str());
+      content.get(jsonData, "fields/ESP32_1/arrayValue/values", true);
+      jsonData.get<FirebaseJsonArray>(array);
+      // iterate through array to get all schedules 
+      for (size_t i = 0; i < array.size(); i++){
       content.get(jsonData, "fields/ESP32_1/arrayValue/values/["+std::to_string(i)+"]/stringValue", true);
-      list.push_back(jsonData.to<String>());
+      schedules.push_back(jsonData.to<std::string>());
+      }
+      // get current time GMT -5
+      tm current_time;
+      if (!getLocalTime(&current_time)) {
+        Serial.println("unable to retrieve time");
+      }
+      // iterate schedule to check their due
+      for (std::string schedule : schedules) {
+        // calculate hash of current time and scheduled time by converting them to seconds
+        int current_time_hash = 24*current_time.tm_wday*60*60 + current_time.tm_hour*60*60 + current_time.tm_min*60;
+        int schedule_hash = calculate_schedule_hash(schedule);
+        Serial.print("current: ");
+        Serial.println(current_time_hash);
+        Serial.print("scheduled: ");
+        Serial.println(schedule_hash);
+        // check if it's time to water
+        if (current_time_hash == schedule_hash) {
+          // save current time as last_watered
+          path = "Subscriptions/LastWatered";
+          char last_watered[80];
+          strftime(last_watered, 80, "%A, %R", &current_time);
+          content.clear();
+          content.set("fields/ESP32_1/stringValue", std::string(last_watered).c_str());
+          if (Firebase.Firestore.patchDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), content.raw(), mask.c_str()))
+            Serial.printf("ok\n%s\n\n", fbdo.payload().c_str());
+          else
+            Serial.println(fbdo.errorReason());
+        }
+        else {
+          Serial.println("not time yet");
+        }
+      }
     }
-    struct tm t = {0};
-    time_t timeSinceEpoch = mktime(&t);
-    /* debug */
-    for (size_t i = 0; i < list.size(); i++){
-      Serial.print("time: ");
-      Serial.print(timeSinceEpoch);
-      Serial.print("index: ");
-      Serial.println(i);
-      Serial.print("value: ");
-      Serial.println(list[i]);
-      Serial.println(" ");
-    }
+    else // auto mode
+    { }
   }
-  else
-  {
-    Serial.print("hey bitch: ");
+  else {
+    Serial.print("WiFi or Firebase not read: ");
     Serial.println(fbdo.errorReason());
   }
     
-  // activate water module based on care settings
-  
+  // activate water module based on care settings 
   delay(1000);
 }
 
@@ -170,5 +222,32 @@ int read_soil_moist() {
 // read and return value of water level sensor
 int read_water_level() {
   return map(analogRead(waterLvlPin), 0, 4095, 0, 100);
+}
+
+int calculate_schedule_hash(std::string schedule) {
+  int index_start;
+  int length;
+  std::string day_of_week;
+  std::string hour;
+  std::string minute;
+
+  /* parse date elements for hash calculation */
+  // parse day of week
+  index_start = 0, length = schedule.find_first_of(',');
+  day_of_week = schedule.substr(index_start, length);
+  // parse hour
+  index_start = schedule.find_first_of(' ')+1, length = schedule.find_first_of(":") - index_start;
+  hour = schedule.substr(index_start, length);
+  // parse minute
+  index_start = schedule.find_first_of(":") + 1, length = 2;
+  minute = schedule.substr(index_start, length);
+
+  /* calculate hash */
+  int hash = 24*week_days.at(day_of_week)*60*60 + stoi(hour)*60*60 + stoi(minute)*60;
+  // add worth of 12 hours in seconds to current hash if schedule has p.m., because input is 12hour format
+  if (schedule.find("p.m.") != std::string::npos) {
+    hash = hash + 43200;
+  } 
+  return hash;
 }
 

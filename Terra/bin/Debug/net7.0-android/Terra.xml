@@ -375,7 +375,7 @@
         </member>
         <member name="M:Terra.ViewModels.GraphicalPlantViewModel.AddDataPointLong(System.Int32,System.Collections.ObjectModel.ObservableCollection{LiveChartsCore.Defaults.ObservableValue})">
             <summary>
-            main: Add data point to line chart | explaination: Every line chart can show 15 points at a time. With
+            main: Add data point to line chart | explaination: Every line chart can show 21 points at a time. With
             every extra point, we remove the oldest point (first point) in the chart, offset all points' position
             by minus one, then add the newest point at the end of the chart.
             </summary>

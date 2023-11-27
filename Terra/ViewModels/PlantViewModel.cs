@@ -81,6 +81,7 @@ namespace Terra.ViewModels
         [RelayCommand]
         async Task ToPlantSubscribing() => await Shell.Current.GoToAsync(nameof(SubToPlantPage), false);
 
+        // navigate to ModeConfigPage
         [RelayCommand]
         async Task ToOperatingConfig() => await Shell.Current.GoToAsync(nameof(ModeConfigPage), false);
 
