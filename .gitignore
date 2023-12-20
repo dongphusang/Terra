@@ -1,2 +1,7 @@
 appconfig.json
 .DS_Store
+Terra.Scripts/email_script/config.json
+Terra.Scripts/email_script/userList.json
+Terra.Scripts/email_script/report_test.html
+Terra.Scripts/email_script/test.py
+Terra.Scripts/email_script/__pycache__

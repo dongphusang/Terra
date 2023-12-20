@@ -3,6 +3,6 @@
     "",
     "\\Services"
   ],
-  "SelectedNode": "\\MauiProgram.cs",
+  "SelectedNode": "\\Services\\InfluxService.cs",
   "PreviewInSolutionExplorer": false
 }

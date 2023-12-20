@@ -48,6 +48,9 @@ DHT HT(dhtPin, Type);
 // Soil Moisture
 #define sMoistPin 35     // brown
 int soil_moist_val = 0;
+// button (test)
+#define buttonPin 23
+int buttonStat;
 
 /* json data */
 const int sensor_json_capacity = JSON_OBJECT_SIZE(6);
@@ -152,8 +155,8 @@ void loop() {
       jsonData.get<FirebaseJsonArray>(array);
       // iterate through array to get all schedules 
       for (size_t i = 0; i < array.size(); i++){
-      content.get(jsonData, "fields/ESP32_1/arrayValue/values/["+std::to_string(i)+"]/stringValue", true);
-      schedules.push_back(jsonData.to<std::string>());
+        content.get(jsonData, "fields/ESP32_1/arrayValue/values/["+std::to_string(i)+"]/stringValue", true);
+        schedules.push_back(jsonData.to<std::string>());
       }
       // get current time GMT -5
       tm current_time;
@@ -186,6 +189,16 @@ void loop() {
           Serial.println("not time yet");
         }
       }
+      
+      // water plant - procedures
+      // 1. test amount of water dispensing
+      // digitalWrite(32, HIGH);
+      // delay(2000);
+      // digitalWrite(32, LOW);
+        
+      // 2. record result and consistency
+      // 3. decide if user can adjust the amount
+      // delay
     }
     else // auto mode
     { }
