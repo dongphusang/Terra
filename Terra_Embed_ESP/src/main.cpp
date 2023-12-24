@@ -72,6 +72,7 @@ int read_light_val();
 int read_tempC();
 int read_humidity();
 int calculate_schedule_hash(std::string schedule);
+int get_index(std::vector<std::string>&input, std::string searched);
 String read_last_watered();
 String read_watering_freq();
 
@@ -184,6 +185,25 @@ void loop() {
             Serial.printf("ok\n%s\n\n", fbdo.payload().c_str());
           else
             Serial.println(fbdo.errorReason());
+
+          // update next schedule (assume schedules is ordered by day of week)
+          int schedule_index = get_index(schedules, schedule);
+          Serial.print("Index: " + schedule_index);
+          path = "Subscriptions/NextWateringSchedule";
+          content.clear();
+          if (schedule_index != 0) {
+            // set content
+            if (schedule_index == schedules.size() - 1) 
+              content.set("fields/ESP32_1/stringValue", std::string(schedules[0]).c_str());
+            else 
+              content.set("fields/ESP32_1/stringValue", std::string(schedules[0]).c_str());
+            // upload to firestore
+            if (Firebase.Firestore.patchDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), content.raw(), mask.c_str()))
+              Serial.printf("ok\n%s\n\n", fbdo.payload().c_str());
+            else
+              Serial.println(fbdo.errorReason());
+          }
+
         }
         else {
           Serial.println("not time yet");
@@ -262,5 +282,16 @@ int calculate_schedule_hash(std::string schedule) {
     hash = hash + 43200;
   } 
   return hash;
+}
+
+  /* return index of target in a vector */
+int get_index(std::vector<std::string>&input, std::string searched) {
+  for (int i = 0; i < input.size(); i++) {
+      if (input[i] == searched) {
+          return i;
+      }
+  }
+
+  return 0;
 }
 

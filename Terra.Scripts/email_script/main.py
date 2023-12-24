@@ -2,6 +2,10 @@ import smtplib, ssl
 from email.message import EmailMessage
 import json
 from influx import InfluxHelper
+import firebase_admin
+from firebase_admin import firestore
+from firebase_admin import credentials
+# assume there is only one mcu at the moment
 
 def main():
     mail = ""
@@ -22,6 +26,15 @@ def main():
     report_date = influxHelper.get_report_date()
     avg_humid = influxHelper.get_humid_average()
     avg_temp = influxHelper.get_temp_average()
+    
+    # gcp creds  
+    _cred = credentials.Certificate('terra_gcp.json')
+    _app = firebase_admin.initialize_app(_cred)
+    _db = firestore.client()
+    
+    # read data #
+    _users_ref = _db.collection("Subscriptions").document("NextWateringSchedule")
+    schedule = _users_ref.get().to_dict().get("ESP32_1")
     
     #with open('report_test.html') as fp:
     #     html_content = fp.read()
@@ -82,14 +95,15 @@ def main():
             </td>
         </tr>
         <tr>
-            <td align="center" colspan="2">
-                <img src="https://iili.io/JufeXQ2.png" width="360.4px" height="34px" style="margin-bottom: 20px;"/>
+            <td bgcolor="#265073" width="400px" height="87px" colspan="2">
+                <p style="color: #6D6D6D; text-align: center; font-size: 11px; margin: 0 0 0 0"> <img src="https://iili.io/JufkRyb.png" width="13px" height="13px"/> Liquid Pumped </p>
+                <p style="color: #ECF4D6; font-weight: 700; text-align: center; font-size: 15px; margin: 23px 0 0 0"> 11.5 hours </p>
             </td>
         </tr>
         <tr>
-            <td bgcolor="#265073" width="400px" height="87px" colspan="2">
-                <p style="color: #6D6D6D; text-align: center; font-size: 13px; margin: 0 0 0 1rem"> <img src="https://iili.io/JufkRyb.png" width="11px" height="11px"/> Liquid Pumped </p>
-                <p style="color: #ECF4D6; font-weight: 700; text-align: center; font-size: 15px; margin: 23px 0 0 1rem"> 11.5 hours </p>
+            <td align="center" colspan="2">
+                <h3 style="margin: 23px 0 23px 0;"> Next Schedule </h3>
+                <p style="text-align: center; font-size: 15px; margin: 10px 0 0 0"> {first_holder} </p>
             </td>
         </tr>
 
@@ -101,7 +115,7 @@ def main():
         </tr>
     </table>
 </body>
-</html>""".format(mcu=mcu, date=report_date, humid=avg_humid, temperature=avg_temp,dark=dark_exposure, light=light_exposure)
+</html>""".format(mcu=mcu, date=report_date, humid=avg_humid, temperature=avg_temp,dark=dark_exposure, light=light_exposure, first_holder = schedule)
 
     # construct mail signature
     message['Subject'] = 'This is a test mail'
