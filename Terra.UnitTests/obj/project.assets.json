@@ -808,7 +808,7 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.Maui.Graphics/7.0.86": {
+      "Microsoft.Maui.Graphics/7.0.101": {
         "type": "package",
         "compile": {
           "lib/net7.0/Microsoft.Maui.Graphics.dll": {
@@ -3114,10 +3114,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Maui.Graphics/7.0.86": {
-      "sha512": "v0VB9NhVrJarOzl7BHs2LaFQE+syKQ8o1Wbs+I4CGxmQO4cosmoFPUa0ogp1oaJe8Tazu504+P8JDy8fhDsSKQ==",
+    "Microsoft.Maui.Graphics/7.0.101": {
+      "sha512": "2+dHQpufctgN66Y+otNnBu9o+ODYlHvc2ufQ185wB2GqhklQeeko4xFsZSj3weDif4Idg0cgAY84qU3cQ0OcTw==",
       "type": "package",
-      "path": "microsoft.maui.graphics/7.0.86",
+      "path": "microsoft.maui.graphics/7.0.101",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3153,7 +3153,7 @@
         "lib/netstandard2.1/Microsoft.Maui.Graphics.dll",
         "lib/netstandard2.1/Microsoft.Maui.Graphics.pdb",
         "lib/netstandard2.1/Microsoft.Maui.Graphics.xml",
-        "microsoft.maui.graphics.7.0.86.nupkg.sha512",
+        "microsoft.maui.graphics.7.0.101.nupkg.sha512",
         "microsoft.maui.graphics.nuspec"
       ]
     },
@@ -4509,8 +4509,7 @@
       "Microsoft.Extensions.Configuration >= 7.0.0",
       "Microsoft.Extensions.DependencyInjection >= 7.0.0",
       "Microsoft.Extensions.Logging >= 7.0.0",
-      "Microsoft.Extensions.Logging.Abstractions >= 7.0.0",
-      "Microsoft.Maui.Graphics >= 7.0.86",
+      "Microsoft.Maui.Graphics >= 7.0.101",
       "Microsoft.NET.Test.Sdk >= 17.6.3",
       "NUnit >= 3.13.3",
       "NUnit.Analyzers >= 3.6.1",
@@ -4520,40 +4519,33 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sangs\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/sangdong/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sangs\\Desktop\\Terra\\Terra.UnitTests\\Terra.UnitTests.csproj",
+      "projectUniqueName": "/Users/sangdong/Desktop/Terra/Terra.UnitTests/Terra.UnitTests.csproj",
       "projectName": "Terra.UnitTests",
-      "projectPath": "C:\\Users\\sangs\\Desktop\\Terra\\Terra.UnitTests\\Terra.UnitTests.csproj",
-      "packagesPath": "C:\\Users\\sangs\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sangs\\Desktop\\Terra\\Terra.UnitTests\\obj\\",
+      "projectPath": "/Users/sangdong/Desktop/Terra/Terra.UnitTests/Terra.UnitTests.csproj",
+      "packagesPath": "/Users/sangdong/.nuget/packages/",
+      "outputPath": "/Users/sangdong/Desktop/Terra/Terra.UnitTests/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\sangs\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/sangdong/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\sangs\\Desktop\\Terra\\Terra\\Terra.csproj": {
-              "projectPath": "C:\\Users\\sangs\\Desktop\\Terra\\Terra\\Terra.csproj"
+            "/Users/sangdong/Desktop/Terra/Terra/Terra.csproj": {
+              "projectPath": "/Users/sangdong/Desktop/Terra/Terra/Terra.csproj"
             }
           }
         }
@@ -4569,28 +4561,27 @@
         "targetAlias": "net7.0",
         "dependencies": {
           "Microsoft.Extensions.Configuration": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.0, )",
             "autoReferenced": true
           },
           "Microsoft.Extensions.DependencyInjection": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.0, )",
             "autoReferenced": true
           },
           "Microsoft.Extensions.Logging": {
-            "target": "Package",
-            "version": "[7.0.0, )",
-            "autoReferenced": true
-          },
-          "Microsoft.Extensions.Logging.Abstractions": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.0, )",
             "autoReferenced": true
           },
           "Microsoft.Maui.Graphics": {
+            "suppressParent": "All",
             "target": "Package",
-            "version": "[7.0.86, )",
+            "version": "[7.0.101, )",
             "autoReferenced": true
           },
           "Microsoft.NET.Test.Sdk": {
@@ -4641,7 +4632,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.311/RuntimeIdentifierGraph.json"
       }
     }
   }

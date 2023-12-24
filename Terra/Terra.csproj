@@ -64,10 +64,10 @@
 	  <MauiXaml Remove="TerraEnums\**" />
 	  <None Remove="EmailBody\**" />
 	  <None Remove="TerraEnums\**" />
+	  <None Remove="accountSetting.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="accountSetting.json" />
 	  <None Remove="appconfig.json" />
 	  <None Remove="Resources\Images\droplet.svg" />
 	  <None Remove="Resources\Images\humidity.svg" />
@@ -115,9 +115,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="accountSetting.json" />
-	</ItemGroup>
-	<ItemGroup>
 	  <MauiXaml Update="Views\EmailSubPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -145,5 +142,8 @@
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
 	  <PackageReference Include="NUnit.Maui.Runner" Version="1.16.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="accountSetting.json" />
 	</ItemGroup>
 </Project>
