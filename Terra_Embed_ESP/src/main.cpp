@@ -239,12 +239,18 @@ int read_light_val() {
 
 // read and return temperature of DHT22
 int read_tempC() {
-  return HT.readTemperature();
+  int result = HT.readHumidity();
+  if (result > 100) 
+    return 0;
+  return result;
 }
 
 // read and return humidity of DHT22
 int read_humidity() {
-  return HT.readHumidity();
+  int result = HT.readHumidity();
+  if (result > 100)
+    return 0;
+  return result;
 }
 
 // read and return value of soil moisture sensor

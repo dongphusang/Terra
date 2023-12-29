@@ -1,4 +1,4 @@
-import smtplib, ssl, certifi
+import smtplib, ssl
 from string import Template
 from email.message import EmailMessage
 import json
@@ -118,7 +118,7 @@ def main():
             </tr>
             <tr>
                 <td align="center" colspan="2">
-                    <h3 style="margin: 23px 0 23px 0;"> Upcoming Watering Schedule </h3>
+                    <h3 style="text-align: center; margin: 23px 0 23px 0;"> Upcoming Watering Schedule </h3>
                     <p style="text-align: center; font-size: 15px; margin: 10px 0 0 0"> $next_schedule </p>
                 </td>
             </tr>

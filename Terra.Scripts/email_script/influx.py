@@ -154,9 +154,9 @@ class InfluxHelper():
                 entry = json.loads(record.get_value())
                 if (entry["Light"] < 30) :
                     time_portion_of_effect = record.get_time().astimezone(ZoneInfo("US/Eastern")) - anchor
-                    dark_duration += time_portion_of_effect.total_seconds()
+                    dark_duration += (time_portion_of_effect.total_seconds() / 2)
                     anchor = record.get_time().astimezone(ZoneInfo("US/Eastern"))       
-            # format output (hour/minute/second)
+            # calculate output (hour/minute/second)
             if (dark_duration < 60):
                 # return seconds
                 return str(round(dark_duration, 1)) + " seconds"
@@ -181,9 +181,9 @@ class InfluxHelper():
                 entry = json.loads(record.get_value())
                 if (entry["Light"] > 30) :
                     time_portion_of_effect = record.get_time().astimezone(ZoneInfo("US/Eastern")) - anchor
-                    light_duration += time_portion_of_effect.total_seconds()
+                    light_duration += (time_portion_of_effect.total_seconds() / 2)
                     anchor = record.get_time().astimezone(ZoneInfo("US/Eastern"))
-            # format output (hour/minute/second)
+            # calculate output (hour/minute/second)
             if (light_duration < 60):
                 # return seconds
                 return str(round(light_duration, 1)) + " seconds"
