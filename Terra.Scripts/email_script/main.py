@@ -137,7 +137,7 @@ def main():
             <tr>
                 <td align='center' colspan='2'>
                     <img src=$light_url width="75%" height="50%"/>
-                </td>
+                </td>   
             </tr>
         </table>
 </body>
