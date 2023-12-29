@@ -46,6 +46,25 @@ class InfluxHelper():
 
             return str(round(sum/count, 1))
 
+    # get temperature points from InfluxDB within 24 hours
+    def get_temps_of_day(self) -> list[list[int], list[int]]:
+        result = self._query_api.query(org=self._org, query=self._query)
+        for table in result:
+            tuple = []
+            temps = []
+            time = []
+            for record in table.records:
+                entry = json.loads(record.get_value())
+                entry_time = record.get_time().astimezone(ZoneInfo("US/Eastern")).strftime("%H")
+                temp_elem = entry["Temperature"]
+                temps.append(round(temp_elem, 1))
+                time.append(str(entry_time))
+
+            tuple.append(temps)
+            tuple.append(time)
+
+            return tuple
+
     # get humidity from InfluxDB and calculate average 
     def get_humid_average(self) -> int: 
         result = self._query_api.query(org=self._org, query=self._query)
@@ -62,6 +81,44 @@ class InfluxHelper():
                 #print("\n")
 
             return str(round(sum/count, 1))
+
+    # get humid points from influxDB within 24 hours
+    def get_humids_of_day(self) -> list[list[object], list[object]]:
+        result = self._query_api.query(org=self._org, query=self._query)
+        for table in result:
+            humids = []
+            tuple = []
+            time = []
+            for record in table.records:
+                entry = json.loads(record.get_value())
+                entry_time = record.get_time().astimezone(ZoneInfo("US/Eastern")).strftime("%H")
+                humid_elem = entry["Humidity"]
+                humids.append(round(humid_elem, 1))
+                time.append(str(entry_time))
+
+            tuple.append(humids)
+            tuple.append(time)
+
+            return tuple
+
+    # get light intensity by time from influxDB within 24 hours
+    def get_lights_of_day(self) -> list[list[object], list[object]]:
+        result = self._query_api.query(org=self._org, query=self._query)
+        for table in result:
+            tuple = []
+            light = []
+            time = []
+            for record in table.records:
+                entry = json.loads(record.get_value())
+                entry_time = record.get_time().astimezone(ZoneInfo("US/Eastern")).strftime("%H")
+                light_elem = entry["Light"]
+                light.append(round(light_elem, 1))
+                time.append(str(entry_time))
+
+            tuple.append(light)
+            tuple.append(time)
+
+            return tuple
     
     # get the compute source that an email subscribes to
     def get_data_source(self) -> str:
@@ -99,20 +156,20 @@ class InfluxHelper():
                     time_portion_of_effect = record.get_time().astimezone(ZoneInfo("US/Eastern")) - anchor
                     dark_duration += time_portion_of_effect.total_seconds()
                     anchor = record.get_time().astimezone(ZoneInfo("US/Eastern"))       
-        # format output (hour/minute/second)
-        if (dark_duration < 60):
-            # return seconds
-            return str(round(dark_duration, 1)) + " seconds"
-        elif (dark_duration > 60):
-            # convert to minute
-            dark_duration /= 60
-            if (dark_duration > 60):
-                # convert to hour
+            # format output (hour/minute/second)
+            if (dark_duration < 60):
+                # return seconds
+                return str(round(dark_duration, 1)) + " seconds"
+            elif (dark_duration > 60):
+                # convert to minute
                 dark_duration /= 60
-                # return hours
-                return str(round(dark_duration, 1)) + " hours"
-            # return minutes
-            return str(round(dark_duration, 1)) + " minutes"
+                if (dark_duration > 60):
+                    # convert to hour
+                    dark_duration /= 60
+                    # return hours
+                    return str(round(dark_duration, 1)) + " hours"
+                # return minutes
+                return str(round(dark_duration, 1)) + " minutes"
     
     #get amount of time plant exposed to light
     def get_time_lightexp(self) -> str:
@@ -126,20 +183,20 @@ class InfluxHelper():
                     time_portion_of_effect = record.get_time().astimezone(ZoneInfo("US/Eastern")) - anchor
                     light_duration += time_portion_of_effect.total_seconds()
                     anchor = record.get_time().astimezone(ZoneInfo("US/Eastern"))
-        # format output (hour/minute/second)
-        if (light_duration < 60):
-            # return seconds
-            return str(round(light_duration, 1)) + " seconds"
-        elif (light_duration > 60):
-            # convert to minute
-            light_duration /= 60
-            if (light_duration > 60):
-                # convert to hour
+            # format output (hour/minute/second)
+            if (light_duration < 60):
+                # return seconds
+                return str(round(light_duration, 1)) + " seconds"
+            elif (light_duration > 60):
+                # convert to minute
                 light_duration /= 60
-                # return hours
-                return str(round(light_duration, 1)) + " hours"
-            # return minutes
-            return str(round(light_duration, 1)) + " minutes"
+                if (light_duration > 60):
+                    # convert to hour
+                    light_duration /= 60
+                    # return hours
+                    return str(round(light_duration, 1)) + " hours"
+                # return minutes
+                return str(round(light_duration, 1)) + " minutes"
                     
     
    

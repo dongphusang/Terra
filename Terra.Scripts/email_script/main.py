@@ -3,7 +3,9 @@ from string import Template
 from email.message import EmailMessage
 import json
 from influx import InfluxHelper
-from firestore import FirestoreHelper
+from gcp import FirestoreHelper, StorageBucketHelper
+from matplot_helper import MatplotHelper
+
 
 # assume there is only one mcu at the moment
 
@@ -18,14 +20,22 @@ def main():
     context = ssl.create_default_context()
     message = EmailMessage()
 
-    # generate content
     influxHelper = InfluxHelper()
+    gcp_bucket_helper = StorageBucketHelper()
+    matplot_helper = MatplotHelper()
+
+    # generate content
     light_exposure = influxHelper.get_time_lightexp()
     dark_exposure = influxHelper.get_time_darkexp()
     mcu = influxHelper.get_data_source()
     report_date = influxHelper.get_report_date()
     avg_humid = influxHelper.get_humid_average()
     avg_temp = influxHelper.get_temp_average()
+    matplot_helper.map_light_intensity()
+    matplot_helper.map_temp_humid()
+    gcp_bucket_helper.upload_graphs_to_bucket()
+    light_graph_url = gcp_bucket_helper.get_light_graph_url()
+    temp_humid_graph_url = gcp_bucket_helper.get_temp_humid_url()
 
     # firestore schedule
     firestoreHelper = FirestoreHelper()
@@ -108,7 +118,7 @@ def main():
             </tr>
             <tr>
                 <td align="center" colspan="2">
-                    <h3 style="margin: 23px 0 23px 0;"> Next Schedule </h3>
+                    <h3 style="margin: 23px 0 23px 0;"> Upcoming Watering Schedule </h3>
                     <p style="text-align: center; font-size: 15px; margin: 10px 0 0 0"> $next_schedule </p>
                 </td>
             </tr>
@@ -117,13 +127,23 @@ def main():
             <tr>
                 <td align="center" colspan="2">
                     <h2 style="margin: 55px 0 20px 0;"> Graphical Data </h2>
-                </td>
+                </td>          
             </tr> 
+            <tr>
+                <td align='center' colspan='2'>
+                    <img src=$temp_humid_url width="75%" height="50%"/>
+                </td> 
+            </tr>
+            <tr>
+                <td align='center' colspan='2'>
+                    <img src=$light_url width="75%" height="50%"/>
+                </td>
+            </tr>
         </table>
 </body>
 </html>"""
 
-    formatted_content = Template(html_content).substitute(mcu=mcu, date=report_date, humid=avg_humid, temp=avg_temp, dark=dark_exposure, light=light_exposure, next_schedule=next_water_schedule)
+    formatted_content = Template(html_content).substitute(mcu=mcu, date=report_date, humid=avg_humid, temp=avg_temp, dark=dark_exposure, light=light_exposure, next_schedule=next_water_schedule, light_url=light_graph_url, temp_humid_url=temp_humid_graph_url)
 
     # construct mail signature
     message['Subject'] = 'This is a test mail'
