@@ -144,27 +144,32 @@ void loop() {
     content.setJsonData(fbdo.payload().c_str());
     content.get(jsonData, "fields/ESP32_1/booleanValue");
     operating_mode = jsonData.boolValue;
+
     // scheduled mode
     if (operating_mode == 1) {
       // retrieve data from firestore path
       path = "Subscriptions/Schedule";
       Firebase.Firestore.getDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), mask.c_str());
+
       // parse retrieved data
       schedules.clear();
       content.setJsonData(fbdo.payload().c_str());
       content.get(jsonData, "fields/ESP32_1/arrayValue/values", true);
       jsonData.get<FirebaseJsonArray>(array);
+
       // iterate through array to get all schedules 
       for (size_t i = 0; i < array.size(); i++){
         content.get(jsonData, "fields/ESP32_1/arrayValue/values/["+std::to_string(i)+"]/stringValue", true);
         schedules.push_back(jsonData.to<std::string>());
       }
-      // get current time GMT -5
+
+      /* get current time GMT -5 */
       tm current_time;
       if (!getLocalTime(&current_time)) {
         Serial.println("unable to retrieve time");
       }
-      // iterate schedule to check their due
+
+      /* iterate schedule to check their due */
       for (std::string schedule : schedules) {
         // calculate hash of current time and scheduled time by converting them to seconds
         int current_time_hash = 24*current_time.tm_wday*60*60 + current_time.tm_hour*60*60 + current_time.tm_min*60;
@@ -173,41 +178,72 @@ void loop() {
         Serial.println(current_time_hash);
         Serial.print("scheduled: ");
         Serial.println(schedule_hash);
+
         // check if it's time to water
         if (current_time_hash == schedule_hash) {
-          // save current time as last_watered
-          path = "Subscriptions/LastWatered";
-          char last_watered[80];
-          strftime(last_watered, 80, "%A, %R", &current_time);
-          content.clear();
-          content.set("fields/ESP32_1/stringValue", std::string(last_watered).c_str());
-          if (Firebase.Firestore.patchDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), content.raw(), mask.c_str()))
-            Serial.printf("ok\n%s\n\n", fbdo.payload().c_str());
-          else
-            Serial.println(fbdo.errorReason());
 
-          // update next schedule (assume schedules is ordered by day of week)
-          int schedule_index = get_index(schedules, schedule);
-          Serial.print("Index: " + schedule_index);
-          path = "Subscriptions/NextWateringSchedule";
+          /// retrieve last watered information
+          path = "Subscriptions/LastWatered";
           content.clear();
-          if (schedule_index != 0) {
-            // set content
-            if (schedule_index == schedules.size() - 1) 
-              content.set("fields/ESP32_1/stringValue", std::string(schedules[0]).c_str());
-            else 
-              content.set("fields/ESP32_1/stringValue", std::string(schedules[0]).c_str());
-            // upload to firestore
+          Firebase.Firestore.getDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), mask.c_str());
+          content.setJsonData(fbdo.payload().c_str());
+          content.get(jsonData, "fields/ESP32_1/stringValue");
+          std::string last_schedule = jsonData.stringValue.c_str();
+          std::string current_schedule = schedules[get_index(schedules, schedule)];
+          current_schedule.erase(std::remove(current_schedule.begin(), current_schedule.end(), '.'), current_schedule.end());
+          Serial.print("Last Schedule: ");
+          Serial.println(last_schedule.c_str());
+          Serial.print("Current Schedule: ");
+          Serial.println(current_schedule.c_str());
+          
+          /// check if last_watered time hasn't been set to current time, which means plant isn't watered
+          if (last_schedule.compare(current_schedule) != 0) {
+            // save current time as last_watered
+            path = "Subscriptions/LastWatered";
+            char last_watered[80];
+            strftime(last_watered, 80, "%A, %I:%M %P", &current_time);
+            content.clear();
+            content.set("fields/ESP32_1/stringValue", std::string(last_watered).c_str());
             if (Firebase.Firestore.patchDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), content.raw(), mask.c_str()))
               Serial.printf("ok\n%s\n\n", fbdo.payload().c_str());
             else
               Serial.println(fbdo.errorReason());
-          }
 
+            // update next schedule (assume schedules is ordered by day of week)
+            int schedule_index = get_index(schedules, schedule);
+            std::string next_schedule;
+            Serial.print("Index: " + schedule_index);
+            path = "Subscriptions/NextWateringSchedule";
+            content.clear();
+
+            // check if current schedule exists
+            if (schedule_index != 0) {
+              // get next_schedule (schedule at next index)
+              if (schedule_index == schedules.size() - 1) // if current schedule is at the end, grab the first element
+                next_schedule = schedules[0];
+              else // if current schedule isn't at the end, grab the next element
+                next_schedule = schedules[schedule_index + 1]; 
+              // include next_schedule in content
+              content.set("fields/ESP32_1/stringValue", std::string(next_schedule).c_str());
+              // upload content to firestore
+              if (Firebase.Firestore.patchDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), content.raw(), mask.c_str()))
+                Serial.printf("ok\n%s\n\n", fbdo.payload().c_str());
+              else
+                Serial.println(fbdo.errorReason());
+            }
+            
+            // water the plant
+            digitalWrite(relayPin, HIGH);
+            delay(3000);
+            digitalWrite(relayPin, LOW);
+          } else {
+            Serial.print("THE SAME");
+          }
         }
         else {
           Serial.println("not time yet");
         }
+
       }
       
       // water plant - procedures
@@ -239,7 +275,7 @@ int read_light_val() {
 
 // read and return temperature of DHT22
 int read_tempC() {
-  int result = HT.readHumidity();
+  int result = HT.readTemperature();
   if (result > 100) 
     return 0;
   return result;
@@ -281,12 +317,24 @@ int calculate_schedule_hash(std::string schedule) {
   index_start = schedule.find_first_of(":") + 1, length = 2;
   minute = schedule.substr(index_start, length);
 
+  Serial.println("---------");
+  Serial.println(schedule.c_str());
+  Serial.println(24*week_days.at(day_of_week)*60*60);
+  Serial.println(day_of_week.c_str());
+  Serial.println(stoi(hour)*60*60);
+  Serial.println(hour.c_str());
+  Serial.println(stoi(minute)*60);
+  Serial.println(minute.c_str());
+  Serial.println("---------");
+
   /* calculate hash */
   int hash = 24*week_days.at(day_of_week)*60*60 + stoi(hour)*60*60 + stoi(minute)*60;
-  // add worth of 12 hours in seconds to current hash if schedule has p.m., because input is 12hour format
-  if (schedule.find("p.m.") != std::string::npos) {
-    hash = hash + 43200;
-  } 
+  // add worth of 12 hours in seconds to current hash if schedule has p.m., remove same amount if a.m.
+  if (schedule.find("p.m.") != std::string::npos) 
+    hash += 43200;  
+  else if (schedule.find("a.m.") != std::string::npos && hour.compare("12") == 0)
+    hash -= 43200;
+
   return hash;
 }
 
