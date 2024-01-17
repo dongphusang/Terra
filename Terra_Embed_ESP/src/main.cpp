@@ -198,6 +198,13 @@ void loop() {
           
           /// check if last_watered time hasn't been set to current time, which means plant isn't watered
           if (last_schedule.compare(current_schedule) != 0) {
+            // if water soil is above 1200 (dry), don't save current time and continue to water
+            while (read_soil_moist() > 1200) {
+              digitalWrite(relayPin, HIGH);
+              delay(3000);
+              digitalWrite(relayPin, LOW);         
+              delay(2000);   
+            }
             // save current time as last_watered
             path = "Subscriptions/LastWatered";
             char last_watered[80];
@@ -231,11 +238,6 @@ void loop() {
               else
                 Serial.println(fbdo.errorReason());
             }
-            
-            // water the plant
-            digitalWrite(relayPin, HIGH);
-            delay(3000);
-            digitalWrite(relayPin, LOW);
           } else {
             Serial.print("THE SAME");
           }
@@ -263,9 +265,6 @@ void loop() {
     Serial.print("WiFi or Firebase not read: ");
     Serial.println(fbdo.errorReason());
   }
-    
-  // activate water module based on care settings 
-  delay(1000);
 }
 
 // read and return value of photoresistor
