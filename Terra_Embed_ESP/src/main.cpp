@@ -64,6 +64,8 @@ FirebaseData fbdo;
 FirebaseAuth auth;
 FirebaseConfig config;
 std::vector<std::string> schedules; // array to contain individual String typed schedules from json
+std::string path;
+std::string mask;
 
 // FUNCTION DECLARATION
 int read_soil_moist();
@@ -94,6 +96,7 @@ void setup() {
   Firebase.reconnectNetwork(true);
   fbdo.setBSSLBufferSize(4096, 1024);
   fbdo.setResponseSize(2048);
+  path = "Subscriptions/ESP32_1";
 
   Firebase.begin(&config, &auth);
 
@@ -136,30 +139,28 @@ void loop() {
     FirebaseJson content;     // firestore json
     FirebaseJsonArray array;  // array to contain individual FirebaseJsonArray typed schedules
     FirebaseJsonData jsonData;// contains jsondata from firestore json
-    std::string mask = "ESP32_1";
+    mask = "WateringModule";
     int operating_mode;
     /* retrieve operating mode from firestore */
-    std::string path = "Subscriptions/WateringModule";
-    Firebase.Firestore.getDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), mask.c_str());
+    Firebase.Firestore.getDocument(&fbdo, FIRESTORE_ID, "", path.c_str());
     content.setJsonData(fbdo.payload().c_str());
-    content.get(jsonData, "fields/ESP32_1/booleanValue");
+    content.get(jsonData, "fields/WateringModule/booleanValue");
     operating_mode = jsonData.boolValue;
 
     // scheduled mode
     if (operating_mode == 1) {
       // retrieve data from firestore path
-      path = "Subscriptions/Schedule";
-      Firebase.Firestore.getDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), mask.c_str());
-
+      mask = "Schedule";
+      //Firebase.Firestore.getDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), mask.c_str());
       // parse retrieved data
       schedules.clear();
       content.setJsonData(fbdo.payload().c_str());
-      content.get(jsonData, "fields/ESP32_1/arrayValue/values", true);
+      content.get(jsonData, "fields/Schedule/arrayValue/values", true);
       jsonData.get<FirebaseJsonArray>(array);
 
       // iterate through array to get all schedules 
       for (size_t i = 0; i < array.size(); i++){
-        content.get(jsonData, "fields/ESP32_1/arrayValue/values/["+std::to_string(i)+"]/stringValue", true);
+        content.get(jsonData, "fields/Schedule/arrayValue/values/["+std::to_string(i)+"]/stringValue", true);
         schedules.push_back(jsonData.to<std::string>());
       }
 
@@ -183,11 +184,11 @@ void loop() {
         if (current_time_hash == schedule_hash) {
 
           /// retrieve last watered information
-          path = "Subscriptions/LastWatered";
+          mask = "LastWatered";
           content.clear();
-          Firebase.Firestore.getDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), mask.c_str());
+          //Firebase.Firestore.getDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), mask.c_str());
           content.setJsonData(fbdo.payload().c_str());
-          content.get(jsonData, "fields/ESP32_1/stringValue");
+          content.get(jsonData, "fields/LastWatered/stringValue");
           std::string last_schedule = jsonData.stringValue.c_str();
           std::string current_schedule = schedules[get_index(schedules, schedule)];
           current_schedule.erase(std::remove(current_schedule.begin(), current_schedule.end(), '.'), current_schedule.end());
@@ -199,18 +200,18 @@ void loop() {
           /// check if last_watered time hasn't been set to current time, which means plant isn't watered
           if (last_schedule.compare(current_schedule) != 0) {
             // if water soil is above 1200 (dry), don't save current time and continue to water
-            while (read_soil_moist() > 1200) {
+            //while (read_soil_moist() > 1200) {
               digitalWrite(relayPin, HIGH);
               delay(3000);
               digitalWrite(relayPin, LOW);         
-              delay(2000);   
-            }
+              delay(5000);   
+            //}
             // save current time as last_watered
-            path = "Subscriptions/LastWatered";
+            mask = "LastWatered";
             char last_watered[80];
             strftime(last_watered, 80, "%A, %I:%M %P", &current_time);
             content.clear();
-            content.set("fields/ESP32_1/stringValue", std::string(last_watered).c_str());
+            content.set("fields/LastWatered/stringValue", std::string(last_watered).c_str());
             if (Firebase.Firestore.patchDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), content.raw(), mask.c_str()))
               Serial.printf("ok\n%s\n\n", fbdo.payload().c_str());
             else
@@ -220,9 +221,8 @@ void loop() {
             int schedule_index = get_index(schedules, schedule);
             std::string next_schedule;
             Serial.print("Index: " + schedule_index);
-            path = "Subscriptions/NextWateringSchedule";
+            mask = "NextWateringSchedule";
             content.clear();
-
             // check if current schedule exists
             if (schedule_index != 0) {
               // get next_schedule (schedule at next index)
@@ -231,7 +231,7 @@ void loop() {
               else // if current schedule isn't at the end, grab the next element
                 next_schedule = schedules[schedule_index + 1]; 
               // include next_schedule in content
-              content.set("fields/ESP32_1/stringValue", std::string(next_schedule).c_str());
+              content.set("fields/NextWateringSchedule/stringValue", std::string(next_schedule).c_str());
               // upload content to firestore
               if (Firebase.Firestore.patchDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), content.raw(), mask.c_str()))
                 Serial.printf("ok\n%s\n\n", fbdo.payload().c_str());
@@ -245,21 +245,12 @@ void loop() {
         else {
           Serial.println("not time yet");
         }
-
       }
-      
-      // water plant - procedures
-      // 1. test amount of water dispensing
-      // digitalWrite(32, HIGH);
-      // delay(2000);
-      // digitalWrite(32, LOW);
-        
-      // 2. record result and consistency
-      // 3. decide if user can adjust the amount
-      // delay
     }
     else // auto mode
     { }
+
+    delay(1000);
   }
   else {
     Serial.print("WiFi or Firebase not read: ");

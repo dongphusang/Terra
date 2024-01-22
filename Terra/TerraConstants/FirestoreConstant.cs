@@ -16,6 +16,7 @@ namespace Terra.TerraConstants
         public const string INACTIVE_EMAILS = "Inactive";
         public const string SCHEDULE = "Schedule";
         public const string WATERMOD = "WateringModule";
+        public const string ESP32_1 = "ESP32_1";
 
         // documents key value pairs
         

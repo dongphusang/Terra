@@ -136,8 +136,7 @@ namespace Terra.ViewModels
         {
             _firestoreService.PostOverride(_currentMCU, Schedules, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.SCHEDULE);
             _firestoreService.PostOverride(_currentMCU, IsWateringAuto, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.WATERMOD);
-            Console.WriteLine("MADE: "+_currentMCU);
-            Console.WriteLine("MADE: "+_currentPlantName);
+            
             return Toast.Make("Changes Made!", ToastDuration.Short).Show();
         }        
     }
