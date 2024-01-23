@@ -14,10 +14,16 @@ class FirestoreHelper():
 
     def get_doc_content(self) -> str:
          # read data #
-        _users_ref = self._db.collection("Subscriptions").document("NextWateringSchedule")
-        self.schedule = _users_ref.get().to_dict().get("ESP32_1")
+        _users_ref = self._db.collection("Subscriptions").document("ESP32_1")
+        self.schedule = _users_ref.get().to_dict().get("NextWateringSchedule")
 
         return self.schedule
+    
+    def get_water_dispensed(self) -> str:
+        _users_ref = self._db.collection("Subscriptions").document("ESP32_1")
+        self.water_dispensed = _users_ref.get().to_dict().get("WaterDispensed")
+        
+        return self.water_dispensed
 
 class StorageBucketHelper():
 

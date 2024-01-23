@@ -40,11 +40,8 @@ def main():
     # firestore schedule
     firestoreHelper = FirestoreHelper()
     next_water_schedule = firestoreHelper.get_doc_content()
+    water_dispensed = firestoreHelper.get_water_dispensed()
 
-    
-    #with open('report_test.html') as fp:
-    #     html_content = fp.read()
-    
     # construct html
     html_content = """
 <html>
@@ -113,7 +110,7 @@ def main():
             <tr>
                 <td bgcolor="#265073" width="400px" height="87px" colspan="2">
                     <p style="color: #6D6D6D; text-align: center; font-size: 11px; margin: 0 0 0 0"> <img src="https://iili.io/JufkRyb.png" width="13px" height="13px"/> Liquid Pumped </p>
-                    <p style="color: #ECF4D6; font-weight: 700; text-align: center; font-size: 15px; margin: 23px 0 0 0"> 11.5 hours </p>
+                    <p style="color: #ECF4D6; font-weight: 700; text-align: center; font-size: 15px; margin: 23px 0 0 0"> $water ml </p>
                 </td>
             </tr>
             <tr>
@@ -143,7 +140,7 @@ def main():
 </body>
 </html>"""
 
-    formatted_content = Template(html_content).substitute(mcu=mcu, date=report_date, humid=avg_humid, temp=avg_temp, dark=dark_exposure, light=light_exposure, next_schedule=next_water_schedule, light_url=light_graph_url, temp_humid_url=temp_humid_graph_url)
+    formatted_content = Template(html_content).substitute(mcu=mcu, date=report_date, humid=avg_humid, temp=avg_temp, dark=dark_exposure, light=light_exposure, next_schedule=next_water_schedule, light_url=light_graph_url, temp_humid_url=temp_humid_graph_url, water = water_dispensed)
 
     # construct mail signature
     message['Subject'] = 'This is a test mail'

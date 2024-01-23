@@ -38,6 +38,7 @@ const int daylightOffset_sec = 3600;
 #define relayPin 32      // blue
 #define waterLvlPin 33   // green
 int water_level_val = 0;
+int water_dispensed = 0;
 // KY-018 (photoresistor)
 #define lightPin 34      // yellow
 int light_val = 0;
@@ -149,9 +150,14 @@ void loop() {
 
     // scheduled mode
     if (operating_mode == 1) {
+      // retrieve amount of water dispensed from firestore
+      content.get(jsonData, "fields/WaterDispensed/integerValue");
+      water_dispensed = jsonData.intValue;
+      Serial.print("Water Dispensed: ");
+      Serial.println(water_dispensed);
+
       // retrieve data from firestore path
       mask = "Schedule";
-      //Firebase.Firestore.getDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), mask.c_str());
       // parse retrieved data
       schedules.clear();
       content.setJsonData(fbdo.payload().c_str());
@@ -186,7 +192,6 @@ void loop() {
           /// retrieve last watered information
           mask = "LastWatered";
           content.clear();
-          //Firebase.Firestore.getDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), mask.c_str());
           content.setJsonData(fbdo.payload().c_str());
           content.get(jsonData, "fields/LastWatered/stringValue");
           std::string last_schedule = jsonData.stringValue.c_str();
@@ -205,6 +210,7 @@ void loop() {
               delay(3000);
               digitalWrite(relayPin, LOW);
               delay(5000);
+              water_dispensed += 14; // add 14ml of water dispensed
             //}
             // save current time as last_watered
             mask = "LastWatered";
@@ -224,7 +230,7 @@ void loop() {
             mask = "NextWateringSchedule";
             content.clear();
             // check if current schedule exists
-            if (schedule_index != 0) {
+            if (schedule_index != -1) {
               // get next_schedule (schedule at next index)
               if (schedule_index == schedules.size() - 1) // if current schedule is at the end, grab the first element
                 next_schedule = schedules[0];
@@ -238,7 +244,17 @@ void loop() {
               else
                 Serial.println(fbdo.errorReason());
             }
-          } else {
+
+            // update water dispensed
+            mask = "WaterDispensed";
+            content.clear();
+            content.set("fields/WaterDispensed/integerValue", water_dispensed);
+            if (Firebase.Firestore.patchDocument(&fbdo, FIRESTORE_ID, "", path.c_str(), content.raw(), mask.c_str()))
+              Serial.printf("ok\n%s\n\n", fbdo.payload().c_str());
+            else
+              Serial.println(fbdo.errorReason());
+          } 
+          else {
             Serial.print("THE SAME");
           }
         }
