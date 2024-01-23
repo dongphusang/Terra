@@ -9,14 +9,17 @@ namespace Terra.TerraConstants
     public  class FirestoreConstant
     {
         // collections
-        public const string SUBSCRIPTION = "Subscriptions";
+        public const string COLLECTION_SUBSCRIPTION = "Subscriptions";
 
         // documents
-        public const string ACTIVE_EMAILS = "Active";
-        public const string INACTIVE_EMAILS = "Inactive";
-        public const string SCHEDULE = "Schedule";
-        public const string WATERMOD = "WateringModule";
-        public const string ESP32_1 = "ESP32_1";
+        public const string DOC_ESP32_1 = "ESP32_1";
+        public const string DOC_ACTIVE_EMAILS = "Active";
+        public const string DOC_INACTIVE_EMAILS = "Inactive";
+
+        // masks
+        public const string MASK_SCHEDULE = "Schedule";
+        public const string MASK_WATERMOD = "WateringModule";
+        
 
         // documents key value pairs
         

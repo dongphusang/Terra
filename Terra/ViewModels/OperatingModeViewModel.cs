@@ -76,7 +76,7 @@ namespace Terra.ViewModels
         /// <returns></returns>
         private async Task GetAutoConfigAsync()
         {
-            IsWateringAuto = Convert.ToBoolean(await _firestoreService.GetValue(_currentMCU, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.WATERMOD));
+            IsWateringAuto = Convert.ToBoolean(await _firestoreService.GetValue(FirestoreConstant.MASK_WATERMOD, FirestoreConstant.COLLECTION_SUBSCRIPTION, _currentMCU));
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Terra.ViewModels
         {
             // pull schedules
             Schedules = new();
-            var firestoreSchedule = await _firestoreService.GetValues(_currentMCU, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.SCHEDULE);
+            var firestoreSchedule = await _firestoreService.GetValues(FirestoreConstant.MASK_SCHEDULE, FirestoreConstant.COLLECTION_SUBSCRIPTION, _currentMCU);
 
             foreach (var item in firestoreSchedule)
             {
@@ -134,8 +134,8 @@ namespace Terra.ViewModels
         [RelayCommand]
         public Task CommitSchedules()
         {
-            _firestoreService.PostOverride(_currentMCU, Schedules, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.SCHEDULE);
-            _firestoreService.PostOverride(_currentMCU, IsWateringAuto, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.WATERMOD);
+            _firestoreService.PostMerge(FirestoreConstant.MASK_SCHEDULE, Schedules, FirestoreConstant.COLLECTION_SUBSCRIPTION, _currentMCU);
+            _firestoreService.PostMerge(FirestoreConstant.MASK_WATERMOD, IsWateringAuto, FirestoreConstant.COLLECTION_SUBSCRIPTION, _currentMCU);
             
             return Toast.Make("Changes Made!", ToastDuration.Short).Show();
         }        

@@ -77,7 +77,7 @@ namespace Terra.ViewModels
         {
             Emails = _emailListDBService.GetFromEmailTable();
 
-            ConvertToDisplayableList(await _firestoreService.GetValues(_currentPlantName, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS));
+            ConvertToDisplayableList(await _firestoreService.GetValues(_currentPlantName, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_INACTIVE_EMAILS));
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Terra.ViewModels
                 {
                     _emailListDBService.PostToEmailTable(EmailModel.Email);
                     Task.Run(UpdateEmails);
-                    return _firestoreService.PostMerge(FormatForFirestore(EmailModel.Email), "Terra", FirestoreConstant.SUBSCRIPTION, FirestoreConstant.INACTIVE_EMAILS);
+                    return _firestoreService.PostMerge(FormatForFirestore(EmailModel.Email), "Terra", FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_INACTIVE_EMAILS);
                 }                
             }        
             return Task.CompletedTask;
@@ -131,7 +131,7 @@ namespace Terra.ViewModels
                 return ActivateSubscription();
             // remove subscription if no emails are subscribed to current plant
             else 
-                return _firestoreService.Remove(_currentPlantName, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
+                return _firestoreService.Remove(_currentPlantName, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ACTIVE_EMAILS);
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace Terra.ViewModels
         // add subscribing section for current plant in Active collection
         private Task ActivateSubscription()
         {
-            _firestoreService.PostMerge(_currentPlantName, ActiveEmails, FirestoreConstant.SUBSCRIPTION, FirestoreConstant.ACTIVE_EMAILS);
+            _firestoreService.PostMerge(_currentPlantName, ActiveEmails, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ACTIVE_EMAILS);
 
             return Task.CompletedTask;
         }

@@ -160,8 +160,8 @@ namespace Terra.Services
         public async Task RemoveFromParentCollection(string mail, string formatted_mail)
         {
             // removal from Active document
-            var collection = FirestoreConstant.SUBSCRIPTION;
-            var document = FirestoreConstant.ACTIVE_EMAILS;
+            var collection = FirestoreConstant.COLLECTION_SUBSCRIPTION;
+            var document = FirestoreConstant.DOC_ACTIVE_EMAILS;
 
             docRef = firestore.Collection(collection).Document(document);
             var dictionary = (await docRef.GetSnapshotAsync()).ToDictionary();
@@ -191,7 +191,7 @@ namespace Terra.Services
             }
 
             // removal from Inactive document
-            document = FirestoreConstant.INACTIVE_EMAILS;
+            document = FirestoreConstant.DOC_INACTIVE_EMAILS;
             await Remove(formatted_mail, collection, document);
         }
     }

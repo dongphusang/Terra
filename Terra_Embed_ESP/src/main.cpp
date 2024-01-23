@@ -203,8 +203,8 @@ void loop() {
             //while (read_soil_moist() > 1200) {
               digitalWrite(relayPin, HIGH);
               delay(3000);
-              digitalWrite(relayPin, LOW);         
-              delay(5000);   
+              digitalWrite(relayPin, LOW);
+              delay(5000);
             //}
             // save current time as last_watered
             mask = "LastWatered";
