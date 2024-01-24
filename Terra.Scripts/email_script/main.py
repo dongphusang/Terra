@@ -20,9 +20,11 @@ def main():
     context = ssl.create_default_context()
     message = EmailMessage()
 
+    # init helpers
     influxHelper = InfluxHelper()
     gcp_bucket_helper = StorageBucketHelper()
     matplot_helper = MatplotHelper()
+    firestoreHelper = FirestoreHelper()
 
     # generate content
     light_exposure = influxHelper.get_time_lightexp()
@@ -36,9 +38,6 @@ def main():
     gcp_bucket_helper.upload_graphs_to_bucket()
     light_graph_url = gcp_bucket_helper.get_light_graph_url()
     temp_humid_graph_url = gcp_bucket_helper.get_temp_humid_url()
-
-    # firestore schedule
-    firestoreHelper = FirestoreHelper()
     next_water_schedule = firestoreHelper.get_doc_content()
     water_dispensed = firestoreHelper.get_water_dispensed()
 
@@ -145,7 +144,6 @@ def main():
     # construct mail signature
     message['Subject'] = 'This is a test mail'
     message['From'] = mail
-    message['To'] = "marcodsang@gmail.com"
     message['Cc'] = ""
     message['Bcc'] = ""
 
@@ -153,13 +151,19 @@ def main():
 
     message.add_alternative(formatted_content, subtype='html')
 
+    firestoreHelper.download_emails()
+
     with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
         server.login(mail, password)
         with open('userList.json', "r") as data:
                 user_list = json.load(data)
                 for data in user_list.values():
                     for user in data:
+                        message['To'] = user
                         server.send_message(message) 
+                        del message['To']
+                        
+        server.quit()
                         
     
         

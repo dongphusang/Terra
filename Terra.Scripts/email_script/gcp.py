@@ -3,6 +3,7 @@ from firebase_admin import firestore
 from firebase_admin import credentials
 from google.cloud.storage import Client, transfer_manager
 import datetime
+import json
 
 class FirestoreHelper():
 
@@ -24,6 +25,13 @@ class FirestoreHelper():
         self.water_dispensed = _users_ref.get().to_dict().get("WaterDispensed")
         
         return self.water_dispensed
+    
+    def download_emails(self):
+        _users_ref = self._db.collection("Subscriptions").document("Active")
+        self.water_dispensed = _users_ref.get().to_dict()
+        
+        with open("userList.json", "w") as outfile: 
+            json.dump(self.water_dispensed, outfile)
 
 class StorageBucketHelper():
 

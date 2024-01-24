@@ -37,10 +37,11 @@ class InfluxHelper():
             count = 0
             sum = 0
             for record in table.records:
-                count+=1
                 #print("raw json: "+record.get_value())
                 entry = json.loads(record.get_value())
-                sum+=entry["Temperature"]
+                if(entry["Temperature"] != 0):
+                    count+=1
+                    sum+=entry["Temperature"]
                 #print(entry["Temperature"])
                 #print("\n")
 
@@ -57,8 +58,9 @@ class InfluxHelper():
                 entry = json.loads(record.get_value())
                 entry_time = record.get_time().astimezone(ZoneInfo("US/Eastern")).strftime("%H")
                 temp_elem = entry["Temperature"]
-                temps.append(round(temp_elem, 1))
-                time.append(str(entry_time))
+                if(temp_elem != 0):
+                    temps.append(round(temp_elem, 1))
+                    time.append(str(entry_time))
 
             tuple.append(temps)
             tuple.append(time)
@@ -72,17 +74,18 @@ class InfluxHelper():
             count = 0
             sum = 0
             for record in table.records:
-                count+=1
                 #print("raw json: "+record.get_value())
                 #print("Iteration #: " + str(count))
                 entry = json.loads(record.get_value())
-                sum+=entry["Humidity"]
+                if(entry["Humidity"] != 0):
+                    count+=1
+                    sum+=entry["Humidity"]
                 #print(entry["Humidity"])
                 #print("\n")
 
             return str(round(sum/count, 1))
 
-    # get humid points from influxDB within 24 hours
+    # get humid points from influxDB within 24 hours, for plotting
     def get_humids_of_day(self) -> list[list[object], list[object]]:
         result = self._query_api.query(org=self._org, query=self._query)
         for table in result:
@@ -93,15 +96,16 @@ class InfluxHelper():
                 entry = json.loads(record.get_value())
                 entry_time = record.get_time().astimezone(ZoneInfo("US/Eastern")).strftime("%H")
                 humid_elem = entry["Humidity"]
-                humids.append(round(humid_elem, 1))
-                time.append(str(entry_time))
+                if(humid_elem != 0):
+                    humids.append(round(humid_elem, 1))
+                    time.append(str(entry_time))
 
             tuple.append(humids)
             tuple.append(time)
 
             return tuple
 
-    # get light intensity by time from influxDB within 24 hours
+    # get light intensity by time from influxDB within 24 hours, for plotting
     def get_lights_of_day(self) -> list[list[object], list[object]]:
         result = self._query_api.query(org=self._org, query=self._query)
         for table in result:

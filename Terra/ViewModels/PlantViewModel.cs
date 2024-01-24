@@ -8,9 +8,7 @@ using Terra.Models;
 using Terra.Services;
 using CommunityToolkit.Maui.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Runtime.CompilerServices;
-using System.Collections.ObjectModel;
+using Terra.TerraConstants;
 
 namespace Terra.ViewModels
 {
@@ -28,6 +26,7 @@ namespace Terra.ViewModels
         private WorkspaceService _workspaceService;
         private InfluxService _influxService;
         private PlantAPIService _plantAPIService;
+        private FirestoreService _firestoreService;
 
         // warnings
         [ObservableProperty]
@@ -53,6 +52,7 @@ namespace Terra.ViewModels
             _workspaceService = new();
             _influxService = new();
             _plantAPIService = new();
+            _firestoreService = new();
 
             ScreenHeight = DeviceDisplay.MainDisplayInfo.Height;
             ScreenWidth = DeviceDisplay.MainDisplayInfo.Width;
@@ -112,6 +112,8 @@ namespace Terra.ViewModels
             }
             // insert plant entry to sqlite
             _workspaceService.InsertToPlantTable(CurrentWorkspaceName, PlantModel.Name, PlantModel.Note);
+            // upload plant name to MCU
+            _firestoreService.PostMerge(FirestoreConstant.MASK_PLANTNAME, PlantModel.Name, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ESP32_1);
             // make  toast: notify users the plant has been added
             ThrowToast("Plant Added!");
 
