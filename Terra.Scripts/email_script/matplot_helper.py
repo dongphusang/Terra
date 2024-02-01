@@ -29,7 +29,7 @@ class MatplotHelper:
         plt.ylabel('Light Intensity')
         plt.xlabel('Hour of Date')
         plt.title('Atmospheric by Hour Graph (P2)')
-        plt.savefig('graph_light.png')
+        plt.savefig('/home/graph_light.png')
 
     # map temp and humid graph and save as png
     def map_temp_humid(self) -> None:
@@ -41,4 +41,4 @@ class MatplotHelper:
         plt.xlabel('Hour of Date')
         plt.title('Atmospheric by Hour Graph (P1)')
         plt.legend()
-        plt.savefig('graph_tempXhumid.png')
+        plt.savefig('/home/graph_tempXhumid.png')

@@ -39,7 +39,7 @@ class StorageBucketHelper():
         #gcp creds
         self._storage_client = Client.from_service_account_json('terra_gcp.json')
         self._bucket = self._storage_client.bucket('terra_html-email_images')
-        self._filenames = ['graph_light.png', 'graph_tempXhumid.png']
+        self._filenames = ['/home/graph_light.png', '/home/graph_tempXhumid.png']
 
     def upload_graphs_to_bucket(self) -> None:
         _results = transfer_manager.upload_many_from_filenames(

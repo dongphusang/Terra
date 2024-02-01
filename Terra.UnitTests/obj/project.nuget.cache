@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Sbf19j4yh9ZraF6M8eYp5V654/qcGD3RaXzzsn0QWr/SxAKpDYzXHfC/Ekgyl5aO3rmMyESB0Y4/kpMhd0txZQ==",
+  "dgSpecHash": "w9sKY7pObSlyNIaWMsUzHiXu3Dl38TLRYsLBExEaEX/rVvjIdgfmLN67ukdnWQDsXSXSJkM7qNaaWBuJf1MHTw==",
   "success": true,
   "projectFilePath": "C:\\Users\\sangs\\Desktop\\Terra\\Terra.UnitTests\\Terra.UnitTests.csproj",
   "expectedPackageFiles": [
@@ -52,7 +52,7 @@
     "C:\\Users\\sangs\\.nuget\\packages\\microsoft.extensions.objectpool\\7.0.5\\microsoft.extensions.objectpool.7.0.5.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
-    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.maui.graphics\\7.0.86\\microsoft.maui.graphics.7.0.86.nupkg.sha512",
+    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.maui.graphics\\7.0.101\\microsoft.maui.graphics.7.0.101.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\microsoft.net.http.headers\\2.2.8\\microsoft.net.http.headers.2.2.8.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\microsoft.net.test.sdk\\17.6.3\\microsoft.net.test.sdk.17.6.3.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
@@ -93,7 +93,13 @@
     "C:\\Users\\sangs\\.nuget\\packages\\system.security.permissions\\6.0.0\\system.security.permissions.6.0.0.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\sangs\\.nuget\\packages\\system.text.json\\7.0.2\\system.text.json.7.0.2.nupkg.sha512",
-    "C:\\Users\\sangs\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
+    "C:\\Users\\sangs\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.maui.controls.runtime.any\\7.0.101\\microsoft.maui.controls.runtime.any.7.0.101.nupkg.sha512",
+    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.maui.essentials.runtime.any\\7.0.101\\microsoft.maui.essentials.runtime.any.7.0.101.nupkg.sha512",
+    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.maui.core.runtime.any\\7.0.101\\microsoft.maui.core.runtime.any.7.0.101.nupkg.sha512",
+    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.maui.essentials.ref.any\\7.0.101\\microsoft.maui.essentials.ref.any.7.0.101.nupkg.sha512",
+    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.maui.core.ref.any\\7.0.101\\microsoft.maui.core.ref.any.7.0.101.nupkg.sha512",
+    "C:\\Users\\sangs\\.nuget\\packages\\microsoft.maui.controls.ref.any\\7.0.101\\microsoft.maui.controls.ref.any.7.0.101.nupkg.sha512"
   ],
   "logs": []
 }

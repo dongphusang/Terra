@@ -8,8 +8,10 @@
 
     <Grid
         VerticalOptions="Center"
-        Padding="20,10,20,0"
-        ColumnSpacing="15">
+        ColumnSpacing="15"
+        
+        Padding="20,0,20,0"
+        Margin="0,-30,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -24,13 +26,14 @@
 
         <!-- event background -->
         <BoxView
-            Margin="0, 0, 0, 15"
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             HeightRequest="150"
             Color="#F7E1AE"
-            CornerRadius="8">
+            CornerRadius="8"
+            
+            Margin="0, 0, 0, 25">
             <BoxView.Shadow>
                 <Shadow
                     Brush="Gray"
@@ -42,23 +45,25 @@
         
         <!-- quick actions -->
         <Label
-            Margin="0, 0, 0, 10"
             Grid.Row="1"
             Text="Quick Actions"
             FontSize="20"
-            HorizontalTextAlignment="Start"/>
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Start"
+            
+            Margin="0, 0, 0, 10"/>
         <!--add-->
         <Button           
             Grid.Row="2"
             Grid.Column="0"
             HeightRequest="210"
-            Text="Add"
-            TextColor="Black"
-            Background="{StaticResource BoxViewTextPromptBackGround}"
+            ImageSource="mainpage_icon_add.svg"
+            BackgroundColor="{StaticResource BoxViewTextPromptBackGround}"
+            
             Command="{Binding ToAddWorkspacePageCommand}">
             <Button.Shadow>
                 <Shadow
-                    Brush="Gray"
+                    Brush="Black"
                     Offset="0,0"
                     Radius="20"
                     Opacity="0.5"/>
@@ -69,13 +74,13 @@
             Grid.Row="2"
             Grid.Column="1"          
             HeightRequest="210"
-            Text="View"
-            TextColor="Black"
-            Background="{StaticResource BoxViewTextPromptBackGround}"
+            ImageSource="mainpage_icon_view.svg"
+            BackgroundColor="{StaticResource BoxViewTextPromptBackGround}"
+            
             Command="{Binding ToWorkspaceListCommand}">
             <Button.Shadow>
                 <Shadow
-                    Brush="Gray"
+                    Brush="Black"
                     Offset="0,0"
                     Radius="20"
                     Opacity="0.5"/>
@@ -84,52 +89,90 @@
         
         <!-- Others -->
         <Label
-            Margin="0, 20, 0, 0"
             Grid.Row="3"
             Text="Others"
             FontSize="20"
-            HorizontalTextAlignment="Start"/>
-        <VerticalStackLayout
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Start"
+            
+            Margin="0, 25, 0, 10"/>
+        <Grid
             Grid.Row="4"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            HorizontalOptions="Center">
+            ColumnSpacing="15"
+            RowSpacing="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <!--graphical view-->
             <Button
-                HeightRequest="55"
+                Grid.Row="0"
+                Grid.Column="0"
                 Text="Graphical View"
                 TextColor="Black"
-                BackgroundColor="Transparent"           
-                Command="{Binding ToGraphicalViewCommand}"/>
-            <Line
-                X1="10" Y1="0" X2="380" Y2="0" 
-                Stroke="#E2E2E2"/>
+                BackgroundColor="{StaticResource BoxViewTextPromptBackGround}"          
+                Command="{Binding ToGraphicalViewCommand}">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Offset="0,0"
+                        Radius="20"
+                        Opacity="0.3"/>
+                </Button.Shadow>
+            </Button>
             <!--email sub-->
             <Button
-                HeightRequest="55"
+                Grid.Row="0"
+                Grid.Column="1"
                 Text="Email Subscription"
                 TextColor="Black"
-                BackgroundColor="Transparent"
-                Command="{Binding ToEmailSubPageCommand}"/>
-            <Line
-                X1="10" Y1="0" X2="380" Y2="0"
-                Stroke="#E2E2E2"/>
-            <!--mode-->
-            <Button
-                HeightRequest="55"
-                Text="Current Mode: Auto/Scheduled"
-                TextColor="Black"
-                BackgroundColor="Transparent"/>
-            <Line
-                X1="10" Y1="0" X2="380" Y2="0"
-                Stroke="#E2E2E2"/>
+                BackgroundColor="{StaticResource BoxViewTextPromptBackGround}"
+                Command="{Binding ToEmailSubPageCommand}">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Offset="0,0"
+                        Radius="20"
+                        Opacity="0.3"/>
+                </Button.Shadow>
+            </Button>
             <!-- PlantWiki Button -->
             <Button
-                HeightRequest="55"
+                Grid.Row="1"
+                Grid.Column="0"
                 Text="Plant Wiki"
                 TextColor="Black"
-                BackgroundColor="Transparent"/>
-        </VerticalStackLayout>
+                BackgroundColor="{StaticResource BoxViewTextPromptBackGround}">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Offset="0,0"
+                        Radius="20"
+                        Opacity="0.3"/>
+                </Button.Shadow>
+            </Button>
+            <!-- Help Button -->
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="Help?"
+                TextColor="Black"
+                BackgroundColor="{StaticResource BoxViewTextPromptBackGround}">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Offset="0,0"
+                        Radius="20"
+                        Opacity="0.3"/>
+                </Button.Shadow>
+            </Button>
+        </Grid>
 
     </Grid>
         
