@@ -7,7 +7,7 @@
              x:DataType="viewmodel:PlantViewModel">
     <StackLayout>
         <Grid
-            Padding="30, 50, 30, 0"
+            Padding="30, 30, 30, 0"
             HeightRequest="{Binding ScreenHeight}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -19,14 +19,14 @@
             </Grid.RowDefinitions>
 
             <!-- NAME -->
-            <!--workspace entry label-->
+            <!--plant entry label-->
             <Label
                 Margin="0,0,0,5"
                 Grid.Row="0"
                 FontSize="20"
                 FontAttributes="Bold"
                 Text="Plant Name"/>
-            <!--workspace entry background-->
+            <!--plant entry background-->
             <BoxView
                 Grid.Row="1"
                 HeightRequest="55"
@@ -91,10 +91,7 @@
 
             <!-- Confirm Button -->
             <Button       
-                Margin="0, 50, 0, 0"
                 Grid.Row="5"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
                 HeightRequest="50"
                 WidthRequest="230"
                 VerticalOptions="End"
@@ -102,7 +99,9 @@
                 TextColor="Black"
                 BackgroundColor="{StaticResource ButtonColorLight}"
                 Command="{Binding PostPlantCommand}"
-                IsEnabled="{Binding IsAdditionRestricted}">
+                IsEnabled="{Binding IsAdditionRestricted}"
+                
+                Margin="0, 50, 0, 0">
                     <Button.Shadow>
                         <Shadow
                         Brush="Gray"
@@ -115,8 +114,6 @@
             <!-- Restriction Message -->
             <Label
                 Grid.Row="5"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
                 FontSize="14"
                 HorizontalOptions="CenterAndExpand"
                 Text="haha"

@@ -46,11 +46,8 @@
                 Grid.Column="1"
                 HorizontalOptions="Fill"
                 CornerRadius="10"
+                ImageSource="trash_can.svg"
                 BackgroundColor="#EFEDED"
-                Text="DEL"
-                TextColor="Black"
-                FontSize="32"
-                FontAttributes="Bold"
                 Command="{Binding DeleteWorkspaceCommand}"
                 CommandParameter="{Binding WorkspaceNameAndNote[0]}">
                 <Button.Shadow>
@@ -98,11 +95,8 @@
                 Grid.Column="1"
                 HorizontalOptions="Fill"
                 CornerRadius="10"
-                BackgroundColor="#EFEDED"
-                Text="DEL"
-                TextColor="Black"
-                FontSize="32"
-                FontAttributes="Bold">
+                ImageSource="trash_can.svg"
+                BackgroundColor="#EFEDED">
                 <Button.Shadow>
                     <Shadow
                         Brush="Black"
@@ -147,11 +141,8 @@
                 Grid.Column="1"
                 HorizontalOptions="Fill"
                 CornerRadius="10"
-                BackgroundColor="#EFEDED"
-                Text="DEL"
-                TextColor="Black"
-                FontSize="32"
-                FontAttributes="Bold">
+                ImageSource="trash_can.svg"
+                BackgroundColor="#EFEDED">
                 <Button.Shadow>
                     <Shadow
                         Brush="Black"
@@ -175,7 +166,7 @@
                 FontSize="20"
                 VerticalOptions="End"/>
 
-            <!-- Third Workspace -->
+            <!-- Fourth Workspace -->
             <!--navigate-->
             <Button 
                 Grid.Row="3"
@@ -196,11 +187,8 @@
                 Grid.Column="1"
                 HorizontalOptions="Fill"
                 CornerRadius="10"
-                BackgroundColor="#EFEDED"
-                Text="DEL"
-                TextColor="Black"
-                FontSize="32"
-                FontAttributes="Bold">
+                ImageSource="trash_can.svg"
+                BackgroundColor="#EFEDED">
                 <Button.Shadow>
                     <Shadow
                         Brush="Black"

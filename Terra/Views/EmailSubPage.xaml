@@ -59,14 +59,14 @@
             ColumnSpacing="10"
             HorizontalOptions="Center">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!--add-->
             <Button
                 Grid.Column="0"
                 HeightRequest="50"
-                WidthRequest="230"
+                WidthRequest="200"
                 Text="confirm"
                 TextColor="Black"
                 BackgroundColor="{StaticResource ButtonColorLight}"
@@ -81,7 +81,7 @@
             </Button>
             <!--remove-->
             <Button
-                Grid.Column="1"
+                Grid.Column="2"
                 HeightRequest="50"
                 WidthRequest="50"
                 ImageSource="trash_can.svg"
