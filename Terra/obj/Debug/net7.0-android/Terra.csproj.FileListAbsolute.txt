@@ -2280,3 +2280,10 @@ C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\android\assets\Syste
 C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\android\assets\System.Runtime.Extensions.dll
 C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\android\assets\System.Runtime.Serialization.Formatters.dll
 C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\android\assets\System.Xml.dll
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\lp\177\jl\files.cache
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\android\assets\SkiaSharp.Extended.dll
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\android\assets\SkiaSharp.Extended.UI.dll
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\android\assets\SkiaSharp.SceneGraph.dll
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\android\assets\SkiaSharp.SceneGraph.pdb
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\android\assets\SkiaSharp.Skottie.dll
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0-android\android\assets\SkiaSharp.Skottie.pdb

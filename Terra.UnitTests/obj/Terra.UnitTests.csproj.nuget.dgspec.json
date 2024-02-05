@@ -211,7 +211,7 @@
           "dependencies": {
             "CommunityToolkit.Maui": {
               "target": "Package",
-              "version": "[5.2.0, )"
+              "version": "[6.1.0, )"
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
@@ -272,6 +272,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "SkiaSharp.Extended.UI.Maui": {
+              "target": "Package",
+              "version": "[2.0.0-preview.86, )"
             }
           },
           "imports": [
@@ -332,7 +336,7 @@
           "dependencies": {
             "CommunityToolkit.Maui": {
               "target": "Package",
-              "version": "[5.2.0, )"
+              "version": "[6.1.0, )"
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
@@ -401,6 +405,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "SkiaSharp.Extended.UI.Maui": {
+              "target": "Package",
+              "version": "[2.0.0-preview.86, )"
             },
             "Xamarin.Android.Glide": {
               "target": "Package",
@@ -539,7 +547,7 @@
           "dependencies": {
             "CommunityToolkit.Maui": {
               "target": "Package",
-              "version": "[5.2.0, )"
+              "version": "[6.1.0, )"
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
@@ -612,6 +620,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "SkiaSharp.Extended.UI.Maui": {
+              "target": "Package",
+              "version": "[2.0.0-preview.86, )"
             }
           },
           "imports": [
@@ -683,7 +695,7 @@
           "dependencies": {
             "CommunityToolkit.Maui": {
               "target": "Package",
-              "version": "[5.2.0, )"
+              "version": "[6.1.0, )"
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
@@ -752,6 +764,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "SkiaSharp.Extended.UI.Maui": {
+              "target": "Package",
+              "version": "[2.0.0-preview.86, )"
             }
           },
           "imports": [
@@ -824,7 +840,7 @@
           "dependencies": {
             "CommunityToolkit.Maui": {
               "target": "Package",
-              "version": "[5.2.0, )"
+              "version": "[6.1.0, )"
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
@@ -897,6 +913,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "SkiaSharp.Extended.UI.Maui": {
+              "target": "Package",
+              "version": "[2.0.0-preview.86, )"
             }
           },
           "imports": [

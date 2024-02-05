@@ -91,6 +91,7 @@
 	  <None Remove="Resources\Images\workspace_display_graph_button.svg" />
 	  <None Remove="Resources\Images\workspace_display_info_button.svg" />
 	  <None Remove="Resources\Images\workspace_display_sub_button.svg" />
+	  <None Remove="Resources\Raw\watering_animation.json" />
 	  <None Remove="terra-44a87.json" />
 	  <None Remove="ViewModels\" />
 	  <None Remove="Models\" />
@@ -107,7 +108,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="6.1.0" />
 		<PackageReference Include="Google.Cloud.Firestore" Version="3.3.0" />
 		<PackageReference Include="InfluxDB.Client" Version="4.12.0" />
 		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.810" />
@@ -117,6 +118,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.86" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Terra.MainPage"
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              x:DataType="viewmodel:MainPageViewModel"
              >
 
@@ -24,25 +25,66 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- event background -->
-        <BoxView
+        <!-- Event -->
+        <Grid
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             HeightRequest="150"
-            Color="#F7E1AE"
-            CornerRadius="8"
             
             Margin="0, 0, 0, 25">
-            <BoxView.Shadow>
-                <Shadow
-                    Brush="Gray"
-                    Offset="0,0"
-                    Radius="20"
-                    Opacity="0.5"/>
-            </BoxView.Shadow>
-        </BoxView>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--event background-->
+            <BoxView
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                HeightRequest="150"
+                Color="#F7F0DD"
+                CornerRadius="8">
+                <BoxView.Shadow>
+                    <Shadow
+                        Brush="Gray"
+                        Offset="0,0"
+                        Radius="20"
+                        Opacity="0.5"/>
+                </BoxView.Shadow>
+            </BoxView>
+            <!--event animation-->
+            <skia:SKLottieView
+                Grid.Row="0"
+                Grid.Column="0"
+                Source="watering_animation.json"
+                RepeatCount="-1"
+                SemanticProperties.Description="watering animation"
+                HeightRequest="140"
+                WidthRequest="140"
+                HorizontalOptions="Start"
+    
+                Margin="5, 0, 0, 0"/>
+            <VerticalStackLayout
+                Grid.Row="0"
+                Grid.Column="1"
+                Spacing="10"
+                VerticalOptions="Center">
+                <!--upcoming watering schedule-->
+                <Label
+                    Text="Next Watering Schedule"   
+                    FontAttributes="Bold"
+                    FontSize="19"/>
+                <Label
+                    Text="Tues, 15:00:00 p.m."   
+                    FontSize="19"/>
+            </VerticalStackLayout>
+        </Grid>
         
+
         <!-- quick actions -->
         <Label
             Grid.Row="1"

@@ -171,3 +171,8 @@ Microsoft.Maui.aar
 Microsoft.Maui.Essentials.aar
 SQLitePCLRaw.lib.e_sqlite3.android.aar
 Xamarin.Google.Crypto.Tink.Android.aar
+SkiaSharp.Extended.UI.dll
+SkiaSharp.SceneGraph.dll
+SkiaSharp.Skottie.dll
+SkiaSharp.Extended.UI.aar
+SkiaSharp.Views.Android.aar

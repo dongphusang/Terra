@@ -11,3 +11,17 @@
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0/refint/Terra.dll
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0/Terra.pdb
 /Users/sangdong/Terra/Terra/obj/Debug/net7.0/ref/Terra.dll
+C:\Users\sangs\Desktop\Terra\Terra\bin\Debug\net7.0\Terra.deps.json
+C:\Users\sangs\Desktop\Terra\Terra\bin\Debug\net7.0\Terra.dll
+C:\Users\sangs\Desktop\Terra\Terra\bin\Debug\net7.0\Terra.pdb
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0\Terra.csproj.AssemblyReference.cache
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0\Terra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0\Terra.AssemblyInfoInputs.cache
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0\Terra.AssemblyInfo.cs
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0\Terra.csproj.CoreCompileInputs.cache
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0\Terra.sourcelink.json
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0\XamlC.stamp
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0\Terra.dll
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0\refint\Terra.dll
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0\Terra.pdb
+C:\Users\sangs\Desktop\Terra\Terra\obj\Debug\net7.0\ref\Terra.dll

@@ -2,10 +2,10 @@
   "version": 3,
   "targets": {
     "net7.0": {
-      "CommunityToolkit.Maui/5.2.0": {
+      "CommunityToolkit.Maui/6.1.0": {
         "type": "package",
         "dependencies": {
-          "CommunityToolkit.Maui.Core": "5.2.0"
+          "CommunityToolkit.Maui.Core": "6.1.0"
         },
         "compile": {
           "lib/net7.0/CommunityToolkit.Maui.dll": {
@@ -18,7 +18,7 @@
           }
         }
       },
-      "CommunityToolkit.Maui.Core/5.2.0": {
+      "CommunityToolkit.Maui.Core/6.1.0": {
         "type": "package",
         "compile": {
           "lib/net7.0/CommunityToolkit.Maui.Core.dll": {
@@ -1253,11 +1253,11 @@
           }
         }
       },
-      "SkiaSharp/2.88.3": {
+      "SkiaSharp/2.88.6": {
         "type": "package",
         "dependencies": {
-          "SkiaSharp.NativeAssets.Win32": "2.88.3",
-          "SkiaSharp.NativeAssets.macOS": "2.88.3"
+          "SkiaSharp.NativeAssets.Win32": "2.88.6",
+          "SkiaSharp.NativeAssets.macOS": "2.88.6"
         },
         "compile": {
           "lib/net6.0/SkiaSharp.dll": {
@@ -1268,6 +1268,33 @@
           "lib/net6.0/SkiaSharp.dll": {
             "related": ".pdb;.xml"
           }
+        }
+      },
+      "SkiaSharp.Extended/2.0.0-preview.86": {
+        "type": "package",
+        "dependencies": {
+          "SkiaSharp": "2.88.6"
+        },
+        "compile": {
+          "lib/netstandard2.0/SkiaSharp.Extended.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SkiaSharp.Extended.dll": {}
+        }
+      },
+      "SkiaSharp.Extended.UI.Maui/2.0.0-preview.86": {
+        "type": "package",
+        "dependencies": {
+          "SkiaSharp": "2.88.6",
+          "SkiaSharp.Extended": "2.0.0-preview.86",
+          "SkiaSharp.Skottie": "2.88.6",
+          "SkiaSharp.Views.Maui.Controls": "2.88.6"
+        },
+        "compile": {
+          "lib/net7.0/SkiaSharp.Extended.UI.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/SkiaSharp.Extended.UI.dll": {}
         }
       },
       "SkiaSharp.HarfBuzz/2.88.3": {
@@ -1287,13 +1314,13 @@
           }
         }
       },
-      "SkiaSharp.NativeAssets.macOS/2.88.3": {
+      "SkiaSharp.NativeAssets.macOS/2.88.6": {
         "type": "package",
         "compile": {
-          "lib/net5.0/_._": {}
+          "lib/net6.0/_._": {}
         },
         "runtime": {
-          "lib/net5.0/_._": {}
+          "lib/net6.0/_._": {}
         },
         "runtimeTargets": {
           "runtimes/osx/native/libSkiaSharp.dylib": {
@@ -1302,13 +1329,13 @@
           }
         }
       },
-      "SkiaSharp.NativeAssets.Win32/2.88.3": {
+      "SkiaSharp.NativeAssets.Win32/2.88.6": {
         "type": "package",
         "compile": {
-          "lib/net5.0/_._": {}
+          "lib/net6.0/_._": {}
         },
         "runtime": {
-          "lib/net5.0/_._": {}
+          "lib/net6.0/_._": {}
         },
         "runtimeTargets": {
           "runtimes/win-arm64/native/libSkiaSharp.dll": {
@@ -1325,10 +1352,32 @@
           }
         }
       },
-      "SkiaSharp.Views.Maui.Controls/2.88.3": {
+      "SkiaSharp.Skottie/2.88.6": {
         "type": "package",
         "dependencies": {
-          "SkiaSharp.Views.Maui.Core": "2.88.3"
+          "SkiaSharp": "2.88.6"
+        },
+        "compile": {
+          "lib/net6.0/SkiaSharp.SceneGraph.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/SkiaSharp.Skottie.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/SkiaSharp.SceneGraph.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net6.0/SkiaSharp.Skottie.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "SkiaSharp.Views.Maui.Controls/2.88.6": {
+        "type": "package",
+        "dependencies": {
+          "SkiaSharp.Views.Maui.Core": "2.88.6"
         },
         "compile": {
           "lib/net6.0/SkiaSharp.Views.Maui.Controls.dll": {
@@ -1357,10 +1406,10 @@
           }
         }
       },
-      "SkiaSharp.Views.Maui.Core/2.88.3": {
+      "SkiaSharp.Views.Maui.Core/2.88.6": {
         "type": "package",
         "dependencies": {
-          "SkiaSharp": "2.88.3"
+          "SkiaSharp": "2.88.6"
         },
         "compile": {
           "lib/net6.0/SkiaSharp.Views.Maui.Core.dll": {
@@ -1794,7 +1843,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "CommunityToolkit.Maui": "5.2.0",
+          "CommunityToolkit.Maui": "6.1.0",
           "CommunityToolkit.Mvvm": "8.2.1",
           "Google.Cloud.Firestore": "3.3.0",
           "InfluxDB.Client": "4.12.0",
@@ -1803,7 +1852,8 @@
           "Microsoft.Data.Sqlite.Core": "7.0.9",
           "Microsoft.Extensions.Configuration.Json": "7.0.0",
           "Microsoft.Extensions.Logging.Debug": "7.0.0",
-          "Newtonsoft.Json": "13.0.3"
+          "Newtonsoft.Json": "13.0.3",
+          "SkiaSharp.Extended.UI.Maui": "2.0.0-preview.86"
         },
         "compile": {
           "bin/placeholder/Terra.dll": {}
@@ -1815,10 +1865,10 @@
     }
   },
   "libraries": {
-    "CommunityToolkit.Maui/5.2.0": {
-      "sha512": "sxnvz+lFqTAzc+3u4j7JuEDiDxybMqbjCRD/OcMyln6YJ09OPwXoCJ8qxFG98C9ph9ZSChE3/fsVG+jlnkMOHA==",
+    "CommunityToolkit.Maui/6.1.0": {
+      "sha512": "TB26N0SuIhGxrZXEz637LlIZoTjz6Qoc1osSm2vpw8zIj9ZiziJauXS+bN26T1ve+MXq777Gm4Il0p5rHXUKRQ==",
       "type": "package",
-      "path": "communitytoolkit.maui/5.2.0",
+      "path": "communitytoolkit.maui/6.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1826,7 +1876,7 @@
         "analyzers/dotnet/cs/CommunityToolkit.Maui.Analyzers.CodeFixes.dll",
         "analyzers/dotnet/cs/CommunityToolkit.Maui.Analyzers.dll",
         "analyzers/dotnet/cs/CommunityToolkit.Maui.SourceGenerators.dll",
-        "communitytoolkit.maui.5.2.0.nupkg.sha512",
+        "communitytoolkit.maui.6.1.0.nupkg.sha512",
         "communitytoolkit.maui.nuspec",
         "icon.png",
         "lib/net7.0-android33.0/CommunityToolkit.Maui.aar",
@@ -1844,15 +1894,15 @@
         "lib/net7.0/CommunityToolkit.Maui.xml"
       ]
     },
-    "CommunityToolkit.Maui.Core/5.2.0": {
-      "sha512": "lWJJgyJSDF81Wz40IvoQhOPGsFa7WAUG0rKtu0NnnFT0AF2PtPkzBX6kzpm3zZfg91UKXPRhZpXhEVs/QisCiA==",
+    "CommunityToolkit.Maui.Core/6.1.0": {
+      "sha512": "Sby05Q2+LscL1pRprKsqFmCw+lOhhxlpMKb3Xb5FlIiTC1tYyHvIKhDJAfoKCJpoYi/6sFb0WlQAI7oLai8ulg==",
       "type": "package",
-      "path": "communitytoolkit.maui.core/5.2.0",
+      "path": "communitytoolkit.maui.core/6.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "ReadMe.txt",
-        "communitytoolkit.maui.core.5.2.0.nupkg.sha512",
+        "communitytoolkit.maui.core.6.1.0.nupkg.sha512",
         "communitytoolkit.maui.core.nuspec",
         "icon.png",
         "lib/net7.0-android33.0/CommunityToolkit.Maui.Core.aar",
@@ -3702,10 +3752,10 @@
         "restsharp.png"
       ]
     },
-    "SkiaSharp/2.88.3": {
-      "sha512": "GG8X3EdfwyBfwjl639UIiOVOKEdeoqDgYrz0P1MUCnefXt9cofN+AK8YB/v1+5cLMr03ieWCQdDmPqnFIzSxZw==",
+    "SkiaSharp/2.88.6": {
+      "sha512": "wdfeBAQrEQCbJIRgAiargzP1Uy+0grZiG4CSgBnhAgcJTsPzlifIaO73JRdwIlT3TyBoeU9jEqzwFUhl4hTYnQ==",
       "type": "package",
-      "path": "skiasharp/2.88.3",
+      "path": "skiasharp/2.88.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3718,9 +3768,6 @@
         "lib/net462/SkiaSharp.dll",
         "lib/net462/SkiaSharp.pdb",
         "lib/net462/SkiaSharp.xml",
-        "lib/net5.0/SkiaSharp.dll",
-        "lib/net5.0/SkiaSharp.pdb",
-        "lib/net5.0/SkiaSharp.xml",
         "lib/net6.0-android30.0/SkiaSharp.dll",
         "lib/net6.0-android30.0/SkiaSharp.pdb",
         "lib/net6.0-android30.0/SkiaSharp.xml",
@@ -3775,8 +3822,40 @@
         "lib/xamarinwatchos1.0/SkiaSharp.dll",
         "lib/xamarinwatchos1.0/SkiaSharp.pdb",
         "lib/xamarinwatchos1.0/SkiaSharp.xml",
-        "skiasharp.2.88.3.nupkg.sha512",
+        "skiasharp.2.88.6.nupkg.sha512",
         "skiasharp.nuspec"
+      ]
+    },
+    "SkiaSharp.Extended/2.0.0-preview.86": {
+      "sha512": "+SnE/cXM71owGF+GYxhtj8M8xYzjMS36+fly3x0hzjwRkUht5oCaBBaVqkc//dutmj2M36ap8KMhuymV/EyQdQ==",
+      "type": "package",
+      "path": "skiasharp.extended/2.0.0-preview.86",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "lib/netstandard2.0/SkiaSharp.Extended.dll",
+        "skiasharp.extended.2.0.0-preview.86.nupkg.sha512",
+        "skiasharp.extended.nuspec"
+      ]
+    },
+    "SkiaSharp.Extended.UI.Maui/2.0.0-preview.86": {
+      "sha512": "WJXbUieY4TOfvWIkMlUJhvotb6b3kFFxUPo4j8w0ubc86O7qeQTT8pJ56H8cU8u/tB1WviW4HBcnttI+MI3Olw==",
+      "type": "package",
+      "path": "skiasharp.extended.ui.maui/2.0.0-preview.86",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "lib/net7.0-android33.0/SkiaSharp.Extended.UI.aar",
+        "lib/net7.0-android33.0/SkiaSharp.Extended.UI.dll",
+        "lib/net7.0-android33.0/SkiaSharp.Extended.UI.xml",
+        "lib/net7.0-ios16.1/SkiaSharp.Extended.UI.dll",
+        "lib/net7.0-maccatalyst16.1/SkiaSharp.Extended.UI.dll",
+        "lib/net7.0-windows10.0.19041/SkiaSharp.Extended.UI.dll",
+        "lib/net7.0/SkiaSharp.Extended.UI.dll",
+        "skiasharp.extended.ui.maui.2.0.0-preview.86.nupkg.sha512",
+        "skiasharp.extended.ui.maui.nuspec"
       ]
     },
     "SkiaSharp.HarfBuzz/2.88.3": {
@@ -3812,10 +3891,10 @@
         "skiasharp.harfbuzz.nuspec"
       ]
     },
-    "SkiaSharp.NativeAssets.macOS/2.88.3": {
-      "sha512": "CEbWAXMGFkPV3S1snBKK7jEG3+xud/9kmSAhu0BEUKKtlMdxx+Qal0U9bntQREM9QpqP5xLWZooodi8IlV8MEg==",
+    "SkiaSharp.NativeAssets.macOS/2.88.6": {
+      "sha512": "Sko9LFxRXSjb3OGh5/RxrVRXxYo48tr5NKuuSy6jB85GrYt8WRqVY1iLOLwtjPiVAt4cp+pyD4i30azanS64dw==",
       "type": "package",
-      "path": "skiasharp.nativeassets.macos/2.88.3",
+      "path": "skiasharp.nativeassets.macos/2.88.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3828,20 +3907,20 @@
         "buildTransitive/net6.0-macos10.15/SkiaSharp.NativeAssets.macOS.targets",
         "buildTransitive/xamarinmac2.0/SkiaSharp.NativeAssets.macOS.targets",
         "lib/net462/_._",
-        "lib/net5.0/_._",
         "lib/net6.0-macos10.15/_._",
+        "lib/net6.0/_._",
         "lib/netcoreapp3.1/_._",
         "lib/netstandard1.3/_._",
         "lib/xamarinmac2.0/_._",
         "runtimes/osx/native/libSkiaSharp.dylib",
-        "skiasharp.nativeassets.macos.2.88.3.nupkg.sha512",
+        "skiasharp.nativeassets.macos.2.88.6.nupkg.sha512",
         "skiasharp.nativeassets.macos.nuspec"
       ]
     },
-    "SkiaSharp.NativeAssets.Win32/2.88.3": {
-      "sha512": "MU4ASL8VAbTv5vSw1PoiWjjjpjtGhWtFYuJnrN4sNHFCePb2ohQij9JhSdqLLxk7RpRtWPdV93fbA53Pt+J0yw==",
+    "SkiaSharp.NativeAssets.Win32/2.88.6": {
+      "sha512": "7TzFO0u/g2MpQsTty4fyCDdMcfcWI+aLswwfnYXr3gtNS6VLKdMXPMeKpJa3pJSLnUBN6wD0JjuCe8OoLBQ6cQ==",
       "type": "package",
-      "path": "skiasharp.nativeassets.win32/2.88.3",
+      "path": "skiasharp.nativeassets.win32/2.88.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3850,20 +3929,134 @@
         "build/net462/SkiaSharp.NativeAssets.Win32.targets",
         "buildTransitive/net462/SkiaSharp.NativeAssets.Win32.targets",
         "lib/net462/_._",
-        "lib/net5.0/_._",
+        "lib/net6.0/_._",
         "lib/netcoreapp3.1/_._",
         "lib/netstandard1.3/_._",
         "runtimes/win-arm64/native/libSkiaSharp.dll",
         "runtimes/win-x64/native/libSkiaSharp.dll",
         "runtimes/win-x86/native/libSkiaSharp.dll",
-        "skiasharp.nativeassets.win32.2.88.3.nupkg.sha512",
+        "skiasharp.nativeassets.win32.2.88.6.nupkg.sha512",
         "skiasharp.nativeassets.win32.nuspec"
       ]
     },
-    "SkiaSharp.Views.Maui.Controls/2.88.3": {
-      "sha512": "fvnvZdfWFYrptu37ul9/rT3QOdhrSUrMrBsHWcDpanVM04KOpHBWJDv/LEsD0jp1rE7TPIXXQk1RXutfXSYveg==",
+    "SkiaSharp.Skottie/2.88.6": {
+      "sha512": "t/CSMwqPH9c+ZTWWHQiiM7JStuQsH7f/L7xYCc2gmxU8qheJPFK7sdj/fJft4leRHVIjDJB16A29YHtSip9pXw==",
       "type": "package",
-      "path": "skiasharp.views.maui.controls/2.88.3",
+      "path": "skiasharp.skottie/2.88.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/monoandroid10.0/SkiaSharp.SceneGraph.dll",
+        "lib/monoandroid10.0/SkiaSharp.SceneGraph.pdb",
+        "lib/monoandroid10.0/SkiaSharp.SceneGraph.xml",
+        "lib/monoandroid10.0/SkiaSharp.Skottie.dll",
+        "lib/monoandroid10.0/SkiaSharp.Skottie.pdb",
+        "lib/monoandroid10.0/SkiaSharp.Skottie.xml",
+        "lib/net462/SkiaSharp.SceneGraph.dll",
+        "lib/net462/SkiaSharp.SceneGraph.pdb",
+        "lib/net462/SkiaSharp.SceneGraph.xml",
+        "lib/net462/SkiaSharp.Skottie.dll",
+        "lib/net462/SkiaSharp.Skottie.pdb",
+        "lib/net462/SkiaSharp.Skottie.xml",
+        "lib/net6.0-android30.0/SkiaSharp.SceneGraph.dll",
+        "lib/net6.0-android30.0/SkiaSharp.SceneGraph.pdb",
+        "lib/net6.0-android30.0/SkiaSharp.SceneGraph.xml",
+        "lib/net6.0-android30.0/SkiaSharp.Skottie.dll",
+        "lib/net6.0-android30.0/SkiaSharp.Skottie.pdb",
+        "lib/net6.0-android30.0/SkiaSharp.Skottie.xml",
+        "lib/net6.0-ios13.6/SkiaSharp.SceneGraph.dll",
+        "lib/net6.0-ios13.6/SkiaSharp.SceneGraph.pdb",
+        "lib/net6.0-ios13.6/SkiaSharp.SceneGraph.xml",
+        "lib/net6.0-ios13.6/SkiaSharp.Skottie.dll",
+        "lib/net6.0-ios13.6/SkiaSharp.Skottie.pdb",
+        "lib/net6.0-ios13.6/SkiaSharp.Skottie.xml",
+        "lib/net6.0-maccatalyst13.5/SkiaSharp.SceneGraph.dll",
+        "lib/net6.0-maccatalyst13.5/SkiaSharp.SceneGraph.pdb",
+        "lib/net6.0-maccatalyst13.5/SkiaSharp.SceneGraph.xml",
+        "lib/net6.0-maccatalyst13.5/SkiaSharp.Skottie.dll",
+        "lib/net6.0-maccatalyst13.5/SkiaSharp.Skottie.pdb",
+        "lib/net6.0-maccatalyst13.5/SkiaSharp.Skottie.xml",
+        "lib/net6.0-macos10.15/SkiaSharp.SceneGraph.dll",
+        "lib/net6.0-macos10.15/SkiaSharp.SceneGraph.pdb",
+        "lib/net6.0-macos10.15/SkiaSharp.SceneGraph.xml",
+        "lib/net6.0-macos10.15/SkiaSharp.Skottie.dll",
+        "lib/net6.0-macos10.15/SkiaSharp.Skottie.pdb",
+        "lib/net6.0-macos10.15/SkiaSharp.Skottie.xml",
+        "lib/net6.0-tizen7.0/SkiaSharp.SceneGraph.dll",
+        "lib/net6.0-tizen7.0/SkiaSharp.SceneGraph.pdb",
+        "lib/net6.0-tizen7.0/SkiaSharp.SceneGraph.xml",
+        "lib/net6.0-tizen7.0/SkiaSharp.Skottie.dll",
+        "lib/net6.0-tizen7.0/SkiaSharp.Skottie.pdb",
+        "lib/net6.0-tizen7.0/SkiaSharp.Skottie.xml",
+        "lib/net6.0-tvos13.4/SkiaSharp.SceneGraph.dll",
+        "lib/net6.0-tvos13.4/SkiaSharp.SceneGraph.pdb",
+        "lib/net6.0-tvos13.4/SkiaSharp.SceneGraph.xml",
+        "lib/net6.0-tvos13.4/SkiaSharp.Skottie.dll",
+        "lib/net6.0-tvos13.4/SkiaSharp.Skottie.pdb",
+        "lib/net6.0-tvos13.4/SkiaSharp.Skottie.xml",
+        "lib/net6.0/SkiaSharp.SceneGraph.dll",
+        "lib/net6.0/SkiaSharp.SceneGraph.pdb",
+        "lib/net6.0/SkiaSharp.SceneGraph.xml",
+        "lib/net6.0/SkiaSharp.Skottie.dll",
+        "lib/net6.0/SkiaSharp.Skottie.pdb",
+        "lib/net6.0/SkiaSharp.Skottie.xml",
+        "lib/netcoreapp3.1/SkiaSharp.SceneGraph.dll",
+        "lib/netcoreapp3.1/SkiaSharp.SceneGraph.pdb",
+        "lib/netcoreapp3.1/SkiaSharp.SceneGraph.xml",
+        "lib/netcoreapp3.1/SkiaSharp.Skottie.dll",
+        "lib/netcoreapp3.1/SkiaSharp.Skottie.pdb",
+        "lib/netcoreapp3.1/SkiaSharp.Skottie.xml",
+        "lib/netstandard1.3/SkiaSharp.SceneGraph.dll",
+        "lib/netstandard1.3/SkiaSharp.SceneGraph.pdb",
+        "lib/netstandard1.3/SkiaSharp.SceneGraph.xml",
+        "lib/netstandard1.3/SkiaSharp.Skottie.dll",
+        "lib/netstandard1.3/SkiaSharp.Skottie.pdb",
+        "lib/netstandard1.3/SkiaSharp.Skottie.xml",
+        "lib/netstandard2.0/SkiaSharp.SceneGraph.dll",
+        "lib/netstandard2.0/SkiaSharp.SceneGraph.pdb",
+        "lib/netstandard2.0/SkiaSharp.SceneGraph.xml",
+        "lib/netstandard2.0/SkiaSharp.Skottie.dll",
+        "lib/netstandard2.0/SkiaSharp.Skottie.pdb",
+        "lib/netstandard2.0/SkiaSharp.Skottie.xml",
+        "lib/netstandard2.1/SkiaSharp.SceneGraph.dll",
+        "lib/netstandard2.1/SkiaSharp.SceneGraph.pdb",
+        "lib/netstandard2.1/SkiaSharp.SceneGraph.xml",
+        "lib/netstandard2.1/SkiaSharp.Skottie.dll",
+        "lib/netstandard2.1/SkiaSharp.Skottie.pdb",
+        "lib/netstandard2.1/SkiaSharp.Skottie.xml",
+        "lib/xamarinios1.0/SkiaSharp.SceneGraph.dll",
+        "lib/xamarinios1.0/SkiaSharp.SceneGraph.pdb",
+        "lib/xamarinios1.0/SkiaSharp.SceneGraph.xml",
+        "lib/xamarinios1.0/SkiaSharp.Skottie.dll",
+        "lib/xamarinios1.0/SkiaSharp.Skottie.pdb",
+        "lib/xamarinios1.0/SkiaSharp.Skottie.xml",
+        "lib/xamarinmac2.0/SkiaSharp.SceneGraph.dll",
+        "lib/xamarinmac2.0/SkiaSharp.SceneGraph.pdb",
+        "lib/xamarinmac2.0/SkiaSharp.SceneGraph.xml",
+        "lib/xamarinmac2.0/SkiaSharp.Skottie.dll",
+        "lib/xamarinmac2.0/SkiaSharp.Skottie.pdb",
+        "lib/xamarinmac2.0/SkiaSharp.Skottie.xml",
+        "lib/xamarintvos1.0/SkiaSharp.SceneGraph.dll",
+        "lib/xamarintvos1.0/SkiaSharp.SceneGraph.pdb",
+        "lib/xamarintvos1.0/SkiaSharp.SceneGraph.xml",
+        "lib/xamarintvos1.0/SkiaSharp.Skottie.dll",
+        "lib/xamarintvos1.0/SkiaSharp.Skottie.pdb",
+        "lib/xamarintvos1.0/SkiaSharp.Skottie.xml",
+        "lib/xamarinwatchos1.0/SkiaSharp.SceneGraph.dll",
+        "lib/xamarinwatchos1.0/SkiaSharp.SceneGraph.pdb",
+        "lib/xamarinwatchos1.0/SkiaSharp.SceneGraph.xml",
+        "lib/xamarinwatchos1.0/SkiaSharp.Skottie.dll",
+        "lib/xamarinwatchos1.0/SkiaSharp.Skottie.pdb",
+        "lib/xamarinwatchos1.0/SkiaSharp.Skottie.xml",
+        "skiasharp.skottie.2.88.6.nupkg.sha512",
+        "skiasharp.skottie.nuspec"
+      ]
+    },
+    "SkiaSharp.Views.Maui.Controls/2.88.6": {
+      "sha512": "mMW5F7GJx9p34kf6OrriGKn0sbQDFJ+Fe+Qpkpn/5L7u7Z50FFmDjL+6WURctyzuKg7UE4iZzGtgiPYDYw4HSg==",
+      "type": "package",
+      "path": "skiasharp.views.maui.controls/2.88.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3886,7 +4079,7 @@
         "lib/net6.0/SkiaSharp.Views.Maui.Controls.dll",
         "lib/net6.0/SkiaSharp.Views.Maui.Controls.pdb",
         "lib/net6.0/SkiaSharp.Views.Maui.Controls.xml",
-        "skiasharp.views.maui.controls.2.88.3.nupkg.sha512",
+        "skiasharp.views.maui.controls.2.88.6.nupkg.sha512",
         "skiasharp.views.maui.controls.nuspec"
       ]
     },
@@ -3920,10 +4113,10 @@
         "skiasharp.views.maui.controls.compatibility.nuspec"
       ]
     },
-    "SkiaSharp.Views.Maui.Core/2.88.3": {
-      "sha512": "kP7m/DxrGeitgaN9hU7UmOeV4mRMfKdRf+z/SrAJhk2PXJSQJr3jnpBIBr3STTCkWBOuPzw0svQhwonrI2rj5g==",
+    "SkiaSharp.Views.Maui.Core/2.88.6": {
+      "sha512": "8yN9bRRaif9iqPqjL3XC26DprJ0EYsFHxfsDItoWwP6/F4j6Kkkf3JAko9TZ4R16diWnPwEy0tfDrQwbFjlMSw==",
       "type": "package",
-      "path": "skiasharp.views.maui.core/2.88.3",
+      "path": "skiasharp.views.maui.core/2.88.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3946,7 +4139,7 @@
         "lib/net6.0/SkiaSharp.Views.Maui.Core.dll",
         "lib/net6.0/SkiaSharp.Views.Maui.Core.pdb",
         "lib/net6.0/SkiaSharp.Views.Maui.Core.xml",
-        "skiasharp.views.maui.core.2.88.3.nupkg.sha512",
+        "skiasharp.views.maui.core.2.88.6.nupkg.sha512",
         "skiasharp.views.maui.core.nuspec"
       ]
     },

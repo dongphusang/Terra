@@ -2,7 +2,6 @@
 using CommunityToolkit.Maui;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using Terra.ViewModels;
-using Terra.Interfaces;
 using Terra.Services;
 
 namespace Terra;
@@ -44,7 +43,6 @@ public static class MauiProgram
 		builder.Services.AddTransient<EmailSubPage>();
 		builder.Services.AddTransient<PlantInfoPage>();
 		builder.Services.AddTransient<EmailSubPage>();
-		builder.Services.AddTransient<IPopupService, PopupService>();
 		builder.Services.AddTransient<ModeConfigPage>();
 
 #if DEBUG

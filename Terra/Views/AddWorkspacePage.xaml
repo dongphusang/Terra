@@ -30,8 +30,7 @@
                 <BoxView
                     HeightRequest="55"
                     Color="{StaticResource BoxViewTextPromptBackGround}"
-                    CornerRadius="8"/>
-                <!-- workspace entry -->
+                    CornerRadius="8"/> 
                 <Entry
                     HeightRequest="50"
                     BackgroundColor="Transparent"        
