@@ -79,7 +79,7 @@
                     FontAttributes="Bold"
                     FontSize="19"/>
                 <Label
-                    Text="Tues, 15:00:00 p.m."   
+                    Text="{Binding NextWateringSchedule}"   
                     FontSize="19"/>
             </VerticalStackLayout>
         </Grid>

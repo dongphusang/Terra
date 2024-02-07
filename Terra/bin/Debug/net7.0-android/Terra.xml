@@ -402,6 +402,10 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:Terra.ViewModels.MainPageViewModel.NextWateringSchedule">
+            <inheritdoc cref="F:Terra.ViewModels.MainPageViewModel.nextWateringSchedule"/>
         </member>
         <member name="F:Terra.ViewModels.MainPageViewModel.toAddWorkspacePageCommand">
             <summary>The backing field for <see cref="P:Terra.ViewModels.MainPageViewModel.ToAddWorkspacePageCommand"/>.</summary>
@@ -465,12 +469,6 @@
         </member>
         <member name="P:Terra.ViewModels.OperatingModeViewModel.ScheduleModel">
             <inheritdoc cref="F:Terra.ViewModels.OperatingModeViewModel.scheduleModel"/>
-        </member>
-        <member name="P:Terra.ViewModels.OperatingModeViewModel.WateringScheduleOpacity">
-            <inheritdoc cref="F:Terra.ViewModels.OperatingModeViewModel.wateringScheduleOpacity"/>
-        </member>
-        <member name="P:Terra.ViewModels.OperatingModeViewModel.WateringScheduleStatus">
-            <inheritdoc cref="F:Terra.ViewModels.OperatingModeViewModel.wateringScheduleStatus"/>
         </member>
         <member name="P:Terra.ViewModels.OperatingModeViewModel.IsLightingAuto">
             <inheritdoc cref="F:Terra.ViewModels.OperatingModeViewModel.isLightingAuto"/>
@@ -840,14 +838,11 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedEmail">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedEmail" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.NextWateringSchedule">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "NextWateringSchedule" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ScheduleModel">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ScheduleModel" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.WateringScheduleOpacity">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "WateringScheduleOpacity" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.WateringScheduleStatus">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "WateringScheduleStatus" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsLightingAuto">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsLightingAuto" generated properties.</summary>
@@ -954,14 +949,11 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedEmail">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedEmail" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.NextWateringSchedule">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "NextWateringSchedule" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ScheduleModel">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ScheduleModel" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.WateringScheduleOpacity">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "WateringScheduleOpacity" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.WateringScheduleStatus">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "WateringScheduleStatus" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsLightingAuto">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsLightingAuto" generated properties.</summary>

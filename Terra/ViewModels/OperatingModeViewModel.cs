@@ -28,12 +28,8 @@ namespace Terra.ViewModels
         private string _currentMCU;             // target microcontroller associating with current workspace
         private string _currentWorkspaceName;   // target workspace
         private string _currentPlantName;       // target plant within the workspace      
-
-        // on selections changed 
-        [ObservableProperty]
-        public int wateringScheduleOpacity;
-        [ObservableProperty]
-        public bool wateringScheduleStatus;
+        private int _scheduleIndex;          // removal from a list will shift items to the left. Preserving the current index allowed for easier retrieval of next watering schedule in case the old schedule is removed. This is important to stay in sync with event panel in main page.
+        private string _removedNextWateringSchedule; // same as _scheduleIndex
 
         // declaring binding properties
         [ObservableProperty]
@@ -52,6 +48,7 @@ namespace Terra.ViewModels
             ScheduleModel = new();
             _workspaceService = new WorkspaceService();
             _firestoreService = new FirestoreService();
+            _removedNextWateringSchedule = string.Empty;
             
             GetWorkspaceDetails().ConfigureAwait(false);
             GetAutoConfigAsync().ConfigureAwait(false);
@@ -76,7 +73,7 @@ namespace Terra.ViewModels
         /// <returns></returns>
         private async Task GetAutoConfigAsync()
         {
-            IsWateringAuto = Convert.ToBoolean(await _firestoreService.GetValue(FirestoreConstant.MASK_WATERMOD, FirestoreConstant.COLLECTION_SUBSCRIPTION, _currentMCU));
+            IsWateringAuto = Convert.ToBoolean(await _firestoreService.GetValue(FirestoreConstant.MASK_WATERMOD, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ESP32_1));
         }
 
         /// <summary>
@@ -105,14 +102,22 @@ namespace Terra.ViewModels
         /// </summary>
         /// <returns></returns>
         [RelayCommand]
-        public Task RemoveSchedule()
+        public async Task RemoveSchedule()
         {
+            // if equals then update next watering schedule, else do nothing
             if (Schedules.Contains(PickedSchedule) && IsWateringAuto is true)
             {
-                Schedules.Remove(PickedSchedule);
-            }
+                // pull next watering schedule to check if the "about to remove" schedule is the same as the next watering schedule on firestore
+                var next_schedule = await _firestoreService.GetValue(FirestoreConstant.MASK_NEXT_WATER_SCHEDULE, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ESP32_1);
+                if (PickedSchedule.Equals(next_schedule))
+                {
+                    _removedNextWateringSchedule = new string(PickedSchedule);
+                    _scheduleIndex = Schedules.IndexOf(PickedSchedule);
 
-            return Task.CompletedTask;
+                    if (_scheduleIndex == Schedules.Count - 1) _scheduleIndex = 0;                    
+                }
+                Schedules.Remove(PickedSchedule);   // remove schedule from firestore active subscription
+            }
         }
 
         /// <summary>
@@ -123,7 +128,7 @@ namespace Terra.ViewModels
         {
             // pull schedules
             Schedules = new();
-            var firestoreSchedule = await _firestoreService.GetValues(FirestoreConstant.MASK_SCHEDULE, FirestoreConstant.COLLECTION_SUBSCRIPTION, _currentMCU);
+            var firestoreSchedule = await _firestoreService.GetValues(FirestoreConstant.MASK_SCHEDULE, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ESP32_1);
 
             foreach (var item in firestoreSchedule)
             {
@@ -132,12 +137,24 @@ namespace Terra.ViewModels
         }
 
         [RelayCommand]
-        public Task CommitSchedules()
+        public async Task CommitSchedules()
         {
-            _firestoreService.PostMerge(FirestoreConstant.MASK_SCHEDULE, Schedules, FirestoreConstant.COLLECTION_SUBSCRIPTION, _currentMCU);
-            _firestoreService.PostMerge(FirestoreConstant.MASK_WATERMOD, IsWateringAuto, FirestoreConstant.COLLECTION_SUBSCRIPTION, _currentMCU);
+            // checking if picked schedule is the same as next watering schedule. Update next watering schedule if the old schedule is removed.
+            if (_removedNextWateringSchedule.Equals(string.Empty) is false && Schedules.Count is not 0)
+            {
+                await _firestoreService.PostMerge(FirestoreConstant.MASK_NEXT_WATER_SCHEDULE, Schedules[_scheduleIndex], FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ESP32_1);
+            }
+            else
+            {
+                await _firestoreService.PostMerge(FirestoreConstant.MASK_NEXT_WATER_SCHEDULE, string.Empty, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ESP32_1);
+            }
+
+            // upload schedules onto firestore
+            await _firestoreService.PostMerge(FirestoreConstant.MASK_SCHEDULE, Schedules, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ESP32_1);
+            await _firestoreService.PostMerge(FirestoreConstant.MASK_WATERMOD, IsWateringAuto, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ESP32_1);
             
-            return Toast.Make("Changes Made!", ToastDuration.Short).Show();
+            // throw toast notifying user of successful transaction
+            await Toast.Make("Changes Made!", ToastDuration.Short).Show();
         }        
     }
 }

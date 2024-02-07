@@ -4,12 +4,14 @@ using Google.Cloud.Firestore;
 using Google.Cloud.Firestore.V1;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Terra.Models;
 using Terra.TerraConstants;
 
 namespace Terra.Services
@@ -87,7 +89,6 @@ namespace Terra.Services
             }
             else return string.Empty;
         }
-
 
         /// <summary>
         /// Upload and merge key-value data to firestore.

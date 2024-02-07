@@ -12,6 +12,9 @@ Microsoft.Maui.dll
 Microsoft.Maui.Essentials.dll
 Microsoft.Maui.Graphics.dll
 SkiaSharp.dll
+SkiaSharp.Extended.UI.dll
+SkiaSharp.SceneGraph.dll
+SkiaSharp.Skottie.dll
 SkiaSharp.Views.Android.dll
 SkiaSharp.Views.Maui.Controls.Compatibility.dll
 SkiaSharp.Views.Maui.Controls.dll
@@ -169,10 +172,7 @@ Microsoft.Maui.Controls.Compatibility.aar
 maui.aar
 Microsoft.Maui.aar
 Microsoft.Maui.Essentials.aar
-SQLitePCLRaw.lib.e_sqlite3.android.aar
-Xamarin.Google.Crypto.Tink.Android.aar
-SkiaSharp.Extended.UI.dll
-SkiaSharp.SceneGraph.dll
-SkiaSharp.Skottie.dll
 SkiaSharp.Extended.UI.aar
 SkiaSharp.Views.Android.aar
+SQLitePCLRaw.lib.e_sqlite3.android.aar
+Xamarin.Google.Crypto.Tink.Android.aar

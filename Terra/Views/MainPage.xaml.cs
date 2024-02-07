@@ -4,10 +4,18 @@ namespace Terra;
 
 public partial class MainPage : ContentPage
 {
+	MainPageViewModel _viewModel;
 	public MainPage()
 	{
 		InitializeComponent();
-		BindingContext = new MainPageViewModel();
+		_viewModel = new MainPageViewModel();
+		BindingContext = _viewModel;
 	}
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+		_viewModel.UpdateEventsOnAppearing();
+    }
 }
 

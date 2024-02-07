@@ -20,9 +20,10 @@ namespace Terra.TerraConstants
         public const string MASK_SCHEDULE = "Schedule";
         public const string MASK_WATERMOD = "WateringModule";
         public const string MASK_PLANTNAME = "PlantName";
-        
+        public const string MASK_NEXT_WATER_SCHEDULE = "NextWateringSchedule";
+
 
         // documents key value pairs
-        
+
     }
 }

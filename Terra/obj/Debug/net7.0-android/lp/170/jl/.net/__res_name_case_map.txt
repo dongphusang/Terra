@@ -1,1 +1,4 @@
-Resources/xml/microsoft_maui_essentials_fileprovider_file_paths.xml;xml/microsoft_maui_essentials_fileprovider_file_paths.xml
+Android/Resources/layout/Tabbar.axml;layout/tabbar.xml
+Android/Resources/layout/Toolbar.axml;layout/toolbar.xml
+Android/Resources/values/styles.xml;values/styles.xml
+Android/Resources/values/attrs.xml;values/attrs.xml
