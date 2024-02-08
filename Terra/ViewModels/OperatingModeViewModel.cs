@@ -29,7 +29,7 @@ namespace Terra.ViewModels
         private string _currentWorkspaceName;   // target workspace
         private string _currentPlantName;       // target plant within the workspace      
         private int _scheduleIndex;          // removal from a list will shift items to the left. Preserving the current index allowed for easier retrieval of next watering schedule in case the old schedule is removed. This is important to stay in sync with event panel in main page.
-        private string _removedNextWateringSchedule; // same as _scheduleIndex
+        private string _cachedNextWateringSchedule; // cached schedule for later operations such as storing last removed schedule and first added schedule
 
         // declaring binding properties
         [ObservableProperty]
@@ -48,7 +48,7 @@ namespace Terra.ViewModels
             ScheduleModel = new();
             _workspaceService = new WorkspaceService();
             _firestoreService = new FirestoreService();
-            _removedNextWateringSchedule = string.Empty;
+            _cachedNextWateringSchedule = string.Empty;
             
             GetWorkspaceDetails().ConfigureAwait(false);
             GetAutoConfigAsync().ConfigureAwait(false);
@@ -90,8 +90,15 @@ namespace Terra.ViewModels
 
             // add new schedule to list of schedules
             if (Schedules.Contains(schedule) is false && ScheduleModel.WeekDay is not null && IsWateringAuto is true)
-            {
+            { 
                 Schedules.Add(schedule);
+                _cachedNextWateringSchedule = string.Empty;
+                // if there is one schedule in the list, set that schedule as the next watering schedule (since next watering schedule is null when adding to an empty list)
+                if (Schedules.Count == 1)
+                {
+                    _cachedNextWateringSchedule = new string(schedule);
+                    _scheduleIndex = 0;
+                }
             }
 
             return Task.CompletedTask;
@@ -109,13 +116,17 @@ namespace Terra.ViewModels
             {
                 // pull next watering schedule to check if the "about to remove" schedule is the same as the next watering schedule on firestore
                 var next_schedule = await _firestoreService.GetValue(FirestoreConstant.MASK_NEXT_WATER_SCHEDULE, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ESP32_1);
-                if (PickedSchedule.Equals(next_schedule))
+                if (PickedSchedule.Equals(next_schedule)) // cache schedule before its removal
                 {
-                    _removedNextWateringSchedule = new string(PickedSchedule);
+                    _cachedNextWateringSchedule = new string(PickedSchedule);
                     _scheduleIndex = Schedules.IndexOf(PickedSchedule);
-
-                    if (_scheduleIndex == Schedules.Count - 1) _scheduleIndex = 0;                    
                 }
+                if (Schedules.Count == 1) // if the list has one schedule left, cache nothing as the list will be empty, hence nothing to save
+                {
+                    _cachedNextWateringSchedule = string.Empty;
+                    _scheduleIndex = -1;
+                }
+                
                 Schedules.Remove(PickedSchedule);   // remove schedule from firestore active subscription
             }
         }
@@ -140,13 +151,13 @@ namespace Terra.ViewModels
         public async Task CommitSchedules()
         {
             // checking if picked schedule is the same as next watering schedule. Update next watering schedule if the old schedule is removed.
-            if (_removedNextWateringSchedule.Equals(string.Empty) is false && Schedules.Count is not 0)
+            if (Schedules.Count >= 1)
             {
                 await _firestoreService.PostMerge(FirestoreConstant.MASK_NEXT_WATER_SCHEDULE, Schedules[_scheduleIndex], FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ESP32_1);
             }
-            else
+            else // if schedule list has 1 or empty, we push that last schedule or empty string
             {
-                await _firestoreService.PostMerge(FirestoreConstant.MASK_NEXT_WATER_SCHEDULE, string.Empty, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ESP32_1);
+                await _firestoreService.PostMerge(FirestoreConstant.MASK_NEXT_WATER_SCHEDULE, _cachedNextWateringSchedule, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ESP32_1);
             }
 
             // upload schedules onto firestore
