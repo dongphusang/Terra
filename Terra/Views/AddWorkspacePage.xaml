@@ -7,7 +7,7 @@
              x:DataType="viewmodel:WorkspaceViewModel">
     <Grid
         Padding="30, 30, 30, 0"
-        RowSpacing="25">
+        RowSpacing="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>

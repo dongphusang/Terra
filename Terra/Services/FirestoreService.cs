@@ -70,7 +70,6 @@ namespace Terra.Services
         {
             docRef = firestore.Collection(collection).Document(document);
             var dictionary = (await docRef.GetSnapshotAsync()).ToDictionary();
-            
             if (dictionary.ContainsKey(key))
             {
                 return new List<object>((List<object>)dictionary[key]);

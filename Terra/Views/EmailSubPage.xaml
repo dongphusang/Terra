@@ -6,82 +6,99 @@
              xmlns:viewmodel="clr-namespace:Terra.ViewModels"
              x:DataType="viewmodel:EmailSubViewModel">
     <Grid
-        Padding="20"
-        HorizontalOptions="Center">
+        Padding="30"
+        RowSpacing="40">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/> 
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/> 
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>  
 
-        <BoxView
-            Grid.Row="0"
-            HorizontalOptions="Center"
-            HeightRequest="250"
-            CornerRadius="10"
-            Color="LightGrey"/>
-        <CollectionView
-            ItemsLayout="VerticalList"
-            ItemsSource="{Binding Emails}"
-            SelectionMode="Single"
-            SelectedItem="{Binding SelectedEmail}"
-            HorizontalOptions="Center"
-            VerticalOptions="FillAndExpand">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Margin="5">
-                        <Label Text="{Binding .}" 
-                               HorizontalOptions="Center" 
-                               FontSize="25"/>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-            
-        </CollectionView>
+        <!-- EMAIL POOL -->
+        <!--pool background-->
+        <StackLayout 
+            Grid.Row="0">
+            <Label
+                Text="Email Pool"
+                FontSize="25"
+                FontAttributes="Bold"/>
+            <Grid
+                Margin="0, 15, 0, 0">
+                <BoxView
+                    HorizontalOptions="Center"
+                    HeightRequest="250"
+                    CornerRadius="10"
+                    Color="LightGrey"/>
+                <!--pool panel-->
+                <CollectionView
+                    ItemsLayout="VerticalList"
+                    ItemsSource="{Binding Emails}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedEmail}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="FillAndExpand">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Margin="5">
+                                <Label 
+                                    Text="{Binding .}" 
+                                    HorizontalOptions="Center" 
+                                    FontSize="25"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </StackLayout>
 
-        <!-- Email prompt field -->
-        <Entry
+        <!-- EMAIL PROMPT FIELD -->
+        <StackLayout
             Grid.Row="1"
-            Margin="25"
-            FontSize="15"
-            HeightRequest="60"
-            WidthRequest="330"
-            HorizontalOptions="CenterAndExpand"
-            BackgroundColor="#F7F7F7"
-            Placeholder="Enter your email..."
-            PlaceholderColor="#838383"
-            Text="{Binding EmailModel.Email}"
-            />
+            
+            Margin="0, 25, 0, 0">
+            <Label
+                Text="Email Entry"
+                FontSize="25"
+                FontAttributes="Bold"/>
+            <Entry
+                Margin="0, 15, 0, 0"
+                FontSize="20"
+                HeightRequest="60"
+                HorizontalOptions="Fill"
+                BackgroundColor="#F7F7F7"
+                Placeholder="..."
+                PlaceholderColor="#838383"
+                Text="{Binding EmailModel.Email}"
+                />
+        </StackLayout>
+        
         
         <!-- Email Action -->
-        <Grid
+        <HorizontalStackLayout
             Grid.Row="2"
-            ColumnSpacing="10"
-            HorizontalOptions="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            Spacing="10"
+            HorizontalOptions="Center"
+            VerticalOptions="End"
+            >
+
             <!--add-->
             <Button
-                Grid.Column="0"
                 HeightRequest="50"
                 WidthRequest="200"
-                Text="confirm"
+                Text="Confirm"
                 TextColor="Black"
                 BackgroundColor="{StaticResource ButtonColorLight}"
                 Command="{Binding AddEmailCommand}">
                 <Button.Shadow>
                     <Shadow
-                    Brush="Gray"
-                    Offset="0,0"
-                    Radius="20"
-                    Opacity="1"/>
+                        Brush="Gray"
+                        Offset="0,0"
+                        Radius="10"
+                        Opacity="1"/>
                 </Button.Shadow>
             </Button>
             <!--remove-->
             <Button
-                Grid.Column="2"
                 HeightRequest="50"
                 WidthRequest="50"
                 ImageSource="trash_can.svg"
@@ -90,13 +107,12 @@
                 CommandParameter="{Binding SelectedEmail}">
                 <Button.Shadow>
                     <Shadow
-                    Brush="Gray"
-                    Offset="0,0"
-                    Radius="20"
-                    Opacity="1"/>
+                        Brush="Gray"
+                        Offset="0,0"
+                        Radius="10"
+                        Opacity="1"/>
                 </Button.Shadow>
             </Button>
-        </Grid>
-        
+        </HorizontalStackLayout>
     </Grid>
 </ContentPage>

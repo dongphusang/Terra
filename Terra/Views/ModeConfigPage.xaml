@@ -202,7 +202,7 @@
             
             Margin="0, 60, 0, 0">
             <Button
-                Text="confirm"
+                Text="Confirm"
                 TextColor="Black"
                 BackgroundColor="#A4D0A4"
                 WidthRequest="250"
@@ -219,7 +219,7 @@
                 </Button.Shadow>
             </Button>
             <Button
-                Text="add schedule"
+                Text="Add schedule"
                 TextColor="Black"
                 BackgroundColor="#E6E6E6"
                 WidthRequest="250"
@@ -236,7 +236,7 @@
                 </Button.Shadow>
             </Button>
             <Button
-                Text="remove schedule"
+                Text="Remove schedule"
                 TextColor="Black"
                 BackgroundColor="#E6E6E6"
                 WidthRequest="250"

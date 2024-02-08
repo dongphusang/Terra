@@ -76,8 +76,8 @@ namespace Terra.ViewModels
         public async Task UpdateEmails()
         {
             Emails = _emailListDBService.GetFromEmailTable();
-
-            ConvertToDisplayableList(await _firestoreService.GetValues(_currentPlantName, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_INACTIVE_EMAILS));
+            Console.WriteLine("UPDATE Invoked");
+            ConvertToDisplayableList(await _firestoreService.GetValues(_currentPlantName, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ACTIVE_EMAILS));
         }
 
         /// <summary>
@@ -169,6 +169,7 @@ namespace Terra.ViewModels
         private void ConvertToDisplayableList(List<object> usernames)
         {
             ActiveEmails = new();
+            Console.WriteLine("UPDATE: " + usernames.Count);
             for (int i = 0; i < usernames.Count; i++) 
             {
                 ActiveEmails.Add(usernames[i].ToString());

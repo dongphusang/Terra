@@ -8,7 +8,7 @@
     <StackLayout
         Padding="30">
         <Grid
-            RowSpacing="50">
+            RowSpacing="30">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -20,10 +20,10 @@
                 Grid.Row="0">
                 <Label
                     Text="Email Candidates"
-                    FontSize="27"
+                    FontSize="25"
                     FontAttributes="Bold"/>
                 <Grid
-                    Margin="0, 20, 0, 0">
+                    Margin="0, 15, 0, 0">
                     <BoxView
                         HeightRequest="200"
                         HorizontalOptions="CenterAndExpand"
@@ -49,10 +49,10 @@
                 Grid.Row="1">
                 <Label
                     Text="Email Pool"
-                    FontSize="27"
+                    FontSize="25"
                     FontAttributes="Bold"/>
                 <Grid
-                    Margin="0, 20, 0, 0">
+                    Margin="0, 15, 0, 0">
                     <BoxView
                         HeightRequest="150"
                         HorizontalOptions="CenterAndExpand"
@@ -81,11 +81,11 @@
             <!-- Confirm Button -->
             <Button
                 Grid.Row="2"
-                HeightRequest="55"
-                WidthRequest="250"
+                HeightRequest="50"
+                WidthRequest="230"
                 HorizontalOptions="Center"
                 BackgroundColor="{StaticResource ButtonColorLight}"
-                Text="confirm"
+                Text="Confirm"
                 TextColor="Black"
                 Command="{Binding CommitSubscriptionsCommand}"
                 
@@ -94,8 +94,8 @@
                     <Shadow
                         Brush="Gray"
                         Offset="0,0"
-                        Radius="20"
-                        Opacity="0.5"/>
+                        Radius="10"
+                        Opacity="1"/>
                 </Button.Shadow>
             </Button>
                
