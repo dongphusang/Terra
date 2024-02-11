@@ -87,7 +87,7 @@ namespace Terra.Services
             // construct URI
             var uri = new Uri(SPECIEDEET_URL + plantID + "?key=" + KEY);
             // get resource from api
-            HttpResponseMessage result = _httpClient.GetAsync(uri).Result;
+            using HttpResponseMessage result = _httpClient.GetAsync(uri).Result;
 
             if (result.IsSuccessStatusCode)
             {

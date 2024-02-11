@@ -12,6 +12,7 @@ namespace Terra.Models
         public int Id { get; set; }
         public string Common_name { get; set; }
         public string Watering { get; set; }    
+        public string Cycle { get; set; }
         public List<string> Sunlight { get; set; } // to be deserialized into, not binded
         public string Growth_rate { get; set; }
         public List<string> Propagation { get; set; }
