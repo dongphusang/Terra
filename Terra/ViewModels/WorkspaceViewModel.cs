@@ -56,17 +56,22 @@ namespace Terra.ViewModels
         [RelayCommand]
         Task PostWorkspace()
         {
-             _workspaceService.InsertToWorkspaceTable(WorkspaceModel.WorkspaceName, WorkspaceModel.Note, WorkspaceModel.Microcontroller);
-            // make a toast
-            {
-                var message = "Workspace added!";
-                ToastDuration duration = ToastDuration.Short;
-                var fontSize = 14;
-                Toast.Make(message, duration, fontSize).Show();             
-            }
+            if (WorkspaceModel.WorkspaceName is not null && WorkspaceModel.WorkspaceName.Trim().Equals("") is false && WorkspaceModel.Microcontroller is not null) {
+                // insert into sqlite table
+                _workspaceService.InsertToWorkspaceTable(WorkspaceModel.WorkspaceName.Trim(), WorkspaceModel.Microcontroller, WorkspaceModel.Note is null ? "None" : WorkspaceModel.Note.Trim());
 
-            // navigate to Main
-            return Shell.Current.GoToAsync("///MainPage");
+                // make a toast
+                ThrowToast("Workspace added!");
+
+                // navigate to Main
+                return Shell.Current.GoToAsync("///MainPage");
+            }
+            else
+            {
+                ThrowToast("Field left empty!");
+
+                return Task.CompletedTask;
+            }
         }
 
         // manually update labels upon navigation to a new page
@@ -91,18 +96,13 @@ namespace Terra.ViewModels
         {
             if (workspaceName is null) // make a toast
             {
-                var message = "Please Add Your Workspace";
-                ToastDuration duration = ToastDuration.Short;
-                var fontSize = 14;
-                await Toast.Make(message, duration, fontSize).Show();
+                ThrowToast("Please Add Your Workspace");
             }
             else
             {
                 Preferences.Set("CurrentWorkspace", workspaceName);
 
                 var columnCount = Convert.ToInt32(await _workspaceService.CountColumnValues(workspaceName));
-
-                Console.WriteLine($"ToWorkspace(): {columnCount}");
 
                 if (columnCount is not 0)
                     await Shell.Current.GoToAsync(nameof(WorkspaceDisplay), false);  
@@ -117,11 +117,17 @@ namespace Terra.ViewModels
             var result = obj.Result;
             if (result is null || result is 0)
             {
-                Console.WriteLine("Unwrap() WorkspaceViewmodel: -1");
                 return "-1";
             }
-            Console.WriteLine("Unwrap() WorkspaceViewmodel: yea");
             return result.ToString();
+        }
+
+        // throw toast of a message
+        private void ThrowToast(string message)
+        {
+            ToastDuration duration = ToastDuration.Short;
+            var fontSize = 14;
+            Toast.Make(message, duration, fontSize).Show();
         }
     }
 }

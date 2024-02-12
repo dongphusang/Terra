@@ -167,7 +167,7 @@ namespace Terra.Services
         /// <param name="workspaceName"> name of workspace </param>
         /// <param name="note"> note of workspace </param>
         /// <returns> Return true if workspace is added. Return false otherwise. </returns>
-        public bool InsertToWorkspaceTable(string workspaceName, string note, string mcu)
+        public bool InsertToWorkspaceTable(string workspaceName, string mcu, string note = "none")
         {
             var table = "Workspace";
             var column = "name";

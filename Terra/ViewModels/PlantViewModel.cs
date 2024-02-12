@@ -41,8 +41,6 @@ namespace Terra.ViewModels
         [ObservableProperty]
         List<string> plantNames; // retrieved from api
 
-        
-
         // constructor
         public PlantViewModel()
         {
@@ -111,7 +109,7 @@ namespace Terra.ViewModels
                 return Task.CompletedTask;
             }
             // insert plant entry to sqlite
-            _workspaceService.InsertToPlantTable(CurrentWorkspaceName, PlantModel.Name, PlantModel.Note);
+            _workspaceService.InsertToPlantTable(CurrentWorkspaceName, PlantModel.Name, PlantModel.Note is null ? "None" : PlantModel.Note.Trim());
             // upload plant name to MCU
             _firestoreService.PostMerge(FirestoreConstant.MASK_PLANTNAME, PlantModel.Name, FirestoreConstant.COLLECTION_SUBSCRIPTION, FirestoreConstant.DOC_ESP32_1);
             // make  toast: notify users the plant has been added
@@ -156,7 +154,6 @@ namespace Terra.ViewModels
                 PlantModel.Humidity = 0;
                 PlantModel.WaterLevel = 0;
             }
-            Console.WriteLine($"SANG: "+PlantModel.SoilMoisture);
         }
 
         // assess current data and give corresponding warnings

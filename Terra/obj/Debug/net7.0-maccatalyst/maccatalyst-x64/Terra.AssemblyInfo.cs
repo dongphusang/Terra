@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Terra")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+6e9fc661769cfc9df806d9fda379057953c5fae2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+77c84b470e984767aa500cf5e0910c342b876aa8")]
 [assembly: System.Reflection.AssemblyProductAttribute("Terra")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Terra")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
