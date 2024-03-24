@@ -1,4 +1,12 @@
-# Terra - Plant Management
+
+# IMPORTANT!
+- Due to my increasing interest toward the Rust programming language, I will convert the current embedded project from C++ to Rust. Consequently, I will freeze development for this repo.
+- Moreover, I will take this opportunity to re-organize the current repo and separate it into smaller components (into mobile, embedded, web,...).
+### Thank you for your time.
+
+
+
+# Terra - Plant Management (Deprecated)
 OVERVIEW
 -
 - This system takes input from environment sensors(soil moisture, humidity, light sensor) and enables automation in watering.
